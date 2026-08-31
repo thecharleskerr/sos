@@ -1,32 +1,29 @@
-/* Project SOS design tokens.
-   The house palette is monochrome. All colour in the interface comes from
-   network brand identity, injected per card as --network. */
+/* Project SOS design tokens, ticket geometry and motion.
+   The house palette is five values and no more. All colour beyond that
+   arrives per card as --network, and is permitted in exactly three places:
+   the corner flash, the network pill, and the button trace. */
 
 :root {
-  --paper:  #F1F2F0;   /* page background, cool laminate grey-white */
-  --card:   #FFFFFF;   /* tickets are whiter than the shelf */
+  --paper:  #F1F2F0;   /* page background, cool laminate grey-white, not cream */
+  --card:   #FFFFFF;   /* tickets are whiter than the shelf they sit on */
   --ink:    #000000;   /* true black, as on a printed price ticket */
   --ink-2:  #56585C;   /* secondary text, labels, checked dates */
   --rule:   #CFD2CE;   /* borders and dividers */
 
-  --network: var(--ink); /* fallback only, always overridden per card */
+  --network:    var(--ink);   /* fallback only, always overridden per card */
+  --pill-text:  var(--card);  /* flips to ink where the network colour is pale */
 
-  --notch: 22px;       /* the SIM card clipped corner */
+  --cut:    26px;   /* the SIM card clipped corner, at card scale */
+  --trace:  600ms;  /* how long the line takes to draw round a button */
+  --radius: 0;      /* not a variable to change */
 
-  --step--1: 0.833rem;
-  --step-0:  1rem;
-  --step-1:  1.2rem;
-  --step-2:  1.6rem;
-  --step-3:  2.2rem;
-  --step-4:  3.2rem;
-
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -36,21 +33,210 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: Archivo, system-ui, sans-serif;
-  font-size: var(--step-0);
+  font-size: 15px;
   line-height: 1.5;
+  /* Every number in this interface is tabular. Set once, globally,
+     because prices in a comparison list must align down a column. */
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Every number in this interface is tabular. Non-negotiable. */
+a { color: var(--ink); text-underline-offset: 3px; }
+a:hover { color: var(--ink-2); }
+
+/* Kept for places that want to state the intent explicitly. The body rule
+   above already covers the whole interface. */
 .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 
-:focus-visible {
-  outline: 3px solid var(--network);
-  outline-offset: 2px;
+:focus-visible { outline: 2px solid var(--network); outline-offset: 4px; }
+
+/* ── Type scale ─────────────────────────────────────────────────────────── */
+
+.t-price      { font-size: 58px;   font-weight: 800; font-stretch: 125%; letter-spacing: -.03em;  line-height: .9; }
+.t-price-hero { font-size: 76px;   font-weight: 800; font-stretch: 125%; letter-spacing: -.035em; line-height: .85; }
+.t-h1         { font-size: 40px;   font-weight: 800; letter-spacing: -.025em; line-height: 1.05; }
+.t-section    { font-size: 16px;   font-weight: 800; font-stretch: 112%; }
+.t-dealname   { font-size: 19px;   font-weight: 600; }
+.t-allowance  { font-size: 15px;   font-weight: 600; font-stretch: 112%; line-height: 1.1; }
+.t-support    { font-size: 14.5px; font-weight: 600; }
+.t-body       { font-size: 15px;   font-weight: 400; max-width: 68ch; text-wrap: pretty; }
+.t-label      { font-size: 12px;   color: var(--ink-2); }
+.t-meta       { font-size: 12.5px; color: var(--ink-2); }
+
+@media (max-width: 52rem) {
+  .t-h1 { font-size: 23px; letter-spacing: -.02em; line-height: 1.1; }
 }
 
+/* ── The ticket ─────────────────────────────────────────────────────────── */
+
+.ticket {
+  position: relative;
+  background: var(--card);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut),
+    100% 100%,
+    0 100%
+  );
+  /* No border: a border on a clipped element gets clipped with it.
+     No shadow: separation is white card on grey paper. */
+}
+
+.ticket .flash {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width:  calc(var(--cut) * 1.75);
+  height: calc(var(--cut) * 1.75);
+  background: var(--network);
+}
+
+/* Three and giffgaff brand in pure black, which is the house ink. Their
+   flash takes a paper keyline and their pill drops its fill, so a black
+   editorial mark is never mistaken for a network's colour. */
+.ticket .flash--ink { box-shadow: inset 1px -1px 0 0 var(--paper); }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 9px;
+  background: var(--network);
+  color: var(--pill-text);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.pill--ink {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+/* An MVNO's host network. Outlined, never a second colour, so only one
+   network colour is ever live on a card. */
+.pill-host {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 9px;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  font-size: 12.5px;
+}
+
+/* Editorial marks are the site's voice, so they stay monochrome against
+   any network colour. */
+.mark {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 13px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ── Four-slot allowance grid ───────────────────────────────────────────── */
+/* Fixed structure on every card, so the eye can compare down a column
+   without reading. DOM order is label then value for screen readers;
+   column-reverse puts the value on top visually. */
+
+.allowances {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border: 1px solid var(--rule);
+}
+.allowances > div {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 10px 7px;
+  border-right: 1px solid var(--rule);
+}
+.allowances > div:last-child { border-right: 0; }
+.allowances dt { font-size: 11px; color: var(--ink-2); margin-top: 3px; }
+.allowances dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: 112%;
+  line-height: 1.1;
+}
+
+/* The four slots stay four across at every width, because the whole point is
+   comparing down a column. On a narrow phone they tighten rather than wrap. */
+@media (max-width: 26rem) {
+  .allowances > div { padding: 10px 5px; }
+  .allowances dd { font-size: 13.5px; font-stretch: 100%; }
+  .allowances dt { font-size: 10.5px; }
+}
+
+/* ── Button, with the trace ─────────────────────────────────────────────── */
+
+.btn-deal {
+  position: relative;
+  display: flex;
+  align-items: center;      /* label flush left, never centred, no arrow */
+  height: 54px;
+  padding: 0 18px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+}
+.btn-deal:hover { color: var(--paper); }
+
+/* A listing we earn nothing from inverts its button, so the difference is
+   visible before the words are read. */
+.btn-deal--outlined {
+  background: var(--card);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+.btn-deal--outlined:hover { color: var(--ink); }
+
+/* Sized explicitly rather than with inset: -4px. An absolutely positioned
+   replaced element with width: auto falls back to the SVG's intrinsic 300px
+   and ignores `right`, which makes the trace the wrong width and pushes it
+   out of narrow cards. */
+.btn-deal > svg {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  pointer-events: none;
+  overflow: visible;
+}
+.btn-deal > svg rect {
+  fill: none;
+  stroke: var(--network);
+  stroke-width: 2.5;
+  stroke-dasharray: 1;    /* pathLength="1" on the rect normalises the */
+  stroke-dashoffset: 1;   /* perimeter, so one keyframe fits any size */
+}
+.btn-deal:hover > svg rect,
+.btn-deal:focus-visible > svg rect { animation: trace var(--trace) ease-out forwards; }
+
+@keyframes trace { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } }
+
+/* ── The settle: homepage first load, Deal of the Week only, once ───────── */
+
+@keyframes settle {
+  0%   { transform: translateY(-14px) rotate(-.5deg); opacity: 0 }
+  62%  { transform: translateY(3px) rotate(.12deg);   opacity: 1 }
+  100% { transform: none; opacity: 1 }
+}
+.settle { animation: settle 760ms cubic-bezier(.2, .8, .2, 1) both; }
+
+/* ── Reduced motion: the trace becomes a static border, the settle goes ─── */
+
 @media (prefers-reduced-motion: reduce) {
+  .btn-deal > svg rect { stroke-dashoffset: 0; animation: none !important; }
+  .settle { animation: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;

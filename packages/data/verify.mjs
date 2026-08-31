@@ -2,6 +2,7 @@
    Runs in CI on every pull request. A failure blocks the merge. */
 import { readFileSync, existsSync } from 'node:fs';
 import { DealSetSchema, checkTotals } from './schema.js';
+import { networks } from '../ui/networks.js';
 
 const files = ['content/sims/deals.json', 'content/phones/deals.json'];
 let failed = false;
@@ -46,5 +47,33 @@ for (const file of files) {
     console.warn(`WARN  ${file} is marked as sample data. Every figure in it is unverified and must not be published.`);
   }
 }
+
+/* The 4.5:1 contrast floor on network pills is an accessibility requirement,
+   and partly a regulatory one for a comparison service, so it blocks the
+   merge rather than warning. A brand colour swapped in without flipping
+   pillText would otherwise ship a pill nobody can read. */
+const channel = (c) => {
+  const v = c / 255;
+  return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+};
+const luminance = (hex) => {
+  const n = parseInt(hex.slice(1), 16);
+  return 0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255);
+};
+const contrast = (a, b) => {
+  const [x, y] = [luminance(a), luminance(b)];
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+};
+
+let pillsFailed = false;
+for (const [key, net] of Object.entries(networks)) {
+  const ratio = contrast(net.colour, net.pillText);
+  if (ratio < 4.5) {
+    console.error(`FAIL  ${key}: the ${net.name} pill is ${ratio.toFixed(2)}:1, below the 4.5:1 floor. Flip pillText to '#000000'.`);
+    pillsFailed = true;
+    failed = true;
+  }
+}
+if (!pillsFailed) console.log(`ok    network pill contrast (${Object.keys(networks).length} networks, all at or above 4.5:1)`);
 
 process.exit(failed ? 1 : 0);

@@ -4,202 +4,239 @@ import { networks } from '@sos/ui/networks';
 import { roaming } from '@sos/compliance/roaming';
 
 /* Driven by the networks map, not by the roaming table, so a network we have
-   not yet verified still appears with every field reading "Not stated" rather
-   than quietly vanishing from the comparison. */
-const rows = Object.entries(networks).map(([key, net]) => ({
-  key,
-  net,
-  data: roaming[key] ?? null,
-}));
+   not verified still appears as "To confirm" rather than quietly dropping out
+   of the comparison. The site does not print a number it has not verified. */
+const rows = Object.entries(networks).map(([key, net]) => ({ key, net, d: roaming[key] ?? null }));
 
-const NOT_STATED = 'Not stated';
+const gbp = (n) => `£${n % 1 === 0 ? n : n.toFixed(2)}`;
 
-const gbp = (n) => (n === null || n === undefined ? NOT_STATED : `£${n % 1 === 0 ? n : n.toFixed(2)}`);
-const gb = (n) => (n === null || n === undefined ? NOT_STATED : `${n}GB`);
-const count = (n) => (n === null || n === undefined ? NOT_STATED : String(n));
-const yesNo = (b) => (b === null || b === undefined ? NOT_STATED : b ? 'Yes' : 'No');
+const runsOn = (net) => {
+  if (net.hostNetwork === 'direct') return { text: 'Direct', soft: true };
+  if (net.hostNetwork === null) return null;
+  return { text: net.hostNetwork, soft: true };
+};
 
-const day = (iso) =>
-  iso ? new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : null;
+const euRoaming = (d) => {
+  if (!d || d.euIncluded === null) return null;
+  return { text: d.euIncluded ? 'Included' : 'Charged', strong: true };
+};
 
-const verified = rows.filter((r) => r.data && r.data.evidence !== 'unverified').length;
+const dailyCharge = (d) => {
+  if (!d) return null;
+  if (d.dailyChargeGBP !== null) return { text: gbp(d.dailyChargeGBP), strong: true };
+  if (d.euIncluded === true) return { text: 'None', strong: true };
+  return null;
+};
+
+const fairUse = (d) => (d && d.euCapGB !== null ? { text: `${d.euCapGB}GB` } : null);
+
+/* Seven days at the published daily rate, which is what the reader is
+   actually asking. Included roaming costs nothing extra, so it is £0. */
+const weekInSpain = (d) => {
+  if (!d) return null;
+  if (d.dailyChargeGBP !== null) return { text: gbp(d.dailyChargeGBP * 7), strong: true };
+  if (d.euIncluded === true && d.dailyChargeGBP === null) return { text: '£0', strong: true };
+  return null;
+};
+
+const checkedAll = '2026-08-31';
+const checkedLabel = new Date(checkedAll).toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'long', year: 'numeric',
+});
+
+const sources = rows.filter((r) => r.d && r.d.source);
+const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length;
 ---
 <Base
   title="EU roaming by network | Save on Sims"
-  description="What every UK network actually gives you in the EU: whether roaming is included, the fair use cap, how many destinations, any daily charge, and the exceptions. Every figure sourced from the network's own pages."
+  description="What every UK network gives you in the EU: whether roaming is included, the fair use cap, any daily charge, and what a week in Spain actually costs. Every figure from the network's own pages."
 >
-  <h1>EU roaming, network by network</h1>
-  <p class="lede">
-    What you actually get in the EU on each UK network. Every figure below comes
-    from the network's own published pages, with the source and the date we
-    checked it beside each row. Where a network does not state a figure, we say
-    so rather than guess.
-  </p>
-  <p class="count num">{verified} of {rows.length} networks verified.</p>
+  <div class="sheet">
+    <div class="head">
+      <div>
+        <h1>EU roaming, by network</h1>
+        <p class="intro">
+          O2 is the only big network on this list that still includes EU roaming
+          at no extra cost with no daily charge. Everyone else either charges by
+          the day, caps what you can use, or has not published terms we could
+          verify.
+        </p>
+      </div>
+      <div class="checked">
+        <p class="checked-label">Checked</p>
+        <p class="checked-date">{checkedLabel}</p>
+      </div>
+    </div>
 
-  <div class="scroll">
-    <table role="table">
-      <caption class="sr-only">
-        EU roaming policy by UK mobile network, with source and check date.
-      </caption>
-      <thead role="rowgroup">
-        <tr role="row">
-          <th role="columnheader" scope="col">Network</th>
-          <th role="columnheader" scope="col">EU included</th>
-          <th role="columnheader" scope="col">Fair use cap</th>
-          <th role="columnheader" scope="col">Destinations</th>
-          <th role="columnheader" scope="col">Daily charge</th>
-          <th role="columnheader" scope="col">Worldwide</th>
-          <th role="columnheader" scope="col">Worth knowing</th>
-          <th role="columnheader" scope="col">Checked</th>
-        </tr>
-      </thead>
-      <tbody role="rowgroup">
-        {rows.map(({ key, net, data }) => (
-          <tr role="row" style={`--network: ${net.colour}`}>
-            <th role="rowheader" scope="row" class="net">
-              <span class="flash" aria-hidden="true"></span>
-              <span class="netname">{net.name}</span>
-              {net.hostNetwork !== net.name && <span class="host">on {net.hostNetwork}</span>}
-            </th>
-            <td role="cell" data-label="EU included">{yesNo(data?.euIncluded ?? null)}</td>
-            <td role="cell" data-label="Fair use cap" class="num">{gb(data?.euCapGB ?? null)}</td>
-            <td role="cell" data-label="Destinations" class="num">{count(data?.destinationCount ?? null)}</td>
-            <td role="cell" data-label="Daily charge" class="num">
-              {data && data.euIncluded === true && data.dailyChargeGBP === null
-                ? 'None'
-                : gbp(data?.dailyChargeGBP ?? null)}
-            </td>
-            <td role="cell" data-label="Worldwide">{yesNo(data?.worldwideIncluded ?? null)}</td>
-            <td role="cell" data-label="Worth knowing" class="note">{data?.note ?? NOT_STATED}</td>
-            <td role="cell" data-label="Checked" class="src">
-              {data?.source && data?.checked ? (
-                <a href={data.source} rel="nofollow noopener">{day(data.checked)}</a>
-              ) : (
-                NOT_STATED
-              )}
-            </td>
+    <div class="scroll">
+      <table role="table">
+        <caption class="sr-only">
+          EU roaming policy by UK mobile network. Unverified values read "To confirm".
+        </caption>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Network</th>
+            <th role="columnheader" scope="col">Runs on</th>
+            <th role="columnheader" scope="col">EU roaming</th>
+            <th role="columnheader" scope="col">Daily charge</th>
+            <th role="columnheader" scope="col">Fair-use cap</th>
+            <th role="columnheader" scope="col">A week in Spain</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody role="rowgroup">
+          {rows.map(({ net, d }) => {
+            const cells = [
+              { label: 'Runs on', v: runsOn(net) },
+              { label: 'EU roaming', v: euRoaming(d) },
+              { label: 'Daily charge', v: dailyCharge(d) },
+              { label: 'Fair-use cap', v: fairUse(d) },
+              { label: 'A week in Spain', v: weekInSpain(d) },
+            ];
+            return (
+              <tr role="row" style={`--network: ${net.colour}`}>
+                <th role="rowheader" scope="row" class="net">
+                  <span class:list={['swatch', net.inkClash && 'swatch--ink']} aria-hidden="true"></span>
+                  {net.name}
+                </th>
+                {cells.map((c) => (
+                  <td role="cell" data-label={c.label}>
+                    {c.v
+                      ? <span class:list={[c.v.strong && 'strong', c.v.soft && 'soft']}>{c.v.text}</span>
+                      : <span class="unconfirmed"><span class="hollow" aria-hidden="true"></span>To confirm</span>}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
 
-  <div class="small">
-    <h2>How to read this</h2>
-    <p>
-      <strong>Not stated</strong> means the network does not publish that figure
-      in a form we could verify, so we have left it empty. It does not mean the
-      allowance is zero. Ask the network before you rely on it.
-    </p>
-    <p>
-      Fair use caps apply to the data you can use while roaming, which is often
-      lower than your UK allowance. Where a cap exists, going over it usually
-      means a per gigabyte charge rather than being cut off.
-    </p>
-    <p>
-      Networks change roaming terms, and terms can differ depending on when you
-      joined. The date beside each row is the day we last checked that network's
-      own pages. Always confirm on the network's site before you buy.
-    </p>
+    <div class="legend">
+      <p>
+        <span class="hollow" aria-hidden="true"></span>
+        <strong>To confirm</strong> means we could not verify that figure against
+        the network's own published terms. It is not a zero. We would rather
+        leave it blank than print a number we have not checked.
+      </p>
+      <p>
+        Daily charges are the published pay-monthly rates. A week in Spain is
+        seven days at that rate, which is the number most people are actually
+        after. Fair-use caps limit the data you can use while roaming, and are
+        often lower than your UK allowance.
+      </p>
+      <p>
+        {verified} of {rows.length} networks are verified. Terms can differ by
+        when you joined, and Three and EE both vary by plan tier, so confirm on
+        the network's own site before you buy.
+      </p>
+      {sources.length > 0 && (
+        <p class="sources">
+          Sources: {sources.map((r, i) => (
+            <>{i > 0 && ', '}<a href={r.d.source} rel="nofollow noopener">{r.net.name}</a></>
+          ))}.
+        </p>
+      )}
+    </div>
   </div>
 </Base>
 
 <style>
-  h1 {
-    font-size: var(--step-3);
-    font-weight: 800;
-    font-stretch: 112%;
-    letter-spacing: -0.02em;
-    margin: var(--space-6) 0 var(--space-3);
-    max-width: 20ch;
+  .sheet { background: var(--card); padding: 30px 32px 26px; margin: var(--space-6) 0 var(--space-12); }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: var(--space-6);
+    border-bottom: 2px solid var(--ink);
   }
-  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-4); }
-  .count { margin: 0 0 var(--space-6); font-size: var(--step--1); color: var(--ink-2); }
+  h1 { font-size: 30px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin: 0; }
+  .intro { font-size: 13.5px; color: var(--ink-2); max-width: 58ch; margin: 10px 0 0; text-wrap: pretty; }
+  /* Top right, where a screenshot will keep it. */
+  .checked { text-align: right; flex: none; }
+  .checked-label { font-size: 12px; color: var(--ink-2); margin: 0; }
+  .checked-date { font-size: 15px; font-weight: 600; margin: 2px 0 0; }
 
   .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-    border: 0;
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
   }
 
   .scroll { overflow-x: auto; }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: var(--step--1);
-    background: var(--card);
-  }
-  caption { text-align: left; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left; }
 
-  th, td {
-    padding: var(--space-3);
-    text-align: left;
-    vertical-align: top;
-    border-bottom: 1px solid var(--rule);
-  }
   thead th {
-    border-bottom: 2px solid var(--ink);
+    font-size: 11.5px;
     font-weight: 600;
+    color: var(--ink-2);
+    padding: 14px 14px 8px 0;
+    border-bottom: 1px solid var(--ink);
     white-space: nowrap;
+  }
+  tbody th, tbody td {
+    padding: 13px 14px 13px 0;
+    /* Rules only. No zebra striping. */
+    border-bottom: 1px solid var(--rule);
+    vertical-align: baseline;
   }
   tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 
-  /* The only colour on the page, and only where the network is named. */
-  .net { position: relative; padding-left: var(--space-5); font-weight: 600; white-space: nowrap; }
-  .flash {
-    position: absolute;
-    left: var(--space-3);
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 1.4em;
+  /* The only colour on the page, and only where the network is named.
+     The name is always present beside it, never colour alone. */
+  .net { font-weight: 600; white-space: nowrap; }
+  .swatch {
+    display: inline-block;
+    width: 11px; height: 11px;
     background: var(--network);
+    margin-right: 9px;
   }
-  .netname { display: block; }
-  .host { display: block; font-weight: 400; color: var(--ink-2); }
+  .swatch--ink { box-shadow: inset 0 0 0 1px var(--paper); }
 
-  .note { min-width: 18ch; max-width: 34ch; white-space: normal; color: var(--ink-2); }
-  .src a { color: var(--ink); }
-  .src { white-space: nowrap; }
+  .strong { font-weight: 600; }
+  .soft { color: var(--ink-2); }
 
-  .small { margin-top: var(--space-7); max-width: 62ch; }
-  .small h2 { font-size: var(--step-1); font-weight: 700; margin: 0 0 var(--space-3); }
-  .small p { color: var(--ink-2); font-size: var(--step--1); margin: 0 0 var(--space-4); }
+  .unconfirmed { color: var(--ink-2); white-space: nowrap; }
+  .hollow {
+    display: inline-block;
+    width: 9px; height: 9px;
+    border: 1.5px solid var(--ink-2);
+    margin-right: 7px;
+  }
 
-  /* On a phone each row becomes its own ticket, so nothing is read sideways.
+  .legend { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 2px solid var(--ink); }
+  .legend p { font-size: 12.5px; color: var(--ink-2); margin: 0 0 var(--space-3); max-width: 74ch; }
+  .legend p:last-child { margin-bottom: 0; }
+  .legend strong { color: var(--ink); }
+  .sources a { color: var(--ink-2); }
+
+  /* On a phone each row becomes its own block, so nothing is read sideways.
      Explicit ARIA roles are on the markup because display: block strips the
-     implicit table semantics that screen readers rely on. */
+     implicit table semantics screen readers depend on. */
   @media (max-width: 52rem) {
+    .sheet { padding: 20px 18px 18px; }
+    h1 { font-size: 23px; }
+    .checked { text-align: left; }
+
     table, thead, tbody, tr, th, td { display: block; width: 100%; }
     thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-    tbody tr {
-      border: 1px solid var(--rule);
-      background: var(--card);
-      margin-bottom: var(--space-5);
-      padding: var(--space-2) 0;
-    }
+    tbody tr { border-bottom: 2px solid var(--ink); padding: 4px 0 10px; }
+    tbody tr:last-child { border-bottom: 0; }
 
-    .net {
-      border-bottom: 1px solid var(--rule);
-      padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5);
-      white-space: normal;
-    }
-    .flash { top: var(--space-3); transform: none; height: 1.4em; }
+    .net { padding: 12px 0 8px; border-bottom: 0; font-size: 15px; }
 
     tbody td {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: var(--space-4);
       align-items: baseline;
+      padding: 6px 0;
       border-bottom: 1px dotted var(--rule);
-      padding: var(--space-2) var(--space-3);
       text-align: right;
     }
     tbody td::before {
@@ -207,15 +244,8 @@ const verified = rows.filter((r) => r.data && r.data.evidence !== 'unverified').
       color: var(--ink-2);
       text-align: left;
       font-weight: 400;
+      font-size: 12.5px;
     }
     tbody tr td:last-child { border-bottom: 0; }
-
-    /* The exception is prose, so it reads better stacked than in a value column. */
-    .note {
-      display: block;
-      max-width: none;
-      text-align: left;
-    }
-    .note::before { display: block; margin-bottom: var(--space-1); }
   }
 </style>

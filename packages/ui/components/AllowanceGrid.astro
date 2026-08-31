@@ -1,44 +1,29 @@
 ---
-const { data, minutes, texts, months } = Astro.props;
-const fmt = (v, unit) => v === 'unlimited' ? 'Unlimited' : `${v}${unit ?? ''}`;
-const cells = [
-  { value: fmt(data, 'GB'), label: 'data' },
-  { value: fmt(minutes),    label: 'minutes' },
-  { value: fmt(texts),      label: 'texts' },
-  { value: String(months),  label: months === 1 ? 'month' : 'months' },
+/* The four-slot grid. Always data, minutes, texts, months, in that order, on
+   every card including the hero, so the eye can compare down a column without
+   reading. Marked up as a dl: the DOM order is label then value for screen
+   readers, and column-reverse puts the value on top visually. */
+const { data, minutes, texts, months, pad } = Astro.props;
+
+const allowance = (v) => {
+  if (v === 'unlimited') return 'Unlimited';
+  if (v === null || v === undefined) return 'Not stated';
+  return String(v);
+};
+const withGB = (v) => (typeof v === 'number' ? `${v}GB` : allowance(v));
+
+const slots = [
+  { label: 'data', value: withGB(data) },
+  { label: 'minutes', value: allowance(minutes) },
+  { label: 'texts', value: allowance(texts) },
+  { label: 'months', value: allowance(months) },
 ];
 ---
-<dl class="grid">
-  {cells.map((c) => (
-    <div class="cell">
-      <dd class="value num">{c.value}</dd>
-      <dt class="label">{c.label}</dt>
+<dl class="allowances">
+  {slots.map((s) => (
+    <div style={pad ? `padding: ${pad}` : undefined}>
+      <dt>{s.label}</dt>
+      <dd>{s.value}</dd>
     </div>
   ))}
 </dl>
-<style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin: var(--space-4) 0;
-    border: 1px solid var(--rule);
-  }
-  .cell {
-    padding: var(--space-3) var(--space-2);
-    text-align: center;
-    border-right: 1px solid var(--rule);
-  }
-  .cell:last-child { border-right: 0; }
-  .value {
-    margin: 0;
-    font-size: var(--step-1);
-    font-weight: 600;
-    font-stretch: 112%;
-    line-height: 1.1;
-  }
-  .label {
-    font-size: var(--step--1);
-    color: var(--ink-2);
-    margin-top: var(--space-1);
-  }
-</style>

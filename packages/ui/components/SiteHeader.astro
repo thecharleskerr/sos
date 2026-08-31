@@ -1,40 +1,106 @@
 ---
-/* Cross-site toggle. Two domains, so these are absolute links. */
+/* Two stacked bands. The masthead identifies the site; the toggle band below
+   it offers the sister site as genuine help rather than a nav item, which is
+   why the whole band is one link and sits on paper rather than card.
+   It is the same object on both sites with the sentence swapped. */
 const { site } = Astro.props;
-const other = site === 'sims'
-  ? { href: 'https://saveonsmartphones.co.uk', text: 'Looking for a new phone?' }
-  : { href: 'https://saveonsims.co.uk',        text: 'Looking for a better SIM-only deal?' };
-const title = site === 'sims' ? 'Save on Sims' : 'Save on Smartphones';
+
+const copy = site === 'sims'
+  ? {
+      title: 'Save on Sims',
+      strap: 'SIM-only deals, checked every Monday',
+      href: 'https://saveonsmartphones.co.uk',
+      question: 'Looking for a new phone?',
+      support: 'Handset deals on the top 10 are on our other site.',
+      button: 'Save on Smartphones',
+    }
+  : {
+      title: 'Save on Smartphones',
+      strap: "The UK's top 10 phones, checked every Monday",
+      href: 'https://saveonsims.co.uk',
+      question: 'Looking for a better SIM-only deal?',
+      support: 'Keep the phone you have and pay a lot less.',
+      button: 'Save on Sims',
+    };
+
+const roamingHref = site === 'sims'
+  ? '/guides/eu-roaming-by-network'
+  : 'https://saveonsims.co.uk/guides/eu-roaming-by-network';
 ---
 <header class="bar">
-  <a class="brand" href="/">{title}</a>
-  <a class="switch" href={other.href}>{other.text}</a>
+  <div class="masthead">
+    <div>
+      <a class="brand" href="/">{copy.title}</a>
+      <p class="strap">{copy.strap}</p>
+    </div>
+    <nav class="nav">
+      <a href={roamingHref}>Roaming</a>
+      <a href="/how-we-make-money">How we make money</a>
+    </nav>
+  </div>
+
+  <a class="toggle" href={copy.href}>
+    <span class="toggle-text">
+      <span class="question">{copy.question}</span>
+      <span class="support">{copy.support}</span>
+    </span>
+    <span class="toggle-btn">{copy.button}</span>
+  </a>
 </header>
+
 <style>
-  .bar {
+  .bar { background: var(--card); }
+
+  .masthead {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-4);
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-4) 0;
+    padding: 16px 20px 14px;
     border-bottom: 2px solid var(--ink);
   }
   .brand {
-    font-size: var(--step-2);
+    display: inline-block;
+    font-size: 21px;
     font-weight: 800;
-    font-stretch: 112%;
+    font-stretch: 118%;
+    letter-spacing: -.025em;
     color: var(--ink);
     text-decoration: none;
-    letter-spacing: -0.01em;
   }
-  .switch {
-    padding: var(--space-2) var(--space-4);
-    border: 2px solid var(--ink);
-    color: var(--ink);
-    font-weight: 600;
-    font-size: var(--step--1);
+  .strap { font-size: 11px; color: var(--ink-2); margin: 2px 0 0; }
+
+  .nav { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+  .nav a { font-size: 12.5px; color: var(--ink); text-decoration: none; }
+  .nav a:hover { text-decoration: underline; }
+
+  .toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
     text-decoration: none;
+    color: var(--ink);
   }
-  .switch:hover { background: var(--ink); color: var(--paper); }
+  .toggle:hover { color: var(--ink); }
+  .toggle-text { display: block; }
+  .question { display: block; font-size: 15px; font-weight: 600; }
+  .support { display: block; font-size: 12.5px; color: var(--ink-2); }
+
+  .toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    padding: 0 13px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 12.5px;
+    font-weight: 700;
+    flex: none;
+  }
 </style>

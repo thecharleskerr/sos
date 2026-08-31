@@ -1,129 +1,210 @@
 ---
+/* The deal card. Everything a reader needs is visible without a click, a
+   hover or a scroll: network, host, monthly price, total, the price rise in
+   pounds and pence, the four allowances, roaming, the checked date, and
+   whether we earn on the link.
+
+   Nothing here is ever guessed. A figure the data does not carry is stated as
+   unconfirmed, because a blank cell costs nothing and a wrong number costs
+   the affiliate relationship. */
 import AllowanceGrid from './AllowanceGrid.astro';
 import TraceButton from './TraceButton.astro';
-import { get } from '../networks.js';
+import { get, hostLabel } from '../networks.js';
 
-const { deal } = Astro.props;
+const { deal, variant = 'standard' } = Astro.props;
+const hero = variant === 'hero';
 const net = get(deal.network);
+const device = deal.device ?? null;
 
 const gbp = (n) => `£${n % 1 === 0 ? n : n.toFixed(2)}`;
-const isMvno = net.hostNetwork !== net.name;
 
-const roamingLine = deal.roaming.euIncluded
-  ? `${deal.roaming.euCapGB}GB in the EU, no daily charge`
-  : `Charged at ${gbp(deal.roaming.dailyChargeGBP)} a day in the EU`;
+/* The rise is derived from stated values, never invented. Where the amount is
+   not stated we say so rather than compute a total from a guess. */
+const rise = deal.priceRise;
+let riseHead;
+let riseDetail;
+if (rise.type === 'none') {
+  riseHead = 'No price rise';
+  riseDetail = `Fixed for the whole ${deal.contractLengthMonths} months.`;
+} else if (typeof rise.amountGBP === 'number') {
+  const to = gbp(deal.monthlyPrice + rise.amountGBP);
+  riseHead = rise.month ? `Goes up to ${to} in ${rise.month}` : `Goes up to ${to} mid-contract`;
+  riseDetail = `A rise of ${gbp(rise.amountGBP)} a month, and ${gbp(rise.amountGBP * 12)} over the year.`;
+} else {
+  riseHead = rise.wording;
+  riseDetail = 'The amount is not stated in pounds and pence.';
+}
+
+const roam = deal.roaming;
+let roamHead;
+if (roam.euIncluded === true) {
+  roamHead = roam.euCapGB === null
+    ? 'Included in the EU, no daily charge'
+    : `${roam.euCapGB}GB in the EU, no daily charge`;
+} else if (roam.euIncluded === false) {
+  roamHead = roam.dailyChargeGBP === null
+    ? 'Not included in the EU'
+    : `Charged at ${gbp(roam.dailyChargeGBP)} a day in the EU`;
+} else {
+  roamHead = 'EU roaming not confirmed';
+}
+const roamDetail = roam.note
+  ?? (roam.euIncluded === true && roam.euCapGB === null ? `Cap not yet confirmed with ${net.name}.` : null);
+
+const checked = new Date(deal.lastVerified).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+const foot = deal.isAffiliate
+  ? `Checked ${checked}. We earn a commission if you switch through this link.`
+  : `Checked ${checked}. No commission on this link.`;
 
 const picks = {
   'deal-of-week': 'Deal of the week',
   'best-roaming': 'Best for roaming',
   'best-unlimited': 'Best unlimited data',
-  'cheapest': 'Cheapest this week',
+  cheapest: 'Cheapest this week',
   'best-short-contract': 'Best short contract',
 };
+
+const host = hostLabel(net);
+const isDirect = net.hostNetwork === 'direct';
+const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? '; --cut: 36px' : ''}`;
 ---
-<article class="card" style={`--network: ${net.colour}`}>
-  <span class="flash" aria-hidden="true"></span>
+<article class:list={['ticket', hero && 'hero', hero && 'settle']} style={style}>
+  <span class:list={['flash', net.inkClash && 'flash--ink']} aria-hidden="true"></span>
+  {deal.pick && <p class="mark">{picks[deal.pick]}</p>}
 
-  {deal.pick && <p class="pick">{picks[deal.pick]}</p>}
+  <div class:list={['body', hero && 'body--hero']}>
+    <div class:list={hero && 'col-left'}>
+      {device ? (
+        <div class="handset">
+          <div class="imgslot" aria-hidden="true">Handset image</div>
+          <div class="handset-meta">
+            <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
+            <p class="t-dealname devname">{device.name}<br />{device.storageGB}GB</p>
+            <div class="swatches">
+              {device.colours.map((c) => <span style={`background: ${c.hex}`} title={c.name}></span>)}
+            </div>
+            <p class="finishes">{device.colours.map((c) => c.name).join(', ')}</p>
+          </div>
+        </div>
+      ) : (
+        <div class="netrow">
+          <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
+          {isDirect ? <span class="t-meta">{host}</span> : <span class="pill-host">{host}</span>}
+        </div>
+      )}
 
-  <header class="head">
-    <span class="pill">{net.name}</span>
-    {isMvno && <span class="host">on {net.hostNetwork}</span>}
-  </header>
+      <div>
+        <p class="price">
+          <span class:list={['amt', hero ? 't-price-hero' : 't-price']}>{gbp(deal.monthlyPrice)}</span>
+          <span class="per">a month</span>
+        </p>
+        <p class="total">
+          {deal.upfrontCost > 0 && <>{gbp(deal.upfrontCost)} upfront<br /></>}
+          {deal.upfrontCost === 0 && device && <>£0 upfront<br /></>}
+          {gbp(deal.totalContractCost)} over {deal.contractLengthMonths} months
+        </p>
+      </div>
 
-  <p class="price num">{gbp(deal.monthlyPrice)}</p>
-  <p class="terms num">
-    a month · {gbp(deal.totalContractCost)} over {deal.contractLengthMonths} months
-  </p>
-  <p class="rise">{deal.priceRise.wording}</p>
+      <div class:list={hero ? 'riseblock' : 'band'}>
+        <p class:list={hero ? 'risehead-hero' : 't-support'}>{riseHead}</p>
+        <p class="detail">{riseDetail}</p>
+      </div>
+    </div>
 
-  <AllowanceGrid
-    data={deal.data}
-    minutes={deal.minutes}
-    texts={deal.texts}
-    months={deal.contractLengthMonths}
-  />
+    <div class:list={hero && 'col-right'}>
+      <AllowanceGrid
+        data={deal.data}
+        minutes={deal.minutes}
+        texts={deal.texts}
+        months={deal.contractLengthMonths}
+        pad={hero ? '11px 9px' : undefined}
+      />
 
-  <dl class="roaming">
-    <dt>Roaming</dt>
-    <dd>
-      {roamingLine}
-      {deal.roaming.note && <span class="note">{deal.roaming.note}</span>}
-    </dd>
-  </dl>
+      {hero ? (
+        <div class="band">
+          <p class="roam-label">Roaming</p>
+          <p class="t-support">{roamHead}</p>
+          {roamDetail && <p class="detail">{roamDetail}</p>}
+        </div>
+      ) : (
+        <div class="roam">
+          <p class="roam-label">Roaming</p>
+          <div>
+            <p class="t-support">{roamHead}</p>
+            {roamDetail && <p class="detail">{roamDetail}</p>}
+          </div>
+        </div>
+      )}
 
-  <TraceButton href={deal.url} label={`See this deal at ${net.name}`} />
+      {!deal.isAffiliate && (
+        <div class="no-earn">
+          <strong>We don't earn from this one</strong>
+          <p class="detail">{net.note ?? `${net.name} has no affiliate programme. It is here because leaving it out would make the list a lie.`}</p>
+        </div>
+      )}
 
-  <p class="checked">
-    Checked {deal.lastVerified}
-    {deal.isAffiliate
-      ? <span> · we earn a commission on this link</span>
-      : <span class="noearn"> · we don't earn from this one</span>}
-  </p>
+      <TraceButton
+        href={deal.url}
+        label={`See this deal at ${net.name}`}
+        outlined={!deal.isAffiliate}
+        rel={deal.isAffiliate ? 'sponsored nofollow' : 'nofollow'}
+      />
+      <p class="foot">{foot}</p>
+    </div>
+  </div>
 </article>
 
 <style>
-  /* The SIM card silhouette: one clipped corner, top right. */
-  .card {
-    position: relative;
-    background: var(--card);
-    border: 1px solid var(--rule);
-    padding: var(--space-5);
-    clip-path: polygon(
-      0 0,
-      calc(100% - var(--notch)) 0,
-      100% var(--notch),
-      100% 100%,
-      0 100%
-    );
+  .mark { margin: 0; }
+  .body { padding: 18px 20px; display: flex; flex-direction: column; gap: 15px; }
+  .body > div { display: flex; flex-direction: column; gap: 15px; }
+
+  .netrow { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+
+  .price { display: flex; align-items: baseline; gap: 9px; margin: 0; }
+  /* This span wraps in a narrow column without both of these. */
+  .per { font-size: 14px; color: var(--ink-2); white-space: nowrap; flex: none; }
+  .total { font-size: 13.5px; color: var(--ink-2); margin: 7px 0 0; }
+
+  .band { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 11px 0; }
+  .band > p, .roam p, .no-earn p { margin: 0; }
+  .detail { font-size: 12.5px; color: var(--ink-2); margin-top: 2px !important; }
+
+  .roam { display: grid; grid-template-columns: 74px 1fr; gap: 12px; padding: 12px 0;
+          border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .roam-label { font-size: 12px; color: var(--ink-2); margin: 0; }
+  .roam > div { display: block; }
+
+  .no-earn { border: 2px solid var(--ink); padding: 12px 14px; }
+  .no-earn strong { font-size: 14px; font-weight: 700; }
+
+  .foot { font-size: 12px; color: var(--ink-2); line-height: 1.45; margin: 0; }
+
+  /* Handset */
+  .handset { display: flex; gap: 16px; }
+  .imgslot { width: 78px; height: 104px; flex: none; background: #E7E8E6;
+             border: 1px solid var(--rule); color: var(--ink-2); font-size: 10.5px;
+             display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px; }
+  .handset-meta { flex: 1; min-width: 0; }
+  .devname { margin: 10px 0 0; line-height: 1.2; }
+  .swatches { display: flex; gap: 7px; margin-top: 11px; }
+  .swatches span { width: 22px; height: 22px; border: 1px solid var(--rule); }
+  /* Never colour alone: the finishes are written out as well as shown. */
+  .finishes { font-size: 11.5px; color: var(--ink-2); margin: 6px 0 0; }
+
+  /* Deal of the week */
+  .hero { width: 100%; }
+  .body--hero { flex-direction: row; gap: 28px; padding: 20px 26px 24px; }
+  .col-left { flex: 1; gap: 16px; }
+  .col-right { width: 372px; flex: none; }
+  .riseblock { border-top: 2px solid var(--ink); padding-top: 11px; }
+  .risehead-hero { font-size: 17px; font-weight: 600; margin: 0; }
+  .hero .per { font-size: 16px; }
+  .hero .total { font-size: 14px; margin-top: 9px; }
+
+  @media (max-width: 52rem) {
+    .body--hero { flex-direction: column; gap: 15px; padding: 18px 20px; }
+    .col-right { width: 100%; }
+    .hero .amt { font-size: 58px; letter-spacing: -.03em; line-height: .9; }
   }
-  .flash {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: var(--notch);
-    height: var(--notch);
-    background: var(--network);
-    clip-path: polygon(0 0, 100% 100%, 0 100%);
-  }
-
-  .pick {
-    display: inline-block;
-    margin: 0 0 var(--space-4);
-    padding: var(--space-1) var(--space-3);
-    background: var(--ink);
-    color: var(--paper);
-    font-size: var(--step--1);
-    font-weight: 600;
-  }
-
-  .head { display: flex; align-items: baseline; gap: var(--space-3); }
-  .pill {
-    padding: var(--space-1) var(--space-3);
-    border: 2px solid var(--network);
-    font-weight: 600;
-    font-size: var(--step--1);
-  }
-  .host { color: var(--ink-2); font-size: var(--step--1); }
-
-  .price {
-    margin: var(--space-3) 0 0;
-    font-size: var(--step-4);
-    font-weight: 800;
-    font-stretch: 125%;
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-  .terms { margin: var(--space-2) 0 0; color: var(--ink-2); font-size: var(--step--1); }
-
-  /* Ofcom requires the cash-terms price rise directly under the price. */
-  .rise { margin: var(--space-2) 0 0; font-size: var(--step--1); font-weight: 600; }
-
-  .roaming { margin: 0 0 var(--space-5); }
-  .roaming dt { font-size: var(--step--1); color: var(--ink-2); }
-  .roaming dd { margin: var(--space-1) 0 0; font-weight: 600; }
-  .note { display: block; font-weight: 400; font-size: var(--step--1); color: var(--ink-2); }
-
-  .checked { margin: var(--space-3) 0 0; font-size: var(--step--1); color: var(--ink-2); }
-  .noearn { font-weight: 600; color: var(--ink); }
 </style>

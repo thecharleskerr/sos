@@ -15,14 +15,14 @@ const weekOf = new Date(data.weekOf).toLocaleDateString('en-GB', {
   title="Best SIM-only deals this week | Save on Sims"
   description="The best UK SIM-only deals, checked and updated every Monday. See exactly what you get, including roaming and any price rise."
 >
-  <h1>Best SIM-only deals, week of {weekOf}</h1>
+  <h1 class="t-h1">Best SIM-only deals, week of {weekOf}</h1>
   <p class="lede">
     Checked every Monday morning. Every deal shows what you actually get,
     including your EU roaming allowance and any mid-contract price rise in
     pounds and pence.
   </p>
 
-  {featured && <div class="featured"><DealCard deal={featured} /></div>}
+  {featured && <div class="featured"><DealCard deal={featured} variant="hero" /></div>}
 
   <div class="grid">
     {rest.map((deal) => <DealCard deal={deal} />)}
@@ -30,19 +30,13 @@ const weekOf = new Date(data.weekOf).toLocaleDateString('en-GB', {
 </Base>
 
 <style>
-  h1 {
-    font-size: var(--step-3);
-    font-weight: 800;
-    font-stretch: 112%;
-    letter-spacing: -0.02em;
-    margin: var(--space-6) 0 var(--space-3);
-    max-width: 20ch;
-  }
-  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-6); }
-  .featured { margin-bottom: var(--space-6); }
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  .featured { margin-bottom: var(--space-8); }
   .grid {
     display: grid;
-    gap: var(--space-5);
+    gap: var(--space-6);
     grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+    align-items: start;
   }
 </style>
