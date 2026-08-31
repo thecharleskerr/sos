@@ -45,6 +45,15 @@ under Settings, Secrets and variables, Actions. Do not commit them.
 renders. Every number in it is unverified. Replace it with real Awin feed
 output before this site is published anywhere.
 
+## Known security advisories
+
+`npm audit` reports advisories against Astro, esbuild and sharp. None is
+reachable in a static build with our current code, and the upgrade is a two
+major version jump, so we have deferred it deliberately rather than ignored
+it. The reasoning, advisory by advisory, is in
+[docs/astro-advisories.md](docs/astro-advisories.md). Read that before acting
+on an audit result, and before the phones site starts rendering device images.
+
 ## How the automation is meant to behave
 
 The weekly job proposes and the daily job disposes.
