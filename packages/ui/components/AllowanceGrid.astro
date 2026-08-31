@@ -1,0 +1,44 @@
+---
+const { data, minutes, texts, months } = Astro.props;
+const fmt = (v, unit) => v === 'unlimited' ? 'Unlimited' : `${v}${unit ?? ''}`;
+const cells = [
+  { value: fmt(data, 'GB'), label: 'data' },
+  { value: fmt(minutes),    label: 'minutes' },
+  { value: fmt(texts),      label: 'texts' },
+  { value: String(months),  label: months === 1 ? 'month' : 'months' },
+];
+---
+<dl class="grid">
+  {cells.map((c) => (
+    <div class="cell">
+      <dd class="value num">{c.value}</dd>
+      <dt class="label">{c.label}</dt>
+    </div>
+  ))}
+</dl>
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: var(--space-4) 0;
+    border: 1px solid var(--rule);
+  }
+  .cell {
+    padding: var(--space-3) var(--space-2);
+    text-align: center;
+    border-right: 1px solid var(--rule);
+  }
+  .cell:last-child { border-right: 0; }
+  .value {
+    margin: 0;
+    font-size: var(--step-1);
+    font-weight: 600;
+    font-stretch: 112%;
+    line-height: 1.1;
+  }
+  .label {
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    margin-top: var(--space-1);
+  }
+</style>

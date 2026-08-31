@@ -1,0 +1,32 @@
+name: Daily integrity check
+
+# This job IS allowed to deploy, because everything it does is subtractive.
+# Taking a wrong deal down is always safe. Putting a price up is not.
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+
+      - name: Check links, expiry and price drift
+        run: node packages/data/verify/integrity.mjs
+
+      - name: Commit any auto-hidden deals
+        run: |
+          git config user.name  "sos-bot"
+          git config user.email "bot@saveonsims.co.uk"
+          git add content/
+          git diff --staged --quiet || git commit -m "Auto-hide expired or drifted deals"
+          git push

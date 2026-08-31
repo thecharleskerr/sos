@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import data from '../../../../content/sims/deals.json';
+
+const live = data.deals.filter((d) => d.status === 'live');
+const featured = live.find((d) => d.pick === 'deal-of-week');
+const rest = live.filter((d) => d !== featured);
+
+const weekOf = new Date(data.weekOf).toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'long',
+});
+---
+<Base
+  title="Best SIM-only deals this week | Save on Sims"
+  description="The best UK SIM-only deals, checked and updated every Monday. See exactly what you get, including roaming and any price rise."
+>
+  <h1>Best SIM-only deals, week of {weekOf}</h1>
+  <p class="lede">
+    Checked every Monday morning. Every deal shows what you actually get,
+    including your EU roaming allowance and any mid-contract price rise in
+    pounds and pence.
+  </p>
+
+  {featured && <div class="featured"><DealCard deal={featured} /></div>}
+
+  <div class="grid">
+    {rest.map((deal) => <DealCard deal={deal} />)}
+  </div>
+</Base>
+
+<style>
+  h1 {
+    font-size: var(--step-3);
+    font-weight: 800;
+    font-stretch: 112%;
+    letter-spacing: -0.02em;
+    margin: var(--space-6) 0 var(--space-3);
+    max-width: 20ch;
+  }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-6); }
+  .featured { margin-bottom: var(--space-6); }
+  .grid {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  }
+</style>

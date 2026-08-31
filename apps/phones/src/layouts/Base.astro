@@ -1,0 +1,46 @@
+---
+import '@sos/ui/tokens.css';
+import SiteHeader from '@sos/ui/components/SiteHeader.astro';
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrap">
+      <SiteHeader site="phones" />
+      <main><slot /></main>
+      <footer class="foot">
+        <p>
+          We list every UK network, including ones that pay us nothing. When you
+          buy through a link marked as such, we earn a commission. It never
+          changes what you pay or where a deal ranks.
+        </p>
+        <p><a href="/how-we-make-money">How we make money</a> · <a href="/how-we-pick-deals">How we pick deals</a></p>
+      </footer>
+    </div>
+    <style>
+      .wrap { max-width: 68rem; margin: 0 auto; padding: 0 var(--space-5) var(--space-7); }
+      .foot {
+        margin-top: var(--space-7);
+        padding-top: var(--space-5);
+        border-top: 1px solid var(--rule);
+        font-size: var(--step--1);
+        color: var(--ink-2);
+        max-width: 62ch;
+      }
+      .foot a { color: var(--ink); }
+    </style>
+  </body>
+</html>

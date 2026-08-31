@@ -1,0 +1,111 @@
+{
+  "_note": "SAMPLE DATA. Every figure here is placeholder and unverified. Replace with real Awin feed output before this site is published. Do not ship these numbers.",
+  "weekOf": "2026-09-07",
+  "deals": [
+    {
+      "id": "sample-smarty-50",
+      "site": "sims",
+      "network": "smarty",
+      "hostNetwork": "Three",
+      "merchant": "SMARTY",
+      "monthlyPrice": 12,
+      "upfrontCost": 0,
+      "totalContractCost": 144,
+      "data": 50,
+      "minutes": "unlimited",
+      "texts": "unlimited",
+      "contractLengthMonths": 12,
+      "fiveG": true,
+      "roaming": {
+        "euIncluded": true,
+        "euCapGB": 12,
+        "destinationCount": 36,
+        "dailyChargeGBP": null,
+        "worldwideIncluded": false,
+        "note": "Ireland is exempt from the cap"
+      },
+      "priceRise": {
+        "type": "none",
+        "amountGBP": null,
+        "month": null,
+        "wording": "No price rise during your contract"
+      },
+      "url": "https://smarty.co.uk/",
+      "isAffiliate": true,
+      "lastVerified": "2026-09-07",
+      "feedLastUpdated": "2026-09-07",
+      "pick": "deal-of-week",
+      "status": "live"
+    },
+    {
+      "id": "sample-o2-100",
+      "site": "sims",
+      "network": "o2",
+      "hostNetwork": "O2",
+      "merchant": "O2",
+      "monthlyPrice": 18,
+      "upfrontCost": 0,
+      "totalContractCost": 216,
+      "data": 100,
+      "minutes": "unlimited",
+      "texts": "unlimited",
+      "contractLengthMonths": 12,
+      "fiveG": true,
+      "roaming": {
+        "euIncluded": true,
+        "euCapGB": 25,
+        "destinationCount": 48,
+        "dailyChargeGBP": null,
+        "worldwideIncluded": false,
+        "note": "The only major network with no daily EU roaming charge"
+      },
+      "priceRise": {
+        "type": "fixed",
+        "amountGBP": 1.8,
+        "month": "April",
+        "wording": "Your price rises by £1.80 a month each April"
+      },
+      "url": "https://www.o2.co.uk/",
+      "isAffiliate": true,
+      "lastVerified": "2026-09-07",
+      "feedLastUpdated": "2026-09-07",
+      "pick": "best-roaming",
+      "status": "live"
+    },
+    {
+      "id": "sample-ee-editorial",
+      "site": "sims",
+      "network": "ee",
+      "hostNetwork": "EE",
+      "merchant": "EE",
+      "monthlyPrice": 20,
+      "upfrontCost": 0,
+      "totalContractCost": 480,
+      "data": 100,
+      "minutes": "unlimited",
+      "texts": "unlimited",
+      "contractLengthMonths": 24,
+      "fiveG": true,
+      "roaming": {
+        "euIncluded": false,
+        "euCapGB": 50,
+        "destinationCount": null,
+        "dailyChargeGBP": 2.72,
+        "worldwideIncluded": false,
+        "note": "Roam Abroad Pass removes the daily charge"
+      },
+      "priceRise": {
+        "type": "fixed",
+        "amountGBP": 1.5,
+        "month": "March",
+        "wording": "Your price rises by £1.50 a month each March"
+      },
+      "url": "https://ee.co.uk/",
+      "isAffiliate": false,
+      "lastVerified": "2026-09-07",
+      "feedLastUpdated": "2026-09-07",
+      "pick": null,
+      "status": "live"
+    }
+  ]
+}

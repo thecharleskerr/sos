@@ -1,0 +1,40 @@
+---
+/* Cross-site toggle. Two domains, so these are absolute links. */
+const { site } = Astro.props;
+const other = site === 'sims'
+  ? { href: 'https://saveonsmartphones.co.uk', text: 'Looking for a new phone?' }
+  : { href: 'https://saveonsims.co.uk',        text: 'Looking for a better SIM-only deal?' };
+const title = site === 'sims' ? 'Save on Sims' : 'Save on Smartphones';
+---
+<header class="bar">
+  <a class="brand" href="/">{title}</a>
+  <a class="switch" href={other.href}>{other.text}</a>
+</header>
+<style>
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  .brand {
+    font-size: var(--step-2);
+    font-weight: 800;
+    font-stretch: 112%;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .switch {
+    padding: var(--space-2) var(--space-4);
+    border: 2px solid var(--ink);
+    color: var(--ink);
+    font-weight: 600;
+    font-size: var(--step--1);
+    text-decoration: none;
+  }
+  .switch:hover { background: var(--ink); color: var(--paper); }
+</style>
