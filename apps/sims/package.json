@@ -11,6 +11,7 @@
   "dependencies": {
     "astro": "^5.2.5",
     "@sos/ui": "*",
-    "@sos/data": "*"
+    "@sos/data": "*",
+    "@sos/compliance": "*"
   }
 }

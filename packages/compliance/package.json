@@ -1,0 +1,9 @@
+{
+  "name": "@sos/compliance",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./roaming": "./roaming.ts"
+  }
+}
