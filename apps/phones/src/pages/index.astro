@@ -5,6 +5,11 @@ import Base from '../layouts/Base.astro';
   title="Best phone deals this week | Save on Smartphones"
   description="The best UK deals on the ten best-selling phones, checked and updated every Monday."
 >
-  <h1>Best phone deals, coming soon</h1>
-  <p>This site launches after Apple's September event so the new line-up is here from day one.</p>
+  <h1 class="t-h1">Best phone deals, coming soon</h1>
+  <p class="lede">This site launches after Apple's September event so the new line-up is here from day one.</p>
 </Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+</style>

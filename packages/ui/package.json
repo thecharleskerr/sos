@@ -7,6 +7,7 @@
     "./tokens.css": "./tokens.css",
     "./networks": "./networks.js",
     "./components/*": "./components/*",
-    "./money": "./money.js"
+    "./money": "./money.js",
+    "./contrast": "./contrast.js"
   }
 }

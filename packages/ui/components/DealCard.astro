@@ -11,6 +11,7 @@ import AllowanceGrid from './AllowanceGrid.astro';
 import TraceButton from './TraceButton.astro';
 import { get, hostLabel } from '../networks.js';
 import { gbp } from '../money.js';
+import { contrast } from '../contrast.js';
 
 const { deal, variant = 'standard' } = Astro.props;
 const hero = variant === 'hero';
@@ -58,8 +59,13 @@ if (roam.euIncluded === true) {
 } else {
   roamHead = 'EU roaming not confirmed';
 }
+/* Data notes arrive with or without terminal punctuation; the card's other
+   detail lines always end with a full stop, so notes are normalised at
+   render rather than edited in content/. */
+const ensureStop = (t) => (/[.!?]$/.test(t) ? t : `${t}.`);
 const roamDetail = roam.note
-  ?? (roam.euIncluded === true && roam.euCapGB === null ? `Cap not yet confirmed with ${net.name}.` : null);
+  ? ensureStop(roam.note)
+  : roam.euIncluded === true && roam.euCapGB === null ? `Cap not yet confirmed with ${net.name}.` : null;
 
 /* lastVerified is a plain date, so it parses as UTC midnight. Formatting in
    the build machine's zone would print the day before on any UTC-negative
@@ -81,13 +87,19 @@ const picks = {
 
 const host = hostLabel(net);
 const isDirect = net.hostNetwork === 'direct';
-const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? '; --cut: 36px' : ''}`;
+
+/* The focus ring and keyboard trace must clear 3:1 against the card, which
+   the pale brands cannot, so keyboard focus falls back to ink for them. The
+   hover trace keeps the brand colour: hover is decorative, focus is not. */
+const focusColour = contrast(net.colour, '#FFFFFF') >= 3 ? net.colour : '#000000';
+const style = `--network: ${net.colour}; --pill-text: ${net.pillText}; --focus: ${focusColour}${hero ? '; --cut: 36px' : ''}`;
 ---
 <article class:list={['ticket', hero && 'hero', hero && 'settle']} style={style}>
   <span class:list={['flash', net.inkClash && 'flash--ink']} aria-hidden="true"></span>
   {deal.pick && <p class="mark">{picks[deal.pick]}</p>}
 
   <div class:list={['body', hero && 'body--hero']}>
+    <h2 class="sr-only">{net.name}, {gbp(deal.monthlyPrice)} a month</h2>
     <div class:list={hero && 'col-left'}>
       {device ? (
         <div class="handset">
@@ -99,7 +111,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
             </div>
             <p class="t-dealname devname">{device.name}<br />{device.storageGB}GB</p>
             <div class="swatches">
-              {device.colours.map((c) => <span style={`background: ${c.hex}`} title={c.name}></span>)}
+              {device.colours.map((c) => <span style={`background: ${c.hex}`}></span>)}
             </div>
             <p class="finishes">{device.colours.map((c) => c.name).join(', ')}</p>
           </div>
@@ -107,7 +119,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
       ) : (
         <div class="netrow">
           <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
-          {isDirect ? <span class="t-meta">{host}</span> : <span class="pill-host">{host}</span>}
+          {isDirect || hero ? <span class="t-meta">{host}</span> : <span class="pill-host">{host}</span>}
         </div>
       )}
 
@@ -245,8 +257,12 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
   .col-right { width: 372px; flex: none; }
   .riseblock { border-top: 2px solid var(--ink); padding-top: 11px; }
   .risehead-hero { font-size: 17px; font-weight: 600; margin: 0; }
+  .hero .flash { width: calc(var(--cut) * 1.7); height: calc(var(--cut) * 1.7); }
+  .hero .price { gap: 10px; }
   .hero .per { font-size: 16px; }
   .hero .total { font-size: 14px; margin-top: 9px; }
+  .riseblock .detail { font-size: 13px; }
+  .col-right .band .roam-label { margin-bottom: 3px; }
 
   @media (max-width: 52rem) {
     .body--hero { flex-direction: column; gap: 15px; padding: 18px 20px; }

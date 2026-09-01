@@ -3,6 +3,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { DealSetSchema, checkTotals } from './schema.js';
 import { networks } from '../ui/networks.js';
+import { HEX, contrast } from '../ui/contrast.js';
 
 const files = ['content/sims/deals.json', 'content/phones/deals.json'];
 let failed = false;
@@ -77,20 +78,6 @@ function rise_needs_amount(p) {
    and partly a regulatory one for a comparison service, so it blocks the
    merge rather than warning. A brand colour swapped in without flipping
    pillText would otherwise ship a pill nobody can read. */
-const HEX = /^#[0-9A-Fa-f]{6}$/;
-const channel = (c) => {
-  const v = c / 255;
-  return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
-};
-const luminance = (hex) => {
-  const n = parseInt(hex.slice(1), 16);
-  return 0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255);
-};
-const contrast = (a, b) => {
-  const [x, y] = [luminance(a), luminance(b)];
-  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
-};
-
 let pillsFailed = false;
 for (const [key, net] of Object.entries(networks)) {
   /* Shorthand or malformed hex would silently produce a nonsense ratio, so

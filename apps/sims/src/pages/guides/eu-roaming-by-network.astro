@@ -61,7 +61,7 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
   <div class="sheet">
     <div class="head">
       <div>
-        <h1>EU roaming, by network</h1>
+        <h1 id="roaming-heading">EU roaming, by network</h1>
         <p class="intro">
           Of the four big networks, O2 is the only one we could verify as still
           including EU roaming with no daily charge. Three and EE vary by plan
@@ -78,7 +78,9 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
       )}
     </div>
 
-    <div class="scroll">
+    <!-- Focusable and named, so a keyboard user can scroll the table when it
+         overflows at intermediate widths. -->
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="roaming-heading">
       <table role="table">
         <caption class="sr-only">
           EU roaming policy by UK mobile network. Unverified values read "To confirm".
@@ -194,8 +196,6 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
     border-bottom: 1px solid var(--rule);
     vertical-align: baseline;
   }
-  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
-
   /* The only colour on the page, and only where the network is named.
      The name is always present beside it, never colour alone. */
   .net { font-weight: 600; white-space: nowrap; }
@@ -251,6 +251,7 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
     }
     tbody td::before {
       content: attr(data-label);
+      content: attr(data-label) / '';
       color: var(--ink-2);
       text-align: left;
       font-weight: 400;
