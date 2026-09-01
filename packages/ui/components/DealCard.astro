@@ -1,8 +1,8 @@
 ---
 /* The deal card. Everything a reader needs is visible without a click, a
-   hover or a scroll: network, host, monthly price, total, the price rise in
-   pounds and pence, the four allowances, roaming, the checked date, and
-   whether we earn on the link.
+   hover or a scroll: network, host network for an MVNO, monthly price, total,
+   the price rise in pounds and pence, the four allowances, roaming, the
+   checked date, and whether we earn on the link.
 
    Nothing here is ever guessed. A figure the data does not carry is stated as
    unconfirmed, because a blank cell costs nothing and a wrong number costs
@@ -10,29 +10,39 @@
 import AllowanceGrid from './AllowanceGrid.astro';
 import TraceButton from './TraceButton.astro';
 import { get, hostLabel } from '../networks.js';
+import { gbp } from '../money.js';
 
 const { deal, variant = 'standard' } = Astro.props;
 const hero = variant === 'hero';
 const net = get(deal.network);
+if (!net) {
+  throw new Error(
+    `DealCard: deal "${deal.id}" names network "${deal.network}", which is not in packages/ui/networks.js. ` +
+    'Add the network there or correct the deal. npm run verify catches this before a build does.'
+  );
+}
 const device = deal.device ?? null;
 
-const gbp = (n) => `£${n % 1 === 0 ? n : n.toFixed(2)}`;
-
-/* The rise is derived from stated values, never invented. Where the amount is
-   not stated we say so rather than compute a total from a guess. */
+/* The rise is derived from stated values, never invented. A fixed rise gets
+   the derived cash treatment. A CPI-linked rise keeps the network's own
+   wording as the headline, because the amount recurs and estimating it as a
+   one-off figure would misstate the term; any stated amount follows in
+   pounds and pence, as the DMCC and Ofcom expect. */
 const rise = deal.priceRise;
 let riseHead;
 let riseDetail;
 if (rise.type === 'none') {
   riseHead = 'No price rise';
   riseDetail = `Fixed for the whole ${deal.contractLengthMonths} months.`;
-} else if (typeof rise.amountGBP === 'number') {
+} else if (rise.type === 'fixed' && typeof rise.amountGBP === 'number') {
   const to = gbp(deal.monthlyPrice + rise.amountGBP);
   riseHead = rise.month ? `Goes up to ${to} in ${rise.month}` : `Goes up to ${to} mid-contract`;
   riseDetail = `A rise of ${gbp(rise.amountGBP)} a month, and ${gbp(rise.amountGBP * 12)} over the year.`;
 } else {
   riseHead = rise.wording;
-  riseDetail = 'The amount is not stated in pounds and pence.';
+  riseDetail = typeof rise.amountGBP === 'number'
+    ? `That is ${gbp(rise.amountGBP)} a month, and ${gbp(rise.amountGBP * 12)} over the year.`
+    : 'The amount is not stated in pounds and pence.';
 }
 
 const roam = deal.roaming;
@@ -51,7 +61,12 @@ if (roam.euIncluded === true) {
 const roamDetail = roam.note
   ?? (roam.euIncluded === true && roam.euCapGB === null ? `Cap not yet confirmed with ${net.name}.` : null);
 
-const checked = new Date(deal.lastVerified).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+/* lastVerified is a plain date, so it parses as UTC midnight. Formatting in
+   the build machine's zone would print the day before on any UTC-negative
+   host, so the zone is pinned. */
+const checked = new Date(deal.lastVerified).toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'long', timeZone: 'UTC',
+});
 const foot = deal.isAffiliate
   ? `Checked ${checked}. We earn a commission if you switch through this link.`
   : `Checked ${checked}. No commission on this link.`;
@@ -78,7 +93,10 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
         <div class="handset">
           <div class="imgslot" aria-hidden="true">Handset image</div>
           <div class="handset-meta">
-            <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
+            <div class="netrow">
+              <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
+              {!isDirect && <span class="pill-host">{host}</span>}
+            </div>
             <p class="t-dealname devname">{device.name}<br />{device.storageGB}GB</p>
             <div class="swatches">
               {device.colours.map((c) => <span style={`background: ${c.hex}`} title={c.name}></span>)}
@@ -93,22 +111,42 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
         </div>
       )}
 
-      <div>
-        <p class="price">
-          <span class:list={['amt', hero ? 't-price-hero' : 't-price']}>{gbp(deal.monthlyPrice)}</span>
-          <span class="per">a month</span>
-        </p>
-        <p class="total">
-          {deal.upfrontCost > 0 && <>{gbp(deal.upfrontCost)} upfront<br /></>}
-          {deal.upfrontCost === 0 && device && <>£0 upfront<br /></>}
-          {gbp(deal.totalContractCost)} over {deal.contractLengthMonths} months
-        </p>
-      </div>
+      {device ? (
+        <div class="band band--split">
+          <div>
+            <p class="price">
+              <span class="amt amt--device">{gbp(deal.monthlyPrice)}</span>
+              <span class="per per--device">a month</span>
+            </p>
+            <p class="total total--device">
+              {gbp(deal.upfrontCost)} upfront<br />
+              {gbp(deal.totalContractCost)} over {deal.contractLengthMonths} months
+            </p>
+          </div>
+          <div class="split-rise">
+            <p class="split-risehead">{riseHead}</p>
+            <p class="detail">{riseDetail}</p>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div>
+            <p class="price">
+              <span class:list={['amt', hero ? 't-price-hero' : 't-price']}>{gbp(deal.monthlyPrice)}</span>
+              <span class="per">a month</span>
+            </p>
+            <p class="total">
+              {deal.upfrontCost > 0 && <>{gbp(deal.upfrontCost)} upfront<br /></>}
+              {gbp(deal.totalContractCost)} over {deal.contractLengthMonths} months
+            </p>
+          </div>
 
-      <div class:list={hero ? 'riseblock' : 'band'}>
-        <p class:list={hero ? 'risehead-hero' : 't-support'}>{riseHead}</p>
-        <p class="detail">{riseDetail}</p>
-      </div>
+          <div class:list={hero ? 'riseblock' : 'band'}>
+            <p class:list={hero ? 'risehead-hero' : 't-support'}>{riseHead}</p>
+            <p class="detail">{riseDetail}</p>
+          </div>
+        </>
+      )}
     </div>
 
     <div class:list={hero && 'col-right'}>
@@ -139,7 +177,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
       {!deal.isAffiliate && (
         <div class="no-earn">
           <strong>We don't earn from this one</strong>
-          <p class="detail">{net.note ?? `${net.name} has no affiliate programme. It is here because leaving it out would make the list a lie.`}</p>
+          <p class="detail">There is no commission on this link. The deal is here because it deserves the spot, and leaving it out would make the list a lie.</p>
         </div>
       )}
 
@@ -167,7 +205,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
   .total { font-size: 13.5px; color: var(--ink-2); margin: 7px 0 0; }
 
   .band { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 11px 0; }
-  .band > p, .roam p, .no-earn p { margin: 0; }
+  .band > p, .band > div > p, .roam p, .no-earn p { margin: 0; }
   .detail { font-size: 12.5px; color: var(--ink-2); margin-top: 2px !important; }
 
   .roam { display: grid; grid-template-columns: 74px 1fr; gap: 12px; padding: 12px 0;
@@ -192,6 +230,14 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
   /* Never colour alone: the finishes are written out as well as shown. */
   .finishes { font-size: 11.5px; color: var(--ink-2); margin: 6px 0 0; }
 
+  /* The handset price band splits in two: price left, rise right. */
+  .band--split { display: flex; gap: 20px; padding: 12px 0; }
+  .amt--device { font-size: 44px; font-weight: 800; font-stretch: 125%; letter-spacing: -.03em; line-height: .9; }
+  .per--device { font-size: 13px; }
+  .total--device { font-size: 12.5px; }
+  .split-rise { border-left: 1px solid var(--rule); padding-left: 20px; }
+  .split-risehead { font-size: 14px; font-weight: 600; line-height: 1.3; margin: 0; }
+
   /* Deal of the week */
   .hero { width: 100%; }
   .body--hero { flex-direction: row; gap: 28px; padding: 20px 26px 24px; }
@@ -206,5 +252,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}${hero ? ';
     .body--hero { flex-direction: column; gap: 15px; padding: 18px 20px; }
     .col-right { width: 100%; }
     .hero .amt { font-size: 58px; letter-spacing: -.03em; line-height: .9; }
+    .band--split { flex-direction: column; gap: 12px; }
+    .split-rise { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 10px; }
   }
 </style>

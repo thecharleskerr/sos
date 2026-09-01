@@ -1,4 +1,4 @@
-/* Validates every deal file against the schema and the totals rule.
+/* Validates every deal file against the schema and the compliance rules.
    Runs in CI on every pull request. A failure blocks the merge. */
 import { readFileSync, existsSync } from 'node:fs';
 import { DealSetSchema, checkTotals } from './schema.js';
@@ -26,12 +26,30 @@ for (const file of files) {
   }
 
   for (const deal of parsed.data.deals) {
+    /* The schema only checks the key is a non-empty string. An unknown key
+       used to pass verify and then crash the Astro build with a bare
+       TypeError, which is exactly the wrong place for the weekly feed pull
+       to find out about a new or misspelt network. */
+    if (!(deal.network in networks)) {
+      console.error(`FAIL  ${file} → ${deal.id}: network '${deal.network}' is not in packages/ui/networks.js. Add it there or correct the deal.`);
+      fileFailed = true;
+    }
+    /* Hard rule 1: EE is never an affiliate listing. EE's terms ban their
+       feed appearing in automated comparison tables and threaten immediate
+       suspension, so an EE deal marked as affiliate is always wrong. */
+    if (deal.network === 'ee' && deal.isAffiliate) {
+      console.error(`FAIL  ${file} → ${deal.id}: an EE deal must carry isAffiliate: false. Hard rule 1 in CLAUDE.md.`);
+      fileFailed = true;
+    }
     if (!checkTotals(deal)) {
       console.error(`FAIL  ${file} → ${deal.id}: total contract cost does not match monthly price times term plus upfront. That is drip pricing.`);
       fileFailed = true;
     }
-    if (deal.priceRise.type === 'fixed' && deal.priceRise.amountGBP === null) {
-      console.error(`FAIL  ${file} → ${deal.id}: price rise must be stated in pounds and pence.`);
+    /* Hard rule 2: the rise renders in pounds and pence, no exceptions. For
+       'fixed' the schema already refuses a null amount, so that branch is
+       belt and braces; for 'cpi' this is the live gate. */
+    if (rise_needs_amount(deal.priceRise)) {
+      console.error(`FAIL  ${file} → ${deal.id}: a ${deal.priceRise.type} price rise must state the amount in pounds and pence.`);
       fileFailed = true;
     }
   }
@@ -40,18 +58,26 @@ for (const file of files) {
 
   console.log(`ok    ${file} (${parsed.data.deals.length} deals)`);
 
-  /* Placeholder figures must never reach production unnoticed. This warns and
-     does not fail: the scaffold ships with sample data deliberately, so making
-     it blocking would leave CI red on a clean checkout. */
-  if (/\bsample\b/i.test(parsed.data._note ?? '')) {
-    console.warn(`WARN  ${file} is marked as sample data. Every figure in it is unverified and must not be published.`);
+  /* Placeholder figures must never reach production unnoticed. The _note
+     marker alone is not enough, because deleting the note would silence the
+     guard while the figures stayed fake, so the deal ids are checked too.
+     Warning only: the scaffold ships with sample data deliberately, and a
+     blocking check would leave CI red on a clean checkout. */
+  const sampleIds = parsed.data.deals.filter((d) => d.id.startsWith('sample-')).length;
+  if (/\bsample\b/i.test(parsed.data._note ?? '') || sampleIds > 0) {
+    console.warn(`WARN  ${file} carries sample data (${sampleIds} sample ids). Every figure in it is unverified and must not be published.`);
   }
+}
+
+function rise_needs_amount(p) {
+  return (p.type === 'fixed' || p.type === 'cpi') && typeof p.amountGBP !== 'number';
 }
 
 /* The 4.5:1 contrast floor on network pills is an accessibility requirement,
    and partly a regulatory one for a comparison service, so it blocks the
    merge rather than warning. A brand colour swapped in without flipping
    pillText would otherwise ship a pill nobody can read. */
+const HEX = /^#[0-9A-Fa-f]{6}$/;
 const channel = (c) => {
   const v = c / 255;
   return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
@@ -67,6 +93,14 @@ const contrast = (a, b) => {
 
 let pillsFailed = false;
 for (const [key, net] of Object.entries(networks)) {
+  /* Shorthand or malformed hex would silently produce a nonsense ratio, so
+     the format is checked before the maths trusts it. */
+  if (!HEX.test(net.colour) || !HEX.test(net.pillText)) {
+    console.error(`FAIL  ${key}: colour '${net.colour}' / pillText '${net.pillText}' must be six-digit hex like #0019A5.`);
+    pillsFailed = true;
+    failed = true;
+    continue;
+  }
   const ratio = contrast(net.colour, net.pillText);
   if (ratio < 4.5) {
     console.error(`FAIL  ${key}: the ${net.name} pill is ${ratio.toFixed(2)}:1, below the 4.5:1 floor. Flip pillText to '#000000'.`);

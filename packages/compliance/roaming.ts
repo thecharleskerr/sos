@@ -71,9 +71,14 @@ export const roaming: Record<string, NetworkRoaming> = {
    * Source:  https://www.vodafone.co.uk/newscentre/smart-living/everything-you-need-to-know-about/roaming-with-vodafone-in-2022-everything-you-need-to-know/
    * Checked: 2026-08-31. Two independent passes agreed on the figures recorded below.
    * Official wording:
-   *   "Zone B includes 52 destinations, most of which are in Europe and are EU
-   *   member states. For anyone with a Vodafone Pay Monthly plan that started on
-   *   or after 11 August 2021, roaming costs £2.75 a day."
+   *   "Zone B consists of 52 destinations, most of which are in Europe and are
+   *   EU member states. For anyone with a Vodafone Pay Monthly plan that started
+   *   on or after 11 August 2021, roaming costs £2.75 a day. All pay monthly
+   *   plans are subject to a 25GB roaming fair use policy, meaning that if your
+   *   UK allowance is greater than 25GB, you can use up to 25GB data a month
+   *   while roaming."
+   * The URL slug says 2022 but it is Vodafone's continuously updated roaming
+   * guide, titled for the current year when checked.
    */
   vodafone: {
     network: 'vodafone',
@@ -160,11 +165,15 @@ export const roaming: Record<string, NetworkRoaming> = {
    * Checked: 2026-08-31. Two independent passes agreed on the figures recorded below.
    * Official wording:
    *   "European Roaming Passes are available from £2.45 a day, or at a reduced
-   *   rate if you purchase an 8 or 15 day pass. [...] If you're travelling to
-   *   Ireland, the Isle of Man, Iceland or Norway, you can use your inclusive
-   *   plan data allowance (or 20GB, whichever is less), as well as unlimited
-   *   minutes, texts and picture messages, and you won't need to buy a roaming
-   *   pass."
+   *   rate if you purchase an 8 or 15 day pass. [...] In the Europe Zone, your
+   *   allowance of general-purpose data will have a roam fair use policy of
+   *   20GB, or your plan's allowance, whichever is less, per 30-day plan.
+   *   [...] If you're travelling to Ireland, the Isle of Man, Iceland or
+   *   Norway, you can use your inclusive plan data allowance (or 20GB,
+   *   whichever is less), as well as unlimited minutes, texts and picture
+   *   messages, and you won't need to buy a roaming pass."
+   * The Europe Zone sentence is what supports euCapGB, and it applies to the
+   * paid pass zone, not just the four no-pass destinations.
    * Not recorded, the two passes did not agree:
    *   worldwideIncluded: re-check could not confirm (false)
    */

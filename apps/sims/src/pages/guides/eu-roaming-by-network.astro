@@ -2,13 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import { networks } from '@sos/ui/networks';
 import { roaming } from '@sos/compliance/roaming';
+import { gbp } from '@sos/ui/money';
 
 /* Driven by the networks map, not by the roaming table, so a network we have
    not verified still appears as "To confirm" rather than quietly dropping out
    of the comparison. The site does not print a number it has not verified. */
 const rows = Object.entries(networks).map(([key, net]) => ({ key, net, d: roaming[key] ?? null }));
-
-const gbp = (n) => `£${n % 1 === 0 ? n : n.toFixed(2)}`;
 
 const runsOn = (net) => {
   if (net.hostNetwork === 'direct') return { text: 'Direct', soft: true };
@@ -39,12 +38,20 @@ const weekInSpain = (d) => {
   return null;
 };
 
-const checkedAll = '2026-08-31';
-const checkedLabel = new Date(checkedAll).toLocaleDateString('en-GB', {
-  day: 'numeric', month: 'long', year: 'numeric',
-});
+/* Derived from the newest verified entry, so the header can never claim a
+   date the data does not carry. Pinned to UTC: a plain date parses as UTC
+   midnight and would otherwise print a day early on a UTC-negative host. */
+const checkedAll = rows.map((r) => r.d?.checked).filter(Boolean).sort().at(-1) ?? null;
+const checkedLabel = checkedAll
+  ? new Date(checkedAll).toLocaleDateString('en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+    })
+  : null;
 
-const sources = rows.filter((r) => r.d && r.d.source);
+/* Only networks whose figures were actually verified are credited. The
+   unverified entries keep a URL in roaming.ts as a lead for re-checking,
+   which is not the same thing as a source of the figures shown. */
+const sources = rows.filter((r) => r.d && r.d.source && r.d.evidence !== 'unverified');
 const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length;
 ---
 <Base
@@ -56,16 +63,19 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
       <div>
         <h1>EU roaming, by network</h1>
         <p class="intro">
-          O2 is the only big network on this list that still includes EU roaming
-          at no extra cost with no daily charge. Everyone else either charges by
+          Of the four big networks, O2 is the only one we could verify as still
+          including EU roaming with no daily charge. Three and EE vary by plan
+          tier, so they read To confirm below. Everyone else either charges by
           the day, caps what you can use, or has not published terms we could
           verify.
         </p>
       </div>
-      <div class="checked">
-        <p class="checked-label">Checked</p>
-        <p class="checked-date">{checkedLabel}</p>
-      </div>
+      {checkedLabel && (
+        <div class="checked">
+          <p class="checked-label">Checked</p>
+          <p class="checked-date">{checkedLabel}</p>
+        </div>
+      )}
     </div>
 
     <div class="scroll">

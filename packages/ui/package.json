@@ -6,6 +6,7 @@
   "exports": {
     "./tokens.css": "./tokens.css",
     "./networks": "./networks.js",
-    "./components/*": "./components/*"
+    "./components/*": "./components/*",
+    "./money": "./money.js"
   }
 }
