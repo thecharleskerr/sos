@@ -99,7 +99,7 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
             <th role="columnheader" scope="col">EU roaming</th>
             <th role="columnheader" scope="col">Daily charge</th>
             <th role="columnheader" scope="col">Fair-use cap</th>
-            <th role="columnheader" scope="col">A week in Spain</th>
+            <th role="columnheader" scope="col">e.g. a week in Spain</th>
           </tr>
         </thead>
         <tbody role="rowgroup">
@@ -109,7 +109,7 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
               { label: 'EU roaming', v: euRoaming(d) },
               { label: 'Daily charge', v: dailyCharge(d) },
               { label: 'Fair-use cap', v: fairUse(d) },
-              { label: 'A week in Spain', v: weekInSpain(d) },
+              { label: 'e.g. a week in Spain', v: weekInSpain(d) },
             ];
             return (
               <tr role="row" style={`--network: ${net.colour}`}>
@@ -139,11 +139,12 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
         leave it blank than print a number we have not checked.
       </p>
       <p>
-        Daily charges are the published pay-monthly rates. A week in Spain is
+        Daily charges are the published pay-monthly rates. The Spain column is
         seven days at that rate, which is the number most people are actually
         after. Fair-use caps limit the data you can use while roaming, and are
         often lower than your UK allowance. Where a network verifiably has no
-        single cap, the cell says so instead of a number.
+        single cap, the cell shows the verified shape of it instead, such as
+        the minimum on offer. Revolut Mobile caps speeds at 100Mbps.
       </p>
       <p>
         {verified} of {rows.length} networks are verified. Terms can differ by
@@ -151,9 +152,8 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
         tier, so confirm on the network's own site before you buy.
       </p>
       <p>
-        Plusnet Mobile has closed and BT Mobile no longer takes new customers,
-        so neither can be bought today. Simp publishes no terms we could find,
-        and Klarna Mobile is still behind a waitlist.
+        BT Mobile no longer takes new customers, so it cannot be bought today.
+        Klarna Mobile publishes no roaming terms we could verify yet.
       </p>
       {sources.length > 0 && (
         <p class="sources">

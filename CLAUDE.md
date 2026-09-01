@@ -8,7 +8,7 @@ the best UK mobile deals. No checkout. Revenue is affiliate only.
 
 1. Never place EE-branded deals into an automated comparison table sourced
    from EE's Awin feed. EE's terms ban it and threaten immediate suspension.
-   Use EE-based MVNOs (1pMobile, Plusnet Mobile, Mozillion, Reward Mobile) or
+   Use EE-based MVNOs (1pMobile, Mozillion, Reward Mobile) or
    multi-network resellers. EE itself is listed with isAffiliate: false.
 2. Every deal card must render: monthly price, total contract cost, the
    mid-contract price rise in pounds and pence (or "No price rise"), contract

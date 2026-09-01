@@ -368,23 +368,6 @@ export const roaming: Record<string, NetworkRoaming> = {
     evidence: 'official-page',
   },
 
-  /* Plusnet Mobile
-   * NOT VERIFIED. Every figure left null on purpose. Checked: 2026-09-01.
-   * plus.net states verbatim that Plusnet Mobile has now closed, with services
-   * ended from June 2024.
-   */
-  plusnet: {
-    network: 'plusnet',
-    euIncluded: null,
-    euCapGB: null,
-    destinationCount: null,
-    dailyChargeGBP: null,
-    worldwideIncluded: null,
-    note: "Plusnet Mobile has closed and sells no mobile plans: the official help page states Plusnet Mobile has now closed, services ended from June 2024, and Plusnet points customers to EE SIM only deals.",
-    source: "https://www.plus.net/help/plusnet-mobile-closed/",
-    checked: null,
-    evidence: 'unverified',
-  },
 
   /* Asda Mobile
    * Source:  https://mobile.asda.com/roaming-calling-abroad
@@ -453,7 +436,7 @@ export const roaming: Record<string, NetworkRoaming> = {
     network: 'spusu',
     euIncluded: true,
     euCapGB: null,
-    euCapText: 'Varies by plan',
+    euCapText: 'From 6GB',
     destinationCount: null,
     dailyChargeGBP: null,
     worldwideIncluded: false,
@@ -477,11 +460,11 @@ export const roaming: Record<string, NetworkRoaming> = {
     network: 'lyca',
     euIncluded: true,
     euCapGB: null,
-    euCapText: 'Varies by plan',
+    euCapText: 'From 12GB',
     destinationCount: null,
     dailyChargeGBP: null,
     worldwideIncluded: false,
-    note: "EU roaming allowances have fair use caps that vary by bundle, for example 12GB on some plans and 35GB on unlimited plans, so no single cap applies to all plans sold now.",
+    note: "EU roaming fair use caps vary by bundle, with 20GB on most plans but 12GB on some, so check the bundle page before relying on a figure.",
     source: "https://www.lycamobile.co.uk/en/euroaming/",
     checked: "2026-09-01",
     evidence: 'official-page',
@@ -504,7 +487,7 @@ export const roaming: Record<string, NetworkRoaming> = {
     network: 'mozillion',
     euIncluded: true,
     euCapGB: null,
-    euCapText: 'Varies by plan',
+    euCapText: '25% of plan',
     destinationCount: 41,
     dailyChargeGBP: null,
     worldwideIncluded: false,
@@ -515,21 +498,29 @@ export const roaming: Record<string, NetworkRoaming> = {
   },
 
   /* Simp
-   * NOT VERIFIED. Every figure left null on purpose. Checked: 2026-09-01.
-   * simp.co.uk has no indexed content at all and simp.com is a parked domain
-   * for sale page, so there is no official source to verify anything against.
+   * Source:  https://simpmobile.com/roaming
+   * Checked: 2026-09-01. The earlier not-verified verdict was a wrong domain:
+   * the live official site is simpmobile.com, supplied by the site owner and
+   * confirmed by domain-scoped search. Figures quote-verified across the
+   * roaming page, the help centre and the terms.
+   * Official wording:
+   *   "EU and worldwide data roaming are included in every Simp plan with no
+   *   daily fee"
+   *   "no more than 20GB of EU roaming data usage in the EU"
+   *   "unlimited 4G data roaming across more than 130 countries worldwide,
+   *   with no daily charge"
    */
   simp: {
     network: 'simp',
-    euIncluded: null,
-    euCapGB: null,
+    euIncluded: true,
+    euCapGB: 20,
     destinationCount: null,
     dailyChargeGBP: null,
-    worldwideIncluded: null,
-    note: "No official Simp site is indexed at all: simp.co.uk returns nothing and simp.com is a parked domain for sale page, so no official wording exists to verify anything against.",
-    source: null,
-    checked: null,
-    evidence: 'unverified',
+    worldwideIncluded: true,
+    note: "Roaming is speed tiered: a 5G allowance of 3GB or 5GB by plan, then unlimited data at reduced speed, covering the EU and more than 130 countries worldwide. EU use is capped at 20GB a month with per trip day limits.",
+    source: "https://simpmobile.com/roaming",
+    checked: '2026-09-01',
+    evidence: 'official-page',
   },
 
   /* Honest Mobile
@@ -564,6 +555,8 @@ export const roaming: Record<string, NetworkRoaming> = {
    *   EU countries and the US."
    *   "If you're outside the EEA and US, you can stay in touch with Messaging
    *   Pass in 100+ countries."
+   * Speed cap verified on revolut.com: "unlimited 5G speeds up to 100
+   * Mbps". Checked 2026-09-01.
    */
   revolut: {
     network: 'revolut',
@@ -572,7 +565,7 @@ export const roaming: Record<string, NetworkRoaming> = {
     destinationCount: 30,
     dailyChargeGBP: null,
     worldwideIncluded: false,
-    note: "Roaming is capped at 20GB a month in 30 EU countries plus the US, and outside the EEA and US only a restricted bandwidth Messaging Pass is included.",
+    note: "Roaming is capped at 20GB a month in 30 EU countries plus the US, and outside the EEA and US only a restricted bandwidth Messaging Pass is included. Speeds are capped at 100Mbps.",
     source: "https://www.revolut.com/mobile-plans/",
     checked: "2026-09-01",
     evidence: 'official-page',
@@ -580,8 +573,12 @@ export const roaming: Record<string, NetworkRoaming> = {
 
   /* Klarna Mobile
    * NOT VERIFIED. Every figure left null on purpose. Checked: 2026-09-01.
-   * The UK plan is promoted through a waitlist page and the help centre
-   * indexes only article titles.
+   * The plan is reported live by the site owner and the indexed plan page
+   * states unlimited 5G at £15 a month, but no indexed official wording
+   * states any roaming allowance, cap, charge or speed. Check both
+   * https://www.klarna.com/uk/help/klarna-mobile/can-i-use-klarna-mobile-internationally/
+   * and https://gigs.com/legal/partner-terms-of-service-travel-data-services-uk
+   * when re-verifying, since Gigs operates the service.
    */
   klarna: {
     network: 'klarna',
@@ -590,30 +587,34 @@ export const roaming: Record<string, NetworkRoaming> = {
     destinationCount: null,
     dailyChargeGBP: null,
     worldwideIncluded: null,
-    note: "Klarna Mobile's UK plan is still promoted through a waitlist page and its help centre indexes only article titles, so no official wording states any roaming allowance, cap, charge or host network.",
+    note: "Klarna Mobile sells an unlimited 5G plan at £15 a month with service run by Gigs, but no indexed official wording states its roaming terms yet, so every figure stays null until it can be verified.",
     source: "https://www.klarna.com/uk/help/klarna-mobile/can-i-use-klarna-mobile-internationally/",
     checked: null,
     evidence: 'unverified',
   },
 
   /* Utility Warehouse
-   * Source:  https://uw.co.uk/mobile/roaming-costs
-   * Checked: 2026-09-01. Researched against the network's own domain, then
-   * every figure independently quote-verified by a second pass.
+   * Source:  https://help.uw.co.uk/article/mobile/mobile-roaming/whats-roam-like-home
+   * Checked: 2026-09-01. The Roam Like Home help page, supplied by the site
+   * owner, resolves the tier split and enumerates all 45 locations.
    * Official wording:
-   *   "stream, text, and call home from 45 locations in Europe"
+   *   "Essential and Essential Max plans can Roam like Home in EU/EEA
+   *   countries, with allowances of 8GB per month for Essential and 10GB per
+   *   month for Essential Max."
+   *   "Mobile Unlimited, Unlimited+, and Value Prime 40GB plans have a Fair
+   *   Usage policy of 14GB that applies whilst roaming in the European Zone."
    */
   uw: {
     network: 'uw',
-    euIncluded: null,
+    euIncluded: true,
     euCapGB: null,
-    euCapText: 'Varies by tariff',
+    euCapText: '8GB to 14GB',
     destinationCount: 45,
     dailyChargeGBP: null,
     worldwideIncluded: null,
-    note: "Inclusive EU roaming varies by tariff: Unlimited tiers roam at no extra cost with a 14GB fair use cap, Essential tiers include smaller roaming allowances, and tariffs without inclusive roaming pay £2 a day with an 8GB cap.",
-    source: "https://uw.co.uk/mobile/roaming-costs",
-    checked: "2026-09-01",
+    note: "Every current plan includes Roam Like Home across 45 European locations: 8GB a month on Essential, 10GB on Essential Max and 14GB on the Unlimited tiers, while tariffs without inclusive roaming pay £2 a day with an 8GB cap.",
+    source: "https://help.uw.co.uk/article/mobile/mobile-roaming/whats-roam-like-home",
+    checked: '2026-09-01',
     evidence: 'official-page',
   },
 
