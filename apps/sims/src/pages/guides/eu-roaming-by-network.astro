@@ -27,7 +27,14 @@ const dailyCharge = (d) => {
   return null;
 };
 
-const fairUse = (d) => (d && d.euCapGB !== null ? { text: `${d.euCapGB}GB` } : null);
+/* A stated figure wins. Where a network verifiably has no single cap, the
+   short verified wording shows instead of a misleading To confirm. */
+const fairUse = (d) => {
+  if (!d) return null;
+  if (d.euCapGB !== null) return { text: `${d.euCapGB}GB` };
+  if (d.euCapText) return { text: d.euCapText, soft: true };
+  return null;
+};
 
 /* Seven days at the published daily rate, which is what the reader is
    actually asking. Included roaming costs nothing extra, so it is £0. */
@@ -135,12 +142,18 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
         Daily charges are the published pay-monthly rates. A week in Spain is
         seven days at that rate, which is the number most people are actually
         after. Fair-use caps limit the data you can use while roaming, and are
-        often lower than your UK allowance.
+        often lower than your UK allowance. Where a network verifiably has no
+        single cap, the cell says so instead of a number.
       </p>
       <p>
         {verified} of {rows.length} networks are verified. Terms can differ by
-        when you joined, and Three and EE both vary by plan tier, so confirm on
-        the network's own site before you buy.
+        when you joined, and Three, EE and Utility Warehouse all vary by plan
+        tier, so confirm on the network's own site before you buy.
+      </p>
+      <p>
+        Plusnet Mobile has closed and BT Mobile no longer takes new customers,
+        so neither can be bought today. Simp publishes no terms we could find,
+        and Klarna Mobile is still behind a waitlist.
       </p>
       {sources.length > 0 && (
         <p class="sources">
