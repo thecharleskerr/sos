@@ -27,6 +27,10 @@ export interface NetworkRoaming {
   network: string;
   /** Can the plan allowance be used in the EU with no extra daily fee? */
   euIncluded: boolean | null;
+  /** Short verified wording for when inclusion differs by plan tier, such as
+   *  "On Value and Complete plans". Only ever set on quote-verified evidence;
+   *  absent or null otherwise, and the UI then shows To confirm. */
+  euIncludedText?: string | null;
   /** Fair use data cap in GB while roaming in the EU. */
   euCapGB: number | null;
   /** Short verified wording for when no single GB figure exists, such as
@@ -99,48 +103,67 @@ export const roaming: Record<string, NetworkRoaming> = {
 
   /* Three
    * Source:  https://www.three.co.uk/support/roaming-and-calling-abroad/roaming-abroad/go-roam
-   * Checked: 2026-08-31. Two independent passes agreed on the figures recorded below.
+   * Checked: 2026-09-01. Cap and destination count verified 2026-08-31; the
+   * plan tier terms and the daily charge quote-verified 2026-09-01.
    * Official wording:
-   *   "When roaming in a destination included with your plan, there's no need to
-   *   purchase passes, or pay any daily roaming charges, simply use your phone
-   *   as you would at home. Our monthly fair use limit of 12GB applies when
-   *   roaming in our Go Roam in Europe destinations."
-   * Not recorded, the two passes did not agree:
-   *   euIncluded: passes disagree (true vs false)
+   *   "Our monthly fair use limit of 12GB applies when roaming in our Go Roam
+   *   in Europe destinations."
+   *   "If you have a Lite plan, you'll need to buy a Go Roam Pass, or daily
+   *   roaming charges will apply."
+   *   "If you joined or upgraded on or after 18 December 2025, the daily
+   *   roaming charge will be £2.75."
+   *   "If you have a Value plan, all Go Roam in Europe destinations are
+   *   included at no extra cost."
+   * The £2.75 is the charge for plans sold now; customers who joined between
+   * 1 October 2021 and 17 December 2025 pay £2 a day instead.
    */
   three: {
     network: 'three',
     euIncluded: null,
+    euIncludedText: 'On Value and Complete plans, Lite pays daily',
     euCapGB: 12,
     destinationCount: 49,
-    dailyChargeGBP: null,
+    dailyChargeGBP: 2.75,
     worldwideIncluded: null,
-    note: "Value plans include Europe and Complete plans include over 160 destinations worldwide, but Lite plans still pay a daily roaming charge or need a Go Roam pass, and the Republic of Ireland is exempt from the 12GB cap.",
+    note: "Value plans include Go Roam in Europe and Complete plans include over 160 destinations worldwide, while Lite plans pay £2.75 a day in Europe or need a Go Roam Pass. The 12GB cap applies while roaming in Europe and the Republic of Ireland is exempt from it.",
     source: "https://www.three.co.uk/support/roaming-and-calling-abroad/roaming-abroad/go-roam",
-    checked: '2026-08-31',
+    checked: '2026-09-01',
     evidence: 'official-page',
   },
 
   /* EE
-   * Source:  https://ee.co.uk/content/dam/help/terms-and-conditions/price-plans/mobile/pay-monthly-price-plans/ee-pay-monthly-plan-tncs-from-7-august-2025.pdf
-   * Checked: 2026-08-31. Two independent passes agreed on the figures recorded below.
+   * Source:  https://ee.co.uk/help/mobile/roaming/roaming-costs
+   * Checked: 2026-09-01. The 50GB cap was verified 2026-08-31 from the pay
+   * monthly terms PDF; the daily charge, plan inclusion and zone size were
+   * quote-verified 2026-09-01 from the Roaming Costs help page, the price
+   * guides and the EE newsroom.
    * Official wording:
-   *   "If your domestic data allowance is greater than 50GB, a fair usage policy
-   *   of 50GB whilst roaming in the Europe zone will apply"
-   * Not recorded, the two passes did not agree:
-   *   euIncluded: passes disagree (false vs true)
+   *   "If your domestic data allowance is greater than 50GB, a fair usage
+   *   policy of 50GB whilst roaming in the Europe zone will apply"
+   *   "For Pay Monthly handset and SIM tariffs launched from 7th July 2021
+   *   there is a £2.59 daily charge to use your plan allowances whilst
+   *   abroad within the EU"
+   *   "Customers on an Essentials Plus, All Rounder or Full Works taken on or
+   *   after 29th August 2024 will have EU Roaming included in their
+   *   allowances through the Roam in EU add-on."
+   *   "From 5th March 2025, roaming in EE's EU Zone and Rest of World Zone 1
+   *   is included in Full Works plans and allows you to access standard plan
+   *   allowances in 47 European destinations"
+   * A 48 destination figure also appears in older EE material; 47 is the
+   * count stated for plans sold now.
    */
   ee: {
     network: 'ee',
     euIncluded: null,
+    euIncludedText: 'On Essentials Plus, All Rounder and Full Works',
     euCapGB: 50,
-    destinationCount: null,
-    dailyChargeGBP: null,
+    destinationCount: 47,
+    dailyChargeGBP: 2.59,
     worldwideIncluded: null,
-    note: "A daily charge applies to plans started on or after 7 July 2021 unless EU roaming is included with the plan, and older plans retain inclusive EU roaming, so terms differ by plan start date and tier.",
-    source: "https://ee.co.uk/content/dam/help/terms-and-conditions/price-plans/mobile/pay-monthly-price-plans/ee-pay-monthly-plan-tncs-from-7-august-2025.pdf",
-    checked: '2026-08-31',
-    evidence: 'official-pdf',
+    note: "Essentials Plus, All Rounder and Full Works plans taken since 29 August 2024 include EU roaming, and Full Works adds Rest of World Zone 1 as well. Other pay monthly plans pay £2.59 a day in Europe. A 50GB fair use cap applies while roaming.",
+    source: "https://ee.co.uk/help/mobile/roaming/roaming-costs",
+    checked: '2026-09-01',
+    evidence: 'official-page',
   },
 
   /* SMARTY
@@ -499,25 +522,26 @@ export const roaming: Record<string, NetworkRoaming> = {
 
   /* Simp
    * Source:  https://simpmobile.com/roaming
-   * Checked: 2026-09-01. The earlier not-verified verdict was a wrong domain:
-   * the live official site is simpmobile.com, supplied by the site owner and
-   * confirmed by domain-scoped search. Figures quote-verified across the
-   * roaming page, the help centre and the terms.
+   * Checked: 2026-09-01. Figures quote-verified against the roaming page,
+   * the help centre and the terms, with the full roaming page also supplied
+   * verbatim by the site owner.
    * Official wording:
    *   "EU and worldwide data roaming are included in every Simp plan with no
    *   daily fee"
-   *   "no more than 20GB of EU roaming data usage in the EU"
+   *   "Included (10GB Standard / 20GB Premium)"
    *   "unlimited 4G data roaming across more than 130 countries worldwide,
    *   with no daily charge"
+   * Host verified on the plans page: "Simp runs on the Three network".
    */
   simp: {
     network: 'simp',
     euIncluded: true,
-    euCapGB: 20,
+    euCapGB: null,
+    euCapText: '10GB or 20GB',
     destinationCount: null,
     dailyChargeGBP: null,
     worldwideIncluded: true,
-    note: "Roaming is speed tiered: a 5G allowance of 3GB or 5GB by plan, then unlimited data at reduced speed, covering the EU and more than 130 countries worldwide. EU use is capped at 20GB a month with per trip day limits.",
+    note: "EU roaming is capped at 10GB on Standard and 20GB on Premium. Outside Europe you get data only: a 5G allowance of 3GB or 5GB by plan, then unlimited 4G at reduced speed across more than 130 countries, with a 15 day a month limit in Europe.",
     source: "https://simpmobile.com/roaming",
     checked: '2026-09-01',
     evidence: 'official-page',
@@ -572,25 +596,30 @@ export const roaming: Record<string, NetworkRoaming> = {
   },
 
   /* Klarna Mobile
-   * NOT VERIFIED. Every figure left null on purpose. Checked: 2026-09-01.
-   * The plan is reported live by the site owner and the indexed plan page
-   * states unlimited 5G at £15 a month, but no indexed official wording
-   * states any roaming allowance, cap, charge or speed. Check both
-   * https://www.klarna.com/uk/help/klarna-mobile/can-i-use-klarna-mobile-internationally/
-   * and https://gigs.com/legal/partner-terms-of-service-travel-data-services-uk
-   * when re-verifying, since Gigs operates the service.
+   * Source:  https://www.klarna.com/uk/help/klarna-mobile/can-i-use-klarna-mobile-internationally/
+   * Checked: 2026-09-01. The search index exposes only this page's title, so
+   * the wording below was supplied verbatim by the site owner from the page
+   * and from the Gigs UK travel data terms it links to, last updated 23 July
+   * 2026: https://gigs.com/legal/partner-terms-of-service-travel-data-services-uk
+   * Re-verify by opening both URLs directly.
+   * Official wording:
+   *   "Yes, Klarna Mobile supports global international roaming, including
+   *   up to 20GB global data roaming on your plan."
+   *   "European coverage (47 destinations)"
+   * The 47 European destinations include the United Kingdom itself. The
+   * five regions total 162 destinations.
    */
   klarna: {
     network: 'klarna',
-    euIncluded: null,
-    euCapGB: null,
-    destinationCount: null,
+    euIncluded: true,
+    euCapGB: 20,
+    destinationCount: 47,
     dailyChargeGBP: null,
-    worldwideIncluded: null,
-    note: "Klarna Mobile sells an unlimited 5G plan at £15 a month with service run by Gigs, but no indexed official wording states its roaming terms yet, so every figure stays null until it can be verified.",
+    worldwideIncluded: true,
+    note: "Global roaming is included with a 20GB cap across 162 destinations in five regions: 47 in Europe, 33 in Asia and Oceania, 43 in Latin America and the Caribbean, 2 in North America and 37 in the Middle East and Africa. Terms are set by Gigs, which runs the service.",
     source: "https://www.klarna.com/uk/help/klarna-mobile/can-i-use-klarna-mobile-internationally/",
-    checked: null,
-    evidence: 'unverified',
+    checked: '2026-09-01',
+    evidence: 'official-page',
   },
 
   /* Utility Warehouse

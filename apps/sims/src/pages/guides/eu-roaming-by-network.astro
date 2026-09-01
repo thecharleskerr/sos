@@ -15,9 +15,13 @@ const runsOn = (net) => {
   return { text: net.hostNetwork, soft: true };
 };
 
+/* A plain yes or no wins. Where inclusion verifiably differs by plan tier,
+   the short verified wording shows instead of a misleading To confirm. */
 const euRoaming = (d) => {
-  if (!d || d.euIncluded === null) return null;
-  return { text: d.euIncluded ? 'Included' : 'Charged', strong: true };
+  if (!d) return null;
+  if (d.euIncluded !== null) return { text: d.euIncluded ? 'Included' : 'Charged', strong: true };
+  if (d.euIncludedText) return { text: d.euIncludedText, tiered: true };
+  return null;
 };
 
 const dailyCharge = (d) => {
@@ -120,7 +124,7 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
                 {cells.map((c) => (
                   <td role="cell" data-label={c.label}>
                     {c.v
-                      ? <span class:list={[c.v.strong && 'strong', c.v.soft && 'soft']}>{c.v.text}</span>
+                      ? <span class:list={[c.v.strong && 'strong', c.v.soft && 'soft', c.v.tiered && 'tiered']}>{c.v.text}</span>
                       : <span class="unconfirmed"><span class="hollow" aria-hidden="true"></span>To confirm</span>}
                   </td>
                 ))}
@@ -148,12 +152,12 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
       </p>
       <p>
         {verified} of {rows.length} networks are verified. Terms can differ by
-        when you joined, and Three, EE and Utility Warehouse all vary by plan
-        tier, so confirm on the network's own site before you buy.
+        when you joined. Where a network includes roaming on some plans and
+        charges by the day on others, the EU roaming cell names the plans and
+        the daily charge shown is what the other plans pay.
       </p>
       <p>
         BT Mobile no longer takes new customers, so it cannot be bought today.
-        Klarna Mobile publishes no roaming terms we could verify yet.
       </p>
       {sources.length > 0 && (
         <p class="sources">
@@ -222,6 +226,8 @@ const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length
 
   .strong { font-weight: 600; }
   .soft { color: var(--ink-2); }
+  /* Tiered wording is prose, so it wraps rather than widening the column. */
+  .tiered { display: inline-block; max-width: 22ch; white-space: normal; line-height: 1.35; font-weight: 600; }
 
   .unconfirmed { color: var(--ink-2); white-space: nowrap; }
   .hollow {
