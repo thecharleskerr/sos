@@ -8,6 +8,8 @@
     "./networks": "./networks.js",
     "./components/*": "./components/*",
     "./money": "./money.js",
-    "./contrast": "./contrast.js"
+    "./contrast": "./contrast.js",
+    "./post-schema": "./post-schema.js",
+    "./posts": "./posts.js"
   }
 }
