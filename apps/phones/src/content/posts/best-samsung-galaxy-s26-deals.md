@@ -48,19 +48,19 @@ Four. Samsung's UK site listed the Galaxy S26, the Galaxy S26 Plus, the Galaxy S
 
 | Model | Storage Samsung lists | UK RRP from | Checked |
 |---|---|---|---|
-| Galaxy S26 | 256GB or 512GB, 12GB memory | £879 (256GB) | 2 September 2026 |
-| Galaxy S26 Plus | 256GB or 512GB, 12GB memory | £1,099 (256GB) | 2 September 2026 |
+| Galaxy S26 | 256GB or 512GB | £879 (256GB) | 2 September 2026 |
+| Galaxy S26 Plus | 256GB or 512GB | £1,099 (256GB) | 2 September 2026 |
 | Galaxy S26 Ultra | 256GB, 512GB or 1TB | £1,279 | 2 September 2026 |
 | Galaxy S26 FE | 128GB, 256GB or 512GB | Not stated | 2 September 2026 |
 
-The RRPs are what Samsung announced. Samsung's own buy pages run offers on top, with 0% finance and a trade-in discount applied at checkout, so the price you pay Samsung direct can be lower on the day. The Ultra's announced price did not say which storage it applied to. The FE's price did not appear on any Samsung page we could quote, so it stays not stated.
+The RRPs are what Samsung announced. Its buy pages run offers on top, 0% finance and a trade-in discount applied at checkout, so the price on the day can be lower. The Ultra's announced price did not say which storage it applied to, and no Samsung page we could quote priced the FE.
 
-That is why the best deal is not one card we can name for everyone. It is the model and storage you need, at the lowest total cost across the routes below. This week's pick above is the card we chose this week, with its total, its price rise line and its checked date printed on it.
+So the best deal is the model and storage you need at the lowest total cost across the routes below. This week's pick above shows what every card prints: the total, the price rise line and the checked date. The Galaxy S26 cards are on the homepage.
 
 ## Here is exactly what to do
 
 1. Decide the storage first. Samsung's spec pages list 256GB or 512GB for the S26 and S26 Plus, 256GB, 512GB or 1TB for the Ultra, and 128GB, 256GB or 512GB for the FE. A deal is only comparable with another deal for the same model and storage.
-2. Note the total contract cost on this week's pick above and on every Galaxy S26 card on the [homepage](/). Ignore the monthly price for now. The total is the number you compare.
+2. Open the [homepage](/) and note the total contract cost on every Galaxy S26 card. Ignore the monthly price for now. The total is the number you compare.
 3. Read the price rise line on each card. It says the rise in pounds and pence, or No price rise. Count the months after the rise lands, multiply, and add that to the total for every rise date inside the term.
 4. Price the phone on its own. Start from Samsung's RRP in the table, then check Samsung's buy page for the price that day, because its offers change. Add a SIM only plan for the same number of months from our sister site, [Save on Sims](https://saveonsims.co.uk/), where every card prints the same total and price rise line.
 5. Subtract trade-in on both sides. Samsung's Ultra buy page offered £10 to £635 off for a selected smartphone on 2 September 2026, capped at 60% of the price before discount. Get the network's written quote for the same old phone and use the same value in both sums.
@@ -74,11 +74,11 @@ Samsung does not publish a figure for how much space a typical owner needs, so w
 
 Two things follow. First, storage cannot be added later, so if you fill phones, price the 512GB version on every route in step four. Second, the network card must show the storage you want. A cheap card for a 256GB phone is not a deal on a 512GB one.
 
-Samsung's launch offer doubled storage across the range, 512GB for the price of 256GB, which Samsung valued at £170. A later version of that offer carried an end date of 7 June 2026. Whether a storage offer is running when you buy is on Samsung's buy page, not here.
+Samsung's launch offer doubled storage across the range, 512GB for the price of 256GB, which Samsung valued at £170. That was a pre-order offer. Whether a storage offer is running when you buy is on Samsung's buy page, not here.
 
 ## Should I buy the Galaxy S25 instead?
 
-Only if the total is lower for storage you are happy with, and Samsung gives you two ways to check. On 2 September 2026 samsung.com/uk still sold the Galaxy S25, S25 Plus, S25 Ultra, S25 Edge and S25 FE new, so last year's range did not vanish when the S26 arrived. Samsung's site also sells the S25, S25 Plus and S25 Ultra as Certified Re-Newed. Samsung says those phones are refurbished in Samsung approved facilities with genuine Samsung parts, are issued a new IMEI, and carry a two year warranty, the same as a new phone.
+Only if the total is lower for storage you are happy with, and Samsung gives you two ways to check. On 2 September 2026 samsung.com/uk still sold the Galaxy S25, S25 Plus, S25 Ultra, S25 Edge and S25 FE new. Samsung's site also sells the S25, S25 Plus and S25 Ultra as Certified Re-Newed. Samsung says those phones are refurbished in Samsung approved facilities with genuine Samsung parts, are issued a new IMEI, and carry a two year warranty, the same as a new phone.
 
 Samsung's pages did not state a UK price for any S25 in the snippets we could quote, so run the S25 through the same six steps rather than assume it is cheaper. If a used phone is on your list, our guide on [whether to buy a refurbished iPhone](/blog/should-you-buy-a-refurbished-iphone/) asks the questions that apply to any refurbished handset.
 
@@ -86,7 +86,7 @@ Samsung's pages did not state a UK price for any S25 in the snippets we could qu
 
 No Samsung page publishes a schedule of price cuts, so nobody can promise you a cheaper month. What Samsung's UK pages show is how its discounts actually arrive. The range launched with pre-order offers: the double storage deal above, and trade-in of £10 to £437 off the S26, £10 to £542 off the S26 Plus and £10 to £607 off the Ultra, all stated in Samsung's announcement. By 2 September 2026 the Ultra buy page quoted £10 to £635 instead, which tells you trade-in values move and the quote you get on the day is the one that counts. Samsung's trade-in page says you have 7 days to send the old phone back once the new one arrives.
 
-Samsung's buy pages also carry 0% finance, and offers with end dates stated on the page. The ones we saw on 2 September 2026 ended in the same month, which is the only honest urgency in this guide. Samsung runs a student and youth offers page as well, so if you qualify, check it before you buy direct, and read our guide to [the best phone deals for students](/blog/best-phone-deals-for-students/) for the network side.
+Samsung's buy pages also carry 0% finance, and offers with end dates stated on the page, so an offer you see today may be gone by the Monday we next check. Samsung runs a student and youth offers page as well, so if you qualify, check it before you buy direct, and read our guide to [the best phone deals for students](/blog/best-phone-deals-for-students/) for the network side.
 
 Waiting does not change the network side. The price rises below land on a fixed date whatever month you sign, so signing in March does not dodge an April rise.
 
@@ -105,4 +105,4 @@ Roaming is on the card too, from each network's own page. O2 includes EU roaming
 
 ## What to do now
 
-You now have Samsung's RRPs, the storage each model comes in, and each network's price rise in pounds and pence. Note the total on this week's pick above, run the six steps, and take the lower number for the storage you want. [See this week's phone deals](/) to begin.
+You now have Samsung's RRPs, the storage each model comes in, and each network's price rise in pounds and pence. Note the totals on the Galaxy S26 cards, run the six steps, and take the lower number for the storage you want. [See this week's phone deals](/) to begin.

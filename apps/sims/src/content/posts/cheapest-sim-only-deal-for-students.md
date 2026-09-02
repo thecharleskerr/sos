@@ -40,19 +40,19 @@ faq:
 draft: false
 ---
 
-The cheapest SIM for a student is the one with a real student price, the data you actually use and nothing that bites later, and choosing on the discount alone can leave you paying full price on a 24 month plan long after the offer ends. Twelve UK networks publish a student offer we could verify on their own pages. Only one is a plain monthly price for unlimited data with no contract, and that is the card above.
+The cheapest SIM for a student is the one with a real student price and the data you actually use, and choosing on the discount alone can leave you paying full price on a 24 month plan long after the offer ends. Twelve UK networks publish a student offer we could verify on their own pages. Only one is a plain monthly price for unlimited data with no contract, and that is the card above.
 
-Every figure here comes from the network's own student page or terms, checked on 1 or 2 September 2026. The deal card is re-checked every Monday. Claiming the offer takes about ten minutes.
+Every figure here comes from the network's own student page or terms, checked on 1 or 2 September 2026. The card is re-checked every Monday. Claiming the offer takes about ten minutes.
 
 ## Which student SIM only offer is cheapest?
 
 Of the student offers we checked on 1 September 2026, Simp's Standard Unlimited student plan is the cheapest unlimited plan, and it is the card above. Simp's students page says students get Standard Unlimited billed monthly at the pay upfront price without having to pay upfront, once verified through Student Beans. You get unlimited UK data, calls and texts with a 750GB a month fair use limit, 10GB of EU roaming a month, no contract and, the page says, no mid-contract price rises. It is an eSIM and runs on Three's network.
 
-If the student card is not on the [homepage](/) yet, go to [our students page](/students). It has the same card and every network we checked, including the thirteen where we found no offer.
+If the student card is not on the [homepage](/) yet, [our students page](/students) has it, plus every network we checked, including the thirteen with no offer found.
 
-Unlimited is not the only way to be cheap. Lycamobile's Student Beans plan has the lowest stated monthly price in the table, but with 5GB of data. giffgaff gives 100GB a month for 12 months on its monthly rolling plan to members with a .ac.uk email address. If you use less than 5GB a month, read [our guide on whether unlimited is worth it](/blog/is-unlimited-data-worth-it/) first.
+Lycamobile's Student Beans plan has the lowest stated monthly price in the table, but with 5GB of data. giffgaff gives 100GB a month for 12 months on its monthly rolling plan to members with a .ac.uk email address. If you use little data, read [our guide on whether unlimited is worth it](/blog/is-unlimited-data-worth-it/) first.
 
-Here is every verified offer, in the wording recorded in our students table on 1 September 2026. Where a page does not say how you prove you are a student, the column reads not stated.
+Every verified offer, in the wording of our students table, checked 1 September 2026. Where a page does not say how you prove you are a student, the column reads not stated.
 
 | Network | Student offer | Claim via | SIM only |
 |---|---|---|---|
@@ -69,40 +69,40 @@ Here is every verified offer, in the wording recorded in our students table on 1
 | Mozillion | A student discount on Mozillion SIM plans, claimed through its students page. The amount is not stated on the indexed page. | Not stated | Yes |
 | Honest Mobile | A discount code sent to your student email address. The amount is not stated on the indexed page. | Direct, student email | Yes |
 
-Two things to read across the table. Every percentage comes off the airtime part of a plan, never a handset repayment. And O2's offer is the only one that excludes SIM only outright, so an O2 student needs a phone contract to use it. If you go home in the holidays, check the roaming cap too: Simp allows 10GB a month in the EU, giffgaff 5GB, and iD Mobile's 30GB cap is suspended until further notice. [Our EU roaming table](/guides/eu-roaming-by-network) covers all 25 networks.
+Every percentage comes off the airtime part of a plan, never a handset repayment. O2's offer is the only one that excludes SIM only outright. If you go home in the holidays, check the roaming cap too: Simp allows 10GB a month in the EU, giffgaff 5GB, and iD Mobile's 30GB cap is suspended until further notice. [Our EU roaming table](/guides/eu-roaming-by-network) covers all 25 networks.
 
 ## Here is exactly what to do
 
-1. Work out how much data you use. Your current app or bill shows the last three months. Under 5GB a month, look at Lycamobile or giffgaff. More than that, or you hotspot a laptop, take unlimited.
-2. Check the host network at your halls and your campus. Simp, iD Mobile and Honest Mobile run on Three's network. giffgaff runs on O2. Lycamobile runs on EE. VOXI runs on Vodafone. [Our data guide](/blog/best-uk-network-for-data/) shows how to check a postcode with Ofcom.
+1. Work out how much data you use. Your current app or bill shows the last three months. Under 5GB a month, look at Lycamobile or giffgaff. More than that, take unlimited.
+2. Check the host network at your halls and campus. Simp, iD Mobile and Honest Mobile run on Three. giffgaff runs on O2. Lycamobile runs on EE. VOXI runs on Vodafone. [Our data guide](/blog/best-uk-network-for-data/) shows how to check a postcode.
 3. Get verified before you shop. For Simp, EE, Lycamobile and VOXI, sign in to Student Beans. For O2, sign in to UNiDAYS or TOTUM. For Three and giffgaff, use your .ac.uk email address. For Vodafone, buy first and then fill in Vodafone's student discount form within 60 days.
-4. Open the deal from the card and apply the offer at checkout. Three's page says to enter STUDY20 in the promo code box in the basket. EE's terms say the Student Beans code must be given before you place the order. VOXI's help page says the voucher code goes in at checkout. iD Mobile says its discount must be applied when you order and cannot be added afterwards.
+4. Open the deal from the card and apply the offer at checkout. Three's page says to enter STUDY20 in the promo code box in the basket. EE's terms say the Student Beans code must be given before you place the order. iD Mobile says its discount must be applied when you order and cannot be added afterwards.
 5. Keep your number. Ofcom's switching page says you text PAC to 65075, your provider must reply within one minute, the code is valid for 30 days, and the switch should complete within one working day. [Our switching guide](/blog/how-to-switch-mobile-network-and-keep-your-number/) has the details.
-6. Put the end date of the discount in your calendar. The section on what happens when it ends explains why.
+6. Put the end date of the discount in your calendar.
 
-The card above shows the monthly price, the total cost, the price rise in pounds and pence or No price rise, the data, the roaming allowance and the date we checked it. The same card sits at the top of [our students page](/students).
+The card above shows the monthly price, the total cost, the price rise in pounds and pence or No price rise, the data, the roaming allowance and the date we checked it. It also sits at the top of [our students page](/students).
 
 ## Is Student Beans free?
 
-Yes, according to the one network page that says so directly. Lycamobile's Student Beans page calls verification a quick and free process. You register with your university details, and Student Beans gives you a code or sends you to the network's checkout. EE's page says to email Student Beans if you struggle to verify your account.
+Yes, according to the one network page that says so directly. Lycamobile's Student Beans page calls verification a quick and free process. You register with your university details, and Student Beans gives you a code or sends you to the network's checkout.
 
-You do not always need it. Three and giffgaff verify a .ac.uk email address directly. Vodafone uses its own form, verified by GoCertify, Student Beans or UNiDAYS. O2 uses UNiDAYS, UNiDAYS GRADLiFE or TOTUM, for phone contracts only. VOXI takes a code from GoCertify on its own site, UNiDAYS, Student Beans or UCAS. Honest Mobile's homepage asks for your student email address to send a discount code. Pick the network first, then use the route its page names.
+You do not always need it. Three and giffgaff verify a .ac.uk email address directly. Vodafone uses its own form, verified by GoCertify, Student Beans or UNiDAYS. O2 uses UNiDAYS, UNiDAYS GRADLiFE or TOTUM, for phone contracts only. VOXI takes a code from GoCertify on its own site, UNiDAYS, Student Beans or UCAS.
 
-One line in EE's terms applies more widely. EE says student offers cannot be used with any other promotion, offer or discount, including cashback. If a plan is already on offer, check whether the student code will stack before you count on it.
+EE's terms say student offers cannot be used with any other promotion, offer or discount, including cashback. If a plan is already on offer, check whether the student code will stack.
 
 ## What happens when the student discount ends?
 
-It depends on the network, which is why you read the terms before you buy. The rolling plans are simplest. Simp's student plan has no contract, and its page does not state an end date. VOXI's help page says the first month is free, then the plan renews and your payment method is charged, and you must change, pause or cancel before it renews to avoid paying for the next month.
+It depends on the network. Simp's student plan has no contract, and its page does not state an end date. VOXI's help page says the first month is free, then the plan renews and your payment method is charged, and you must change, pause or cancel before it renews to avoid paying for the next month.
 
-The timed offers have a cliff. giffgaff's promotions terms say the 100GB benefit lasts 12 months, after which the promo plan may no longer be available and members might be moved to a plan of equivalent price. EE's terms say the 20% discount lasts 24 months and is then removed automatically. Three's page says your discount lasts for the duration of the contract you sign up for. Vodafone's support pages say the discount lasts the length of your contract, and that 30 day SIM only plans are excluded altogether.
+The timed offers have a cliff. giffgaff's promotions terms say the 100GB benefit lasts 12 months, after which the promo plan may no longer be available and members might be moved to a plan of equivalent price. EE's terms say the 20% discount lasts 24 months and is then removed automatically. Three's page and Vodafone's support pages say the discount lasts the length of the contract you sign up for, and Vodafone excludes 30 day SIM only plans altogether.
 
-Then there is the mid-contract price rise. A 12 or 24 month plan can carry a rise in a fixed month each year, so a discounted plan can still cost more next spring. The card shows the rise in pounds and pence, or No price rise, before you click. Simp's students page says no mid-contract price rises. The other student pages do not say, so the rise is not stated here and the card is the place to check. [Our price rise guide](/blog/mid-contract-price-rises-explained/) explains the rules.
+Then there is the mid-contract price rise. A 12 or 24 month plan can carry a rise in a fixed month each year, so a discounted plan can still cost more next spring. Simp's students page says no mid-contract price rises. The other student pages do not say, so the rise is not stated here and the card, which shows it in pounds and pence or as No price rise, is the place to check. [Our price rise guide](/blog/mid-contract-price-rises-explained/) explains the rules.
 
 ## Do I need a credit check?
 
 Not for the rolling student plans we checked. Simp's students page says no credit check. Lycamobile's Student Beans page says its student plans have no contract and no credit check. giffgaff's help pages say no credit checks are carried out when you buy a plan, and that it only runs one if you take a phone on a loan.
 
-For the 12 and 24 month plans from EE, Three and Vodafone, the student pages we checked do not say either way, so it is not stated. If you are an international student or have no UK credit history, a rolling plan removes the question.
+For the 12 and 24 month plans from EE, Three and Vodafone, the student pages do not say either way, so it is not stated. If you have no UK credit history, a rolling plan removes the question.
 
 ## What to do now
 
