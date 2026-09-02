@@ -6,8 +6,11 @@ import { resolve, dirname } from 'node:path';
 /* Posts that are published: not a draft, and dated on or before the build.
    In dev every post shows so it can be previewed. Sorted newest first. */
 export function live(posts, { today = new Date(), dev = Boolean(import.meta.env?.DEV) } = {}) {
+  /* PREVIEW_POSTS=1 builds every dated post, for checking a batch before its
+     dates arrive. Never set in CI or on the hosts. */
+  const preview = dev || process.env.PREVIEW_POSTS === '1';
   return posts
-    .filter((p) => !p.data.draft && (dev || new Date(p.data.publishDate) <= today))
+    .filter((p) => !p.data.draft && (preview || new Date(p.data.publishDate) <= today))
     .sort((a, b) => new Date(b.data.publishDate) - new Date(a.data.publishDate));
 }
 

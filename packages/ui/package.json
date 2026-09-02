@@ -10,6 +10,7 @@
     "./money": "./money.js",
     "./contrast": "./contrast.js",
     "./post-schema": "./post-schema.js",
-    "./posts": "./posts.js"
+    "./posts": "./posts.js",
+    "./site": "./site.js"
   }
 }

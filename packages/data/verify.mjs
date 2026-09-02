@@ -42,6 +42,12 @@ for (const file of files) {
       console.error(`FAIL  ${file} → ${deal.id}: an EE deal must carry isAffiliate: false. Hard rule 1 in CLAUDE.md.`);
       fileFailed = true;
     }
+    /* A network with no affiliate programme cannot carry an affiliate link.
+       Such a deal is either editorial (isAffiliate false) or a mistake. */
+    if (deal.isAffiliate && deal.network in networks && !networks[deal.network].affiliate) {
+      console.error(`FAIL  ${file} → ${deal.id}: ${networks[deal.network].name} has no affiliate programme we can use, so isAffiliate must be false.`);
+      fileFailed = true;
+    }
     if (!checkTotals(deal)) {
       console.error(`FAIL  ${file} → ${deal.id}: total contract cost does not match monthly price times term plus upfront. That is drip pricing.`);
       fileFailed = true;

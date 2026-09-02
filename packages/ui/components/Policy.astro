@@ -1,0 +1,93 @@
+---
+/* The two policy pages, shared by both sites. Plain, short, honest about
+   what the site actually does: no accounts, no checkout, no forms, affiliate
+   links that go through Awin, hosting logs, and fonts from Google. Written
+   as a starting point, not legal advice, and dated so a change is visible.
+
+   Lines that need a fact the owner has not supplied (the legal name of the
+   operator, a contact address) are omitted rather than filled with a guess. */
+import { getSite } from '../site.js';
+const { site: key, kind, updated } = Astro.props;
+const site = getSite(key);
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const who = site.legalName ?? site.name;
+---
+<article class="policy">
+  {kind === 'terms' ? (
+    <>
+      <h1 class="t-h1">Terms of use</h1>
+      <p class="meta">Last updated {fmt(updated)}.</p>
+
+      <h2>What this site is</h2>
+      <p>{site.name} ({site.url}) is an information service. It shows a weekly selection of UK mobile deals with the figures that matter: the monthly price, the total cost over the contract, any mid-contract price rise in pounds and pence, the roaming allowance and the date the figures were checked. Nothing is sold here. When you choose a deal you leave this site and buy from the network or retailer, and your contract is with them, not with us.</p>
+
+      <h2>Accuracy</h2>
+      <p>Every figure is taken from the network's or maker's own published pages on the date shown beside it, and the deal cards are re-checked every Monday. Prices, allowances and terms change, sometimes the same day. Check the figure on the network's own page before you buy. If you spot something wrong, tell us and we will correct it. We do not guarantee that any figure is current at the moment you read it, and we are not liable for a loss that comes from relying on one without checking it.</p>
+
+      <h2>Where a figure is not stated</h2>
+      <p>Where a network does not publish a value, the site says "Not stated" or "To confirm". That is not a zero and not a guess. We would rather leave a gap than print a number we have not seen.</p>
+
+      <h2>Affiliate links</h2>
+      <p>Some deal links are affiliate links. If you buy through one, the network or retailer pays us a commission through an affiliate network. It does not change the price you pay. Each deal card says whether its link is one of these. Some listings carry no commission at all and are there because leaving them out would make the comparison less useful.</p>
+
+      <h2>Not advice</h2>
+      <p>The site helps you compare published figures. It is not financial, legal or consumer advice, and it cannot know your circumstances. Whether a deal suits you is your decision.</p>
+
+      <h2>Other people's sites</h2>
+      <p>Deal links take you to sites we do not run. Their content, their terms and their handling of your data are theirs. Read them before you buy.</p>
+
+      <h2>Our content</h2>
+      <p>The text and design of this site belong to {who}. You may quote short extracts with a link back. Network and maker names and marks belong to their owners and appear here only to identify them.</p>
+
+      <h2>Changes</h2>
+      <p>We may change these terms. The date at the top says when they last changed. Using the site after a change means you accept the new version.</p>
+
+      <h2>Law</h2>
+      <p>These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction over any dispute about them.</p>
+      {site.contactEmail && <><h2>Contact</h2><p>Questions about these terms: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p></>}
+    </>
+  ) : (
+    <>
+      <h1 class="t-h1">Privacy</h1>
+      <p class="meta">Last updated {fmt(updated)}.</p>
+
+      <h2>The short version</h2>
+      <p>This site has no accounts, no checkout and no forms, and it does not run advertising or analytics scripts. It does not ask for your name, your email address or anything else about you. The little that is processed is described below, in full.</p>
+
+      <h2>Who is responsible</h2>
+      <p>{site.name} ({site.url}) is operated by {who} in the United Kingdom, which is the data controller for the processing described here.</p>
+
+      <h2>What is processed, and why</h2>
+      <h3>Hosting logs</h3>
+      <p>The site is served by a hosting provider. Like any web server, it records the IP address, the page requested, the time and the browser type for each request, in order to serve the page and to keep the service secure. Those logs are held by the provider under its own retention rules and are not used by us to identify you.</p>
+      <h3>Fonts</h3>
+      <p>The typeface is loaded from Google Fonts. When a page loads, your browser requests the font files from Google's servers, and Google receives your IP address as part of that request. Google's handling of that request is covered by Google's privacy policy.</p>
+      <h3>Deal links</h3>
+      <p>When you choose a deal, the link may pass through an affiliate network, currently Awin, on its way to the network or retailer. The affiliate network may set a cookie on its own domain so that a purchase can be attributed to this site. We are then told that a sale happened and what the commission is. We do not receive your name, address, payment details or anything else that identifies you.</p>
+      <h3>Cookies set by this site</h3>
+      <p>None. The site does not set cookies of its own or store anything in your browser. If that ever changes, this page will say so first.</p>
+
+      <h2>The legal basis</h2>
+      <p>Serving the page and keeping it secure is our legitimate interest, and yours, in a working website. Nothing here relies on your consent, because nothing here needs it.</p>
+
+      <h2>Your rights</h2>
+      <p>Under the UK GDPR and the Data Protection Act 2018 you have the right to ask what personal data we hold about you, to have it corrected or erased, to object to its processing and to complain to the Information Commissioner's Office at ico.org.uk. In practice we hold nothing that identifies you, but the rights apply all the same.</p>
+
+      <h2>Children</h2>
+      <p>The site is written for adults choosing a phone contract and is not directed at children under 16.</p>
+
+      <h2>Changes</h2>
+      <p>If what the site processes changes, this page changes with it, and the date at the top moves.</p>
+      {site.contactEmail && <><h2>Contact</h2><p>Questions about this policy: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p></>}
+    </>
+  )}
+</article>
+
+<style>
+  .policy { max-width: 66ch; }
+  h1 { margin: var(--space-8) 0 var(--space-2); }
+  .meta { font-size: 13px; color: var(--ink-2); margin: 0 0 var(--space-6); }
+  h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: var(--space-6) 0 var(--space-2); }
+  h3 { font-size: 15px; font-weight: 700; margin: var(--space-4) 0 var(--space-1); }
+  p { font-size: 15.5px; line-height: 1.6; margin: 0 0 var(--space-3); text-wrap: pretty; }
+</style>
