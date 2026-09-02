@@ -13,7 +13,9 @@ import { get, hostLabel } from '../networks.js';
 import { gbp } from '../money.js';
 import { contrast } from '../contrast.js';
 
-const { deal, variant = 'standard' } = Astro.props;
+/* settle: the one-off settle animation belongs to the homepage's first load
+   only, so any other page passes settle={false}. */
+const { deal, variant = 'standard', settle = true } = Astro.props;
 const hero = variant === 'hero';
 const net = get(deal.network);
 if (!net) {
@@ -32,9 +34,10 @@ const device = deal.device ?? null;
 const rise = deal.priceRise;
 let riseHead;
 let riseDetail;
+const rolling = deal.contractLengthMonths === 1;
 if (rise.type === 'none') {
   riseHead = 'No price rise';
-  riseDetail = `Fixed for the whole ${deal.contractLengthMonths} months.`;
+  riseDetail = rolling ? 'Rolling monthly, leave whenever you like.' : `Fixed for the whole ${deal.contractLengthMonths} months.`;
 } else if (rise.type === 'fixed' && typeof rise.amountGBP === 'number') {
   const to = gbp(deal.monthlyPrice + rise.amountGBP);
   riseHead = rise.month ? `Goes up to ${to} in ${rise.month}` : `Goes up to ${to} mid-contract`;
@@ -83,7 +86,14 @@ const picks = {
   'best-unlimited': 'Best unlimited data',
   cheapest: 'Cheapest this week',
   'best-short-contract': 'Best short contract',
+  'best-for-students': 'Best for students',
 };
+
+/* Hard rule 2: the total contract cost is always printed, even on a rolling
+   plan where it is one month's money. */
+const totalLine = rolling
+  ? `${gbp(deal.totalContractCost)} in total, rolling monthly`
+  : `${gbp(deal.totalContractCost)} over ${deal.contractLengthMonths} months`;
 
 const host = hostLabel(net);
 const isDirect = net.hostNetwork === 'direct';
@@ -94,7 +104,7 @@ const isDirect = net.hostNetwork === 'direct';
 const focusColour = contrast(net.colour, '#FFFFFF') >= 3 ? net.colour : '#000000';
 const style = `--network: ${net.colour}; --pill-text: ${net.pillText}; --focus: ${focusColour}${hero ? '; --cut: 36px' : ''}`;
 ---
-<article class:list={['ticket', hero && 'hero', hero && 'settle']} style={style}>
+<article class:list={['ticket', hero && 'hero', hero && settle && 'settle']} style={style}>
   <span class:list={['flash', net.inkClash && 'flash--ink']} aria-hidden="true"></span>
   {deal.pick && <p class="mark">{picks[deal.pick]}</p>}
 
@@ -132,7 +142,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}; --focus: 
             </p>
             <p class="total total--device">
               {gbp(deal.upfrontCost)} upfront<br />
-              {gbp(deal.totalContractCost)} over {deal.contractLengthMonths} months
+              {totalLine}
             </p>
           </div>
           <div class="split-rise">
@@ -149,7 +159,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}; --focus: 
             </p>
             <p class="total">
               {deal.upfrontCost > 0 && <>{gbp(deal.upfrontCost)} upfront<br /></>}
-              {gbp(deal.totalContractCost)} over {deal.contractLengthMonths} months
+              {totalLine}
             </p>
           </div>
 

@@ -58,7 +58,7 @@ export const DealSchema = z.object({
 
   pick: z.enum([
     'deal-of-week', 'best-roaming', 'best-unlimited',
-    'cheapest', 'best-short-contract',
+    'cheapest', 'best-short-contract', 'best-for-students',
   ]).nullable(),
   status: z.enum(['live', 'stale', 'expired']),
 });

@@ -16,7 +16,11 @@ const slots = [
   { label: 'data', value: withGB(data) },
   { label: 'minutes', value: allowance(minutes) },
   { label: 'texts', value: allowance(texts) },
-  { label: 'months', value: allowance(months) },
+  /* A one month term is a rolling plan, and "1 months" is not a thing anyone
+     says, so the slot reads Rolling under a contract label instead. */
+  months === 1
+    ? { label: 'contract', value: 'Rolling' }
+    : { label: 'months', value: allowance(months) },
 ];
 ---
 <dl class="allowances">

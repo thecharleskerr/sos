@@ -26,6 +26,7 @@ const copy = site === 'sims'
 const roamingHref = site === 'sims'
   ? '/guides/eu-roaming-by-network'
   : 'https://saveonsims.co.uk/guides/eu-roaming-by-network';
+const studentsHref = site === 'sims' ? '/students' : 'https://saveonsims.co.uk/students';
 ---
 <header class="bar">
   <div class="masthead">
@@ -35,6 +36,7 @@ const roamingHref = site === 'sims'
     </div>
     <nav class="nav">
       <a href={roamingHref}>Roaming</a>
+      <a href={studentsHref}>Students</a>
     </nav>
   </div>
 
