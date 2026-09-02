@@ -49,12 +49,24 @@ and focus, plus one settle on first load of the homepage.
     npm run dev:phones      # local dev, Save on Smartphones
     npm run build           # build both
     npm run verify          # schema and compliance checks, runs in CI
+    npm test                # ingest, ranking and integrity tests, runs in CI
+    npm run refresh         # the weekly feed pull, dry run outside Actions
+    npm run integrity       # the daily link, freshness and drift check
+
+## The weekly cycle
+
+packages/data/ingest/run.mjs pulls the Awin telco feeds and proposes the
+week's deals in a pull request. packages/data/verify/integrity.mjs hides
+dead, drifted or unverified deals every morning. packages/data/rules/ ranks
+the picks; the rules are written out in its README. Roaming and the price
+rise come from packages/compliance, never from the feed, and a network with
+no verified price rise has its deals held back until someone fills the entry
+with a source.
 
 ## Still to build
 
-- packages/data/ingest/run.mjs      Awin Enhanced Telco Feed pull and normalise
-- packages/data/verify/integrity.mjs Link health, expiry, price drift
-- packages/data/rules/              Editorial ranking for the weekly picks
-- packages/compliance/roaming.ts    Hand-maintained roaming reference table
+- packages/compliance/price-rises.ts  Every entry is unverified. Research
+  each network's stated mid-contract rise the way roaming.ts was done and
+  its deals release themselves.
 - Category, network and guide pages
 - JSON-LD, sitemaps, llms.txt

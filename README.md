@@ -63,7 +63,39 @@ The weekly job proposes and the daily job disposes.
   deploys. Merging the PR is what publishes.
 - **Daily integrity check**, every morning. Follows every affiliate link,
   flags anything that has vanished from the feed, diffs prices against the
-  last snapshot, and auto-hides anything expired or drifted. This one does
-  deploy, because it can only ever remove things.
+  feed, and auto-hides anything expired or drifted. This one does deploy,
+  because it can only ever remove things.
+
+## The weekly cycle, in practice
+
+    npm run refresh -- --fixture packages/data/test/fixtures/telco-feed.csv
+    npm run refresh -- --dry-run        # real feed, writes nothing
+    npm run integrity -- --dry-run      # links, freshness, drift, report only
+    npm test                            # the pipeline's own tests
+
+`packages/data/ingest/run.mjs` reads every telco feed the Awin account can
+see, maps each row through `ingest/columns.json`, and turns it into a deal
+with `ingest/normalise.mjs`. A row the feed does not fully state is dropped
+with a reason. A deal on a network whose roaming or mid-contract price rise
+is not yet verified in `packages/compliance` is held back, because the card
+cannot print a blank there (hard rule 2). What is left is ranked by
+`rules/picks.mjs` (the rules are written out in `rules/README.md`), and the
+summary in the pull request lists what was proposed, what changed since last
+week, what was held and why, and what was dropped and why.
+
+`packages/data/verify/integrity.mjs` runs every morning: dead link, gone from
+the feed, price or term moved, or not verified for fourteen days all take a
+deal off the site by changing its status. It also compares each card's
+roaming line with the verified roaming table and warns on any disagreement.
+
+Two things unblock the feed on day one:
+
+1. Add `AWIN_API_TOKEN` (the Create-a-Feed data feed API key) as a secret.
+   The first summary lists every header the feeds actually use, so
+   `ingest/columns.json` and the network aliases in `normalise.mjs` can be
+   corrected once and then left alone.
+2. Fill `packages/compliance/price-rises.ts`, one network at a time, with
+   sources. Until a network has a verified entry, every one of its deals is
+   held back and named in the summary.
 
 Read `CLAUDE.md` before changing anything. It has the rules that matter.

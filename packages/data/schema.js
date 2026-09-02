@@ -3,11 +3,13 @@ import { z } from 'zod';
 const allowance = z.union([z.number().nonnegative(), z.literal('unlimited')]);
 
 export const RoamingSchema = z.object({
-  euIncluded: z.boolean(),
+  /* null renders as not confirmed. Hard rule 5: a value the network does
+     not state is null, never a guess. */
+  euIncluded: z.boolean().nullable(),
   euCapGB: z.number().nullable(),
   destinationCount: z.number().nullable(),
   dailyChargeGBP: z.number().nullable(),
-  worldwideIncluded: z.boolean(),
+  worldwideIncluded: z.boolean().nullable(),
   note: z.string().nullable(),
 });
 
@@ -37,7 +39,7 @@ export const DealSchema = z.object({
   minutes: allowance,
   texts: allowance,
   contractLengthMonths: z.number().int().positive(),
-  fiveG: z.boolean(),
+  fiveG: z.boolean().nullable(),
 
   roaming: RoamingSchema,
   priceRise: PriceRiseSchema,

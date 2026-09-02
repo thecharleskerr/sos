@@ -5,6 +5,7 @@
   "private": true,
   "exports": {
     "./roaming": "./roaming.ts",
-    "./students": "./students.ts"
+    "./students": "./students.ts",
+    "./price-rises": "./price-rises.ts"
   }
 }

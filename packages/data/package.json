@@ -3,6 +3,14 @@
   "version": "0.0.0",
   "type": "module",
   "private": true,
-  "exports": { "./schema": "./schema.js" },
-  "dependencies": { "zod": "^3.23.8" }
+  "exports": {
+    "./schema": "./schema.js",
+    "./ingest/normalise": "./ingest/normalise.mjs",
+    "./rules/picks": "./rules/picks.mjs"
+  },
+  "dependencies": {
+    "zod": "^3.23.8",
+    "@sos/compliance": "*",
+    "@sos/ui": "*"
+  }
 }

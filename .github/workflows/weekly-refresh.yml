@@ -32,18 +32,22 @@ jobs:
         env:
           AWIN_API_TOKEN: ${{ secrets.AWIN_API_TOKEN }}
           AWIN_PUBLISHER_ID: ${{ secrets.AWIN_PUBLISHER_ID }}
-        run: node packages/data/ingest/run.mjs
+        run: node --experimental-strip-types packages/data/ingest/run.mjs --write
 
       - name: Validate before proposing anything
         run: node packages/data/verify.mjs
+
+      - name: Name the week
+        run: echo "WEEK_OF=$(TZ=Europe/London date +%Y-%m-%d)" >> "$GITHUB_ENV"
 
       - name: Open a pull request for review
         uses: peter-evans/create-pull-request@v6
         with:
           branch: deals/weekly-refresh
-          title: "Deals week of ${{ github.run_number }}"
+          title: "Deals, week of ${{ env.WEEK_OF }}"
           body-path: .github/refresh-summary.md
-          commit-message: "Weekly deal refresh"
+          commit-message: "Weekly deal refresh, week of ${{ env.WEEK_OF }}"
+          add-paths: content/**
           delete-branch: true
 
 # This job proposes. It never deploys. Merging the PR is what publishes,

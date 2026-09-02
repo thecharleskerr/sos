@@ -20,8 +20,13 @@ jobs:
         with: { node-version: 22, cache: npm }
       - run: npm ci
 
+      # The feed credentials are optional here. Without them the check still
+      # follows every link and ages every deal; with them it also spots a
+      # price that moved or a deal that vanished from the feed.
       - name: Check links, expiry and price drift
-        run: node packages/data/verify/integrity.mjs
+        env:
+          AWIN_API_TOKEN: ${{ secrets.AWIN_API_TOKEN }}
+        run: node --experimental-strip-types packages/data/verify/integrity.mjs
 
       - name: Commit any auto-hidden deals
         run: |

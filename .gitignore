@@ -5,3 +5,5 @@ dist/
 .env.*
 .DS_Store
 *.log
+.github/refresh-summary.md
+.github/integrity-report.md
