@@ -40,7 +40,7 @@ faq:
 draft: false
 ---
 
-The best Samsung Galaxy S26 deal is the one that costs you the least by the day the contract ends, for the storage you will actually fill, and choosing by the monthly figure alone is how people pay more for the same phone. Samsung's UK pages confirm four current models and the recommended price of three of them. The networks publish their annual price rises in pounds and pence. Put those figures next to the total on a deal card and the answer takes about ten minutes. Every figure here comes from the seller's own pages with its checked date, and the picks on the homepage are re-checked every Monday.
+The best Samsung Galaxy S26 deal is the one that costs you the least by the day the contract ends, for the storage you will actually fill, and choosing by the monthly figure alone is how people pay more for the same phone. Samsung's UK pages confirm four current models and three recommended prices, and the networks publish their annual rises in pounds and pence. Put those figures next to the total on a deal card and the answer takes about ten minutes. Every figure here comes from the seller's own pages with its checked date, and the picks on the homepage are re-checked every Monday.
 
 ## Which Galaxy S26 models are on sale in the UK?
 
@@ -84,7 +84,7 @@ Samsung's pages did not state a UK price for any S25 in the snippets we could qu
 
 ## When does Samsung discount the Galaxy S26?
 
-No Samsung page publishes a schedule of price cuts, so nobody can promise you a cheaper month. What Samsung's UK pages show is how its discounts actually arrive. The range launched with pre-order offers: the double storage deal above, and trade-in of £10 to £437 off the S26, £10 to £542 off the S26 Plus and £10 to £607 off the Ultra, all stated in Samsung's announcement. By 2 September 2026 the Ultra buy page quoted £10 to £635 instead, which tells you trade-in values move and the quote you get on the day is the one that counts. Samsung's trade-in page says you have 7 days to send the old phone back once the new one arrives.
+No Samsung page publishes a schedule of price cuts, so nobody can promise you a cheaper month. What Samsung's UK pages show is how its discounts actually arrive. The range launched with pre-order offers: the double storage deal above, and trade-in of £10 to £437 off the S26, £10 to £542 off the S26 Plus and £10 to £607 off the Ultra, all stated in Samsung's announcement. By 2 September 2026 the Ultra buy page quoted £10 to £635 instead, which tells you trade-in values move and the quote you get on the day is the one that counts.
 
 Samsung's buy pages also carry 0% finance, and offers with end dates stated on the page, so an offer you see today may be gone by the Monday we next check. Samsung runs a student and youth offers page as well, so if you qualify, check it before you buy direct, and read our guide to [the best phone deals for students](/blog/best-phone-deals-for-students/) for the network side.
 

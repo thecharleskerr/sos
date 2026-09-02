@@ -40,7 +40,7 @@ faq:
 draft: false
 ---
 
-The cheapest SIM for a student is the one with a real student price and the data you actually use, and choosing on the discount alone can leave you paying full price on a 24 month plan long after the offer ends. Twelve UK networks publish a student offer we could verify on their own pages. Only one is a plain monthly price for unlimited data with no contract, and that is the card above.
+The cheapest SIM for a student is the one with a real student price and the data you actually use, and choosing on the discount alone can leave you paying full price on a 24 month plan long after the offer ends. Twelve UK networks publish a student offer we could verify on their own pages. Only one pairs unlimited data and no contract with a stated monthly price, and that is the card above.
 
 Every figure here comes from the network's own student page or terms, checked on 1 or 2 September 2026. The card is re-checked every Monday. Claiming the offer takes about ten minutes.
 
@@ -52,7 +52,7 @@ If the student card is not on the [homepage](/) yet, [our students page](/studen
 
 Lycamobile's Student Beans plan has the lowest stated monthly price in the table, but with 5GB of data. giffgaff gives 100GB a month for 12 months on its monthly rolling plan to members with a .ac.uk email address. If you use little data, read [our guide on whether unlimited is worth it](/blog/is-unlimited-data-worth-it/) first.
 
-Every verified offer, in the wording of our students table, checked 1 September 2026. Where a page does not say how you prove you are a student, the column reads not stated.
+Below is every verified offer, in the wording of our students table, checked 1 September 2026. Where a page does not say how you prove you are a student, the column reads not stated.
 
 | Network | Student offer | Claim via | SIM only |
 |---|---|---|---|
@@ -69,7 +69,7 @@ Every verified offer, in the wording of our students table, checked 1 September 
 | Mozillion | A student discount on Mozillion SIM plans, claimed through its students page. The amount is not stated on the indexed page. | Not stated | Yes |
 | Honest Mobile | A discount code sent to your student email address. The amount is not stated on the indexed page. | Direct, student email | Yes |
 
-Every percentage comes off the airtime part of a plan, never a handset repayment. O2's offer is the only one that excludes SIM only outright. If you go home in the holidays, check the roaming cap too: Simp allows 10GB a month in the EU, giffgaff 5GB, and iD Mobile's 30GB cap is suspended until further notice. [Our EU roaming table](/guides/eu-roaming-by-network) covers all 25 networks.
+Every percentage comes off the airtime part of a plan, never a handset repayment. O2's offer is the only one that excludes SIM only. If you go home in the holidays, check the roaming cap too: Simp allows 10GB a month in the EU, giffgaff 5GB, and iD Mobile's 30GB cap is suspended until further notice. [Our EU roaming table](/guides/eu-roaming-by-network) covers all 25 networks.
 
 ## Here is exactly what to do
 
@@ -80,11 +80,11 @@ Every percentage comes off the airtime part of a plan, never a handset repayment
 5. Keep your number. Ofcom's switching page says you text PAC to 65075, your provider must reply within one minute, the code is valid for 30 days, and the switch should complete within one working day. [Our switching guide](/blog/how-to-switch-mobile-network-and-keep-your-number/) has the details.
 6. Put the end date of the discount in your calendar.
 
-The card above shows the monthly price, the total cost, the price rise in pounds and pence or No price rise, the data, the roaming allowance and the date we checked it. It also sits at the top of [our students page](/students).
+The card above shows the monthly price, the total cost, the price rise in pounds and pence or No price rise, the data, the roaming allowance and the date we checked it. It sits at the top of [our students page](/students).
 
 ## Is Student Beans free?
 
-Yes, according to the one network page that says so directly. Lycamobile's Student Beans page calls verification a quick and free process. You register with your university details, and Student Beans gives you a code or sends you to the network's checkout.
+Yes, according to the one network page that says so. Lycamobile's Student Beans page calls verification a quick and free process. You register with your university details, and Student Beans gives you a code or sends you to the network's checkout.
 
 You do not always need it. Three and giffgaff verify a .ac.uk email address directly. Vodafone uses its own form, verified by GoCertify, Student Beans or UNiDAYS. O2 uses UNiDAYS, UNiDAYS GRADLiFE or TOTUM, for phone contracts only. VOXI takes a code from GoCertify on its own site, UNiDAYS, Student Beans or UCAS.
 
