@@ -43,12 +43,12 @@ Short answer: yes, on some plans. O2, Vodafone, Three, EE, SMARTY, giffgaff, iD 
 
 ## Which UK networks offer eSIM?
 
-The table below sets out what each network's own pages say, including the limits they state.
+Most do, but not on every plan, and the table below sets out what each network's own pages say, including the limits they state.
 
 | Network | eSIM offered | What the page says |
 |---|---|---|
 | Simp | eSIM only | No physical SIM at all. Every plan activates by scanning a QR code in the Simp app. |
-| O2 | Yes, SIM only and pay monthly | Available on Big Bundle and rolling SIM only plans, ordered online or in an O2 store. |
+| O2 | Yes, Big Bundle and rolling SIM only | Available on Big Bundle and rolling SIM only plans, ordered online or in an O2 store. |
 | Vodafone | Yes, SIM only | All pay monthly and pay as you go SIM only plans offer eSIM, chosen at checkout. |
 | Three | Yes, SIM only | Offered on 30 day, 12 month and 24 month SIM only plans, at no price difference to a physical SIM. |
 | EE | Yes, pay monthly | Downloads through the EE app when you order a pay monthly SIM only plan, or by a QR code sent in the post. |
@@ -88,7 +88,7 @@ Check your own network's terms first. [Our guide to the best SIM only deal for E
 
 ## How does switching to an eSIM actually work?
 
-The exact steps differ slightly by network, but the shape is the same on iPhone and Android. Apple's own support pages describe three ways in: eSIM Carrier Activation, where you scan a QR code with the Camera app and tap the Cellular Plan Detected notification, eSIM Quick Transfer, where a new iPhone pulls the eSIM across from your previous one without contacting the network, and converting an existing physical SIM to an eSIM from within Settings.
+The exact steps differ slightly by network, but the shape is the same on iPhone and Android. Apple's own support pages describe three ways in. With eSIM Carrier Activation, you scan a QR code with the Camera app, then tap the notification that appears to activate the plan. With eSIM Quick Transfer, a new iPhone pulls the eSIM across from your previous one without contacting the network. The third way is converting an existing physical SIM to an eSIM from within Settings.
 
 On Android, UK networks describe a similar pattern in their own words. Three says you scan the QR code emailed to you, then enter a confirmation code sent in a second email. SMARTY and Tesco Mobile describe the same two-step pattern: scan the code, then enter a code to confirm. You need a wifi or mobile data connection throughout, and most networks say activation finishes within minutes, though some warn it can take longer at busy times.
 
