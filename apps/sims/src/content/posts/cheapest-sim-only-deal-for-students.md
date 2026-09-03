@@ -32,8 +32,8 @@ sources:
   - { name: "Honest Mobile, Homepage", url: "https://honestmobile.co.uk/", checked: 2026-09-01 }
   - { name: "Ofcom, Switching mobile", url: "https://www.ofcom.org.uk/phones-and-broadband/switching-provider/switching-mobile", checked: 2026-09-02 }
 faq:
-  - { q: "Do I need Student Beans to get a student SIM deal?", a: "Not for every network. Simp, EE, Lycamobile and VOXI use Student Beans. O2 uses UNiDAYS, UNiDAYS GRADLiFE or TOTUM, and its offer is for phone contracts only. Three and giffgaff check a .ac.uk email address directly. Vodafone uses its own online form, verified by GoCertify, Student Beans or UNiDAYS, submitted within 60 days of connecting." }
-  - { q: "Is Student Beans free for students?", a: "Lycamobile's Student Beans page describes verification as a quick and free process. You register with your university details, and Student Beans gives you a code or a link to the network's checkout. EE's page says to email Student Beans if you struggle to verify your account." }
+  - { q: "Do I need Student Beans to get a student SIM deal?", a: "Not for every network. Simp, EE, Lycamobile and VOXI use Student Beans. O2 uses UNiDAYS, UNiDAYS GRADLiFE or TOTUM, and its offer is for phone or tablet contracts only. Three and giffgaff check a .ac.uk email address directly. Vodafone uses its own online form, verified by GoCertify, Student Beans or UNiDAYS, submitted within 60 days of connecting." }
+  - { q: "Is Student Beans free for students?", a: "Lycamobile's Student Beans page describes verification as a quick and free process. You register with your university details, and Student Beans gives you a code or a link to the network's checkout." }
   - { q: "What happens when the student SIM discount ends?", a: "It depends on the network. giffgaff's terms say the 100GB benefit lasts 12 months and you may then be moved to a plan of equivalent price. EE's terms say the 20% discount is removed automatically after 24 months. VOXI renews at the full plan price after the free month unless you cancel first. Simp's student plan rolls monthly and its page does not state an end date." }
   - { q: "Do student SIM deals need a credit check?", a: "Not the rolling plans we checked. Simp's students page says no credit check. Lycamobile's Student Beans page says no contract and no credit check. giffgaff's help pages say no credit checks are carried out when you buy a plan, only when you take a phone on a loan. For the 12 and 24 month plans from EE, Three and Vodafone the student pages do not say, so it is not stated." }
   - { q: "Can I keep my number when I switch to a student SIM?", a: "Yes. Ofcom's switching page says you text PAC to 65075, your current provider must reply with the code within one minute, the code is valid for 30 days, and your number should be ready on the new SIM within one working day of giving the code to your new provider." }
@@ -44,15 +44,15 @@ The cheapest SIM for a student is the one with a real student price and the data
 
 Every figure here comes from the network's own student page or terms, checked on 1 or 2 September 2026. The card is re-checked every Monday. Claiming the offer takes about ten minutes.
 
-## Which student SIM only offer is cheapest?
+## What is the cheapest SIM only deal for students?
 
-Of the student offers we checked on 1 September 2026, Simp's Standard Unlimited student plan is the cheapest unlimited plan, and it is the card above. Simp's students page says students get Standard Unlimited billed monthly at the pay upfront price without having to pay upfront, once verified through Student Beans. You get unlimited UK data, calls and texts with a 750GB a month fair use limit, 10GB of EU roaming a month, no contract and, the page says, no mid-contract price rises. It is an eSIM and runs on Three's network.
+Of the student offers we checked on 1 September 2026, the cheapest SIM only deal for students is Simp's Standard Unlimited student plan, and it is the card above. Simp's students page says students get Standard Unlimited billed monthly at the pay upfront price without having to pay upfront, once verified through Student Beans. You get unlimited UK data, calls and texts with a 750GB a month fair use limit, 10GB of EU roaming a month, no contract and, the page says, no mid-contract price rises. It is an eSIM and runs on Three's network.
 
 If the student card is not on the [homepage](/) yet, [our students page](/students) has it, plus every network we checked, including the thirteen with no offer found.
 
 Lycamobile's Student Beans plan has the lowest stated monthly price in the table, but with 5GB of data. giffgaff gives 100GB a month for 12 months on its monthly rolling plan to members with a .ac.uk email address. If you use little data, read [our guide on whether unlimited is worth it](/blog/is-unlimited-data-worth-it/) first.
 
-Below is every verified offer, in the wording of our students table, checked 1 September 2026. Where a page does not say how you prove you are a student, the column reads not stated.
+Below is every verified offer, checked 1 September 2026. Where a page does not say how you prove you are a student, the column reads not stated.
 
 | Network | Student offer | Claim via | SIM only |
 |---|---|---|---|
@@ -86,7 +86,7 @@ The card above shows the monthly price, the total cost, the price rise in pounds
 
 Yes, according to the one network page that says so. Lycamobile's Student Beans page calls verification a quick and free process. You register with your university details, and Student Beans gives you a code or sends you to the network's checkout.
 
-You do not always need it. Three and giffgaff verify a .ac.uk email address directly. Vodafone uses its own form, verified by GoCertify, Student Beans or UNiDAYS. O2 uses UNiDAYS, UNiDAYS GRADLiFE or TOTUM, for phone contracts only. VOXI takes a code from GoCertify on its own site, UNiDAYS, Student Beans or UCAS.
+You do not always need it. Three and giffgaff verify a .ac.uk email address directly. Vodafone uses its own form, verified by GoCertify, Student Beans or UNiDAYS. O2 uses UNiDAYS, UNiDAYS GRADLiFE or TOTUM, for phone or tablet contracts only. VOXI takes a code from GoCertify on its own site, UNiDAYS, Student Beans or UCAS.
 
 EE's terms say student offers cannot be used with any other promotion, offer or discount, including cashback. If a plan is already on offer, check whether the student code will stack.
 
