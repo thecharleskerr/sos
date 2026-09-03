@@ -37,7 +37,7 @@ Price alone does not make a phone worth buying. The three makers state very diff
 
 ## Three phones, three prices, three update promises
 
-Here is how the three compare, side by side, with a plain not stated wherever a maker printed nothing.
+Here is how the three compare, side by side. A gap in a maker's own page prints as not stated here, never as a guess.
 
 | Phone | UK price stated | Update commitment stated | Checked |
 |---|---|---|---|
@@ -51,9 +51,9 @@ That gap is worth noticing before you look at price at all. A £199 phone with s
 
 ## Here is exactly how to buy a cheap 5G phone without losing years of updates
 
-1. Pick the update commitment you are happy living with first, from the table above, not the phone that looks nicest in a photo.
+1. Pick the update commitment you are happy living with first, from the table above. Do not choose the phone that just looks nicest in a photo.
 2. Check the maker's own UK page on the day you buy. The prices above are what we saw on 2 September 2026, and a maker's own page is the only place a price is current.
-3. Price a SIM only plan for the same number of months on [Save on Sims](https://saveonsims.co.uk/), where the total cost and any price rise sit on the card itself, not in small print you have to hunt for.
+3. Price a SIM only plan for the same number of months on [Save on Sims](https://saveonsims.co.uk/). The total cost and any price rise sit on the card itself, not in small print you have to hunt for.
 4. Add the phone's outright price to that SIM only total. The combined figure is the number to compare against any network's phone contract.
 5. Weigh that against a contract's own total, such as [this week's iPhone pick](/blog/cheapest-iphone-18-deal/) or a Galaxy or Pixel card on the [homepage](/), for the same number of months. Then take whichever total is lower.
 6. Confirm the data, minutes, texts and roaming on the SIM only plan actually cover what you use. A low total on an allowance you will run past every month is not actually cheap.
