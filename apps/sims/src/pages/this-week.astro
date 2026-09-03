@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import { networks } from '@sos/ui/networks';
+import { gbp } from '@sos/ui/money';
+import { liveDeals } from '@sos/ui/posts';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
+
+/* What changed since last Monday, from the record the weekly refresh keeps.
+   Before the first real refresh there is no record, and the page says so
+   rather than inventing a history. */
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
+const logPath = resolve(root, 'content/sims/changelog.json');
+const weeks = existsSync(logPath) ? JSON.parse(readFileSync(logPath, 'utf8')).weeks : [];
+const { weekOf, deals } = liveDeals('sims', root);
+const picks = deals.filter((d) => d.pick);
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' });
+const name = (k) => networks[k]?.name ?? k;
+const latest = weeks[0] ?? null;
+---
+<Base title="What changed this week | Save on Sims" description="Every Monday the SIM only deals are re-checked and the picks re-ranked. This is what came in, what went, and what moved in price this week.">
+  <h1 class="t-h1">What changed this week{weekOf && <span class="week">Week of {fmt(weekOf)}</span>}</h1>
+  <p class="lede">The deals are pulled fresh every Monday and the picks re-ranked by <a href="/how-we-pick-deals/">published rules</a>. Links are checked every morning and anything dead or moved comes down the same day.</p>
+
+  {latest ? (
+    <section class="log">
+      <h2>Since last Monday</h2>
+      <p class="soft">{latest.proposed} deals proposed on {fmt(latest.checked)}. {latest.added.length} new, {latest.gone.length} gone, {latest.moved.length} moved in price.</p>
+      {latest.added.length > 0 && <><h3>New</h3><ul>{latest.added.map((d) => <li>{name(d.network)}, {d.data === 'unlimited' ? 'unlimited' : `${d.data}GB`}, {gbp(d.monthlyPrice)} a month{d.contractLengthMonths === 1 ? ', rolling' : ` over ${d.contractLengthMonths} months`}{d.pick && <span class="tag">{d.pick.replace(/-/g, ' ')}</span>}</li>)}</ul></>}
+      {latest.moved.length > 0 && <><h3>Moved</h3><ul>{latest.moved.map((d) => <li>{name(d.network)}: {gbp(d.from)} to {gbp(d.to)} a month</li>)}</ul></>}
+      {latest.gone.length > 0 && <><h3>Gone</h3><ul>{latest.gone.map((d) => <li>{name(d.network)} ({d.id})</li>)}</ul></>}
+    </section>
+  ) : (
+    <p class="soft">No weekly record yet. The first Monday refresh writes one, and from then on this page lists what came in, what went and what moved.</p>
+  )}
+
+  {picks.length > 0 && (
+    <section class="picks">
+      <h2>This week's picks</h2>
+      <div class="grid">{picks.map((d) => <DealCard deal={d} settle={false} />)}</div>
+    </section>
+  )}
+
+  {weeks.length > 1 && (
+    <section class="history">
+      <h2>Earlier weeks</h2>
+      <ul>{weeks.slice(1).map((w) => <li>Week of {fmt(w.weekOf)}: {w.proposed} deals, {w.added.length} new, {w.gone.length} gone, {w.moved.length} moved.</li>)}</ul>
+    </section>
+  )}
+</Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 22ch; }
+  .week { font-weight: 400; color: var(--ink-2); font-size: .6em; letter-spacing: 0; display: block; margin-top: 4px; }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: var(--space-6) 0 var(--space-2); }
+  h3 { font-size: 14px; font-weight: 700; margin: var(--space-4) 0 var(--space-2); }
+  .soft { color: var(--ink-2); font-size: 15px; max-width: 62ch; }
+  .log ul, .history ul { margin: 0; padding: 0; list-style: none; max-width: 62ch; }
+  .log li, .history li { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; font-variant-numeric: tabular-nums; }
+  .tag { margin-left: 8px; font-size: 11.5px; background: var(--ink); color: var(--paper); padding: 2px 6px; }
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); align-items: start; }
+</style>

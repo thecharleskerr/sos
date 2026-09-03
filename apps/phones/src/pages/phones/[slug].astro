@@ -1,0 +1,105 @@
+---
+import Base from '../../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import { gbp } from '@sos/ui/money';
+import { getSite } from '@sos/ui/site';
+import { liveDeals } from '@sos/ui/posts';
+import { phones } from '@sos/compliance/phones';
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
+
+export function getStaticPaths() {
+  return Object.keys(phones).map((slug) => ({ params: { slug } }));
+}
+const { slug } = Astro.params;
+const ph = phones[slug];
+const site = getSite('phones');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
+const deals = liveDeals('phones', root).deals.filter((d) => d.device && d.device.name.toLowerCase().includes(ph.name.replace(/^(Samsung|Google) /, '').toLowerCase()));
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+const priceLine = ph.rrpGBP !== null
+  ? `${ph.maker}'s UK price for the ${ph.name} is ${gbp(ph.rrpGBP)}${ph.storageGB ? ` for the ${ph.storageGB}GB model` : ''}, as stated on ${ph.maker}'s own pages on ${fmt(ph.checked)}.`
+  : `${ph.maker} had not stated a UK price for the ${ph.name} on its own pages when we checked on ${fmt(ph.checked)}, so the site does not print one.`;
+const updatesLine = ph.updates ? `${ph.maker} states: ${ph.updates.toLowerCase()}.` : `${ph.maker} does not state a fixed number of years of software updates for the ${ph.name} on the pages we checked.`;
+
+const faq = [
+  { q: `How much is the ${ph.name} in the UK?`, a: `${priceLine} A contract's total over the term, monthly price times months plus upfront cost, is what to compare with that figure.` },
+  { q: `How long will the ${ph.name} get updates?`, a: `${updatesLine} The update commitment matters more than the chip for how long the phone stays usable.` },
+  { q: `Is the ${ph.name} cheaper on contract or outright?`, a: `Only the total tells you. Add up the contract's monthly price times its months plus the upfront cost, then compare it with ${ph.rrpGBP !== null ? gbp(ph.rrpGBP) : "the maker's price"} plus a SIM only plan over the same months. Our guides walk through the sum.` },
+];
+const url = `${site.url}/phones/${slug}/`;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: site.name, item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: ph.name, item: url },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  ph.rrpGBP !== null && { '@context': 'https://schema.org', '@type': 'Product', name: ph.name, brand: { '@type': 'Brand', name: ph.maker }, url, offers: { '@type': 'Offer', priceCurrency: 'GBP', price: ph.rrpGBP, url: ph.source, seller: { '@type': 'Organization', name: ph.maker }, availability: 'https://schema.org/InStock' } },
+].filter(Boolean);
+const description = `${ph.name}: ${ph.rrpGBP !== null ? `${gbp(ph.rrpGBP)} from ${ph.maker} in the UK` : `UK price not stated by ${ph.maker}`}, ${ph.updates ? ph.updates.toLowerCase() : 'update commitment not stated'}, and how to tell whether a contract beats buying it outright.`.slice(0, 158);
+---
+<Base title={`${ph.name} deals and UK price | Save on Smartphones`} description={description}>
+  <article class="phone">
+    <p class="crumb"><a href="/">Phones</a></p>
+    <h1 class="t-h1">{ph.name}</h1>
+    <p class="lede">{priceLine}</p>
+    <dl class="facts">
+      <div><dt>Maker's UK price</dt><dd>{ph.rrpGBP !== null ? gbp(ph.rrpGBP) : 'Not stated'}</dd></div>
+      <div><dt>Storage at that price</dt><dd>{ph.storageGB ? `${ph.storageGB}GB` : 'Not stated'}</dd></div>
+      <div><dt>5G</dt><dd>{ph.fiveG ? 'Yes' : 'No'}</dd></div>
+      <div><dt>Software updates</dt><dd>{ph.updates ?? 'Not stated'}</dd></div>
+    </dl>
+
+    <section class="deals">
+      <h2>{deals.length ? `${ph.name} in this week's deals` : `No ${ph.name} deal listed yet`}</h2>
+      {deals.length
+        ? <div class="grid">{deals.map((d) => <DealCard deal={d} settle={false} />)}</div>
+        : <p class="soft">Phone deals arrive with the first weekly feed pull, checked every Monday. Until then the sum is simple: a contract only beats {ph.rrpGBP !== null ? gbp(ph.rrpGBP) : "the maker's price"} plus a <a href="https://saveonsims.co.uk/">SIM only plan</a> over the same months if its total is lower.</p>}
+    </section>
+
+    <section class="detail">
+      <h2>Software updates</h2>
+      <p>{updatesLine}</p>
+      <h2>Contract or outright?</h2>
+      <p>Add the monthly price times the months to the upfront cost. Compare that with the maker's price plus a SIM only plan for the same months. Check the mid-contract price rise in pounds and pence on the contract, which the outright route does not carry. <a href="/blog/how-much-should-you-pay-for-a-phone-contract/">How much a contract should cost</a> and <a href="/blog/phone-trade-in-uk-what-is-your-old-phone-worth/">what your old phone is worth</a> finish the sum.</p>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Questions people ask</h2>
+      {faq.map((f) => (<div class="faq-item"><h3>{f.q}</h3><p>{f.a}</p></div>))}
+    </section>
+
+    <footer class="sources">
+      <h2>Source</h2>
+      <p><a href={ph.source} rel="nofollow noopener">{ph.maker}, {ph.name}</a>, checked {fmt(ph.checked)}. {ph.evidence === 'unverified' && 'No figure on this page has been verified against the maker\'s pages yet.'}</p>
+    </footer>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
+
+<style>
+  .phone { max-width: 72ch; }
+  .crumb { font-size: 12.5px; color: var(--ink-2); margin: var(--space-8) 0 var(--space-3); }
+  .crumb a { color: var(--ink-2); }
+  h1 { margin: 0 0 var(--space-3); }
+  .lede { color: var(--ink-2); margin: 0 0 var(--space-6); max-width: 60ch; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); margin: 0 0 var(--space-8); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+  .facts div { padding: 12px 16px 12px 0; }
+  .facts dt { font-size: 11.5px; color: var(--ink-2); margin: 0 0 4px; }
+  .facts dd { margin: 0; font-weight: 600; font-size: 15px; font-variant-numeric: tabular-nums; }
+  h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: var(--space-6) 0 var(--space-2); }
+  .deals h2 { margin-top: 0; }
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); align-items: start; }
+  .soft, .detail p { font-size: 15.5px; line-height: 1.6; margin: 0 0 var(--space-3); text-wrap: pretty; }
+  .soft { color: var(--ink-2); }
+  .faq { border-top: 2px solid var(--ink); padding-top: var(--space-4); margin-top: var(--space-8); }
+  .faq h2 { margin: 0 0 var(--space-4); }
+  .faq-item { padding: var(--space-3) 0; border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: 0; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+  .faq-item p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .sources { margin: var(--space-8) 0 0; font-size: 13px; color: var(--ink-2); }
+  .sources h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-2); color: var(--ink); }
+  .sources a { color: var(--ink-2); }
+</style>

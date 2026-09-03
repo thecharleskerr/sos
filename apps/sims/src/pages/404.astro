@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page not found | Save on Sims" description="That page is not here. The deals, guides and network pages are." noindex={true}>
+  <h1 class="t-h1">That page is not here</h1>
+  <p class="lede">It may have moved when a guide was renamed, or the link was wrong. Nothing on this site is behind a login, so everything is reachable from these.</p>
+  <ul class="links">
+    <li><a href="/">See this week's SIM only deals</a></li>
+    <li><a href="/blog/">Read the guides</a></li>
+    <li><a href="/networks/">Every network we track</a></li>
+    <li><a href="/how-we-pick-deals/">How we pick deals</a></li>
+  </ul>
+</Base>
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-6); }
+  .links { list-style: none; padding: 0; margin: 0; max-width: 40ch; border-top: 2px solid var(--ink); }
+  .links li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-weight: 600; }
+</style>

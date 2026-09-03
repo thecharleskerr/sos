@@ -6,7 +6,8 @@
   "exports": {
     "./schema": "./schema.js",
     "./ingest/normalise": "./ingest/normalise.mjs",
-    "./rules/picks": "./rules/picks.mjs"
+    "./rules/picks": "./rules/picks.mjs",
+    "./rules/categories": "./rules/categories.js"
   },
   "dependencies": {
     "zod": "^3.23.8",

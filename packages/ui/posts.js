@@ -17,15 +17,22 @@ export function live(posts, { today = new Date(), dev = Boolean(import.meta.env?
 /* The live deals for the picks a post names, read from content/<site>/ at
    build time. Absent file, absent pick or a deal that is not live all give
    nothing, never a stale card. Deduplicated and kept in the order named. */
+/* This week's live deals for a site, read from content/ at build time.
+   Absent file means none. root is the repo root. */
+export function liveDeals(site, root) {
+  const path = resolve(root, 'content', site, 'deals.json');
+  if (!existsSync(path)) return { weekOf: null, deals: [] };
+  const set = JSON.parse(readFileSync(path, 'utf8'));
+  return { weekOf: set.weekOf ?? null, deals: set.deals.filter((d) => d.status === 'live') };
+}
+
 export function dealsFor(site, picks, fromUrl) {
   if (!picks?.length) return [];
   const here = dirname(fileURLToPath(fromUrl));
-  const path = resolve(here, '../../../../../content', site, 'deals.json');
-  if (!existsSync(path)) return [];
-  const { deals } = JSON.parse(readFileSync(path, 'utf8'));
+  const { deals } = liveDeals(site, resolve(here, '../../../../..'));
   const out = [];
   for (const pick of picks) {
-    const d = deals.find((x) => x.status === 'live' && x.pick === pick);
+    const d = deals.find((x) => x.pick === pick);
     if (d && !out.includes(d)) out.push(d);
   }
   return out;

@@ -3,6 +3,7 @@
    the canonical URL, Open Graph and Twitter cards, robots, and the site's
    Organization and WebSite structured data. Pages add their own Article or
    FAQ data separately. */
+import '@fontsource-variable/archivo/wdth.css';
 import { getSite } from '../site.js';
 
 const { site: key, title, description, type = 'website', noindex = false } = Astro.props;
@@ -43,14 +44,15 @@ const ld = [
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+<meta property="og:image" content={`${site.url}/og.png`} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:image" content={`${site.url}/og.png`} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap"
-  rel="stylesheet"
-/>
+<link rel="alternate" type="application/rss+xml" title={`${site.name} guides`} href="/feed.xml" />
 <script type="application/ld+json" set:html={JSON.stringify(ld)} />

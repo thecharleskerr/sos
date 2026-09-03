@@ -165,6 +165,16 @@ export async function refresh({ site, fixture, today, write, summaryPath, tables
   if (write && proposed.length) {
     mkdirSync(dirname(contentPath), { recursive: true });
     writeFileSync(contentPath, `${JSON.stringify(next, null, 2)}\n`);
+    /* The changelog feeds the What changed this week page: a fresh, dated
+       record every Monday, kept for half a year. */
+    const logPath = resolve(root, `content/${site}/changelog.json`);
+    const log = existsSync(logPath) ? JSON.parse(readFileSync(logPath, 'utf8')) : { weeks: [] };
+    const brief = (d) => ({ id: d.id, network: d.network, monthlyPrice: d.monthlyPrice, data: d.data, contractLengthMonths: d.contractLengthMonths, pick: d.pick ?? null });
+    log.weeks = [
+      { weekOf: next.weekOf, checked: today, proposed: proposed.length, added: added.map(brief), gone: gone.map((d) => ({ id: d.id, network: d.network })), moved: moved.map(({ d, p }) => ({ id: d.id, network: d.network, from: p.monthlyPrice, to: d.monthlyPrice })) },
+      ...log.weeks.filter((w) => w.weekOf !== next.weekOf),
+    ].slice(0, 26);
+    writeFileSync(logPath, `${JSON.stringify(log, null, 2)}\n`);
     wrote = true;
   }
   return { summary, next, proposed, held, dropped, wrote, contentPath, summaryPath: outSummary };

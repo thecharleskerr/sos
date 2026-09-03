@@ -118,6 +118,9 @@ a:hover { color: var(--ink-2); }
   font-size: 12.5px;
   font-weight: 700;
 }
+a.pill { text-decoration: none; }
+a.pill:hover { color: var(--pill-text); text-decoration: underline; text-underline-offset: 2px; }
+
 .pill--ink {
   background: var(--card);
   color: var(--ink);

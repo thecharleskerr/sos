@@ -1,0 +1,164 @@
+---
+import Base from '../../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import { networks } from '@sos/ui/networks';
+import { gbp } from '@sos/ui/money';
+import { getSite } from '@sos/ui/site';
+import { liveDeals } from '@sos/ui/posts';
+import { roaming } from '@sos/compliance/roaming';
+import { priceRises } from '@sos/compliance/price-rises';
+import { studentOffers } from '@sos/compliance/students';
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
+
+export function getStaticPaths() {
+  return Object.keys(networks).map((key) => ({ params: { key } }));
+}
+
+const { key } = Astro.params;
+const net = networks[key];
+const site = getSite('sims');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
+const deals = liveDeals('sims', root).deals.filter((d) => d.network === key);
+
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const verified = (e) => e && e.evidence !== 'unverified';
+
+/* Every sentence below is built from a verified table entry or says so. */
+const host = net.hostNetwork === 'direct' ? null : net.hostNetwork;
+const hostLine = net.hostNetwork === 'direct'
+  ? `${net.name} owns its network, which is what decides your coverage.`
+  : host ? `${net.name} runs on ${host}'s network, which is what decides your coverage.` : `Which network ${net.name} runs on is not stated on its own pages.`;
+
+const r = roaming[key];
+let roamLine = 'Not verified against the network\'s own pages yet.';
+let roamShort = 'To confirm';
+if (verified(r)) {
+  const cap = r.euCapGB !== null ? `${r.euCapGB}GB fair use cap` : r.euCapText ? `${r.euCapText} fair use cap` : 'no cap stated';
+  if (r.euIncluded === true) { roamShort = `Included, ${cap}`; roamLine = `EU roaming is included with no daily charge, with a ${cap}.`; }
+  else if (r.euIncluded === false) { roamShort = r.dailyChargeGBP !== null ? `${gbp(r.dailyChargeGBP)} a day, ${cap}` : `Charged, ${cap}`; roamLine = r.dailyChargeGBP !== null ? `EU roaming is charged at ${gbp(r.dailyChargeGBP)} a day, with a ${cap}. A week in Spain is ${gbp(r.dailyChargeGBP * 7)}.` : `EU roaming is charged, with a ${cap}.`; }
+  else if (r.euIncludedText) { roamShort = r.euIncludedText; roamLine = `EU roaming is included ${r.euIncludedText.charAt(0).toLowerCase()}${r.euIncludedText.slice(1)}${r.dailyChargeGBP !== null ? `, and other plans pay ${gbp(r.dailyChargeGBP)} a day` : ''}, with a ${cap}.`; }
+  if (r.note) roamLine += ` ${r.note}${/[.!?]$/.test(r.note) ? '' : '.'}`;
+}
+
+const p = priceRises[key];
+let riseLine = 'Not verified against the network\'s own terms yet, so its deals are held back from the weekly picks until it is.';
+let riseShort = 'To confirm';
+if (verified(p)) {
+  if (p.type === 'none') { riseShort = 'No price rise'; riseLine = `${net.name} states no mid-contract price rise.`; }
+  else if (p.type === 'fixed' && p.amountGBP !== null) { riseShort = `${gbp(p.amountGBP)} a month each ${p.month}`; riseLine = `The price goes up by ${gbp(p.amountGBP)} a month each ${p.month}, stated in pounds and pence as Ofcom requires.`; }
+  else if (p.type === 'fixed' && p.tiers) { riseShort = `By plan size each ${p.month}`; riseLine = `The price goes up each ${p.month} by a fixed amount set by plan size: ${p.tiers.map((t, i) => `${gbp(t.amountGBP)} on plans ${t.maxGB === null ? `over ${p.tiers[i - 1].maxGB}GB` : i === 0 ? `up to ${t.maxGB}GB` : `from ${p.tiers[i - 1].maxGB + 1}GB to ${t.maxGB}GB`}`).join(', ')}.`; }
+  if (p.appliesTo) riseLine += ` ${p.appliesTo}`;
+}
+
+const s = studentOffers[key];
+const studentLine = s?.hasOffer === true ? `${s.offer}${s.via ? ` Claimed via ${s.via === 'direct' ? 'the network itself' : s.via}.` : ''}` : `No student offer was found on ${net.name}'s own pages.`;
+const studentShort = s?.hasOffer === true ? 'Yes' : 'None found';
+
+const facts = [
+  { label: 'Runs on', value: net.hostNetwork === 'direct' ? 'Its own network' : (host ?? 'Not stated') },
+  { label: 'EU roaming', value: roamShort },
+  { label: 'Mid-contract price rise', value: riseShort },
+  { label: 'Student offer', value: studentShort },
+];
+
+const faq = [
+  { q: `Does ${net.name} include EU roaming?`, a: `${roamLine} ${verified(r) ? `Checked ${fmt(r.checked)} against ${net.name}'s own pages.` : ''}`.trim() },
+  { q: `Does ${net.name} put prices up mid-contract?`, a: `${riseLine} ${verified(p) ? `Checked ${fmt(p.checked)}.` : ''}`.trim() },
+  { q: `Is there a ${net.name} student discount?`, a: `${studentLine} ${s?.checked ? `Checked ${fmt(s.checked)}.` : ''}`.trim() },
+  { q: net.hostNetwork === 'direct' ? `Does ${net.name} own its network?` : `Which network does ${net.name} use?`, a: `${hostLine} Ofcom's coverage checker shows predicted 4G and 5G coverage by postcode for each of the four host networks.` },
+];
+
+const sources = [
+  verified(r) && { name: `${net.name}, roaming`, url: r.source, checked: r.checked },
+  verified(p) && { name: `${net.name}, price changes`, url: p.source, checked: p.checked },
+  s?.hasOffer === true && s.source && { name: `${net.name}, student offer`, url: s.source, checked: s.checked },
+].filter(Boolean);
+const checkedAll = [r?.checked, p?.checked, s?.checked].filter(Boolean).sort().at(-1) ?? null;
+
+const url = `${site.url}/networks/${key}/`;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: site.name, item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Networks', item: `${site.url}/networks/` },
+    { '@type': 'ListItem', position: 3, name: net.name, item: url },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url, name: `${net.name} SIM only deals, roaming and price rise`, dateModified: checkedAll, about: { '@type': 'Organization', name: net.name }, citation: sources.map((x) => x.url) },
+];
+const title = `${net.name} SIM only deals, roaming and price rise`;
+const description = `${net.name} on one page: ${net.hostNetwork === 'direct' ? 'its own network' : `runs on ${host ?? 'a network not stated'}`}, EU roaming ${roamShort.toLowerCase()}, price rise ${riseShort.toLowerCase()}, student offer ${studentShort.toLowerCase()}. Every figure from ${net.name}'s own pages, dated.`.slice(0, 158);
+---
+<Base title={`${title} | Save on Sims`} description={description}>
+  <article class="network" style={`--network: ${net.colour}; --pill-text: ${net.pillText}`}>
+    <p class="crumb"><a href="/networks/">Networks</a></p>
+    <div class="head">
+      <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
+      <h1 class="t-h1">{net.name} SIM only deals, roaming and price rise</h1>
+      <p class="lede">{hostLine}</p>
+    </div>
+
+    <dl class="facts">
+      {facts.map((f) => (<div><dt>{f.label}</dt><dd>{f.value}</dd></div>))}
+    </dl>
+
+    <section class="deals" aria-labelledby="deals-heading">
+      <h2 id="deals-heading">{deals.length ? `${net.name} in this week's picks` : `No ${net.name} deal in this week's picks`}</h2>
+      {deals.length
+        ? <div class="grid">{deals.map((d) => <DealCard deal={d} settle={false} />)}</div>
+        : <p class="soft">The picks are chosen by <a href="/how-we-pick-deals/">published rules</a> from the deals we checked this week, and {net.name} did not make the cut, or its price rise is not yet verified. <a href="/">See this week's picks.</a></p>}
+    </section>
+
+    <section class="detail">
+      <h2>EU roaming</h2>
+      <p>{roamLine} <a href="/guides/eu-roaming-by-network/">Compare all 25 networks.</a></p>
+      <h2>Mid-contract price rise</h2>
+      <p>{riseLine} <a href="/blog/mid-contract-price-rises-explained/">How price rises work.</a></p>
+      <h2>Student offer</h2>
+      <p>{studentLine} <a href="/students/">Every student offer.</a></p>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Questions people ask about {net.name}</h2>
+      {faq.map((f) => (<div class="faq-item"><h3>{f.q}</h3><p>{f.a}</p></div>))}
+    </section>
+
+    <footer class="sources">
+      <h2>Sources</h2>
+      {sources.length
+        ? <ul>{sources.map((x) => <li><a href={x.url} rel="nofollow noopener">{x.name}</a>, checked {fmt(x.checked)}.</li>)}</ul>
+        : <p>Nothing on this page has been verified against {net.name}'s own pages yet, which is why it reads To confirm.</p>}
+      {net.note && <p class="note">{net.note}</p>}
+    </footer>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
+
+<style>
+  .network { max-width: 72ch; }
+  .crumb { font-size: 12.5px; color: var(--ink-2); margin: var(--space-8) 0 var(--space-3); }
+  .crumb a { color: var(--ink-2); }
+  .head .pill { margin-bottom: var(--space-3); }
+  h1 { margin: 0 0 var(--space-3); text-wrap: balance; }
+  .lede { color: var(--ink-2); margin: 0 0 var(--space-6); max-width: 60ch; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0; margin: 0 0 var(--space-8); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+  .facts div { padding: 12px 16px 12px 0; }
+  .facts dt { font-size: 11.5px; color: var(--ink-2); margin: 0 0 4px; }
+  .facts dd { margin: 0; font-weight: 600; font-size: 15px; font-variant-numeric: tabular-nums; }
+  h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: var(--space-6) 0 var(--space-2); }
+  .deals h2 { margin-top: 0; }
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); align-items: start; }
+  .soft { color: var(--ink-2); font-size: 15px; }
+  .detail p { font-size: 15.5px; line-height: 1.6; margin: 0 0 var(--space-3); text-wrap: pretty; }
+  .faq { border-top: 2px solid var(--ink); padding-top: var(--space-4); margin-top: var(--space-8); }
+  .faq h2 { margin: 0 0 var(--space-4); }
+  .faq-item { padding: var(--space-3) 0; border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: 0; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+  .faq-item p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .sources { margin: var(--space-8) 0 0; font-size: 13px; color: var(--ink-2); }
+  .sources h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-2); color: var(--ink); }
+  .sources ul { margin: 0 0 var(--space-3); padding-left: 1.2em; }
+  .sources a { color: var(--ink-2); }
+  .note { max-width: 62ch; }
+</style>

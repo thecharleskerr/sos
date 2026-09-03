@@ -27,6 +27,7 @@ const roamingHref = site === 'sims'
   ? '/guides/eu-roaming-by-network'
   : 'https://saveonsims.co.uk/guides/eu-roaming-by-network';
 const studentsHref = site === 'sims' ? '/students' : 'https://saveonsims.co.uk/students';
+const networksHref = site === 'sims' ? '/networks/' : 'https://saveonsims.co.uk/networks/';
 ---
 <header class="bar">
   <div class="masthead">
@@ -35,6 +36,7 @@ const studentsHref = site === 'sims' ? '/students' : 'https://saveonsims.co.uk/s
       <p class="strap">{copy.strap}</p>
     </div>
     <nav class="nav">
+      <a href={networksHref}>Networks</a>
       <a href={roamingHref}>Roaming</a>
       <a href={studentsHref}>Students</a>
       <a href="/blog/">Guides</a>

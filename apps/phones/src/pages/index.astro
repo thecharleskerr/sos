@@ -1,15 +1,37 @@
 ---
 import Base from '../layouts/Base.astro';
+import { phones } from '@sos/compliance/phones';
+import { gbp } from '@sos/ui/money';
+const list = Object.values(phones);
 ---
 <Base
   title="Best phone deals this week | Save on Smartphones"
   description="Deals on the UK's ten best-selling phones, checked every Monday: monthly price, upfront cost, total over the contract and any price rise in pounds and pence."
 >
   <h1 class="t-h1">Best phone deals, coming soon</h1>
-  <p class="lede">This site launches after Apple's September event so the new line-up is here from day one.</p>
+  <p class="lede">This site launches after Apple's September event so the new line-up is here from day one. Until then, the phones we track and what their makers charge outright, which is the figure every contract has to beat.</p>
+  <table class="phones">
+    <thead><tr><th scope="col">Phone</th><th scope="col">Maker's UK price</th><th scope="col">Software updates</th></tr></thead>
+    <tbody>
+      {list.map((p) => (
+        <tr>
+          <th scope="row"><a href={`/phones/${p.slug}/`}>{p.name}</a></th>
+          <td class="num">{p.rrpGBP !== null ? gbp(p.rrpGBP) : 'Not stated'}{p.storageGB && p.rrpGBP !== null ? <span class="soft"> {p.storageGB}GB</span> : null}</td>
+          <td>{p.updates ?? 'Not stated'}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <p class="note">Prices are the makers' own, on the date shown on each phone's page. Deal prices arrive with the weekly feed and are re-checked every Monday.</p>
 </Base>
 
 <style>
   h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
-  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-6); }
+  .phones { width: 100%; max-width: 72ch; border-collapse: collapse; font-size: 14.5px; text-align: left; }
+  .phones th { font-size: 11.5px; font-weight: 600; color: var(--ink-2); padding: 12px 14px 8px 0; border-bottom: 1px solid var(--ink); }
+  .phones td, .phones tbody th { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .phones tbody th { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+  .soft { color: var(--ink-2); font-weight: 400; }
+  .note { font-size: 12.5px; color: var(--ink-2); margin-top: var(--space-4); max-width: 62ch; }
 </style>

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import DealCard from '@sos/ui/components/DealCard.astro';
 import data from '../../../../content/sims/deals.json';
+import { categories, categoryKeys } from '@sos/data/rules/categories';
 
 const live = data.deals.filter((d) => d.status === 'live');
 const featured = live.find((d) => d.pick === 'deal-of-week');
@@ -19,8 +20,13 @@ const weekOf = new Date(data.weekOf).toLocaleDateString('en-GB', {
   <p class="lede">
     Checked every Monday morning. Every deal shows what you actually get,
     including your EU roaming allowance and any mid-contract price rise in
-    pounds and pence.
+    pounds and pence. <a href="/this-week/">What changed this week.</a>
   </p>
+
+  <nav class="cats" aria-label="Deal categories">
+    <p class="cats-label">Browse</p>
+    {categoryKeys.map((k) => <a href={`/deals/${k}/`}>{categories[k].title.replace(' SIM only deals', '').replace('SIM only deals with ', '')}</a>)}
+  </nav>
 
   {featured && <div class="featured"><DealCard deal={featured} variant="hero" /></div>}
 
@@ -31,7 +37,9 @@ const weekOf = new Date(data.weekOf).toLocaleDateString('en-GB', {
 
 <style>
   h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
-  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-4); }
+  .cats { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; margin: 0 0 var(--space-8); font-size: 13.5px; }
+  .cats-label { margin: 0; color: var(--ink-2); font-size: 12px; }
   .featured { margin-bottom: var(--space-8); }
   .grid {
     display: grid;

@@ -69,5 +69,5 @@ with a source.
   Three, SMARTY, giffgaff, iD Mobile SIM only, Lebara, Simp). EE conflicts,
   the rest are unresearched. Fill an entry with a source and its deals
   release themselves.
-- Category, network and guide pages
-- JSON-LD, sitemaps, llms.txt
+- packages/compliance/phones.ts  Six phones with a maker's price; the top
+  ten list needs the rest, and Google's UK prices, from the makers' pages.

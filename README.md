@@ -66,6 +66,29 @@ The weekly job proposes and the daily job disposes.
   feed, and auto-hides anything expired or drifted. This one does deploy,
   because it can only ever remove things.
 
+## What the sites serve
+
+Save on Sims: the weekly picks, seven category pages under `/deals/`, a
+page per network under `/networks/` built from the verified tables, the
+student and roaming tables, dated guides under `/blog/`, `/this-week/` from
+the refresh's changelog, `/how-we-pick-deals/`, `/about/`, the policies,
+and the verified tables as JSON under `/data/`. Save on Smartphones: a page
+per tracked phone under `/phones/` and its own guides. Both serve
+`sitemap.xml`, `robots.txt`, `feed.xml`, `llms.txt` and `llms-full.txt`.
+
+Every page carries a canonical URL, Open Graph tags with a rendered social
+image, and structured data; guides, network, category and phone pages add
+FAQ and breadcrumb data. The font is self-hosted. `public/_headers` sets
+the security headers Cloudflare Pages serves, with a content security
+policy that allows no scripts; add `static.cloudflareinsights.com` to
+`script-src` if Cloudflare Web Analytics is switched on, and mention it in
+the privacy page.
+
+After a push to main, `.github/workflows/index-ping.yml` builds both sites
+and submits every URL to IndexNow. The key files in each `public/` are
+public by design. Google does not use IndexNow; submit the sitemaps once
+in Search Console.
+
 ## The weekly cycle, in practice
 
     npm run refresh -- --fixture packages/data/test/fixtures/telco-feed.csv

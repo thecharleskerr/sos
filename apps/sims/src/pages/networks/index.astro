@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import { networks } from '@sos/ui/networks';
+import { roaming } from '@sos/compliance/roaming';
+import { priceRises } from '@sos/compliance/price-rises';
+import { studentOffers } from '@sos/compliance/students';
+
+const rows = Object.entries(networks).map(([key, net]) => ({
+  key, net,
+  host: net.hostNetwork === 'direct' ? 'Its own' : (net.hostNetwork ?? 'Not stated'),
+  roam: roaming[key]?.evidence !== 'unverified' ? (roaming[key].euIncluded === true ? 'Included' : roaming[key].euIncluded === false ? 'Charged' : 'By plan') : 'To confirm',
+  rise: priceRises[key]?.evidence !== 'unverified' ? (priceRises[key].type === 'none' ? 'None' : 'Stated') : 'To confirm',
+  student: studentOffers[key]?.hasOffer === true ? 'Yes' : 'None found',
+}));
+---
+<Base title="Every UK mobile network compared | Save on Sims" description="All 25 UK mobile networks and brands we track: which network each runs on, whether EU roaming is included, what the mid-contract price rise is, and who has a student offer.">
+  <h1 class="t-h1">Every network we track</h1>
+  <p class="lede">Four networks own masts. Everyone else rents one of them. Each page below holds what that brand's own pages state about roaming, price rises and student offers, with the date we checked.</p>
+  <div class="scroll" tabindex="0" role="region" aria-label="Networks">
+    <table>
+      <thead><tr><th scope="col">Network</th><th scope="col">Runs on</th><th scope="col">EU roaming</th><th scope="col">Price rise</th><th scope="col">Student offer</th></tr></thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr style={`--network: ${r.net.colour}`}>
+            <th scope="row" class="net"><span class:list={['swatch', r.net.inkClash && 'swatch--ink']} aria-hidden="true"></span><a href={`/networks/${r.key}/`}>{r.net.name}</a></th>
+            <td>{r.host}</td><td>{r.roam}</td><td>{r.rise}</td><td>{r.student}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="note">"To confirm" means we have not yet verified that entry against the network's own pages. It is not a zero.</p>
+</Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-6); }
+  .scroll { overflow-x: auto; background: var(--card); padding: 8px 20px 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; }
+  th { font-size: 11.5px; font-weight: 600; color: var(--ink-2); padding: 12px 14px 8px 0; border-bottom: 1px solid var(--ink); white-space: nowrap; }
+  td, tbody th { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule); }
+  tbody th { font-size: 14px; color: var(--ink); white-space: nowrap; }
+  .swatch { display: inline-block; width: 11px; height: 11px; background: var(--network); margin-right: 9px; }
+  .swatch--ink { box-shadow: inset 0 0 0 1px var(--paper); }
+  .note { font-size: 12.5px; color: var(--ink-2); margin-top: var(--space-4); max-width: 62ch; }
+</style>

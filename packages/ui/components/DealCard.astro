@@ -97,6 +97,8 @@ const totalLine = rolling
 
 const host = hostLabel(net);
 const isDirect = net.hostNetwork === 'direct';
+/* The pill is the way from a deal to everything verified about its network. */
+const netHref = deal.site === 'sims' ? `/networks/${deal.network}/` : `https://saveonsims.co.uk/networks/${deal.network}/`;
 
 /* The focus ring and keyboard trace must clear 3:1 against the card, which
    the pale brands cannot, so keyboard focus falls back to ink for them. The
@@ -116,7 +118,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}; --focus: 
           <div class="imgslot" aria-hidden="true">Handset image</div>
           <div class="handset-meta">
             <div class="netrow">
-              <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
+              <a class:list={['pill', net.inkClash && 'pill--ink']} href={netHref}>{net.name}</a>
               {!isDirect && <span class="pill-host">{host}</span>}
             </div>
             <p class="t-dealname devname">{device.name}<br />{device.storageGB}GB</p>
@@ -128,7 +130,7 @@ const style = `--network: ${net.colour}; --pill-text: ${net.pillText}; --focus: 
         </div>
       ) : (
         <div class="netrow">
-          <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
+          <a class:list={['pill', net.inkClash && 'pill--ink']} href={netHref}>{net.name}</a>
           {isDirect || hero ? <span class="t-meta">{host}</span> : <span class="pill-host">{host}</span>}
         </div>
       )}

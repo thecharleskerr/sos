@@ -22,6 +22,10 @@ export const sites = {
       { path: '/students/', changefreq: 'weekly', priority: 0.8 },
       { path: '/guides/eu-roaming-by-network/', changefreq: 'monthly', priority: 0.8 },
       { path: '/blog/', changefreq: 'weekly', priority: 0.7 },
+      { path: '/networks/', changefreq: 'weekly', priority: 0.8 },
+      { path: '/this-week/', changefreq: 'weekly', priority: 0.6 },
+      { path: '/how-we-pick-deals/', changefreq: 'monthly', priority: 0.5 },
+      { path: '/about/', changefreq: 'yearly', priority: 0.4 },
       { path: '/terms/', changefreq: 'yearly', priority: 0.2 },
       { path: '/privacy/', changefreq: 'yearly', priority: 0.2 },
     ],
@@ -38,6 +42,8 @@ export const sites = {
     pages: [
       { path: '/', changefreq: 'weekly', priority: 1.0 },
       { path: '/blog/', changefreq: 'weekly', priority: 0.7 },
+      { path: '/how-we-pick-deals/', changefreq: 'monthly', priority: 0.5 },
+      { path: '/about/', changefreq: 'yearly', priority: 0.4 },
       { path: '/terms/', changefreq: 'yearly', priority: 0.2 },
       { path: '/privacy/', changefreq: 'yearly', priority: 0.2 },
     ],
@@ -47,10 +53,11 @@ export const sites = {
 export const getSite = (key) => sites[key];
 
 /* The sitemap XML for a site, from its static pages and the live posts. */
-export function sitemapXml(site, posts = [], { today }) {
+export function sitemapXml(site, posts = [], { today, extra = [] }) {
   const iso = (d) => new Date(d).toISOString().slice(0, 10);
   const entries = [
     ...site.pages.map((p) => ({ loc: `${site.url}${p.path}`, lastmod: today, changefreq: p.changefreq, priority: p.priority })),
+    ...extra.map((e) => ({ loc: `${site.url}${e.path}`, lastmod: e.lastmod ?? today, changefreq: e.changefreq ?? 'weekly', priority: e.priority ?? 0.7 })),
     ...posts.map((p) => ({ loc: `${site.url}/blog/${p.id}/`, lastmod: iso(p.data.checked), changefreq: 'monthly', priority: 0.6 })),
   ];
   const rows = entries.map((e) =>
@@ -62,7 +69,7 @@ export const robotsTxt = (site) => `User-agent: *\nAllow: /\n\nSitemap: ${site.u
 
 /* llms.txt: what an AI assistant should know about the site, in Markdown,
    so an answer engine quotes verified pages rather than guessing. */
-export function llmsTxt(site, posts = []) {
+export function llmsTxt(site, posts = [], { networks = [], categories = [] } = {}) {
   const lines = [
     `# ${site.name}`,
     '',
@@ -75,6 +82,16 @@ export function llmsTxt(site, posts = []) {
     ...site.pages.filter((p) => !/terms|privacy/.test(p.path)).map((p) => `- [${site.url}${p.path}](${site.url}${p.path})`),
     '',
   ];
+  if (categories.length) {
+    lines.push('## Deal categories, re-ranked every Monday', '');
+    for (const c of categories) lines.push(`- [${c.title}](${site.url}/deals/${c.key}/): ${c.answer}`);
+    lines.push('');
+  }
+  if (networks.length) {
+    lines.push('## Networks, one page each with roaming, price rise and student offer from the network\'s own pages', '');
+    for (const n of networks) lines.push(`- [${n.name}](${site.url}/networks/${n.key}/)`);
+    lines.push('', '## Verified tables as JSON', '', `- ${site.url}/data/roaming.json`, `- ${site.url}/data/price-rises.json`, `- ${site.url}/data/students.json`, `- ${site.url}/data/networks.json`, '', 'Every entry carries the source URL and the date it was checked. Unverified entries are null rather than guessed.', '');
+  }
   if (posts.length) {
     lines.push('## Guides', '');
     for (const p of posts) lines.push(`- [${p.data.title}](${site.url}/blog/${p.id}/): ${p.data.answer}`);
@@ -82,4 +99,41 @@ export function llmsTxt(site, posts = []) {
   }
   lines.push('## Sister site', '', `- [${site.sister.name}](${site.sister.url})`, '', '## Policies', '', `- [Terms](${site.url}/terms/)`, `- [Privacy](${site.url}/privacy/)`, '');
   return lines.join('\n');
+}
+
+/* llms-full.txt: the whole site's text in one Markdown file, for answer
+   engines that read one document rather than crawl. */
+export function llmsFullTxt(site, posts = [], sections = []) {
+  const out = [llmsTxt(site, posts), '', '---', ''];
+  for (const sec of sections) out.push(`# ${sec.title}`, '', sec.body.trim(), '', '---', '');
+  for (const p of posts) {
+    out.push(`# ${p.data.title}`, '', `Published ${new Date(p.data.publishDate).toISOString().slice(0, 10)}. Figures checked ${new Date(p.data.checked).toISOString().slice(0, 10)}. ${site.url}/blog/${p.id}/`, '', `**Short answer:** ${p.data.answer}`, '', (p.body ?? '').trim(), '', '## Questions people ask', '');
+    for (const f of p.data.faq) out.push(`**${f.q}** ${f.a}`, '');
+    out.push('## Sources', '', ...p.data.sources.map((s) => `- ${s.name}: ${s.url} (checked ${new Date(s.checked).toISOString().slice(0, 10)})`), '', '---', '');
+  }
+  return out.join('\n');
+}
+
+/* RSS for the guides. */
+export function feedXml(site, posts = []) {
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const items = posts.map((p) => `  <item>
+    <title>${esc(p.data.title)}</title>
+    <link>${site.url}/blog/${p.id}/</link>
+    <guid isPermaLink="true">${site.url}/blog/${p.id}/</guid>
+    <pubDate>${new Date(p.data.publishDate).toUTCString()}</pubDate>
+    <description>${esc(p.data.answer)}</description>
+  </item>`);
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>${esc(site.name)} guides</title>
+  <link>${site.url}/blog/</link>
+  <atom:link href="${site.url}/feed.xml" rel="self" type="application/rss+xml" />
+  <description>${esc(site.description)}</description>
+  <language>en-GB</language>
+${items.join('\n')}
+</channel>
+</rss>
+`;
 }
