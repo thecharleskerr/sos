@@ -34,21 +34,21 @@ faq:
 draft: false
 ---
 
-Leave a phone contract at the wrong moment and you can pay for months of a service you have already walked away from, on top of whatever you owe your new provider. Get the timing and the figure right and it costs nothing beyond what you already owed. Ofcom sets the rules for what a provider can charge you to leave early, and O2, EE, Vodafone and Three each publish how they apply them. This takes about ten minutes: check your date, get the figure in writing, then compare it with switching now.
+Leave a phone contract at the wrong moment and you pay for months of a service you have already left. That is on top of whatever you owe your new provider. Get the timing and the figure right, and it costs nothing beyond what you already owed. Ofcom sets the rules for what a provider can charge you to leave early. O2, EE, Vodafone and Three each publish how they apply them. This guide shows you how to get out of a phone contract early in about ten minutes. Check your date, get the figure in writing, then compare it with switching now.
 
 ## How much will it actually cost you to leave early?
 
-Ofcom's page on being in or out of contract says an early termination charge must be based on the remaining amount of your monthly charges, minus costs the provider saves, and should not total more than the payments left on your contract.
+Ofcom's page on being in or out of contract says an early termination charge must be based on the remaining amount of your monthly charges, minus costs the provider saves. It should not total more than the payments left on your contract.
 
-The three networks that publish a formula agree on the shape of it, even where the number differs. O2's page on leaving says a SIM only early termination charge is your monthly tariff cost for each month left, minus any discount you get, minus 4% for early receipt of payment. Its own example: three months left at £20 a month with a £5 discount comes to £45, and taking off 4% makes the final charge £43.20. EE's page on leaving says much the same shape: monthly charges for the months left, minus VAT, minus 4%, then VAT added back on. Its example, £30 a month with three months left, works out at £86.40. Three's page on your final bill states its early termination fee at 97% of the monthly charges left in your minimum term.
+The three networks that publish a formula agree on the shape of it, even where the number differs. O2's page on leaving says a SIM only early termination charge is your monthly tariff cost for each month left, minus any discount you get. It then takes off 4% for early receipt of payment. Its own example: three months left at £20 a month with a £5 discount comes to £45. Taking off 4% makes the final charge £43.20. EE's page on leaving says much the same shape. It takes the monthly charges for the months left, removes VAT, takes off 4%, then adds VAT back on. Its example, £30 a month with three months left, works out at £86.40. Three's page on your final bill states its early termination fee at 97% of the monthly charges left in your minimum term.
 
-O2 also says that on a Refresh plan, ending the airtime plan does not carry an early termination charge on its own, but if you do it inside 24 months you must pay off what is left on the device plan in full. Vodafone's page on how its fee is calculated says the amount comes from your own Charges Guide rather than one published rate for airtime plans, so ask for yours in writing before you decide.
+O2 also says that on a Refresh plan, ending the airtime plan does not carry an early termination charge on its own. But if you do it inside 24 months, you must pay off what is left on the device plan in full. Vodafone's page on how its fee is calculated says the amount comes from your own Charges Guide, rather than one published rate for airtime plans. Ask for yours in writing before you decide.
 
 ## Here is exactly what to do
 
 1. Check your contract end date. Your provider's app or online account shows it, or you can ask by phone.
 2. Ask your provider in writing for the exact early termination figure, not an estimate given over the phone. O2 gives an estimate through My O2 or by texting INFO to 85075; Three does the same through My3 or by texting INFO and your date of birth to 85075.
-3. Compare that figure with switching now. Add the early termination charge to a new SIM only plan's cost for the months you have left on your old contract, and compare that total with just riding out your current term.
+3. Compare that figure with switching now. Add the early termination charge to a new SIM only plan's cost for the months you have left on your old contract. Compare that total with just riding out your current term.
 4. If switching wins, get your PAC or STAC code. Ofcom's rules mean your current provider must text it to you free of charge and reply within one minute; it stays valid for 30 days.
 5. Give notice in the way your provider asks for, usually 30 days, then check your final bill against the figure you were given in writing. O2 sends its final bill 14 days after you're disconnected, Vodafone within 22 days, and Three within 38 days of your number moving to the new network.
 
