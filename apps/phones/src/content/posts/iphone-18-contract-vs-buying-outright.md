@@ -42,19 +42,19 @@ You want the iPhone 18 for the least money by the day the payments stop, and cho
 
 ## Is the iPhone 18 priced in the UK yet?
 
-No. We checked apple.com/uk on 2 September 2026. The UK buy page listed the iPhone 17 as its newest model and Apple's newsroom carried no iPhone 18 announcement. Any iPhone 18 price you see before Apple publishes one is a guess, and we do not print guesses.
+No. We checked apple.com/uk on 2 September 2026. The UK buy page listed the iPhone 17 as its newest model and Apple's newsroom carried no iPhone 18 announcement. Any earlier price is a guess, and we do not print guesses.
 
-For scale, the same page listed the iPhone 17 with 256GB at £799, or £26.63 a month for 30 months at 0% APR. When Apple prices the iPhone 18, that buy page is where the outright figure appears first. The [homepage](/) shows this week's contract picks once the networks list it, and our guide to [the cheapest iPhone 18 deal](/blog/cheapest-iphone-18-deal/) ranks them.
+For scale, the same page listed the iPhone 17 with 256GB at £799, or £26.63 a month for 30 months at 0% APR. That buy page is where the iPhone 18 price will appear first. The [homepage](/) shows this week's contract picks once the networks list it, and our guide to [the cheapest iPhone 18 deal](/blog/cheapest-iphone-18-deal/) ranks them.
 
 ## Which is cheaper, an iPhone 18 contract or buying outright?
 
 Whichever route has the lower total over the same number of months. Neither wins by default. Two sums decide it.
 
-Sum one is the contract: the monthly price times the number of months, plus the upfront cost, plus every stated price rise for the months it applies. The card above prints the monthly price, the upfront cost, the total contract cost and the rise in pounds and pence, so most of that work is done.
+Sum one is the contract: the monthly price times the number of months, plus the upfront cost, plus every stated price rise for the months it applies. The card above prints the monthly price, the upfront cost, the total contract cost and the rise in pounds and pence.
 
-Sum two is outright: Apple's price for the storage size you want, plus a SIM only plan for the same number of months, plus that plan's own stated rise. Take the SIM only plan from the live picks on our sister site, [Save on Sims](https://saveonsims.co.uk/). Each card there prints the same lines and is re-checked every Monday. Do not use a price you remember from last year.
+Sum two is outright: Apple's price for the storage size you want, plus a SIM only plan for the same number of months, plus that plan's own stated rise. Take the SIM only plan from the live picks on our sister site, [Save on Sims](https://saveonsims.co.uk/). Each card there prints the same lines and is re-checked every Monday.
 
-The lower total wins, provided its allowance covers what you use. A cheap total with data you will run out of is not cheap. Save on Sims runs the same sum for any phone in [SIM only vs contract: which is cheaper](https://saveonsims.co.uk/blog/sim-only-vs-contract-which-is-cheaper/).
+The lower total wins, provided its allowance covers what you use. Save on Sims runs the same sum for any phone in [SIM only vs contract: which is cheaper](https://saveonsims.co.uk/blog/sim-only-vs-contract-which-is-cheaper/).
 
 Two rules keep the sum honest. Ofcom's inflation ban page says that from 17 January 2025 any rise in a new contract must be set out in pounds and pence at the point of sale. The CMA's price transparency guidance on gov.uk says mandatory charges belong in the headline price and hiding fees until later is illegal.
 
@@ -72,9 +72,7 @@ When you are ready, [pick a SIM only plan on Save on Sims](https://saveonsims.co
 
 Split pricing is when a network bills the phone and the airtime as two separate agreements, and it matters because only one half rises. O2's help page says O2 Refresh splits your bill into a Device Plan for the phone and an Airtime Plan for data, texts and minutes, with the Device Plan a set amount each month over 24 months. O2's device plan page calls it a loan agreement with no interest. EE's Flex Pay help page says Flex Pay separates the cost of the handset from the airtime plan as an interest free consumer credit agreement over 12, 24, 36 or 48 months. EE is described here for its published policy only.
 
-The rise lands on the airtime half. O2's annual price increase page says each April the airtime plan goes up by £2.50 a month on voice plans, and the cost of your device stays frozen. EE's annual price changes page says new and re-contracting mobile customers from 31 March 2025 get an extra £1.50 a month on 31 March during the minimum term. Its Flex Pay terms say the increase does not apply to amounts owed under a Device Credit Agreement. Both checked 2 September 2026.
-
-So a split contract is a fixed loan plus an airtime plan that behaves like SIM only, rises included.
+The rise lands on the airtime half. O2's annual price increase page says each April the airtime plan goes up by £2.50 a month on voice plans, and the cost of your device stays frozen. EE's annual price changes page says new and re-contracting mobile customers from 31 March 2025 get an extra £1.50 a month on 31 March during the minimum term. Its Flex Pay terms say the increase does not apply to amounts owed under a Device Credit Agreement.
 
 | Route | How the phone is paid | Airtime commitment | Stated annual rise on airtime | Rise on the phone payments |
 |---|---|---|---|---|
@@ -89,13 +87,13 @@ One catch follows. O2's device plan page says cancelling the airtime plan in the
 
 ## What if I do not have the cash upfront?
 
-Then compare the two credit routes, because paying in full is not the only way to run sum two. Apple's UK financing page describes a Flexible Finance Account from Creation, a line of credit for spreading the cost of an Apple device at 0% APR. Thirty payments of £26.63 come to £798.90, within ten pence of the iPhone 17's £799 price, so 0% means what it says. Add a SIM only card and you have sum two with nothing paid on day one beyond what Apple asks.
+Then compare the two credit routes, because paying in full is not the only way to run sum two. Apple's UK financing page describes a Flexible Finance Account from Creation, a line of credit for spreading the cost of an Apple device at 0% APR. Thirty payments of £26.63 come to £798.90, within ten pence of the iPhone 17's £799 price, so 0% means what it says. Add a SIM only card and you have sum two with nothing paid on day one.
 
 A network split contract is credit too. O2's device plan page says you make an upfront payment on any product on a device plan. So the question is the same on both sides: what does each ask on day one, and what is the total by the end.
 
 ## What if I want the newest iPhone every year?
 
-Then the trade-in value decides it, and Apple publishes how its own route works. Apple's UK upgrade page says the iPhone Upgrade Programme is coming to an end and points to the Flexible Finance Account instead. Depending on the offer you choose you can upgrade every year or two, and a trade-in device in good condition pays off the remaining loan balance. Once approved, the financing page says, there is no need to apply again.
+Then the trade-in value decides it. Apple's UK upgrade page says the iPhone Upgrade Programme is coming to an end and points to the Flexible Finance Account instead. Depending on the offer you choose you can upgrade every year or two, and a trade-in device in good condition pays off the remaining loan balance.
 
 A network contract runs 24 months on the airtime side, and O2's device plan page says you can pay the device plan off at any time. Upgrading early means clearing that balance first, fine if the trade-in covers it and expensive if it does not. Get the trade-in quote in writing before you sign.
 
