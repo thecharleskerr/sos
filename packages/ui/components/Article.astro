@@ -1,0 +1,188 @@
+---
+/* The guide post shell, shared by both sites. Answer first, the live deal
+   cards second, the argument third, then the questions people ask and the
+   sources with their checked dates. Structured data for the article, the
+   FAQ and the breadcrumb is emitted from the same frontmatter, so what a
+   crawler reads is what a person reads.
+
+   Monochrome throughout. The only colour on the page is the network colour
+   inside the deal cards. */
+import DealCard from './DealCard.astro';
+import TraceButton from './TraceButton.astro';
+
+const { site, siteName, siteUrl, slug, post, deals = [], related = [] } = Astro.props;
+
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const iso = (d) => new Date(d).toISOString().slice(0, 10);
+const url = `${siteUrl}/blog/${slug}/`;
+
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    datePublished: iso(post.publishDate),
+    dateModified: iso(post.checked),
+    author: { '@type': 'Organization', name: siteName, url: siteUrl },
+    publisher: { '@type': 'Organization', name: siteName, url: siteUrl },
+    mainEntityOfPage: url,
+    inLanguage: 'en-GB',
+    citation: post.sources.map((s) => s.url),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faq.map((f) => ({
+      '@type': 'Question', name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: siteName, item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/blog/` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: url },
+    ],
+  },
+];
+---
+<article class="post">
+  <header class="post-head">
+    <p class="crumb"><a href="/blog/">Guides</a></p>
+    <h1 class="t-h1">{post.title}</h1>
+    <p class="meta">
+      <time datetime={iso(post.publishDate)}>Published {fmt(post.publishDate)}</time>.
+      Figures checked <time datetime={iso(post.checked)}>{fmt(post.checked)}</time>.
+    </p>
+  </header>
+
+  <section class="answer" aria-label="Short answer">
+    <p class="answer-label">Short answer</p>
+    <p class="answer-text">{post.answer}</p>
+  </section>
+
+  {deals.length > 0 && (
+    <section class="picks" aria-labelledby="picks-heading">
+      <h2 id="picks-heading" class="picks-heading">This week's pick{deals.length > 1 ? 's' : ''}, checked every Monday</h2>
+      <div class:list={['picks-grid', deals.length === 1 && 'picks-grid--one']}>
+        {deals.map((d) => <DealCard deal={d} variant={deals.length === 1 ? 'hero' : 'standard'} settle={false} />)}
+      </div>
+    </section>
+  )}
+
+  <div class="prose">
+    <slot />
+  </div>
+
+  <section class="cta" aria-label="Next step">
+    <TraceButton href={post.cta.href} label={post.cta.label} rel={null} />
+  </section>
+
+  <section class="faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Questions people ask</h2>
+    {post.faq.map((f) => (
+      <div class="faq-item">
+        <h3>{f.q}</h3>
+        <p>{f.a}</p>
+      </div>
+    ))}
+  </section>
+
+  {related.length > 0 && (
+    <section class="more" aria-labelledby="more-heading">
+      <h2 id="more-heading">More guides</h2>
+      <ul>
+        {related.map((r) => (
+          <li><a href={`/blog/${r.slug}/`}>{r.title}</a><span class="more-answer">{r.answer}</span></li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <footer class="sources">
+    <h2>Sources</h2>
+    <ul>
+      {post.sources.map((s) => (
+        <li><a href={s.url} rel="nofollow noopener">{s.name}</a>, checked {fmt(s.checked)}.</li>
+      ))}
+    </ul>
+    <p class="sources-note">
+      Every figure above comes from the network's own pages on the date shown,
+      or from a deal card that is re-checked every Monday. Where a network does
+      not state something, we say so rather than guess.
+    </p>
+  </footer>
+</article>
+
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+
+<style>
+  .post { max-width: 72ch; }
+  .post-head { margin: var(--space-8) 0 var(--space-6); }
+  .crumb { font-size: 12.5px; color: var(--ink-2); margin: 0 0 var(--space-3); }
+  .crumb a { color: var(--ink-2); }
+  h1 { margin: 0 0 var(--space-3); text-wrap: balance; }
+  .meta { font-size: 13px; color: var(--ink-2); margin: 0; }
+
+  .answer {
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: var(--space-4) 0;
+    margin: 0 0 var(--space-8);
+  }
+  .answer-label { font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 6px; }
+  .answer-text { font-size: 18px; font-weight: 600; line-height: 1.4; margin: 0; text-wrap: pretty; }
+
+  .picks { margin: 0 0 var(--space-8); }
+  .picks-heading { font-size: 13px; font-weight: 600; color: var(--ink-2); margin: 0 0 var(--space-3); }
+  .picks-grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); align-items: start; }
+  .picks-grid--one { grid-template-columns: 1fr; }
+
+  /* Body copy. A measure of about 65 characters, generous line height, and
+     tabular figures on every number so columns line up. */
+  .prose { font-size: 16px; line-height: 1.6; }
+  .prose :global(h2) { font-size: 22px; font-weight: 800; letter-spacing: -.015em; line-height: 1.2; margin: var(--space-8) 0 var(--space-3); text-wrap: balance; }
+  .prose :global(h3) { font-size: 17px; font-weight: 700; margin: var(--space-6) 0 var(--space-2); }
+  .prose :global(p) { margin: 0 0 var(--space-4); text-wrap: pretty; }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 var(--space-4); padding-left: 1.3em; }
+  .prose :global(li) { margin-bottom: 6px; }
+  .prose :global(strong) { font-weight: 700; }
+  .prose :global(blockquote) { margin: 0 0 var(--space-4); padding: 2px 0 2px var(--space-4); border-left: 2px solid var(--ink); color: var(--ink-2); }
+  .prose :global(table) { width: 100%; border-collapse: collapse; font-size: 14px; margin: 0 0 var(--space-6); font-variant-numeric: tabular-nums; }
+  .prose :global(th) { text-align: left; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ink); }
+  .prose :global(td) { padding: 9px 12px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .prose :global(.table-scroll) { overflow-x: auto; }
+  .prose :global(hr) { border: 0; border-top: 1px solid var(--rule); margin: var(--space-8) 0; }
+
+  .cta { margin: var(--space-8) 0; }
+
+  .faq { border-top: 2px solid var(--ink); padding-top: var(--space-4); margin: var(--space-8) 0; }
+  .faq h2 { font-size: 20px; font-weight: 800; margin: 0 0 var(--space-4); }
+  .faq-item { padding: var(--space-3) 0; border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: 0; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+  .faq-item p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+
+  .more { border-top: 1px solid var(--rule); padding-top: var(--space-4); margin: var(--space-8) 0 0; }
+  .more h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-3); color: var(--ink-2); }
+  .more ul { list-style: none; margin: 0; padding: 0; }
+  .more li { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+  .more li:last-child { border-bottom: 0; }
+  .more a { font-weight: 600; }
+  .more-answer { display: block; color: var(--ink-2); font-size: 13px; margin-top: 2px; }
+
+  .sources { margin: var(--space-8) 0 0; font-size: 13px; color: var(--ink-2); }
+  .sources h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-2); color: var(--ink); }
+  .sources ul { margin: 0 0 var(--space-3); padding-left: 1.2em; }
+  .sources a { color: var(--ink-2); }
+  .sources-note { margin: 0; max-width: 62ch; }
+
+  /* Wide tables scroll inside the article, never the page. */
+  @media (max-width: 40rem) {
+    .prose { font-size: 15.5px; }
+    .prose :global(table) { display: block; overflow-x: auto; white-space: nowrap; }
+  }
+</style>

@@ -1,0 +1,281 @@
+---
+import Base from '../../layouts/Base.astro';
+import { networks } from '@sos/ui/networks';
+import { roaming } from '@sos/compliance/roaming';
+import { gbp } from '@sos/ui/money';
+
+/* Driven by the networks map, not by the roaming table, so a network we have
+   not verified still appears as "To confirm" rather than quietly dropping out
+   of the comparison. The site does not print a number it has not verified. */
+const rows = Object.entries(networks).map(([key, net]) => ({ key, net, d: roaming[key] ?? null }));
+
+const runsOn = (net) => {
+  if (net.hostNetwork === 'direct') return { text: 'Direct', soft: true };
+  if (net.hostNetwork === null) return null;
+  return { text: net.hostNetwork, soft: true };
+};
+
+/* A plain yes or no wins. Where inclusion verifiably differs by plan tier,
+   the short verified wording shows instead of a misleading To confirm. */
+const euRoaming = (d) => {
+  if (!d) return null;
+  if (d.euIncluded !== null) return { text: d.euIncluded ? 'Included' : 'Charged', strong: true };
+  if (d.euIncludedText) return { text: d.euIncludedText, tiered: true };
+  return null;
+};
+
+const dailyCharge = (d) => {
+  if (!d) return null;
+  if (d.dailyChargeGBP !== null) return { text: gbp(d.dailyChargeGBP), strong: true };
+  if (d.euIncluded === true) return { text: 'None', strong: true };
+  return null;
+};
+
+/* A stated figure wins. Where a network verifiably has no single cap, the
+   short verified wording shows instead of a misleading To confirm. */
+const fairUse = (d) => {
+  if (!d) return null;
+  if (d.euCapGB !== null) return { text: `${d.euCapGB}GB` };
+  if (d.euCapText) return { text: d.euCapText, soft: true };
+  return null;
+};
+
+/* Seven days at the published daily rate, which is what the reader is
+   actually asking. Included roaming costs nothing extra, so it is £0. */
+const weekInSpain = (d) => {
+  if (!d) return null;
+  if (d.dailyChargeGBP !== null) return { text: gbp(d.dailyChargeGBP * 7), strong: true };
+  if (d.euIncluded === true && d.dailyChargeGBP === null) return { text: '£0', strong: true };
+  return null;
+};
+
+/* Derived from the newest verified entry, so the header can never claim a
+   date the data does not carry. Pinned to UTC: a plain date parses as UTC
+   midnight and would otherwise print a day early on a UTC-negative host. */
+const checkedAll = rows.map((r) => r.d?.checked).filter(Boolean).sort().at(-1) ?? null;
+const checkedLabel = checkedAll
+  ? new Date(checkedAll).toLocaleDateString('en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+    })
+  : null;
+
+/* Only networks whose figures were actually verified are credited. The
+   unverified entries keep a URL in roaming.ts as a lead for re-checking,
+   which is not the same thing as a source of the figures shown. */
+const sources = rows.filter((r) => r.d && r.d.source && r.d.evidence !== 'unverified');
+const verified = rows.filter((r) => r.d && r.d.evidence !== 'unverified').length;
+---
+<Base
+  title="EU roaming by network | Save on Sims"
+  description="EU roaming for 25 UK networks: included or charged by the day, the fair use cap, and what a week in Spain costs, every figure from the network's own pages."
+>
+  <div class="sheet">
+    <div class="head">
+      <div>
+        <h1 id="roaming-heading">EU roaming, by network</h1>
+        <p class="intro">
+          Of the four big networks, O2 is the only one we could verify as still
+          including EU roaming with no daily charge. Three and EE vary by plan
+          tier, so they read To confirm below. Everyone else either charges by
+          the day, caps what you can use, or has not published terms we could
+          verify.
+        </p>
+      </div>
+      {checkedLabel && (
+        <div class="checked">
+          <p class="checked-label">Checked</p>
+          <p class="checked-date">{checkedLabel}</p>
+        </div>
+      )}
+    </div>
+
+    <!-- Focusable and named, so a keyboard user can scroll the table when it
+         overflows at intermediate widths. -->
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="roaming-heading">
+      <table role="table">
+        <caption class="sr-only">
+          EU roaming policy by UK mobile network. Unverified values read "To confirm".
+        </caption>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Network</th>
+            <th role="columnheader" scope="col">Runs on</th>
+            <th role="columnheader" scope="col">EU roaming</th>
+            <th role="columnheader" scope="col">Daily charge</th>
+            <th role="columnheader" scope="col">Fair-use cap</th>
+            <th role="columnheader" scope="col">e.g. a week in Spain</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          {rows.map(({ net, d }) => {
+            const cells = [
+              { label: 'Runs on', v: runsOn(net) },
+              { label: 'EU roaming', v: euRoaming(d) },
+              { label: 'Daily charge', v: dailyCharge(d) },
+              { label: 'Fair-use cap', v: fairUse(d) },
+              { label: 'e.g. a week in Spain', v: weekInSpain(d) },
+            ];
+            return (
+              <tr role="row" style={`--network: ${net.colour}`}>
+                <th role="rowheader" scope="row" class="net">
+                  <span class:list={['swatch', net.inkClash && 'swatch--ink']} aria-hidden="true"></span>
+                  {net.name}
+                </th>
+                {cells.map((c) => (
+                  <td role="cell" data-label={c.label}>
+                    {c.v
+                      ? <span class:list={[c.v.strong && 'strong', c.v.soft && 'soft', c.v.tiered && 'tiered']}>{c.v.text}</span>
+                      : <span class="unconfirmed"><span class="hollow" aria-hidden="true"></span>To confirm</span>}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <p>
+        <span class="hollow" aria-hidden="true"></span>
+        <strong>To confirm</strong> means we could not verify that figure against
+        the network's own published terms. It is not a zero. We would rather
+        leave it blank than print a number we have not checked.
+      </p>
+      <p>
+        Daily charges are the published pay-monthly rates. The Spain column is
+        seven days at that rate, which is the number most people are actually
+        after. Fair-use caps limit the data you can use while roaming, and are
+        often lower than your UK allowance. Where a network verifiably has no
+        single cap, the cell shows the verified shape of it instead, such as
+        the minimum on offer. Revolut Mobile caps speeds at 100Mbps.
+      </p>
+      <p>
+        {verified} of {rows.length} networks are verified. Terms can differ by
+        when you joined. Where a network includes roaming on some plans and
+        charges by the day on others, the EU roaming cell names the plans and
+        the daily charge shown is what the other plans pay.
+      </p>
+      <p>
+        BT Mobile no longer takes new customers, so it cannot be bought today.
+      </p>
+      {sources.length > 0 && (
+        <p class="sources">
+          Sources: {sources.map((r, i) => (
+            <>{i > 0 && ', '}<a href={r.d.source} rel="nofollow noopener">{r.net.name}</a></>
+          ))}.
+        </p>
+      )}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .sheet { background: var(--card); padding: 30px 32px 26px; margin: var(--space-6) 0 var(--space-12); }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: var(--space-6);
+    border-bottom: 2px solid var(--ink);
+  }
+  h1 { font-size: 30px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin: 0; }
+  .intro { font-size: 13.5px; color: var(--ink-2); max-width: 58ch; margin: 10px 0 0; text-wrap: pretty; }
+  /* Top right, where a screenshot will keep it. */
+  .checked { text-align: right; flex: none; }
+  .checked-label { font-size: 12px; color: var(--ink-2); margin: 0; }
+  .checked-date { font-size: 15px; font-weight: 600; margin: 2px 0 0; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  .scroll { overflow-x: auto; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left; }
+
+  thead th {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--ink-2);
+    padding: 14px 14px 8px 0;
+    border-bottom: 1px solid var(--ink);
+    white-space: nowrap;
+  }
+  tbody th, tbody td {
+    padding: 13px 14px 13px 0;
+    /* Rules only. No zebra striping. */
+    border-bottom: 1px solid var(--rule);
+    vertical-align: baseline;
+  }
+  /* The only colour on the page, and only where the network is named.
+     The name is always present beside it, never colour alone. */
+  .net { font-weight: 600; white-space: nowrap; }
+  .swatch {
+    display: inline-block;
+    width: 11px; height: 11px;
+    background: var(--network);
+    margin-right: 9px;
+  }
+  .swatch--ink { box-shadow: inset 0 0 0 1px var(--paper); }
+
+  .strong { font-weight: 600; }
+  .soft { color: var(--ink-2); }
+  /* Tiered wording is prose, so it wraps rather than widening the column. */
+  .tiered { display: inline-block; max-width: 22ch; white-space: normal; line-height: 1.35; font-weight: 600; }
+
+  .unconfirmed { color: var(--ink-2); white-space: nowrap; }
+  .hollow {
+    display: inline-block;
+    width: 9px; height: 9px;
+    border: 1.5px solid var(--ink-2);
+    margin-right: 7px;
+  }
+
+  .legend { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 2px solid var(--ink); }
+  .legend p { font-size: 12.5px; color: var(--ink-2); margin: 0 0 var(--space-3); max-width: 74ch; }
+  .legend p:last-child { margin-bottom: 0; }
+  .legend strong { color: var(--ink); }
+  .sources a { color: var(--ink-2); }
+
+  /* On a phone each row becomes its own block, so nothing is read sideways.
+     Explicit ARIA roles are on the markup because display: block strips the
+     implicit table semantics screen readers depend on. */
+  @media (max-width: 52rem) {
+    .sheet { padding: 20px 18px 18px; }
+    h1 { font-size: 23px; }
+    .checked { text-align: left; }
+
+    table, thead, tbody, tr, th, td { display: block; width: 100%; }
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+    tbody tr { border-bottom: 2px solid var(--ink); padding: 4px 0 10px; }
+    tbody tr:last-child { border-bottom: 0; }
+
+    .net { padding: 12px 0 8px; border-bottom: 0; font-size: 15px; }
+
+    tbody td {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px dotted var(--rule);
+      text-align: right;
+    }
+    tbody td::before {
+      content: attr(data-label);
+      content: attr(data-label) / '';
+      color: var(--ink-2);
+      text-align: left;
+      font-weight: 400;
+      font-size: 12.5px;
+    }
+    tbody tr td:last-child { border-bottom: 0; }
+  }
+</style>

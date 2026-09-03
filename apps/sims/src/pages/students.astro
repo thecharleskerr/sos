@@ -1,0 +1,256 @@
+---
+import Base from '../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import { networks } from '@sos/ui/networks';
+import { studentOffers, featuredStudentDeal } from '@sos/compliance/students';
+
+/* Driven by the networks map, so a network with nothing verified still
+   appears as "None found" rather than quietly dropping out. Networks with a
+   verified offer are listed first, in house order; the rest follow, because
+   a reader wants the offers, not a wall of blanks. */
+const all = Object.entries(networks).map(([key, net]) => ({ key, net, d: studentOffers[key] ?? null }));
+const withOffer = all.filter((r) => r.d?.hasOffer === true);
+const without = all.filter((r) => r.d?.hasOffer !== true);
+const rows = [...withOffer, ...without];
+
+const simOnly = (d) => {
+  if (d.simOnly === true) return { text: 'Yes', strong: true };
+  if (d.simOnly === false) return { text: 'No', strong: true };
+  return null;
+};
+
+const via = (d) => (d.via ? { text: d.via, strong: d.via !== 'direct' } : null);
+
+/* Derived from the newest verified entry, pinned to UTC, as on the roaming
+   page. */
+const checkedAll = all.map((r) => r.d?.checked).filter(Boolean).sort().at(-1) ?? null;
+const checkedLabel = checkedAll
+  ? new Date(checkedAll).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+  : null;
+
+const sources = withOffer.filter((r) => r.d.source);
+---
+<Base
+  title="Student SIM deals | Save on Sims"
+  description="Every UK network's student SIM offer, checked against the network's own pages: Simp's £10 a month unlimited plan, and which networks give students money off."
+>
+  <h1 class="t-h1">Student SIM deals</h1>
+  <p class="lede">
+    What each network actually gives students, taken from the network's own
+    pages, not from a discount app. Start with the one that needs no maths.
+  </p>
+
+  <div class="featured">
+    <DealCard deal={featuredStudentDeal} variant="hero" settle={false} />
+  </div>
+
+  <section class="facts" aria-labelledby="facts-heading">
+    <h2 id="facts-heading">The Simp student plan, in full</h2>
+    <ul>
+      <li>Verify through Student Beans and Standard Unlimited is <span class="num">£10</span> a month, billed monthly. That is the pay upfront price without paying upfront.</li>
+      <li>Unlimited UK data, calls and texts, with a <span class="num">750GB</span> a month fair use limit.</li>
+      <li><span class="num">10GB</span> of EU roaming a month on Standard. Premium gets <span class="num">20GB</span>.</li>
+      <li>Worldwide roaming is included too: <span class="num">3GB</span> at 5G speed on Standard, then unlimited at 4G.</li>
+      <li>No contract. It rolls monthly and you leave whenever you like.</li>
+      <li>eSIM, so it is live in minutes. It runs on Three's network.</li>
+      <li>Premium Unlimited stays at standard pricing, <span class="num">£15</span> a month or <span class="num">£13</span> paid upfront.</li>
+    </ul>
+    <p class="facts-src">Source: <a href="https://simpmobile.com/students" rel="nofollow noopener">simpmobile.com/students</a>, checked {checkedLabel}.</p>
+  </section>
+
+  <div class="sheet">
+    <div class="head">
+      <div>
+        <h2 id="students-heading">Student offers, by network</h2>
+        <p class="intro">
+          The big four all give students a percentage off, but only Vodafone,
+          Three and EE apply it to SIM only. Several smaller networks sell a
+          student price outright. Where we could not verify an offer on the
+          network's own pages, the row says so.
+        </p>
+      </div>
+      {checkedLabel && (
+        <div class="checked">
+          <p class="checked-label">Checked</p>
+          <p class="checked-date">{checkedLabel}</p>
+        </div>
+      )}
+    </div>
+
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="students-heading">
+      <table role="table">
+        <caption class="sr-only">
+          Student SIM offers by UK mobile network. Where nothing was verified the row reads "None found".
+        </caption>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Network</th>
+            <th role="columnheader" scope="col">Student offer</th>
+            <th role="columnheader" scope="col">Claim via</th>
+            <th role="columnheader" scope="col">SIM only?</th>
+            <th role="columnheader" scope="col">Worth knowing</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          {rows.map(({ net, d }) => (
+            <tr role="row" style={`--network: ${net.colour}`}>
+              <th role="rowheader" scope="row" class="net">
+                <span class:list={['swatch', net.inkClash && 'swatch--ink']} aria-hidden="true"></span>
+                {net.name}
+              </th>
+              {d?.hasOffer === true ? (
+                <>
+                  <td role="cell" data-label="Student offer" class="prose">
+                    <span class="strong">{d.offer}</span>
+                  </td>
+                  <td role="cell" data-label="Claim via">
+                    {via(d)
+                      ? <span class:list={[via(d).strong && 'strong']}>{via(d).text}</span>
+                      : <span class="unconfirmed"><span class="hollow" aria-hidden="true"></span>Not stated</span>}
+                  </td>
+                  <td role="cell" data-label="SIM only?">
+                    {simOnly(d)
+                      ? <span class="strong">{simOnly(d).text}</span>
+                      : <span class="unconfirmed"><span class="hollow" aria-hidden="true"></span>Not stated</span>}
+                  </td>
+                  <td role="cell" data-label="Worth knowing" class="prose">
+                    {d.conditions
+                      ? <span class="soft">{d.conditions}</span>
+                      : <span class="unconfirmed"><span class="hollow" aria-hidden="true"></span>Not stated</span>}
+                  </td>
+                </>
+              ) : (
+                <td role="cell" data-label="Student offer" class="prose" colspan="4">
+                  <span class="unconfirmed"><span class="hollow" aria-hidden="true"></span>None found</span>
+                  {net.note && <span class="soft note">{net.note}</span>}
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <p>
+        <span class="hollow" aria-hidden="true"></span>
+        <strong>None found</strong> means the network's own pages do not
+        describe a student offer that we could verify. It is not a promise
+        that there is none. <strong>Not stated</strong> means the offer exists
+        but that detail is not on the page.
+      </p>
+      <p>
+        Percentages come off the airtime part of a plan, never the handset
+        repayments. A "direct" claim means you verify with the network itself,
+        usually with a .ac.uk email address, rather than through Student Beans
+        or UNiDAYS. Offers change at the start of each academic year, so the
+        checked date matters.
+      </p>
+      <p>
+        {withOffer.length} of {rows.length} networks have a verified student
+        offer. Simp is listed first because its student price is a plain
+        monthly figure with everything included, which is what most students
+        are actually after.
+      </p>
+      {sources.length > 0 && (
+        <p class="sources">
+          Sources: {sources.map((r, i) => (
+            <>{i > 0 && ', '}<a href={r.d.source} rel="nofollow noopener">{r.net.name}</a></>
+          ))}.
+        </p>
+      )}
+    </div>
+  </div>
+</Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  .featured { margin-bottom: var(--space-8); }
+
+  .facts { max-width: 62ch; margin: 0 0 var(--space-12); }
+  .facts h2 { font-size: 18px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 var(--space-3); }
+  .facts ul { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
+  .facts li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14px; line-height: 1.45; text-wrap: pretty; }
+  .facts-src { font-size: 12.5px; color: var(--ink-2); margin: var(--space-3) 0 0; }
+  .facts-src a { color: var(--ink-2); }
+
+  .sheet { background: var(--card); padding: 30px 32px 26px; margin: 0 0 var(--space-12); }
+  .head {
+    display: flex; flex-wrap: wrap; gap: var(--space-6);
+    align-items: flex-start; justify-content: space-between;
+    padding-bottom: var(--space-6); border-bottom: 2px solid var(--ink);
+  }
+  .sheet h2 { font-size: 26px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin: 0; }
+  .intro { font-size: 13.5px; color: var(--ink-2); max-width: 58ch; margin: 10px 0 0; text-wrap: pretty; }
+  .checked { text-align: right; flex: none; }
+  .checked-label { font-size: 12px; color: var(--ink-2); margin: 0; }
+  .checked-date { font-size: 15px; font-weight: 600; margin: 2px 0 0; }
+
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left; }
+  thead th {
+    font-size: 11.5px; font-weight: 600; color: var(--ink-2);
+    padding: 14px 14px 8px 0; border-bottom: 1px solid var(--ink); white-space: nowrap;
+  }
+  tbody th, tbody td {
+    padding: 13px 14px 13px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: baseline;
+  }
+  /* The only colour on the page, and only where the network is named. */
+  .net { font-weight: 600; white-space: nowrap; }
+  .swatch { display: inline-block; width: 11px; height: 11px; background: var(--network); margin-right: 9px; }
+  .swatch--ink { box-shadow: inset 0 0 0 1px var(--paper); }
+
+  /* Two prose columns share the width; the short ones stay narrow. */
+  .prose { min-width: 18ch; line-height: 1.4; }
+  .prose:nth-child(2) { width: 32%; }
+  .prose:last-child { width: 34%; }
+  .strong { font-weight: 600; }
+  .soft { color: var(--ink-2); }
+  .note { display: block; margin-top: 4px; font-size: 12.5px; }
+
+  .unconfirmed { color: var(--ink-2); white-space: nowrap; }
+  .hollow { display: inline-block; width: 9px; height: 9px; border: 1.5px solid var(--ink-2); margin-right: 7px; }
+
+  .legend { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 2px solid var(--ink); }
+  .legend p { font-size: 12.5px; color: var(--ink-2); margin: 0 0 var(--space-3); max-width: 74ch; }
+  .legend p:last-child { margin-bottom: 0; }
+  .legend strong { color: var(--ink); }
+  .sources a { color: var(--ink-2); }
+
+  /* On a phone each row is its own block, as on the roaming page. */
+  @media (max-width: 52rem) {
+    .sheet { padding: 20px 18px 18px; }
+    .sheet h2 { font-size: 22px; }
+    .checked { text-align: left; }
+
+    table, thead, tbody, tr, th, td { display: block; width: 100%; }
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .prose:nth-child(2), .prose:last-child { width: 100%; }
+
+    tbody tr { border-bottom: 2px solid var(--ink); padding: 4px 0 10px; }
+    tbody tr:last-child { border-bottom: 0; }
+    .net { padding: 12px 0 8px; border-bottom: 0; font-size: 15px; }
+
+    tbody td {
+      display: grid;
+      grid-template-columns: minmax(7ch, auto) 1fr;
+      gap: var(--space-4);
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px dotted var(--rule);
+      text-align: left;
+    }
+    tbody td::before {
+      content: attr(data-label);
+      content: attr(data-label) / '';
+      color: var(--ink-2);
+      font-weight: 400;
+      font-size: 12.5px;
+    }
+    tbody tr td:last-child { border-bottom: 0; }
+    .unconfirmed { white-space: normal; }
+  }
+</style>

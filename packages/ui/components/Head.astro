@@ -1,0 +1,56 @@
+---
+/* Everything a crawler reads before the body: the title, the description,
+   the canonical URL, Open Graph and Twitter cards, robots, and the site's
+   Organization and WebSite structured data. Pages add their own Article or
+   FAQ data separately. */
+import { getSite } from '../site.js';
+
+const { site: key, title, description, type = 'website', noindex = false } = Astro.props;
+const site = getSite(key);
+const path = Astro.url.pathname.endsWith('/') || /\.[a-z]+$/.test(Astro.url.pathname) ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = `${site.url}${path}`;
+
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${site.url}/#organization`,
+    name: site.name,
+    url: `${site.url}/`,
+    sameAs: [site.sister.url],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${site.url}/#website`,
+    name: site.name,
+    url: `${site.url}/`,
+    description: site.description,
+    inLanguage: 'en-GB',
+    publisher: { '@id': `${site.url}/#organization` },
+  },
+];
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-snippet:-1,max-image-preview:large'} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:type" content={type} />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap"
+  rel="stylesheet"
+/>
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />

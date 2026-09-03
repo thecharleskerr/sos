@@ -1,0 +1,122 @@
+---
+/* Two stacked bands. The masthead identifies the site; the toggle band below
+   it offers the sister site as genuine help rather than a nav item, which is
+   why the whole band is one link and sits on paper rather than card.
+   It is the same object on both sites with the sentence swapped. */
+const { site } = Astro.props;
+
+const copy = site === 'sims'
+  ? {
+      title: 'Save on Sims',
+      strap: 'SIM-only deals, checked every Monday',
+      href: 'https://saveonsmartphones.co.uk',
+      question: 'Looking for a new phone?',
+      support: 'Handset deals on the top 10 are on our other site.',
+      button: 'Save on Smartphones',
+    }
+  : {
+      title: 'Save on Smartphones',
+      strap: "The UK's top 10 phones, checked every Monday",
+      href: 'https://saveonsims.co.uk',
+      question: 'Looking for a better SIM-only deal?',
+      support: 'Keep the phone you have and pay a lot less.',
+      button: 'Save on Sims',
+    };
+
+const roamingHref = site === 'sims'
+  ? '/guides/eu-roaming-by-network'
+  : 'https://saveonsims.co.uk/guides/eu-roaming-by-network';
+const studentsHref = site === 'sims' ? '/students' : 'https://saveonsims.co.uk/students';
+---
+<header class="bar">
+  <div class="masthead">
+    <div>
+      <a class="brand" href="/">{copy.title}</a>
+      <p class="strap">{copy.strap}</p>
+    </div>
+    <nav class="nav">
+      <a href={roamingHref}>Roaming</a>
+      <a href={studentsHref}>Students</a>
+      <a href="/blog/">Guides</a>
+    </nav>
+  </div>
+
+  <a class="toggle" href={copy.href}>
+    <span class="toggle-text">
+      <span class="question">{copy.question}</span>
+      <span class="support">{copy.support}</span>
+    </span>
+    <span class="toggle-btn">{copy.button}</span>
+  </a>
+</header>
+
+<style>
+  .bar { background: var(--card); }
+
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 14px;
+    border-bottom: 2px solid var(--ink);
+  }
+  /* Hit targets meet the 44px floor without changing the rendered geometry:
+     the added height is cancelled by matching negative margins. */
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin: -7px 0;
+    font-size: 21px;
+    font-weight: 800;
+    font-stretch: 118%;
+    letter-spacing: -.025em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .strap { font-size: 11px; color: var(--ink-2); margin: 2px 0 0; }
+
+  .nav { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 8px;
+    margin: -12px -8px;
+    font-size: 12.5px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav a:hover { text-decoration: underline; }
+
+  .toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .toggle:hover { color: var(--ink); }
+  .toggle-text { display: block; }
+  .question { display: block; font-size: 15px; font-weight: 600; }
+  .support { display: block; font-size: 12.5px; color: var(--ink-2); }
+
+  .toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    padding: 0 13px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 12.5px;
+    font-weight: 700;
+    flex: none;
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+/* The signature element. A line in the network's colour draws itself around
+   the button on hover and on keyboard focus. Once, 600ms, then it rests.
+   Under prefers-reduced-motion it becomes a static border.
+
+   pathLength="1" normalises the rect's perimeter, so the one keyframe in
+   tokens.css fits a button of any size. The label sits flush left and never
+   carries an arrow: it says what happens, not that something will. */
+const { href, label, outlined = false, rel = 'sponsored nofollow' } = Astro.props;
+---
+<a class:list={['btn-deal', outlined && 'btn-deal--outlined']} href={href} rel={rel}>
+  {label}
+  <svg aria-hidden="true"><rect x="0" y="0" width="100%" height="100%" pathLength="1" /></svg>
+</a>

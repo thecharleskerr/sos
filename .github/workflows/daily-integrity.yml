@@ -1,0 +1,49 @@
+name: Daily integrity check
+
+# This job IS allowed to deploy, because everything it does is subtractive.
+# Taking a wrong deal down is always safe. Putting a price up is not.
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+
+      # The feed credentials are optional here. Without them the check still
+      # follows every link and ages every deal; with them it also spots a
+      # price that moved or a deal that vanished from the feed.
+      - name: Check links, expiry and price drift
+        env:
+          AWIN_API_TOKEN: ${{ secrets.AWIN_API_TOKEN }}
+        run: node --experimental-strip-types packages/data/verify/integrity.mjs
+
+      - name: Commit any auto-hidden deals
+        run: |
+          git config user.name  "sos-bot"
+          git config user.email "bot@saveonsims.co.uk"
+          git add content/
+          git diff --staged --quiet || git commit -m "Auto-hide expired or drifted deals"
+          git push
+
+      # Guides are dated. A post whose date has passed only goes live when the
+      # site rebuilds, so each Cloudflare Pages project is asked to rebuild
+      # daily through its deploy hook. Optional: no secret, no rebuild.
+      - name: Rebuild the sites so dated guides go live
+        env:
+          HOOK_SIMS: ${{ secrets.CF_DEPLOY_HOOK_SIMS }}
+          HOOK_PHONES: ${{ secrets.CF_DEPLOY_HOOK_PHONES }}
+        run: |
+          for hook in "$HOOK_SIMS" "$HOOK_PHONES"; do
+            if [ -n "$hook" ]; then curl -fsS -X POST "$hook" > /dev/null; fi
+          done

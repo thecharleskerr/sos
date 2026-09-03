@@ -1,0 +1,25 @@
+---
+import '@sos/ui/tokens.css';
+import Head from '@sos/ui/components/Head.astro';
+import SiteHeader from '@sos/ui/components/SiteHeader.astro';
+import SiteFooter from '@sos/ui/components/SiteFooter.astro';
+const { title, description, type = 'website', noindex = false } = Astro.props;
+/* Build time, pinned to UTC, for the footer year. */
+const year = new Date().getUTCFullYear();
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <Head site="sims" title={title} description={description} type={type} noindex={noindex} />
+  </head>
+  <body>
+    <div class="wrap">
+      <SiteHeader site="sims" />
+      <main><slot /></main>
+      <SiteFooter site="sims" year={year} />
+    </div>
+    <style>
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-4) var(--space-12); }
+    </style>
+  </body>
+</html>

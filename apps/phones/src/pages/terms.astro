@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import Policy from '@sos/ui/components/Policy.astro';
+import { getSite } from '@sos/ui/site';
+const site = getSite('phones');
+---
+<Base title={`Terms of use | ${site.name}`} description="What this site is, how accurate its figures are, how affiliate links work and what we are not: a shop or an adviser.">
+  <Policy site="phones" kind="terms" updated="2026-09-02" />
+</Base>

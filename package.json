@@ -1,0 +1,18 @@
+{
+  "name": "sos",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:sims": "npm run dev -w @sos/sims",
+    "dev:phones": "npm run dev -w @sos/phones",
+    "build": "npm run build -w @sos/sims && npm run build -w @sos/phones",
+    "verify": "node packages/data/verify.mjs",
+    "test": "node --experimental-strip-types --test \"packages/data/test/*.test.mjs\"",
+    "refresh": "node --experimental-strip-types packages/data/ingest/run.mjs",
+    "integrity": "node --experimental-strip-types packages/data/verify/integrity.mjs"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@sos/ui",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./networks": "./networks.js",
+    "./components/*": "./components/*",
+    "./money": "./money.js",
+    "./contrast": "./contrast.js",
+    "./post-schema": "./post-schema.js",
+    "./posts": "./posts.js",
+    "./site": "./site.js"
+  }
+}

@@ -1,0 +1,54 @@
+name: Weekly deal refresh
+
+# GitHub cron only runs in UTC, so both entries exist and the guard below
+# picks the right one. Without this the job drifts an hour twice a year.
+on:
+  schedule:
+    - cron: '0 7 * * 1'   # 08:00 London during BST
+    - cron: '0 8 * * 1'   # 08:00 London during GMT
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Only continue at 08:00 London
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(TZ=Europe/London date +%H)" != "08" ]; then
+            echo "Not 08:00 in London, stopping."
+            exit 0
+          fi
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+
+      - name: Pull and normalise the Awin telco feed
+        env:
+          AWIN_API_TOKEN: ${{ secrets.AWIN_API_TOKEN }}
+          AWIN_PUBLISHER_ID: ${{ secrets.AWIN_PUBLISHER_ID }}
+        run: node --experimental-strip-types packages/data/ingest/run.mjs --write
+
+      - name: Validate before proposing anything
+        run: node packages/data/verify.mjs
+
+      - name: Name the week
+        run: echo "WEEK_OF=$(TZ=Europe/London date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - name: Open a pull request for review
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: deals/weekly-refresh
+          title: "Deals, week of ${{ env.WEEK_OF }}"
+          body-path: .github/refresh-summary.md
+          commit-message: "Weekly deal refresh, week of ${{ env.WEEK_OF }}"
+          add-paths: content/**
+          delete-branch: true
+
+# This job proposes. It never deploys. Merging the PR is what publishes,
+# because putting an unreviewed price live is where the DMCC and ASA risk is.

@@ -1,0 +1,33 @@
+---
+/* The four-slot grid. Always data, minutes, texts, months, in that order, on
+   every card including the hero, so the eye can compare down a column without
+   reading. Marked up as a dl: the DOM order is label then value for screen
+   readers, and column-reverse puts the value on top visually. */
+const { data, minutes, texts, months, pad } = Astro.props;
+
+const allowance = (v) => {
+  if (v === 'unlimited') return 'Unlimited';
+  if (v === null || v === undefined) return 'Not stated';
+  return String(v);
+};
+const withGB = (v) => (typeof v === 'number' ? `${v}GB` : allowance(v));
+
+const slots = [
+  { label: 'data', value: withGB(data) },
+  { label: 'minutes', value: allowance(minutes) },
+  { label: 'texts', value: allowance(texts) },
+  /* A one month term is a rolling plan, and "1 months" is not a thing anyone
+     says, so the slot reads Rolling under a contract label instead. */
+  months === 1
+    ? { label: 'contract', value: 'Rolling' }
+    : { label: 'months', value: allowance(months) },
+];
+---
+<dl class="allowances">
+  {slots.map((s) => (
+    <div style={pad ? `padding: ${pad}` : undefined}>
+      <dt>{s.label}</dt>
+      <dd>{s.value}</dd>
+    </div>
+  ))}
+</dl>

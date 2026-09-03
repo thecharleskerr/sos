@@ -1,0 +1,13 @@
+aw_product_id,merchant_product_id,product_name,merchant_name,merchant_id,aw_deep_link,last_updated,in_stock,network,contract_type,term,initial_cost,month_cost,inc_data,inc_minutes,inc_texts,connectivity,tariff,special_offer,brand_name,storage_size
+fixture-1,SMY-40,"SMARTY 40GB SIM only, 1 month",SMARTY,1001,https://www.awin1.com/cread.php?awinmid=1001&p=https%3A%2F%2Fsmarty.co.uk%2F,2026-09-01 06:00:00,1,SMARTY,SIM Only,1 Month,0.00,9.99,40GB,Unlimited,Unlimited,5G,40GB plan,,,
+fixture-2,O2-75,O2 75GB SIM only 12 months,O2,1002,https://www.awin1.com/cread.php?awinmid=1002,2026-09-01 06:00:00,1,O2,SIM Only,12 Months,0.00,14.99,75GB,Unlimited,Unlimited,5G,,,,
+fixture-3,EE-100,EE 100GB SIM only,EE,1003,https://www.awin1.com/cread.php?awinmid=1003,2026-09-01,1,EE,SIM Only,24 Months,0.00,20.00,100GB,Unlimited,Unlimited,5G,,,,
+fixture-4,FM-1,Fresh Mobile 10GB,Fresh Mobile,1004,https://www.awin1.com/cread.php?awinmid=1004,2026-09-01,1,Fresh Mobile,SIM Only,1 Month,0.00,5.00,10GB,Unlimited,Unlimited,4G,,,,
+fixture-5,ID-25,iD Mobile 25GB SIM only,iD Mobile,1005,https://www.awin1.com/cread.php?awinmid=1005,2026-09-01,1,iD Mobile,SIM Only,24 Months,0.00,7.99,25GB,Unlimited,Unlimited,5G,,,,
+fixture-6,VF-IP,"iPhone 17, 128GB, on Vodafone",Mobiles.co.uk,1006,https://www.awin1.com/cread.php?awinmid=1006,2026-09-01,1,Vodafone,Handset,24 Months,49.00,32.00,100GB,Unlimited,Unlimited,5G,,,Apple,128GB
+fixture-7,LB-OOS,Lebara 5GB,Lebara,1007,https://www.awin1.com/cread.php?awinmid=1007,2026-09-01,0,Lebara,SIM Only,1 Month,0.00,3.99,5GB,Unlimited,Unlimited,4G,,,,
+fixture-8,GG-NP,giffgaff golden goodybag,giffgaff,1008,https://www.awin1.com/cread.php?awinmid=1008,2026-09-01,1,giffgaff,SIM Only,1 Month,0.00,,100GB,Unlimited,Unlimited,5G,,,,
+fixture-9,3-UNL,Three Unlimited SIM only,Three,1009,https://www.awin1.com/cread.php?awinmid=1009,2026-09-01,1,Three,SIM Only,24 Months,0.00,16.00,Unlimited,Unlimited,Unlimited,5G,,,,
+fixture-10,VX-500,VOXI 500MB,VOXI,1010,https://www.awin1.com/cread.php?awinmid=1010,2026-09-01,1,VOXI,SIM Only,30 Days,0.00,3.00,500MB,Unlimited,Unlimited,4G,,,,
+fixture-11,SMY-UNL,SMARTY Unlimited,SMARTY,1001,https://www.awin1.com/cread.php?awinmid=1001,2026-09-01,1,SMARTY,SIM Only,1 Month,0.00,18.00,Unlimited,Unlimited,Unlimited,5G,,,,
+fixture-12,O2-UNL,O2 Unlimited 24 months,O2,1002,https://www.awin1.com/cread.php?awinmid=1002,2026-09-01,1,O2,SIM Only,24 Months,0.00,22.00,Unlimited,Unlimited,Unlimited,5G,,,,
