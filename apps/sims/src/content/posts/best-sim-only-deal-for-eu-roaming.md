@@ -52,13 +52,13 @@ Every figure below comes from our roaming table, checked between 31 August and 2
 
 ## Which networks include EU roaming with no daily charge?
 
-Most of the brands we checked do, and what separates them is the fair use cap: the most EU data you can use before charges apply. O2 caps it at 25GB across 48 destinations, SMARTY at 12GB, giffgaff at 5GB across 37 destinations, and Lebara at 30GB. iD Mobile's 30GB cap is currently lifted to your full UK allowance by a promotion running until further notice, across 50 destinations. Tesco Mobile states no GB cap across 48 destinations, and Simp caps it at 10GB on Standard or 20GB on Premium. The table below compares these against Vodafone, Three, EE and Sky Mobile, which charge differently.
+Most of the brands we checked do, and what separates them is the fair use cap: the most EU data you can use before charges apply. O2 caps it at 25GB across 48 destinations, SMARTY at 12GB, giffgaff at 5GB across 37 destinations, and Lebara at 30GB. iD Mobile's 30GB cap is lifted to your full UK allowance by a promotion running until further notice, across 50 destinations. Tesco Mobile states no GB cap across 48 destinations, and Simp caps it at 10GB on Standard or 20GB on Premium. The table below compares these against Vodafone, Three, EE and Sky Mobile, which charge differently.
 
-Smaller brands follow the same pattern. Talkmobile and Asda Mobile each state a 5GB cap. 1pMobile states 14GB. Honest Mobile, Revolut Mobile and Klarna Mobile each state 20GB. Utility Warehouse states 8GB to 14GB by plan. Mozillion and Your Co-op Mobile state a quarter of your plan allowance. Lycamobile states caps from 12GB by bundle and spusu from 6GB. All of them, with their sources and the date we checked, are in [the full roaming table](/guides/eu-roaming-by-network).
+Smaller brands follow the same pattern: Talkmobile and Asda Mobile at 5GB, 1pMobile at 14GB, Honest Mobile, Revolut Mobile and Klarna Mobile at 20GB, Utility Warehouse from 8GB to 14GB by plan, Mozillion and Your Co-op Mobile at a quarter of your plan allowance, Lycamobile from 12GB by bundle and spusu from 6GB. All of them, sourced and dated, are in [the full roaming table](/guides/eu-roaming-by-network).
 
 ## Which networks charge by the day, and what does a week cost?
 
-Vodafone, EE, Sky Mobile, VOXI and Ecotalk charge by the day on the plans we checked, and Three does too on its Lite plans only. Vodafone charges £2.75 a day on a pay monthly plan started on or after 11 August 2021, with a 25GB cap across 52 destinations; its global roaming page also sells an 8 day pass at £16 and a 15 day pass at £21. EE charges £2.59 a day with a 50GB cap, unless your plan already includes roaming. Sky Mobile charges £2 a day across 120 destinations, treating up to 25GB a billing period as reasonable use. VOXI's passes start at £2.45 a day with a 20GB cap, and Ecotalk charges £2 a day.
+Vodafone, EE, Sky Mobile, VOXI and Ecotalk charge by the day on the plans we checked, and Three does too on its Lite plans only. Vodafone charges £2.75 a day on a plan started on or after 11 August 2021, with a 25GB cap across 52 destinations; it also sells an 8 day pass at £16 and a 15 day pass at £21. EE charges £2.59 a day with a 50GB cap, unless your plan already includes roaming. Sky Mobile charges £2 a day across 120 destinations, treating up to 25GB a billing period as reasonable use. VOXI's passes start at £2.45 a day with a 20GB cap, and Ecotalk charges £2 a day.
 
 Three's Go Roam page splits by plan: Value includes all Go Roam in Europe destinations, Complete includes over 160 worldwide, and Lite pays £2.75 a day if you joined or upgraded on or after 18 December 2025, or £2 a day if you joined between 1 October 2021 and 17 December 2025. The 12GB cap applies across all three. EE's Essentials Plus, All Rounder and Full Works plans, taken since 29 August 2024, include EU roaming across 47 destinations at no daily charge, and Full Works adds Rest of World Zone 1 too.
 
@@ -87,13 +87,13 @@ This week's roaming pick, the deal on the card above, is the one we checked that
 
 A fair use cap is the most data you can use in the EU from your plan: always the lower of the cap and your UK allowance. Under 25GB on O2, that lower figure applies in the EU too, so a 10GB plan gives you 10GB in Spain, not 25GB. giffgaff's 5GB needs at least 5GB of UK data on your plan. Asda Mobile allows up to 5GB, or your bundle cap if lower. VOXI allows 20GB or your plan's allowance, whichever is less. An unlimited plan on SMARTY still gives you 12GB abroad, not unlimited.
 
-The cap runs per month or per plan, not per trip: giffgaff's is per plan, Sky Mobile's per billing period. Several networks also limit how long you can roam. O2 and giffgaff cap it at 63 days, in any four months for O2 and per trip for giffgaff. Honest Mobile sets 60 days, and Simp allows 15 days a month. Tesco Mobile adds 0.35p per MB if you roam more than two months in any rolling four, and Lebara adds 0.20p per MB if EU roaming exceeds UK usage over any continuous 120 days. These matter for a long stay, not a fortnight.
+The cap runs per month or per plan, not per trip: giffgaff's is per plan, Sky Mobile's per billing period. Several networks also limit how long you can roam: 63 days, per four months for O2 or per trip for giffgaff, 60 days for Honest Mobile, and 15 days a month for Simp. Tesco Mobile adds 0.35p per MB if you roam more than two months in any rolling four, and Lebara adds 0.20p per MB if your EU roaming exceeds UK usage over any continuous 120 days. These matter for a long stay, not a fortnight.
 
 Data over the cap costs 10p per MB on giffgaff and Asda Mobile, £2.50 per GB on Sky Mobile and 1p per MB on 1pMobile. If your monthly use sits well under the cap, you will never see these figures. If it is close, pick a network with a higher one. [Our unlimited data guide](/blog/is-unlimited-data-worth-it/) helps you work out what you actually use.
 
 ## Is Ireland or Switzerland treated differently?
 
-Only where a network says so. Vodafone and VOXI place the Republic of Ireland, the Isle of Man, Iceland and Norway in Zone A, with no daily charge and no pass needed. Three and SMARTY exempt Ireland from their 12GB caps, so your full plan allowance applies there, and iD Mobile excludes Ireland from its fair usage policy too. spusu is the only network naming Switzerland, alongside Iceland, Liechtenstein and Norway, in its free roaming zone. No other network we checked states a Switzerland figure, so check the destination list yourself before you travel.
+Only where a network says so. Vodafone and VOXI place Ireland, the Isle of Man, Iceland and Norway in Zone A, with no daily charge and no pass needed. Three and SMARTY exempt Ireland from their 12GB caps, so your full plan allowance applies there, and iD Mobile excludes Ireland from its fair usage policy too. spusu is the only network naming Switzerland, with Iceland, Liechtenstein and Norway, in its free roaming zone. No other network we checked names Switzerland, so check the destination list yourself before you travel.
 
 ## What should I do, step by step?
 
@@ -105,7 +105,7 @@ Only where a network says so. Vodafone and VOXI place the Republic of Ireland, t
 
 ## I only go abroad once a year. Does roaming still matter?
 
-Yes, but work out the sum rather than guess. One week a year on a network that charges daily costs £19.25 on Vodafone or a Three Lite plan, £18.13 on EE and £14.00 on Sky Mobile. Pay more than that extra for a plan with roaming included over the year, and the daily charge is cheaper for you. Pay the same or less, and take the included plan instead. The card above shows the total contract cost, so this takes a minute. [Our guide to SIM only versus contract](/blog/sim-only-vs-contract-which-is-cheaper/) uses the same total cost test.
+Yes, but work out the sum rather than guess. One week a year on a network that charges daily costs £19.25 on Vodafone or a Three Lite plan, £18.13 on EE and £14.00 on Sky Mobile. Pay more than that extra for an included plan over the year, and the daily charge is cheaper for you. Pay the same or less, and take the included plan instead. The card above shows the total contract cost. [Our guide to SIM only versus contract](/blog/sim-only-vs-contract-which-is-cheaper/) uses the same test.
 
 ## What about outside the EU?
 
@@ -119,4 +119,4 @@ Only where a page says so, and most do not promise it. giffgaff's help centre sa
 
 ## What to do now
 
-Check your monthly data use, pick a network whose cap covers it, and click this week's best SIM only deal for EU roaming above if you want it included with no daily charge. Then [see the full roaming table](/guides/eu-roaming-by-network) for all 25 networks, each with its source and the date we checked. This week's picks are on the [homepage](/), re-checked every Monday. If you want a phone with the plan, [Save on Smartphones](https://saveonsmartphones.co.uk/) applies the same checks to handset contracts.
+Check your monthly data use, pick a network whose cap covers it, and click this week's best SIM only deal for EU roaming above if you want it included with no daily charge. Then [see the full roaming table](/guides/eu-roaming-by-network) for all 25 networks, sourced and dated. This week's picks are on the [homepage](/), re-checked every Monday. Want a phone with the plan too? [Save on Smartphones](https://saveonsmartphones.co.uk/) applies the same checks to handset contracts.
