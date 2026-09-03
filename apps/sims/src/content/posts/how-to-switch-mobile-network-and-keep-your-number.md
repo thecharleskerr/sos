@@ -58,7 +58,9 @@ Use the table below to check you are texting the right word to the right number.
 | PAC | 65075 | Yes | Within one minute | 30 days |
 | STAC | 75075 | No | Within one minute | 30 days |
 
-Neither code costs anything extra to request, and both come back the same way, by text. If you request either one through your online account or by phone instead, Ofcom's own guidance covers a different route into the same process, so texting the short code is the fastest way to start. If 30 days pass without you handing the code to a new network, it expires and you have to request another one.
+Neither code costs anything extra to request, and both come back the same way, by text. If you request either one through your online account or by phone instead, Ofcom's own guidance covers a different route into the same process, so texting the short code is the fastest way to start. If 30 days pass without you handing the code to a new network, it expires and you have to request another one, so there is no advantage in requesting it before you have chosen where you are switching to.
+
+A PAC or STAC works with any UK network you switch to, not just the one you happen to compare here. This site checks SIM only deals every Monday, so the plan you compare the code against is one we have looked at ourselves, rather than one you are taking on trust from an advert.
 
 ## What to do now
 

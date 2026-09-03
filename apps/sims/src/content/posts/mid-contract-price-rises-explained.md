@@ -81,7 +81,7 @@ So reading the card before you sign matters more than checking your rights after
 
 ## Do SIM only plans get a price rise too?
 
-Yes on most of the networks we checked, no on a handful. O2's own pricing page states its airtime plan increase in pounds a month, and airtime is the SIM part of a phone contract as well as a SIM only plan. Vodafone and Three describe their rises the same way, applying to airtime and data plans rather than to devices alone. EE's own help page states the same rise on SIM only plans as on airtime plans generally.
+Yes on most of the networks we checked, no on a handful. O2's own pricing page states its airtime plan increase in pounds a month, and airtime is the SIM part of a phone contract as well as a SIM only plan. Vodafone and Three describe their rises the same way, applying to airtime and data plans rather than to devices alone. EE's own help page states the same rise applies to SIM only plans as to airtime plans generally, though as above, the amount depends on when you joined or last re-contracted.
 
 iD Mobile is the exception worth knowing. Its price increases page says the fixed rise applies only if you upgrade or buy a new iD Mobile phone plan, and its SIM only deals page is headed with a no annual price rises line. So a SIM only customer on iD Mobile is protected from the fixed rise that a handset customer on the same network is not. giffgaff, Lebara and SMARTY go further and state no mid-contract rise across the board, whichever plan you are on. If you are choosing between SIM only and a handset contract for this reason alone, [our guide on SIM only versus contract](/blog/sim-only-vs-contract-which-is-cheaper/) sets out the rest of the comparison.
 
