@@ -28,7 +28,7 @@ faq:
 draft: false
 ---
 
-Pick the wrong option by guessing and you waste money every month for the whole contract term. A phone contract can beat SIM only plus a phone bought outright, or lose to it, and only a sum tells you which side wins. Add up the total cost of each option over the same months, then compare the two totals. That is a sum, not a guess, and it takes about ten minutes.
+Guess wrong and you waste money every month for the whole contract term. A phone contract can beat SIM only plus a phone bought outright, or lose to it, and only a sum tells you which side wins. Add up the total cost of each option over the same months, then compare the two totals. It takes about ten minutes.
 
 Every figure below comes from a network's own pages or from UK law, dated. Run the sum with real numbers, not guesses. Deals on this site are re-checked every Monday, so the SIM only side of your sum stays current while you decide.
 
@@ -42,13 +42,13 @@ If you are buying a new phone, its own maker states the price on its own site: a
 
 The headline price has to be the whole price, not the first instalment of it. The Digital Markets, Competition and Consumers Act 2024 changed what a trader must show up front. GOV.UK's guidance on unfair commercial practices says a trader must give the customer the total price, including any mandatory fees, taxes, charges or other payments the consumer must pay to purchase it. Where that total cannot be calculated in advance, the trader must instead say how it will be calculated. GOV.UK's summary guidance adds that a charge counts as mandatory if the customer must pay it to buy the product at all.
 
-This is the rule against drip pricing: a low figure first, mandatory charges added later. The Act treats that as unlawful. GOV.UK's guidance notes a trader who breaks it risks a fine of up to ten per cent of turnover or three hundred thousand pounds, whichever is greater. That is why every deal card on this site states its total contract cost next to the monthly price. It does not total a contract against SIM only plus a phone for you, since those are two separate purchases. It does mean the contract figure you are given should already be complete.
+This is the rule against drip pricing: a low figure first, mandatory charges added later. The Act treats that as unlawful. GOV.UK's guidance notes a trader who breaks it risks a fine of up to ten per cent of turnover or three hundred thousand pounds, whichever is greater. That is why every deal card on this site states its total contract cost next to the monthly price. It does not total a contract against SIM only plus a phone for you: those are two separate purchases. The contract figure you are given should already be complete.
 
 ## Why EE and O2 show two monthly charges, not one
 
 A phone contract's monthly bill is often two payments stitched together, and both need to go into your total. EE's own help pages describe Flex Pay as separating the cost of the handset from the airtime plan. A device credit agreement runs alongside a rolling airtime plan, each billed on its own schedule. EE is named here for its published policy only, since this site does not list EE as an affiliate deal. O2's custom plans pages describe the same split by name. The Device Plan is the cost of your phone or tablet, and the Airtime Plan is the cost of your data, minutes and texts.
 
-For the sum itself, that split changes little, since you are still adding the full monthly price. It changes what happens later. O2's Auto-Save help page states it lowers your bill once the Device Plan is paid off, so you stop paying for a phone you already own. EE's Flex Pay page describes the airtime plan as a separate rolling agreement, which carries on once the device credit agreement ends unless you cancel or change it. Either way, compare the full monthly figure for the whole term against SIM only plus a phone. Do not compare against just what is left once a device is paid off.
+That split changes little for the sum itself: you are still adding the full monthly price. It changes what happens later. O2's Auto-Save help page states it lowers your bill once the Device Plan is paid off, so you stop paying for a phone you already own. EE's Flex Pay page describes the airtime plan as a separate rolling agreement, which carries on once the device credit agreement ends unless you cancel or change it. Either way, compare the full monthly figure for the whole term against SIM only plus a phone. Do not compare against just what is left once a device is paid off.
 
 ## Here is exactly what to do
 
@@ -73,7 +73,7 @@ Only by restarting the sum, not by skipping it. EE's own upgrade help page cover
 
 ## When does a contract actually beat SIM only?
 
-A contract wins only when two things are both true. You have no cash to put down for the phone. The network's subsidy on the device also has to beat what SIM only plus buying outright would save you. The sum above is the only way to know for certain. A strong subsidy on an expensive phone, spread interest free over a long term, can beat outright purchase. That holds even against a cheap SIM only plan. A weak subsidy on a phone you could buy cheaply outright usually loses. There is no shortcut past running both totals for your own case.
+A contract wins only when two things are both true. You have no cash to put down for the phone. The network's subsidy on the device must also beat what SIM only would save you. The sum above is the only way to know for certain. A strong subsidy on an expensive phone, spread interest free over a long term, can beat outright purchase. That holds even against a cheap SIM only plan. A weak subsidy on a cheap phone usually loses. There is no shortcut past running both totals for your own case.
 
 | What to check | Phone contract, all in one | SIM only plus a phone bought outright |
 |---|---|---|
