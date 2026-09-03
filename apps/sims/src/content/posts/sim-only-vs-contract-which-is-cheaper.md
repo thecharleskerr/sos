@@ -44,7 +44,7 @@ This is the rule against drip pricing: a low figure first, mandatory charges add
 
 ## Why EE and O2 show two monthly charges, not one
 
-A phone contract's monthly bill is often two payments stitched together, and both need to go into your total. EE's own help pages describe Flex Pay as separating the cost of the handset from the airtime plan, so a device credit agreement runs alongside a rolling airtime plan, each billed on its own schedule. O2's custom plans pages describe the same split by name: the Device Plan is the cost of your phone or tablet, and the Airtime Plan is the cost of your data, minutes and texts.
+A phone contract's monthly bill is often two payments stitched together, and both need to go into your total. EE's own help pages describe Flex Pay as separating the cost of the handset from the airtime plan, so a device credit agreement runs alongside a rolling airtime plan, each billed on its own schedule. EE is named here for its published policy only, since this site does not list EE as an affiliate deal. O2's custom plans pages describe the same split by name: the Device Plan is the cost of your phone or tablet, and the Airtime Plan is the cost of your data, minutes and texts.
 
 For the sum, that split changes little, since you are still adding the full monthly price. It changes what happens later. O2's pages describe an auto-save feature that lowers your bill once the device part is paid off, so you stop paying for a phone you already own. EE's airtime plan carries on as its own rolling contract once the device credit agreement ends, whether or not you upgrade. Either way, compare the full monthly figure for the whole term against SIM only plus a phone, not just what is left once a device is paid off.
 

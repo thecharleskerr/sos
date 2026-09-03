@@ -42,13 +42,13 @@ Unlimited data earns its price if you stream, hotspot or travel a lot and would 
 
 ## What "unlimited" actually means
 
-"Unlimited" does not mean a network sets no limit at all. It means legitimate personal use should never trigger an extra charge or a suspension. The Advertising Standards Authority's own guidance on unlimited claims in telecoms advertising says a claim is acceptable only where the legitimate user incurs no additional charge or suspension of their service as a consequence of exceeding any usage threshold associated with a fair use policy, and where any speed or usage limitation is moderate and clearly explained. In a 2026 ruling against Utility Warehouse, the ASA accepted a 500GB fair use threshold as legitimate because it did not operate as a routine cap on ordinary personal use, but still found the ad misleading because that threshold sat inside an expandable section rather than next to the unlimited claim itself.
+"Unlimited" does not mean a network sets no limit at all. It means legitimate personal use should never trigger an extra charge or a suspension. The Advertising Standards Authority's own guidance on unlimited claims in telecoms advertising says a claim is acceptable only where the legitimate user incurs no additional charge or suspension of their service as a consequence of exceeding any usage threshold associated with a fair use policy. Any speed or usage limitation must also be moderate and clearly explained. In a 2026 ruling against Utility Warehouse, the ASA accepted a 500GB fair use threshold as legitimate because it did not operate as a routine cap on ordinary personal use. It still found the ad misleading, though, because that threshold sat inside an expandable section rather than next to the unlimited claim itself.
 
-Each network sets its own version of that threshold. EE's own unlimited data terms state that usage above 600GB a month is treated as non personal use, at which point EE can apply traffic management or move the account to a business plan. O2's unlimited tariff terms flag an account for review after 650GB of data twice within six months, or regular tethering to 12 or more devices. Vodafone's acceptable use policy raises a traffic management flag once usage passes 200GB across two consecutive billing months, and investigates use above 600GB twice in six months. Three's own unlimited data page states plainly that its unlimited plan has no data caps and no fair usage policy for UK use. SMARTY's help centre and terms describe the same shape: no UK data cap, personal and non-commercial use only.
+Each network sets its own version of that threshold. EE's own unlimited data terms state that usage above 600GB a month is treated as non personal use. At that point EE can apply traffic management or move the account to a business plan. O2's unlimited tariff terms flag an account for review after 650GB of data twice within six months, or regular tethering to 12 or more devices. Vodafone's acceptable use policy raises a traffic management flag once usage passes 200GB across two consecutive billing months, and investigates use above 600GB twice in six months. Three's own unlimited data page states plainly that its unlimited plan has no data caps and no fair usage policy for UK use. SMARTY's help centre and terms describe the same shape: no UK data cap, personal and non-commercial use only.
 
 ## Does unlimited data cover streaming and hotspot use?
 
-Mostly, but check the small print before you rely on it for a laptop or a second device. SMARTY's help centre states you can tether your full unlimited allowance with no speed cap in the UK, and its terms note that regularly tethering more than eight devices may lead SMARTY to restrict, suspend or terminate the service. Three's unlimited data page describes the same freedom to tether within the UK. EE and O2 both allow tethering but treat 12 or more regularly connected devices as a sign of non personal use, which can move you onto a different plan. giffgaff is the outlier worth knowing about: its help centre states tethering is not allowed on its unlimited goodybags at all, only on its capped plans, so it is the one to rule out if hotspotting is the whole reason you want unlimited. Simp's own page for its unlimited plans describes them as fine for streaming and hotspotting, subject to a 750GB a month fair use limit.
+Mostly, but check the small print before you rely on it for a laptop or a second device. SMARTY's help centre states you can tether your full unlimited allowance with no speed cap in the UK. Its terms note that regularly tethering more than eight devices may lead SMARTY to restrict, suspend or terminate the service. Three's unlimited data page describes the same freedom to tether within the UK. EE and O2 both allow tethering but treat 12 or more regularly connected devices as a sign of non personal use, which can move you onto a different plan. giffgaff's help centre states that tethering is allowed on all its plans, including unlimited goodybags, subject to its fair use policy. It does not publish a specific device count or data limit for tethering the way EE, O2 and SMARTY do, so check your own usage as you go. Simp's own page for its unlimited plans describes them as fine for streaming and hotspotting, subject to a 750GB a month fair use limit.
 
 For a wider comparison of which network gives you the most data for your money, see our guide to the [best UK network for data](/blog/best-uk-network-for-data/).
 
@@ -59,7 +59,7 @@ No, not without its own cap. Every unlimited UK plan we checked applies a separa
 | Network | EU roaming included | EU data fair use cap | Daily roaming charge |
 |---|---|---|---|
 | O2 | Yes | 25GB | None |
-| Vodafone | On plans with a roaming add-on | Up to 25GB | £2.75 a day otherwise |
+| Vodafone | On higher-tier plans with Euro Roam or Global Roam | Up to 25GB | £2.75 a day otherwise |
 | Three | Value and Complete plans | 12GB | £2.75 a day on Lite |
 | EE | Essentials Plus, All Rounder and Full Works | 50GB | £2.59 a day otherwise |
 | SMARTY | Yes | 12GB | None |
@@ -67,11 +67,11 @@ No, not without its own cap. Every unlimited UK plan we checked applies a separa
 | Lebara | Yes | 30GB | None |
 | Simp | Yes | 10GB (Standard) or 20GB (Premium) | None |
 
-Before you travel, check the roaming figures on the card above against this table, and see our guide to the [best SIM only deal for EU roaming](/blog/best-sim-only-deal-for-eu-roaming/) if roaming matters more to you than domestic data does.
+Before you travel, check the roaming figures on the card above against this table. See our guide to the [best SIM only deal for EU roaming](/blog/best-sim-only-deal-for-eu-roaming/) if roaming matters more to you than domestic data does.
 
 ## Is unlimited data worth it on a family plan?
 
-That depends on each line's own usage, not the account as a whole. Multi-SIM and family bundles price each connection separately, and none of the networks we checked publish a combined family data cap that covers an unlimited add-on across several SIMs. So treat each line as its own decision: check that person's own recent usage before paying for unlimited data on their number specifically, rather than assuming what one heavy user in the house needs applies to everyone on the plan.
+That depends on each line's own usage, not the account as a whole. Multi-SIM and family bundles price each connection separately, and none of the networks we checked publish a combined family data cap that covers an unlimited add-on across several SIMs. So treat each line as its own decision. Check that person's own recent usage before paying for unlimited data on their number, rather than assuming what one heavy user in the house needs applies to everyone on the plan.
 
 ## How to check whether you need unlimited
 
@@ -82,10 +82,12 @@ That depends on each line's own usage, not the account as a whole. Multi-SIM and
 5. If you are close to or over that allowance, or you rely on hotspotting or heavy streaming, weigh the unlimited pick's fair use and tethering terms above against how you actually use your phone.
 6. Whichever you choose, check the mid-contract price rise shown on the card, in pounds and pence, or "No price rise", before you commit. Our guide to [mid-contract price rises explained](/blog/mid-contract-price-rises-explained/) covers what that adds up to over a full term.
 
+Once you know which side of that line you are on, [compare this week's picks](/) and pick the one that matches your own usage rather than a guess.
+
 If you are also weighing up a new handset alongside the SIM, our sister site, [Save on Smartphones](https://saveonsmartphones.co.uk), covers device comparisons and has its own walkthroughs for checking data usage by phone model.
 
 ## When does the cheaper capped plan win?
 
-Whenever your own numbers say so. A capped SIM at a lower monthly price gives you the same network, the same minutes and texts, and a data allowance you are not using anyway. The only cost of getting it wrong is a one-off overage charge or a throttled connection near the end of a heavy month, both avoidable by watching your usage the way described above. Unlimited data is insurance against that, and like any insurance it is worth buying only when the risk it covers is real for you.
+Whenever your own numbers say so. A capped SIM at a lower monthly price gives you the same network, the same minutes and texts, and a data allowance you are not using anyway. The only cost of getting it wrong is a one-off overage charge or a throttled connection near the end of a heavy month. Both are avoidable by watching your usage the way described above. Unlimited data is insurance against that, and like any insurance it is worth buying only when the risk it covers is real for you.
 
 Compare the unlimited and cheapest picks for yourself on the [homepage](/), where both are re-checked every Monday.
