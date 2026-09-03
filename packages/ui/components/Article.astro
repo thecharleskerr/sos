@@ -10,7 +10,7 @@
 import DealCard from './DealCard.astro';
 import TraceButton from './TraceButton.astro';
 
-const { site, siteName, siteUrl, slug, post, deals = [] } = Astro.props;
+const { site, siteName, siteUrl, slug, post, deals = [], related = [] } = Astro.props;
 
 const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const iso = (d) => new Date(d).toISOString().slice(0, 10);
@@ -91,6 +91,17 @@ const ld = [
     ))}
   </section>
 
+  {related.length > 0 && (
+    <section class="more" aria-labelledby="more-heading">
+      <h2 id="more-heading">More guides</h2>
+      <ul>
+        {related.map((r) => (
+          <li><a href={`/blog/${r.slug}/`}>{r.title}</a><span class="more-answer">{r.answer}</span></li>
+        ))}
+      </ul>
+    </section>
+  )}
+
   <footer class="sources">
     <h2>Sources</h2>
     <ul>
@@ -154,6 +165,14 @@ const ld = [
   .faq-item:last-child { border-bottom: 0; }
   .faq-item h3 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
   .faq-item p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+
+  .more { border-top: 1px solid var(--rule); padding-top: var(--space-4); margin: var(--space-8) 0 0; }
+  .more h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-3); color: var(--ink-2); }
+  .more ul { list-style: none; margin: 0; padding: 0; }
+  .more li { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+  .more li:last-child { border-bottom: 0; }
+  .more a { font-weight: 600; }
+  .more-answer { display: block; color: var(--ink-2); font-size: 13px; margin-top: 2px; }
 
   .sources { margin: var(--space-8) 0 0; font-size: 13px; color: var(--ink-2); }
   .sources h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-2); color: var(--ink); }

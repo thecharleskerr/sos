@@ -77,11 +77,11 @@ Ofcom is clear that these are predictions. Thick walls, trees and nearby buildin
 
 ## What should I do, step by step?
 
-1. Open Ofcom's Map Your Mobile checker and enter your home postcode. Note which of EE, O2, Three and Vodafone show good indoor 4G or 5G. Repeat for your workplace or anywhere else you spend hours each week.
+1. Open Ofcom's Map Your Mobile checker and enter your home postcode. Note which of EE, O2, Three and Vodafone show good indoor 4G or 5G, and see [whether you need 5G at all](/blog/do-i-need-5g/). Repeat for your workplace or anywhere else you spend hours each week.
 2. Run the same postcodes through the host's own coverage checker. If Ofcom and the network agree, you have your host. If they disagree, pick a plan you can leave, such as a one month rolling SIM, and test it.
-3. Check how much data you used in each of the last three months. Your current provider's app or bill shows this. If you never go near your allowance, you do not need unlimited. [Our guides](/blog/) walk through the arithmetic.
+3. Check how much data you used in each of the last three months, and read [whether unlimited data is worth it](/blog/is-unlimited-data-worth-it/) before you pay for it. Your current provider's app or bill shows this. If you never go near your allowance, you do not need unlimited. [Our guides](/blog/) walk through the arithmetic.
 4. Pick the cheapest brand on your host with that allowance. This week's picks above show the all-in monthly price, the total cost over the contract, the mid-contract price rise in pounds and pence or "No price rise", the roaming allowance and the date we checked. If unlimited is right for you and an unlimited pick is showing above, it is the cheapest unlimited plan we checked this week, with any upfront cost spread over the term. It is also on the [homepage](/).
-5. Switch and keep your number. Ofcom's rules let you text PAC to 65075. Ofcom says your provider will reply by text within a minute with a code that is valid for 30 days. Give it to the new provider and the switch should complete within one working day. Ofcom's switching page covers the details.
+5. Switch and keep your number, following [our switching guide](/blog/how-to-switch-mobile-network-and-keep-your-number/). Ofcom's rules let you text PAC to 65075. Ofcom says your provider will reply by text within a minute with a code that is valid for 30 days. Give it to the new provider and the switch should complete within one working day. Ofcom's switching page covers the details.
 
 ## Is unlimited data really unlimited?
 

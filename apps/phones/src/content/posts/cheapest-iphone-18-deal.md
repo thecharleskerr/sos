@@ -78,7 +78,7 @@ Waiting does not remove the price rise either. Three's terms for customers joini
 
 Yes, when you treat it as a cut to the upfront cost and put it into the total on both sides. Apple's iPhone 17 page offered £30 to £680 off when you trade in an iPhone X or newer, checked 2 September 2026, so the gap between a worn old phone and a recent one is wide. Apple's Trade In page says the credit lowers the amount you finance if you pay monthly. It says the old phone must be sent within 14 days of receiving the new one. And it says that if the value changes after inspection, Apple contacts you to ask how you want to proceed.
 
-Networks run their own trade-in schemes. Their values are not on pages we can quote, so get a written quote before you rely on one.
+Networks run their own trade-in schemes, and [our trade-in guide](/blog/phone-trade-in-uk-what-is-your-old-phone-worth/) explains how each one pays out. Their values are not on pages we can quote, so get a written quote before you rely on one.
 
 ## Should I buy from Apple or from a network?
 
@@ -100,7 +100,7 @@ Ofcom has banned networks from selling locked handsets since 17 December 2021, s
 
 Yes, the phone part is a loan, because the networks say so. O2's Refresh page calls the Device Plan a credit agreement. Three's FAQ says its device plans are a form of credit. EE's Flex Pay page calls it an interest free consumer credit agreement. You are borrowing the phone's price and repaying it monthly, with an airtime plan bolted on for the same term.
 
-That is why buying the phone outright, or on Apple's own 0% APR plan, and adding a SIM only plan can win on total cost. You are not committed to 24 months of airtime, and the SIM only card prints its own price rise line. [Save on Sims](https://saveonsims.co.uk/) has the SIM only cards for that half of the sum, and our [guides](/blog/) will cover this phone in more depth once its price and the deals arrive.
+That is why buying the phone outright, or on Apple's own 0% APR plan, and adding a SIM only plan can win on total cost, which [our contract or outright guide](/blog/iphone-18-contract-vs-buying-outright/) works through step by step. You are not committed to 24 months of airtime, and the SIM only card prints its own price rise line. [Save on Sims](https://saveonsims.co.uk/) has the SIM only cards for that half of the sum, and our [guides](/blog/) will cover this phone in more depth once its price and the deals arrive.
 
 If you are a student, check the discounts before you compare. O2's student offer page says 20% off the Airtime Plan on a Refresh phone contract through UNiDAYS, and Three's says 20% off the airtime with the code STUDY20, with device repayments excluded, both checked 1 September 2026. Both discounts apply to the airtime and not to the phone loan, so put them into the airtime line of your sum.
 

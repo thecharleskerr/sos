@@ -13,9 +13,15 @@ const { Content } = await render(post);
 /* Live cards for the picks the post names, from this site's content/. A pick
    with no live deal renders nothing rather than a stale figure. */
 const deals = dealsFor('phones', post.data.deals, import.meta.url);
+/* The four most recent other guides, so every post links onward and a
+   crawler finds the rest of the set from any one page. */
+const related = live(await getCollection('posts'))
+  .filter((p) => p.id !== post.id)
+  .slice(0, 4)
+  .map((p) => ({ slug: p.id, title: p.data.title, answer: p.data.answer }));
 ---
 <Base title={`${post.data.title} | Save on Smartphones`} description={post.data.description}>
-  <Article site="phones" siteName="Save on Smartphones" siteUrl="https://saveonsmartphones.co.uk" slug={post.id} post={post.data} deals={deals}>
+  <Article site="phones" siteName="Save on Smartphones" siteUrl="https://saveonsmartphones.co.uk" slug={post.id} post={post.data} deals={deals} related={related}>
     <Content />
   </Article>
 </Base>
