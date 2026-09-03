@@ -35,7 +35,7 @@ Apple's refurbished page also states savings of up to 15% against the price of t
 
 ## Is Samsung's Certified Re-Newed programme any different in the UK?
 
-Yes, and the warranty runs longer. Samsung's UK Certified Re-Newed page states every device is refurbished by Samsung-approved technicians using 100% genuine Samsung parts, including a certified new battery, and comes with the same two year warranty as a new Samsung phone. Samsung's newsroom announcement of the UK launch states that eligibility for the programme in the UK, France and Germany is limited to top-grade returned products only, and that any cosmetic marks left on a unit are minor and do not affect how it works.
+Yes, and the warranty runs longer. Samsung's UK Certified Re-Newed page states every device is refurbished by Samsung-approved technicians using 100% genuine Samsung parts, including a certified new battery, and comes with the same two year warranty as a new Samsung phone. Samsung's newsroom announcement of the UK launch states that eligibility for the programme in the UK, France and Germany is limited to top-grade returned products only. Samsung's UK Certified Re-Newed page states any cosmetic marks left on a unit are minor and do not affect how it works.
 
 Neither UK page we checked states a return window or a savings percentage for Certified Re-Newed, so those stay "not stated" until Samsung publishes one.
 
@@ -75,7 +75,7 @@ That sits alongside whatever warranty the seller states, not instead of it. A on
 
 ## Will it look like it has been used?
 
-Apple's refurbished page states every unit passes full functional testing before sale, and Samsung's UK launch announcement states devices are limited to top-grade returned stock, with any remaining cosmetic marks described as minor and not affecting function. Neither page sets out a numbered grading scale, so if a seller advertises grades such as excellent or good without saying what each grade means, check that seller's own page for the definition before you buy, rather than assuming what it means.
+Apple's refurbished page states every unit passes full functional testing before sale. Samsung's newsroom announcement states UK devices are limited to top-grade returned stock, and Samsung's UK Certified Re-Newed page describes any remaining cosmetic marks as minor and not affecting function. Neither page sets out a numbered grading scale, so if a seller advertises grades such as excellent or good without saying what each grade means, check that seller's own page for the definition before you buy, rather than assuming what it means.
 
 ## What to do now
 
