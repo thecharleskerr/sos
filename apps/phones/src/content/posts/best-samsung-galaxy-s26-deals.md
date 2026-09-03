@@ -33,14 +33,14 @@ sources:
 faq:
   - { q: "How much does the Samsung Galaxy S26 cost in the UK?", a: "Samsung's UK announcement listed the Galaxy S26 from RRP £879 with 256GB, the Galaxy S26 Plus from RRP £1,099 with 256GB and the Galaxy S26 Ultra from RRP £1,279, checked 2 September 2026. The Galaxy S26 FE had no price in any Samsung snippet we could quote. Samsung's buy pages add 0% finance and a trade-in discount on top, so the price on the day can be lower than the RRP." }
   - { q: "Is 256GB enough for a Galaxy S26?", a: "Samsung does not publish how much storage a typical owner needs, so we do not guess. Its UK pages list 256GB or 512GB for the S26 and S26 Plus, 256GB, 512GB or 1TB for the Ultra, and 128GB, 256GB or 512GB for the FE, and describe the larger sizes as being for people who regularly capture high resolution video, play graphics heavy games or download large apps. Storage cannot be added later, so price the size you will fill." }
-  - { q: "Is the Galaxy S25 still worth buying instead of the S26?", a: "It can be, if its total cost for the storage you want is lower. On 2 September 2026 Samsung's UK site still sold the S25, S25 Plus, S25 Ultra, S25 Edge and S25 FE new, and sold the S25, S25 Plus and S25 Ultra as Certified Re-Newed with a two year warranty. No Samsung snippet stated a UK price for any of them, so run the same six steps rather than assume the older phone is cheaper." }
+  - { q: "Is the Galaxy S25 still worth buying instead of the S26?", a: "It can be, if its total cost for the storage you want is lower. On 2 September 2026 Samsung's UK site still sold the S25, S25 Plus, S25 Ultra, S25 Edge and S25 FE new, and sold the S25, S25 Plus and S25 Ultra as Certified Re-Newed with a two year warranty. No Samsung snippet stated a UK price for any of them, so price it the same way as the S26: Samsung's price on the day, plus a SIM only plan, minus trade-in, against a network card's total, rather than assume the older phone is cheaper." }
   - { q: "When does Samsung discount the Galaxy S26?", a: "No Samsung page publishes a schedule of price cuts, so nobody can promise you a cheaper month. Samsung's pages show how its discounts arrive instead: launch pre-order offers such as double storage, trade-in with the value taken off at checkout, 0% finance, and offers with stated end dates on the buy page. Check Samsung's buy page on the day you compare and put its price into the sum." }
   - { q: "Does a Galaxy S26 contract price go up mid-contract?", a: "The airtime part usually does, by an amount the network must state in pounds and pence before you sign. On 2 September 2026 O2 and Vodafone each stated £2.50 a month from April, Three stated £1.80, £1.90 or £2.30 a month by data tier from 1 April, and EE stated £1.50 a month from 31 March. O2, Vodafone and Three say the device payments are not affected. EE's page does not say either way." }
   - { q: "Is it cheaper to buy the Galaxy S26 outright and add a SIM only plan?", a: "Often, but only the sum can tell you. Take Samsung's price on the day, add a SIM only plan for the same number of months from Save on Sims, and subtract your trade-in. Compare that with the network card's total plus its stated price rises, with the same trade-in subtracted. The lower total wins, provided the allowance covers what you use." }
 draft: false
 ---
 
-The best Samsung Galaxy S26 deal is the one that costs you the least by the day the contract ends, for the storage you will actually fill, and choosing by the monthly figure alone is how people pay more for the same phone. Samsung's UK pages confirm four current models and three recommended prices, and the networks publish their annual rises in pounds and pence. Put those figures next to the total on a deal card and the answer takes about ten minutes. Every figure here comes from the seller's own pages with its checked date, and the picks on the homepage are re-checked every Monday.
+The best Samsung Galaxy S26 deal is the one that costs you the least by the day the contract ends, for the storage you will actually fill, and choosing by the monthly figure alone is how people pay more for the same phone. Samsung's UK pages confirm four current models and three recommended prices, and the networks publish their annual rises in pounds and pence. Put those figures next to the total on a deal card and the answer takes about ten minutes. Every figure here comes from Samsung's, the networks' or Ofcom's own pages, with its checked date, and the picks on the homepage are re-checked every Monday.
 
 ## Which Galaxy S26 models are on sale in the UK?
 
@@ -55,7 +55,7 @@ Four. Samsung's UK site listed the Galaxy S26, the Galaxy S26 Plus, the Galaxy S
 
 The RRPs are what Samsung announced. Its buy pages run offers on top, 0% finance and a trade-in discount applied at checkout, so the price on the day can be lower. The Ultra's announced price did not say which storage it applied to, and no Samsung page we could quote priced the FE.
 
-So the best deal is the model and storage you need at the lowest total cost across the routes below. This week's pick above shows what every card prints: the total, the price rise line and the checked date. The Galaxy S26 cards are on the homepage.
+So the best deal is the model and storage you need at the lowest total cost across the routes below. This week's pick above shows what every card prints: the total, the price rise line and the checked date. The Galaxy S26 cards, when we have them, are on the homepage.
 
 ## Here is exactly what to do
 
@@ -80,7 +80,7 @@ Samsung's launch offer doubled storage across the range, 512GB for the price of 
 
 Only if the total is lower for storage you are happy with, and Samsung gives you two ways to check. On 2 September 2026 samsung.com/uk still sold the Galaxy S25, S25 Plus, S25 Ultra, S25 Edge and S25 FE new. Samsung's site also sells the S25, S25 Plus and S25 Ultra as Certified Re-Newed. Samsung says those phones are refurbished in Samsung approved facilities with genuine Samsung parts, are issued a new IMEI, and carry a two year warranty, the same as a new phone.
 
-Samsung's pages did not state a UK price for any S25 in the snippets we could quote, so run the S25 through the same six steps rather than assume it is cheaper. If a used phone is on your list, our guide on [whether to buy a refurbished iPhone](/blog/should-you-buy-a-refurbished-iphone/) asks the questions that apply to any refurbished handset.
+Samsung's pages did not state a UK price for any S25 in the snippets we could quote, so price it the same way as the S26, storage, total cost and trade-in included, rather than assume it is cheaper. If a used phone is on your list, our guide on [whether to buy a refurbished iPhone](/blog/should-you-buy-a-refurbished-iphone/) asks the questions that apply to any refurbished handset.
 
 ## When does Samsung discount the Galaxy S26?
 
@@ -101,7 +101,7 @@ The airtime part usually does, by a fixed amount the network must state before y
 
 That split matters for the sums. O2, Vodafone and Three each say the rise lands on the airtime and not on the device repayments, and EE's Flex Pay page says EE charges no interest on the Flex Pay agreement for the phone. So when you add the rise in step three, add it to the airtime months only, then compare with a SIM only plan whose own rise is printed on its card. Our guide on [how much you should pay for a phone contract](/blog/how-much-should-you-pay-for-a-phone-contract/) goes further, and [iPhone 18 contract vs buying outright](/blog/iphone-18-contract-vs-buying-outright/) runs the same sum for a different phone.
 
-Roaming is on the card too, from each network's own page. O2 includes EU roaming with a 25GB limit, Three includes it on Value and Complete plans with a 12GB limit, EE includes it on Essentials Plus, All Rounder and Full Works plans with a 50GB limit, and Vodafone charges £2.75 a day on most pay monthly plans with a 25GB limit, all checked between 31 August and 1 September 2026.
+Roaming is on the card too, from each network's own page. O2 includes EU roaming with a 25GB limit. Three includes it on Value and Complete plans with a 12GB limit. EE includes it on Essentials Plus, All Rounder and Full Works plans with a 50GB limit. Vodafone charges £2.75 a day on most pay monthly plans with a 25GB limit. All four were checked between 31 August and 1 September 2026.
 
 ## What to do now
 
