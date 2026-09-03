@@ -27,7 +27,7 @@ faq:
 draft: false
 ---
 
-A student discount that only cuts the airtime bill can still leave you paying full price for the phone itself, and missing that split costs real money over a two year contract.
+A student discount usually only cuts the airtime bill, not the price of the phone. Miss that difference and it can cost you real money over a two year contract.
 
 Five UK networks publish a student saving we could verify on their own pages: O2, iD Mobile, Three, Vodafone and EE. Every figure below comes from those pages, checked on 1 September 2026. This week's pick above is re-checked every Monday, and working out which route actually costs less takes about ten minutes.
 
@@ -41,7 +41,7 @@ None of the offers we checked discount the phone itself. Each one cuts the airti
 | iD Mobile | £20 off the upfront cost on any iD Mobile phone contract with £20 or more upfront. | Yes | Not stated |
 | Three | 20% off the airtime on SIM only and phone plans with the code STUDY20, device repayments excluded. | Yes, airtime only | Active ac.uk email address |
 | Vodafone | 10% off the line rental on 12 or 24 month phone plans, and on 12 month SIM only plans. | Yes | Vodafone's own online form, verified by GoCertify, Student Beans or UNiDAYS |
-| EE | 20% off the monthly airtime charge on pay monthly and Flex Pay plans. | Yes, airtime only | Student Beans |
+| EE | 20% off the monthly airtime charge on pay monthly, Flex Pay and SIM only plans. | Yes, airtime only | Student Beans |
 
 EE's offer is real and its terms are published, but you will not find an EE card on this site. EE's own affiliate terms ban listing its deals in an automated comparison table, so we describe the policy and stop there. If EE is the plan you want, go to ee.co.uk directly.
 
