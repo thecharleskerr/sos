@@ -4,7 +4,7 @@ description: "Unlimited mobile data explained using each network's own fair use,
 publishDate: 2026-10-01
 checked: 2026-09-02
 query: "is unlimited data worth it"
-answer: "Unlimited data earns its price if you stream, hotspot or travel a lot and would otherwise risk a capped plan's fair use limit. If your own usage sits comfortably under a capped allowance, the cheaper capped SIM does the same job for less."
+answer: "Is unlimited data worth it? Only if you stream, hotspot or travel enough to risk a capped plan's fair use limit, otherwise the cheaper capped SIM does the same job for less."
 deals: ["best-unlimited", "cheapest"]
 cta: { label: "Compare this week's picks", href: "/" }
 sources:
@@ -28,7 +28,7 @@ sources:
   - { name: "Simp, roaming", url: "https://simpmobile.com/roaming", checked: 2026-09-01 }
 faq:
   - { q: "Is unlimited data really unlimited?", a: "Not in the sense of no limit at all. The ASA's own guidance says an unlimited claim is acceptable only where legitimate use never triggers an extra charge or a suspension, and any speed or usage limitation must be moderate and clearly explained. Every network we checked sets its own fair use threshold on top of that." }
-  - { q: "Can I use unlimited data as a hotspot?", a: "On most networks yes, within limits. SMARTY and Three let you tether your full unlimited allowance in the UK. EE and O2 allow tethering but treat regular use of 12 or more devices as non personal use. giffgaff does not allow tethering at all on its unlimited goodybags, only on its capped plans." }
+  - { q: "Can I use unlimited data as a hotspot?", a: "On most networks yes, within limits. SMARTY and Three let you tether your full unlimited allowance in the UK. EE and O2 allow tethering but treat regular use of 12 or more devices as non personal use. giffgaff allows tethering on all its plans, including unlimited goodybags, subject to its fair use policy, though it does not publish a device or data limit for it." }
   - { q: "Does unlimited data still work when I'm travelling in the EU?", a: "No, not without a separate cap. Every unlimited UK plan we checked applies its own EU roaming fair use limit on top of the domestic allowance, from 5GB on giffgaff to 50GB on EE. Check the roaming table above before you travel." }
   - { q: "How much data do I actually use each month?", a: "Check your own phone rather than a national average. On an iPhone, open Settings, then Mobile Data, and read the usage total for the current period. On Android, open Settings, then Network and internet, then Data usage, for the same figure." }
   - { q: "Is unlimited data worth it if I barely use my phone?", a: "Usually not. If your monthly usage sits comfortably under a capped plan's allowance, that plan does the same job as unlimited for less money. Compare your own usage against the cheapest pick above before paying for headroom you will not use." }
