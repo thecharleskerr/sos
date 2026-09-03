@@ -29,11 +29,11 @@ draft: false
 
 A student discount usually only cuts the airtime bill, not the price of the phone. Miss that difference and it can cost you real money over a two year contract.
 
-Five UK networks publish a student saving we could verify on their own pages: O2, iD Mobile, Three, Vodafone and EE. Every figure below comes from those pages, checked on 1 September 2026. This week's pick above is re-checked every Monday, and working out which route actually costs less takes about ten minutes.
+Five UK networks publish a student saving we could verify on their own pages: O2, iD Mobile, Three, Vodafone and EE. Every figure below comes from those pages, checked on 1 September 2026. This week's pick above is re-checked every Monday. Working out which route actually costs less takes about ten minutes.
 
 ## What are the best phone deals for students?
 
-None of the offers we checked discount the phone itself. Each one cuts the airtime part of a pay monthly plan, or the upfront cost you pay on day one, not the device repayment. So the best phone deal for a student is whichever route gives the lowest total once you add that saving, or its absence, to the full device cost, and that is the sum the card above is built to answer. It prints the total contract cost, not just the monthly figure, plus the price rise in pounds and pence or as no price rise.
+None of the offers we checked discount the phone itself. Each one cuts the airtime part of a pay monthly plan, or the upfront cost you pay on day one, not the device repayment. So the best phone deals for students come from whichever route gives the lowest total. Add the saving, or its absence, to the full device cost. That sum is what the card above is built to answer. It prints the total contract cost, not just the monthly figure. It also shows the price rise in pounds and pence, or says no price rise.
 
 | Network | Student offer | Applies to a phone contract | Claim via |
 |---|---|---|---|
@@ -47,11 +47,11 @@ EE's offer is real and its terms are published, but you will not find an EE card
 
 ## Does a student discount actually make the phone cheaper?
 
-No, not on its own. Every network offer above discounts the airtime plan or the day one upfront cost, never the price of the handset you are repaying every month. O2's own student offer page states the 20% comes off the Airtime Plan. Three's page says explicitly that device repayment costs are not eligible for the discount. Vodafone's and EE's terms describe the same split, a percentage off line rental or airtime, not off the device.
+No, not on its own. Every network offer above discounts the airtime plan or the day one upfront cost. None of them touch the price of the handset you are repaying every month. O2's own student offer page states the 20% comes off the Airtime Plan. Three's page says explicitly that device repayment costs are not eligible for the discount. Vodafone's and EE's terms describe the same split: a percentage off line rental or airtime, never off the device.
 
-Apple and Samsung run separate student pricing on their own UK sites, verified independently of your network account. Apple's education store lists savings for students, teachers and staff, but the pages we could find name Mac and iPad, not iPhone, so we are not stating an iPhone education price here. Samsung's student and youth store discounts selected Galaxy phones and other devices once you verify with UNiDAYS or a Samsung account and an ac.uk email, though its own pages say the amount is not the same on every product, so treat the checkout price as the one that counts, not a fixed percentage.
+Apple and Samsung run separate student pricing on their own UK sites, verified independently of your network account. Apple's education store lists savings for students, teachers and staff. The pages we could find name Mac and iPad, not iPhone. So we are not stating an iPhone education price here. Samsung's student and youth store discounts selected Galaxy phones and other devices. You verify with UNiDAYS, or with a Samsung account and an ac.uk email. Samsung's own pages say the amount is not the same on every product. Treat the checkout price as the one that counts, not a fixed percentage.
 
-Because none of this touches the airtime side of a contract, the cheapest route for a lot of students is not a discounted phone contract at all. It is a SIM only student plan, which several networks also discount, paired with a phone you already own or bought outright. [Save on Sims covers the SIM only side of that comparison](https://saveonsims.co.uk/blog/cheapest-sim-only-deal-for-students/), and [its students page](https://saveonsims.co.uk/students) lists every network's SIM offer side by side.
+None of this touches the airtime side of a contract. For a lot of students, the cheaper route is a SIM only student plan instead of a discounted phone contract. Pair it with a phone you already own, or bought outright, since several networks discount SIM only plans too. [Save on Sims covers the SIM only side of that comparison](https://saveonsims.co.uk/blog/cheapest-sim-only-deal-for-students/). [Its students page](https://saveonsims.co.uk/students) lists every network's SIM offer side by side.
 
 ## Here is exactly what to do
 
@@ -59,8 +59,8 @@ Because none of this touches the airtime side of a contract, the cheapest route 
 2. Check the discount applies to the plan you want. O2 excludes SIM only, pay as you go, family, sharer and Ultimate plans. Vodafone excludes 30 day SIM only plans, pay as you go and third party purchases. Three's discount excludes the device repayment part of the price.
 3. Get verified before you shop. O2 and Samsung accept UNiDAYS or TOTUM. Three needs an ac.uk email entered on its student discount page. EE needs a Student Beans code applied at checkout. Vodafone asks you to buy first, then submit its own form within 60 days of connecting.
 4. Enter the code or account at the right point. Three's page says to put STUDY20 in the promo code box in the basket. EE's terms say the Student Beans code must be applied before you place the order. iD Mobile's page says its £20 off must be applied when you order.
-5. Add up the total, not the monthly figure. Take the total contract cost and the price rise line from this week's pick above, then add Apple's or Samsung's device price if you are buying outright, or subtract the airtime saving if you are staying on a network contract.
-6. Put the discount's end date in your calendar. EE's terms say the 20% is removed automatically after 24 months, and Vodafone's discount stops if you move to a 30 day SIM only plan.
+5. Add up the total, not the monthly figure. Take the total contract cost and the price rise line from this week's pick above. If you are buying outright, add Apple's or Samsung's device price. If you are staying on a network contract, subtract the airtime saving instead.
+6. Put the discount's end date in your calendar. EE's terms say the 20% is removed automatically after 24 months. Vodafone's discount stops if you move to a 30 day SIM only plan.
 
 Once you have both totals, [see this week's phone deals](/) and take the route that actually costs less, or [compare student SIM plans on our sister site](https://saveonsims.co.uk/students) if buying outright turns out cheaper.
 
