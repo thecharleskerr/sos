@@ -10,7 +10,7 @@ import { roaming } from '../../compliance/roaming.ts';
 const rises = {
   smarty: { type: 'none', amountGBP: null, month: null, wording: 'No price rise', evidence: 'official-page' },
   o2: { type: 'fixed', amountGBP: 1.8, month: 'April', wording: 'Rises £1.80 a month each April', evidence: 'official-page' },
-  three: { type: 'fixed', amountGBP: 1.25, month: 'April', wording: 'Rises £1.25 a month each April', evidence: 'official-page' },
+  three: { type: 'fixed', amountGBP: null, tiers: [{ maxGB: 4, amountGBP: 1.8 }, { maxGB: 99, amountGBP: 1.9 }, { maxGB: null, amountGBP: 2.3 }], month: 'April', wording: 'Goes up each 1 April by a fixed amount set by plan size', evidence: 'official-page' },
   voxi: { type: 'none', amountGBP: null, month: null, wording: 'No price rise', evidence: 'official-page' },
   idmobile: { evidence: 'unverified' },
 };
@@ -77,6 +77,22 @@ test('a network with no verified price rise is held, and its placeholder fails t
   assert.deepEqual(r.needs, ['price-rise-unverified']);
   assert.equal(r.deal.priceRise.type, 'cpi');
   assert.equal(r.deal.priceRise.amountGBP, null);
+});
+
+test('a fixed rise that varies by plan size is picked from the tiers', () => {
+  const d = byId['fixture-9'].deal;
+  assert.equal(d.data, 'unlimited');
+  assert.deepEqual(d.priceRise, { type: 'fixed', amountGBP: 2.3, month: 'April', wording: 'Goes up each 1 April by a fixed amount set by plan size' });
+  assert.equal(DealSchema.safeParse(d).success, true);
+});
+
+test('a phone deal on a network whose handset rise is unverified is held', () => {
+  const row = rows.find((x) => x.aw_product_id === 'fixture-6');
+  const table = { vodafone: { type: 'none', amountGBP: null, wording: 'No price rise', handset: null, evidence: 'official-page' } };
+  const r = normaliseRow(row, { ...ctx, site: 'phones', priceRises: table });
+  assert.deepEqual(r.needs, ['price-rise-unverified']);
+  const both = { vodafone: { type: 'none', amountGBP: null, wording: 'No price rise', evidence: 'official-page' } };
+  assert.deepEqual(normaliseRow(row, { ...ctx, site: 'phones', priceRises: both }).needs, []);
 });
 
 test('a tiered roaming entry passes through as null rather than a guess', () => {

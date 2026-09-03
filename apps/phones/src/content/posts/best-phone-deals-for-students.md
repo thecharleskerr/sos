@@ -84,4 +84,4 @@ If you are new to credit, or have no UK credit history, a rolling SIM only plan 
 
 ## What to do now
 
-Price the device separately from the airtime. Take the total from this week's pick above. Then compare every student SIM offer to see which works out cheaper: a contract, or a SIM only plan with your own phone. [Compare every student SIM offer](https://saveonsims.co.uk/students) now that you have every verified student phone discount, what it does and does not touch, and the six steps to work out the real total. Prices and terms move. We re-check every Monday, so the checked date on the card is the one to trust.
+Price the device separately from the airtime, and take the total from this week's pick above. You now have every verified student phone discount, what it does and does not touch, and six steps to work out the real total. Prices and terms move. We re-check every Monday, so the checked date on the card is the one to trust. [Compare every student SIM offer](https://saveonsims.co.uk/students) before you decide whether a contract or a SIM only plan with your own phone works out cheaper.

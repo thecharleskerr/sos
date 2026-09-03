@@ -87,6 +87,33 @@ const toISODate = (s, fallback) => {
   return Number.isNaN(d.getTime()) ? fallback : d.toISOString().slice(0, 10);
 };
 
+/* The rise a deal carries, from the network's verified entry. A phone deal
+   uses the handset variant where the network states one (null there means
+   not verified for phone plans). A fixed rise that varies by plan size is
+   picked from the tiers by the deal's data allowance. Null means hold. */
+export function resolvePriceRise(entry, { site, data }) {
+  if (!entry || entry.evidence === 'unverified' || !entry.type) return null;
+  let r = entry;
+  if (site === 'phones' && 'handset' in entry) {
+    if (!entry.handset || !entry.handset.type) return null;
+    r = entry.handset;
+  }
+  let amountGBP = r.amountGBP ?? null;
+  if (r.type === 'fixed' && amountGBP === null) {
+    if (!r.tiers?.length) return null;
+    const gb = data === 'unlimited' ? Infinity : data;
+    const tier = r.tiers.find((t) => t.maxGB === null || gb <= t.maxGB);
+    if (!tier) return null;
+    amountGBP = tier.amountGBP;
+  }
+  return {
+    type: r.type,
+    amountGBP,
+    month: r.month ?? null,
+    wording: r.wording ?? (r.type === 'none' ? 'No price rise' : `Goes up by £${amountGBP.toFixed(2)} a month`),
+  };
+}
+
 const EMPTY_ROAMING = { euIncluded: null, euCapGB: null, destinationCount: null, dailyChargeGBP: null, worldwideIncluded: null, note: null };
 
 /* ctx: { site, today, roaming, priceRises, cols }. The two tables are passed
@@ -155,10 +182,8 @@ export function normaliseRow(row, ctx) {
   /* The placeholder for an unverified rise is a cpi rise with no amount,
      which verify.mjs refuses. So a held deal can never pass CI even if it is
      pasted into content/ by hand. */
-  const rise = priceRises[key];
-  const priceRise = rise && rise.evidence !== 'unverified' && rise.type
-    ? { type: rise.type, amountGBP: rise.amountGBP, month: rise.month, wording: rise.wording ?? (rise.type === 'none' ? 'No price rise' : '') }
-    : (needs.push('price-rise-unverified'), { type: 'cpi', amountGBP: null, month: null, wording: 'Price rise not yet verified' });
+  const priceRise = resolvePriceRise(priceRises[key], { site, data: data.value })
+    ?? (needs.push('price-rise-unverified'), { type: 'cpi', amountGBP: null, month: null, wording: 'Price rise not yet verified' });
 
   const connectivity = v('connectivity');
   const fiveG = /5g/i.test(connectivity) ? true : /[34]g/i.test(connectivity) ? false : null;

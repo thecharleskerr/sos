@@ -65,8 +65,9 @@ with a source.
 
 ## Still to build
 
-- packages/compliance/price-rises.ts  Every entry is unverified. Research
-  each network's stated mid-contract rise the way roaming.ts was done and
-  its deals release themselves.
+- packages/compliance/price-rises.ts  Eight networks verified (O2, Vodafone,
+  Three, SMARTY, giffgaff, iD Mobile SIM only, Lebara, Simp). EE conflicts,
+  the rest are unresearched. Fill an entry with a source and its deals
+  release themselves.
 - Category, network and guide pages
 - JSON-LD, sitemaps, llms.txt
