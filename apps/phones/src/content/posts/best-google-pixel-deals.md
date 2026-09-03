@@ -42,7 +42,7 @@ faq:
 draft: false
 ---
 
-The best Google Pixel deal is the one that costs you the least by the day the contract ends, for the model you actually want, and picking by the monthly price alone is how people pay more for the same phone. Google's UK store confirms which Pixels are current and promises seven years of updates on each. The four networks publish their annual price rises in pounds and pence. Put those figures next to the total on a deal card and the answer takes about ten minutes. Every figure here comes from Google's or the network's own pages with its checked date, and the picks on the homepage are re-checked every Monday.
+The best Google Pixel deal is the one that costs you the least by the day the contract ends, for the model you actually want, and picking by the monthly price alone is how people pay more for the same phone. Google's UK store confirms which Pixels are current and promises seven years of updates on each. The four networks publish their annual price rises in pounds and pence. Put those figures next to the total on a deal card and the answer takes about ten minutes. Every figure here comes from Google's or a network's own page, dated, and the homepage picks are re-checked every Monday.
 
 ## Which Google Pixel phones are current in the UK?
 
@@ -50,17 +50,15 @@ Five, on Google's own UK pages. On 2 September 2026 the Google Store UK phones p
 
 The Pixel 10, Pixel 10 Pro and Pixel 10 Pro Fold still had live UK pages that day. No Google snippet we could quote said whether they were still sold new, so treat them as a check on the day rather than a given.
 
-No Google Store UK snippet stated a UK price for any of these phones, so this guide prints none. That is not a gap in the method. Google shows the price on each product page, and you need the price on the day you buy, not the price on the day we wrote this.
+No Google Store UK snippet stated a UK price for any of these phones, so this guide prints none. That is not a gap in the method: Google shows the price on each product page, and you need the price on the day you buy, not the day we wrote this.
 
-What Google does state clearly is how long the phone lasts. Its UK page on Pixel updates says Pixel phones get seven years of security updates, Feature Drops and OS upgrades. The UK Pixel 10a spec page repeats seven years of OS and security updates. Google's Pixel 11 spec page states seven years of OS, security and Pixel Drop updates. So on a 24 month contract, every current Pixel has at least five years of updates left when it ends.
+What Google does state clearly is how long the phone lasts. Its UK page on Pixel updates says Pixel phones get seven years of security updates, Feature Drops and OS upgrades. The UK Pixel 10a spec page repeats seven years of OS and security updates. Google's Pixel 11 spec page states seven years of OS, security and Pixel Drop updates.
 
 So the best deal is the model you want at the lowest total cost across the routes below. This week's pick above shows what every card on this site prints: the total, the price rise line and the checked date. The Pixel cards, when we have them, sit on the [homepage](/).
 
 ## How do you get the best Pixel deal?
 
-Six steps, in order, get you to the lowest total cost.
-
-1. Choose the model and storage first. A deal is only comparable with another deal for the same phone. Google's UK pages list the current models above, and the storage options are on each product page.
+1. Choose the model and storage first: a deal is only comparable with another for the same phone. Google's UK pages list the current models above, and the storage options sit on each product page.
 2. Open the [homepage](/) and note the total contract cost on every Pixel card. Ignore the monthly price for now. The total is the number you compare.
 3. Read the price rise line on each card: the rise in pounds and pence, or No price rise. Count the months after it lands, multiply, and add that to the total for every rise date inside the term.
 4. Price the phone on its own. Note Google's UK store price that day, then add a SIM only plan for the same months from our sister site, [Save on Sims](https://saveonsims.co.uk/), where every card prints the same total and price rise line. Google's 0% financing changes when you pay, not how much, so use the outright price.
@@ -71,15 +69,15 @@ When you have the two totals, [see this week's phone deals](/) and take the card
 
 ## Should I buy the Pixel 10a or a Pixel 11?
 
-Buy the one with the lower total whose stated features cover what you do, because Google's pages describe each phone and do not rank them for you. The Pixel 10a page on the UK store lists the Tensor G4 chip, a battery of over 30 hours, a 48 megapixel dual rear camera, a 120Hz display, dual SIM with one physical SIM and one eSIM, and 5G. It also says the phone does not come with a charger, so add one to the sum if you need it. Google's spec page for the Pixel 11 names the Tensor G6 chip.
+Buy the one with the lower total whose stated features cover what you do, because Google's pages describe each phone and do not rank them for you. The Pixel 10a page lists the Tensor G4 chip, a battery of over 30 hours, a 48 megapixel dual rear camera, a 120Hz display, dual SIM and 5G. It also says the phone does not come with a charger, so add one to the sum if you need it. Google's spec page for the Pixel 11 names the Tensor G6 chip.
 
-The point that decides most people is the one Google makes plainest. The Pixel 10a and the Pixel 11 range carry the same seven year update promise, so you are not buying fewer years of updates with the cheaper phone. The a-series wins on total cost unless a specific Pro feature is worth the gap to you, and the gap is a number you read off Google's pages on the day, not one we can print.
+The Pixel 10a and the Pixel 11 range carry the same seven year update promise, so you are not buying fewer years of updates with the cheaper phone. The a-series wins on total cost unless a specific Pro feature is worth the gap to you, and the gap is a number you read off Google's pages on the day, not one we can print.
 
-If the total on a Pixel 11 card is close to the Pixel 10a card, look at the allowance. Networks often put the newer phone on a bigger data plan, which is only a saving if you use the data. Our guide on [how much you should pay for a phone contract](/blog/how-much-should-you-pay-for-a-phone-contract/) shows how to price the allowance you actually use.
+If the totals are close, look at the allowance: networks often put the newer phone on a bigger data plan, which only saves you money if you use the data. Our guide on [how much you should pay for a phone contract](/blog/how-much-should-you-pay-for-a-phone-contract/) shows how to price the allowance you actually use.
 
 ## Is Google's 0% financing cheaper than a contract?
 
-Only the sum can tell you, and Google's own page gives you the terms to run it. Google's UK financing page says that on all phones and baskets totalling £149 and above you can get financing at 0% interest over 24 months, with no annual fees. The finance is issued and serviced solely by Klarna Bank AB, and you choose Pay with Klarna at checkout, complete the Klarna application, and return to the Google Store to finish the order.
+Only the sum can tell you, and Google's own page gives you the terms to run it. Google's UK financing page says that on all phones and baskets totalling £149 and above you can get financing at 0% interest over 24 months, with no annual fees. The finance is issued and serviced by Klarna Bank AB: choose Pay with Klarna at checkout, complete the application, and return to the Google Store to finish.
 
 So the outright route costs Google's price on the day, spread over 24 months at no extra cost if you pass the credit check, plus a SIM only plan for 24 months with its own stated price rise. The contract route costs the card's total plus its price rise. Both are credit agreements, and both should be compared on the same months and the same trade-in.
 
@@ -87,11 +85,11 @@ The outright route has one other advantage. The Pixel 10a page says an unlocked 
 
 ## What is my old phone worth against a Pixel?
 
-Whatever Google or the network quotes you on the day, and nothing in this guide can promise a figure. Google's UK trade-in page says that when you add a new Pixel to your basket and select your trade-in device, Google shows its estimated value, which depends on the device, model, manufacturer and condition. Google's trade-in partner is PCS Wireless. Once it has received and inspected your old phone, Google emails your final trade-in value, typically within five working days. Some customers get the estimate as instant credit at checkout, and everyone else is paid to their original payment method after inspection.
+Whatever Google or the network quotes you on the day, and nothing in this guide can promise a figure. Google's UK trade-in page says that when you add a new Pixel to your basket and select your trade-in device, Google shows its estimated value, which depends on the device, model, manufacturer and condition. Google's trade-in partner is PCS Wireless. Once it has received and inspected your old phone, Google emails your final trade-in value, typically within five working days. Some get the estimate as instant credit at checkout; others are paid to their original payment method after inspection.
 
 Google's trade-in terms add two conditions worth reading before you rely on the estimate. You must send the old phone within 30 days of receiving the new one, and if it comes in lower but still at least 75% of the quoted value, Google sends a revised offer instead.
 
-Google's trade-in promotions come and go with stated end dates. On 2 September 2026 the Pixel 11 Pro page carried an offer of up to £850 back with an eligible trade-in, including a £400 bonus, with a stated end date of 1 September, so it had already run out. Whatever is running when you read this is on Google's offers page, not here.
+Google's trade-in promotions come and go with stated end dates. On 2 September 2026 the Pixel 11 Pro page advertised up to £850 back with an eligible trade-in, including a £400 bonus, ending 1 September, so it had already lapsed. Check Google's offers page for what is running now.
 
 ## Will a Pixel contract price go up mid-contract?
 
