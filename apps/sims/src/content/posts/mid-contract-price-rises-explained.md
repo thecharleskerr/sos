@@ -4,7 +4,7 @@ description: "How UK mobile networks state their mid-contract price rise in poun
 publishDate: 2026-10-05
 checked: 2026-09-02
 query: "mid contract price rise UK networks"
-answer: "Since 17 January 2025, Ofcom has required every new UK mobile contract to state any mid-contract price rise in pounds and pence before you sign. O2, Vodafone, Three and EE currently state fixed rises of £1.80 to £2.50 a month, landing each March or April. giffgaff, Lebara and SMARTY state none."
+answer: "Since 17 January 2025, Ofcom has required every new UK mobile contract to state any mid-contract price rise in pounds and pence before you sign. O2, Vodafone and Three currently state fixed rises of £1.80 to £2.50 a month landing each March or April, EE states a rise too but the amount depends on when you joined, and giffgaff, Lebara and SMARTY state none."
 deals: ["deal-of-week"]
 cta: { label: "See this week's SIM only pick", href: "/" }
 sources:
@@ -23,6 +23,7 @@ sources:
   - { name: "Tesco Mobile, Our pricing", url: "https://www.tescomobile.com/help/pricing-and-charges/our-pricing", checked: 2026-09-02 }
   - { name: "Tesco Mobile, Fixed price contracts", url: "https://www.tescomobile.com/why-tesco-mobile/frozen-prices", checked: 2026-09-02 }
   - { name: "Sky Mobile, Customer Contract", url: "https://www.sky.com/shop/__PDF/Sky-Mobile-Contract.pdf", checked: 2026-09-02 }
+  - { name: "VOXI, Best SIM Only Deals, 5G and Unlimited Plans", url: "https://www.voxi.co.uk/sim-only-plans", checked: 2026-09-02 }
 faq:
   - { q: "What did Ofcom's 17 January 2025 rule actually change?", a: "From that date, Ofcom stopped providers writing inflation-linked or percentage price rises into new mobile, broadband and pay TV contracts. Any rise now has to be set out in pounds and pence, prominently, at the point of sale, along with the month it happens." }
   - { q: "Can I leave my contract penalty free when the price rises?", a: "Only in specific cases. If your contract clearly stated the rise in pounds and pence before you signed, that rise on its own does not give you a penalty free exit. Ofcom says you can leave without penalty if your provider raises the price by more than the contract stated, or if the contract never specified an amount at all." }
@@ -45,14 +46,14 @@ That does not mean prices stop rising. It means the network has to tell you the 
 
 ## What each UK network currently states
 
-The table below shows only the figures we found stated on a network's own pages, checked on 2 September 2026. Where a network does not publish one universal figure, or we found nothing stating a rise either way, it says not stated.
+The table below shows only the figures we found stated on a network's own pages, checked on 2 September 2026. Where a network does not publish one universal figure, or we found nothing stating a rise either way, it says not stated. EE is the exception worth flagging on its own: EE does state a rise, but the pound figure it quotes has changed depending on when you joined or last re-contracted, and its own page does not make clear which figure currently applies if you sign up today. Rather than print a number that could be wrong for you, we tell you to check EE's own page before you sign.
 
 | Network | Monthly rise | When it lands | Applies to |
 |---|---|---|---|
 | O2 | £2.50 (75p on data only and smartwatch plans) | April | Airtime plans; the device part of a phone plan is frozen |
 | Vodafone | £2.50 | 1 April | Pay monthly Airtime/Data plans; Device Plans are unaffected |
 | Three | £1.80 to £2.30, depending on plan size | 1 April | Voice and Mobile Broadband plans joined or upgraded from 9 November 2025; device payments are unaffected |
-| EE | £2.50 | 31 March during the minimum term, 1 March after it ends | SIM only and pay monthly airtime plans sold from 10 April 2024 |
+| EE | Depends on when you joined, see EE's page | 31 March during the minimum term, 1 March after it ends | SIM only and pay monthly airtime plans |
 | iD Mobile | No price rise | Not applicable | SIM only plans (the fixed rise applies only to handset plans) |
 | giffgaff | No price rise | Not applicable | 18 month mobile contracts |
 | Lebara | No price rise | Not applicable | SIM only plans, fixed since 2020 |
@@ -61,7 +62,7 @@ The table below shows only the figures we found stated on a network's own pages,
 | Sky Mobile | Not stated | Not stated | Pay monthly contracts, unless a fixed price has been agreed |
 | VOXI | Not stated | Not applicable | 30 day rolling plans |
 
-EE is shown here for its published policy only. We do not carry EE deals in an automated comparison table, so the figure above is not something you can click through to on this site.
+EE is shown here for its published policy only. We do not carry EE deals in an automated comparison table, so nothing above is something you can click through to on this site.
 
 ## Here is exactly what to do
 
