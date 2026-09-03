@@ -29,15 +29,15 @@ draft: false
 
 Pay whatever a shop assistant reads out, and you agree to two prices at once without checking either. One is a loan for the phone. The other is an airtime plan priced to make that loan look free. Work the two prices out separately first. Within ten minutes you know whether the contract in front of you actually beats doing it yourself.
 
-## What is the right price for a phone contract?
+## What should a phone contract cost you?
 
-The right price is the phone's official UK price, from the maker's own site. Add a SIM only plan you would pick anyway, even if nobody was selling you a phone at the same time. Add those two together for however many months you would keep the phone. That is your baseline total. A network's contract is only worth paying more than that baseline if it gives you something you actually value. Spreading the phone's cost without paying upfront is one example. A specific handset today, rather than saving for it, is another.
+A phone contract should cost you no more than the phone's official UK price, from the maker's own site, plus a SIM only plan you would pick anyway, even if nobody was selling you a phone at the same time. Add those two together for however many months you would keep the phone. That is your baseline total. A network's contract is only worth paying more than that baseline if it gives you something you actually value. Spreading the phone's cost without paying upfront is one example. A specific handset today, rather than saving for it, is another.
 
 Two rules make that sum safe to run. Ofcom's page on being in or out of contract says your provider must warn you between 10 and 40 days before your contract ends. Once you are already out of contract, it must remind you every year and tell you its best current deals each time. And under the Digital Markets, Competition and Consumers Act 2024, gov.uk's price transparency guidance bans hiding fees, taxes or other charges until later in the purchase, sometimes called drip pricing. Those changes took effect on 6 April 2025. A business that breaks the rule can be fined up to 10% of its worldwide turnover or £300,000, whichever is greater. Whatever total a network quotes you, the law says it has to be the real one, in full, before you sign.
 
 ## Here is exactly what to do
 
-1. Price the phone on its own, from the maker's UK site. On 2 September 2026 Samsung's UK site listed the Galaxy S26 from RRP £879 for 256GB. Apple's UK store listed the iPhone 17 from £26.63 a month over its own 0% APR financing. Use the current price for the model and storage you actually want, not last year's.
+1. Price the phone on its own, from the maker's UK site. On 2 September 2026, Samsung's UK site listed the Galaxy S26 from RRP £879 for 256GB, and Apple's UK store listed the iPhone 17 from £26.63 a month over its own 0% APR financing on the same date. Use the current price for the model and storage you actually want, not last year's.
 2. Price a SIM only plan you would choose anyway. Ignore any phone offer attached to it. Our sister site, [Save on Sims](https://saveonsims.co.uk/), lists SIM only cards with the same total cost and price rise line as the cards here.
 3. Add the two together for however many months you would realistically keep the phone. That is your baseline: what buying the phone and the airtime apart would cost you.
 4. Open the [homepage](/) and note a contract's monthly price, its total contract cost, and its mid-contract price rise in pounds and pence, or "No price rise". Every card shows all four. The site rechecks them every Monday.
@@ -52,18 +52,18 @@ No. Apple's UK store sells its phones through its own 0% APR financing, with no 
 
 ## I can't pay for a phone upfront. How does a contract actually work?
 
-It is two products billed together, not one. O2's page on Refresh says your bill splits into a Device Plan, the cost of the phone, and an Airtime Plan, the cost of your data, minutes and texts. It says O2 lowers your bill automatically once the phone is paid off, so you stop paying for a phone you already own. EE's Flex Pay page says a Flex Pay device is billed as two separate monthly payments, one for the device repayment and one for airtime. It says the device agreement ends automatically once it is repaid, after which you can move to a SIM only plan. Either way, you are taking out a phone loan and a separate airtime plan at the same time. That is exactly why you can shop the two apart: the maker's own financing for the loan, any SIM only plan for the airtime.
+It is two products billed together, not one. O2's page on Refresh says your bill splits into a Device Plan, the cost of the phone, and an Airtime Plan, the cost of your data, minutes and texts. It says O2 lowers your bill automatically once the phone is paid off, so you stop paying for a phone you already own. EE's Flex Pay page says a Flex Pay device is billed as two separate monthly payments, one for the device repayment and one for airtime. It says the device agreement ends automatically once it is repaid, and that you can move to a SIM only plan without needing to pay off the rest of the device agreement first. Either way, you are taking out a phone loan and a separate airtime plan at the same time. That is exactly why you can shop the two apart: the maker's own financing for the loan, any SIM only plan for the airtime.
 
 ## Will splitting the phone from the SIM hurt my credit score?
 
-We could not find an O2 or EE page that states how applying for a Device Plan, Flex Pay or a SIM only plan affects your credit score. So we are not printing a number here. What their own pages do say is that a phone loan is regulated credit. O2's terms describe the Device Plan as a fixed sum loan agreement. EE's Flex Pay page describes the device repayment as its own agreement, separate from the airtime plan. A regulated credit agreement normally involves a credit check. Paying for the phone outright, from savings or the maker's own financing, and adding a SIM only plan removes that loan from the equation entirely. There is nothing left to borrow.
+We could not find an O2 or EE page that states how applying for a Device Plan, Flex Pay or a SIM only plan affects your credit score. So we are not printing a number here. What their own pages do say is that a phone loan is regulated credit. O2's page on Refresh describes the Device Plan as a separate credit agreement from the Airtime Plan. EE's Flex Pay page describes the device repayment as its own agreement, separate from the airtime plan. A regulated credit agreement normally involves a credit check. Paying for the phone outright, from savings or the maker's own financing, and adding a SIM only plan removes that loan from the equation entirely. There is nothing left to borrow.
 
 ## How each seller actually splits your money
 
 | Seller | What you are paying for | Billed as two separate payments? | What happens once the phone is paid off |
 |---|---|---|---|
 | Apple, direct | The phone only | No, financing is for the phone alone | Nothing extra, there is no airtime attached |
-| O2 Refresh | A Device Plan (the phone) plus an Airtime Plan (data, minutes, texts) | Yes, on one bill | O2 says it lowers your bill automatically |
+| O2 Refresh | A Device Plan (the phone) plus an Airtime Plan (data, minutes, texts) | No, one combined bill | O2 says it lowers your bill automatically |
 | EE Flex Pay | A device repayment plus airtime | Yes, two separate monthly payments | EE says the device agreement ends automatically |
 | A SIM only plan | Airtime only | Not applicable, it is a single plan | Not applicable, there is no loan to pay off |
 
