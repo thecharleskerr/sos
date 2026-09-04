@@ -236,10 +236,11 @@ export const priceRises: Record<string, NetworkPriceRise> = {
 
   /* Talkmobile
    * Source:  https://talkmobile.co.uk/price-rises
-   * Checked: 2026-09-04, one agent, two searches, high confidence. The
-   * page exists for this purpose and its wording is unconditional. The
-   * second, independent check is listed in docs/TODO.md; out of plan
-   * charges are outside the promise.
+   * Checked: 2026-09-04, one agent, two searches, then an independent
+   * second search the same day that returned the same page and added
+   * "no annual CPI or RPI increases" and a statement that monthly plan
+   * prices will not rise in 2026. Out of plan charges (roaming and
+   * international) are outside the promise.
    * Official wording:
    *   "All Talkmobile plans come with no annual price rises"
    */
