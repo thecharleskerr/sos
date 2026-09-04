@@ -33,6 +33,35 @@ export const phones: Record<string, TrackedPhone> = {
     updates: null,
     source: 'https://www.apple.com/uk/shop/buy-iphone/iphone-17', checked: '2026-09-02', evidence: 'official-page',
   },
+  /* iPhone 17 Pro and 17 Pro Max
+   * Source:  https://www.apple.com/uk/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max-the-most-powerful-and-advanced-pro-models-ever/
+   * Checked: 2026-09-04, one agent, two searches, high confidence; second
+   * check listed in docs/TODO.md.
+   * Official wording: "iPhone 17 Pro starts at £1,099, and iPhone 17 Pro
+   * Max starts at £1,199." and "iPhone 17 Pro will be available in 256GB,
+   * as well as 512GB and 1TB storage capacities."
+   */
+  'iphone-17-pro': {
+    slug: 'iphone-17-pro', name: 'iPhone 17 Pro', maker: 'Apple', rrpGBP: 1099, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.apple.com/uk/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max-the-most-powerful-and-advanced-pro-models-ever/', checked: '2026-09-04', evidence: 'official-page',
+  },
+  'iphone-17-pro-max': {
+    slug: 'iphone-17-pro-max', name: 'iPhone 17 Pro Max', maker: 'Apple', rrpGBP: 1199, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.apple.com/uk/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max-the-most-powerful-and-advanced-pro-models-ever/', checked: '2026-09-04', evidence: 'official-page',
+  },
+  /* iPhone Air
+   * Source:  https://www.apple.com/uk/shop/buy-iphone/iphone-air
+   * Checked: 2026-09-04, one agent, two searches agreeing, high confidence.
+   * Official wording: "the iPhone Air 256GB is available for £999.00 in
+   * the UK"
+   */
+  'iphone-air': {
+    slug: 'iphone-air', name: 'iPhone Air', maker: 'Apple', rrpGBP: 999, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.apple.com/uk/shop/buy-iphone/iphone-air', checked: '2026-09-04', evidence: 'official-page',
+  },
   /* iPhone 17e
    * Source:  https://www.apple.com/uk/newsroom/2026/03/apple-introduces-iphone-17e/
    * Checked: 2026-09-02, writer plus the fact refuter on the cheapest 5G phone guide.
@@ -65,6 +94,32 @@ export const phones: Record<string, TrackedPhone> = {
     slug: 'galaxy-s26-ultra', name: 'Samsung Galaxy S26 Ultra', maker: 'Samsung', rrpGBP: 1279, storageGB: null, fiveG: true,
     updates: null,
     source: 'https://news.samsung.com/uk/galaxy-unpacked-2026-a-first-look-at-the-galaxy-s26-series-samsungs-most-intuitive-ai-phone-yet', checked: '2026-09-02', evidence: 'official-page',
+  },
+
+  /* Galaxy Z Fold8, Z Fold8 Ultra and Z Flip8
+   * Source:  https://www.samsung.com/uk/smartphones/galaxy-z-fold8/buy/
+   *          https://www.samsung.com/uk/smartphones/galaxy-z-fold8-ultra/buy/
+   *          https://www.samsung.com/uk/smartphones/galaxy-z-flip8/buy/
+   * Checked: 2026-09-04, one agent, corroborating searches, high
+   * confidence; second check listed in docs/TODO.md.
+   * Official wording: "The Galaxy Z Fold8 256GB RRP is £1,699.00", "the
+   * Galaxy Z Fold8 Ultra 256GB RRP is £1,899.00", "the Galaxy Z Flip8
+   * 256GB has an RRP of £1,149.00."
+   */
+  'galaxy-z-fold8': {
+    slug: 'galaxy-z-fold8', name: 'Samsung Galaxy Z Fold8', maker: 'Samsung', rrpGBP: 1699, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.samsung.com/uk/smartphones/galaxy-z-fold8/buy/', checked: '2026-09-04', evidence: 'official-page',
+  },
+  'galaxy-z-fold8-ultra': {
+    slug: 'galaxy-z-fold8-ultra', name: 'Samsung Galaxy Z Fold8 Ultra', maker: 'Samsung', rrpGBP: 1899, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.samsung.com/uk/smartphones/galaxy-z-fold8-ultra/buy/', checked: '2026-09-04', evidence: 'official-page',
+  },
+  'galaxy-z-flip8': {
+    slug: 'galaxy-z-flip8', name: 'Samsung Galaxy Z Flip8', maker: 'Samsung', rrpGBP: 1149, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.samsung.com/uk/smartphones/galaxy-z-flip8/buy/', checked: '2026-09-04', evidence: 'official-page',
   },
 
   /* Galaxy A17 5G

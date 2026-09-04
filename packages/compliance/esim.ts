@@ -43,8 +43,25 @@ export const esim: Record<string, NetworkEsim> = {
   sky: { network: 'sky', offered: true, detail: 'On SIM only plans for compatible devices, installed by scanning a QR code from your Sky account.', source: 'https://www.sky.com/help/articles/esim-sky-mobile', checked: '2026-09-02', evidence: 'official-page' },
   /* "Unlimited UK eSIM with free global roaming from £10 monthly" */
   simp: { network: 'simp', offered: true, detail: 'eSIM only. Every plan activates by scanning a QR code in the Simp app; there is no physical SIM.', source: 'https://simpmobile.com/', checked: '2026-09-02', evidence: 'official-page' },
-  talkmobile: unverified('talkmobile'), bt: unverified('bt'), asda: unverified('asda'), onep: unverified('onep'), spusu: unverified('spusu'),
-  lyca: unverified('lyca'), mozillion: unverified('mozillion'), honest: unverified('honest'), revolut: unverified('revolut'), klarna: unverified('klarna'),
-  uw: unverified('uw'), coop: unverified('coop'), ecotalk: unverified('ecotalk'),
+  /* The eight below were found by one agent on 2026-09-04 from each
+     network's own pages, two searches each; the second, independent check
+     is listed in docs/TODO.md. The quotes:
+     Talkmobile: "Once purchased, you'll receive a QR code via email ... They have instant delivery."
+     Asda: "eSIM is now available on Asda Mobile, and customers can simply pick their plan and select eSIM at checkout."
+     1pMobile: "With an eSIM, you can activate your mobile plan instantly, right from your phone settings."
+     spusu: "spusu offers eSIM or physical SIM card options."
+     Lycamobile: "You can activate the eSIM ... by either scanning a QR code or by entering an activation code online."
+     Mozillion: "eSIMs are offered for all plans, subject to you having an eSIM compatible phone ... sent to you via email within 1 working day"
+     Honest: "For new customers, eSIM delivery is instant via email with setup in five minutes"
+     Your Co-op: "you activate the service by scanning a QR code, downloading an eSIM straight from your network provider, or entering activation details in your settings." */
+  talkmobile: { network: 'talkmobile', offered: true, detail: 'Sent by QR code in an email straight after purchase.', source: 'https://talkmobile.co.uk/sim-only', checked: '2026-09-04', evidence: 'official-page' },
+  asda: { network: 'asda', offered: true, detail: 'Chosen at checkout when picking a plan, and you can switch between a physical SIM and eSIM later.', source: 'https://mobile.asda.com/esim', checked: '2026-09-04', evidence: 'official-page' },
+  onep: { network: 'onep', offered: true, detail: 'Activated by scanning a QR code in the phone settings, and it can run alongside a physical SIM for a second number.', source: 'https://www.1pmobile.com/eSIM', checked: '2026-09-04', evidence: 'official-page' },
+  spusu: { network: 'spusu', offered: true, detail: 'Offered as an alternative to a physical SIM when you order.', source: 'https://www.spusu.co.uk/esim', checked: '2026-09-04', evidence: 'official-page' },
+  lyca: { network: 'lyca', offered: true, detail: 'Activated by scanning a QR code or entering an activation code online, on UK and travel plans.', source: 'https://www.lycamobile.co.uk/en/esim/', checked: '2026-09-04', evidence: 'official-page' },
+  mozillion: { network: 'mozillion', offered: true, detail: 'On every plan for an eSIM compatible phone, sent by email within one working day; a physical SIM can be chosen instead.', source: 'https://www.mozillion.com/resources/help/joining-and-setup/', checked: '2026-09-04', evidence: 'official-page' },
+  honest: { network: 'honest', offered: true, detail: 'Delivered instantly by email for new customers, with setup in about five minutes in the app.', source: 'https://join.honestmobile.co.uk/esim', checked: '2026-09-04', evidence: 'official-page' },
+  coop: { network: 'coop', offered: true, detail: 'Activated by scanning a QR code or entering the activation details in the phone settings.', source: 'https://broadband.yourcoop.coop/help-resources/e-sim-information/', checked: '2026-09-04', evidence: 'official-page' },
+  bt: unverified('bt'), revolut: unverified('revolut'), klarna: unverified('klarna'), uw: unverified('uw'), ecotalk: unverified('ecotalk'),
 };
 export const getEsim = (key: string): NetworkEsim | null => esim[key] ?? null;

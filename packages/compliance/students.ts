@@ -169,6 +169,13 @@ export const studentOffers: Record<string, StudentOffer> = {
    * nothing official confirms a current offer.
    * Lead:    https://smarty.co.uk/student-sim
    */
+  /* SMARTY
+   * NOT VERIFIED as an offer. 2026-09-04, one agent: /student-sim is a
+   * landing page that points students at the ordinary plans with no
+   * student price, and the UNiDAYS unlimited offer ran 14 June 2023 to
+   * 11 December 2024 and has ended. That is evidence of no current offer,
+   * but no page says so outright, so the entry stays null.
+   */
   smarty: {
     network: 'smarty', hasOffer: null, offer: null, discountPercent: null, priceGBP: null, via: null, simOnly: null,
     conditions: null, source: 'https://smarty.co.uk/student-sim', checked: null, evidence: 'unverified',
@@ -261,6 +268,11 @@ export const studentOffers: Record<string, StudentOffer> = {
    * Family Perks and Safe Start but no page that describes a student offer
    * or states there is none.
    */
+  /* Tesco Mobile
+   * NOT VERIFIED. 2026-09-04, one agent: no student page found, only
+   * Clubcard Prices and the colleague discount. Absence from the index is
+   * not a statement, so null.
+   */
   tesco: {
     network: 'tesco', hasOffer: null, offer: null, discountPercent: null, priceGBP: null, via: null, simOnly: null,
     conditions: null, source: null, checked: null, evidence: 'unverified',
@@ -293,6 +305,9 @@ export const studentOffers: Record<string, StudentOffer> = {
    * broadband only; no official Sky Mobile page describes a student offer or
    * states there is none.
    * Lead:    https://sky.com/students
+   * 2026-09-04: Sky's own help forum carries "Sky does not offer student
+   * discounts for students", a community answer rather than a Sky page,
+   * so still null. Lead: https://helpforum.sky.com/t5/Sky-Mobile/Student-discount/td-p/5332484
    */
   sky: {
     network: 'sky', hasOffer: null, offer: null, discountPercent: null, priceGBP: null, via: null, simOnly: null,

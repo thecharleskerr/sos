@@ -125,16 +125,33 @@ export const priceRises: Record<string, NetworkPriceRise> = {
   },
 
   /* EE
-   * NOT VERIFIED. Checked: 2026-09-02. Agents found £1.50 a month (new and
-   * re-contracting mobile customers from 31 March 2025) and £2.50 a month
-   * (SIM only and airtime plans, as of March 2026) attributed to the same
-   * page, https://ee.co.uk/help/billing-payments/guide-to-bill/about-annual-prices-changes,
-   * and fifteen further searches could not settle which applies to a new
-   * sign-up. Conflicting figures mean null. EE is editorial only under hard
-   * rule 1, so this blocks no feed deal; a hand-written EE card needs the
-   * page read directly first.
+   * Source:  https://ee.co.uk/content/dam/help/terms-and-conditions/price-plans/mobile/pay-monthly-price-plans/ee-simo-plan-tncs-from-7-august-2025.pdf
+   * Also:    https://ee.co.uk/help/billing-payments/guide-to-bill/about-annual-prices-changes
+   * Checked: 2026-09-04, one agent, resolving the 2026-09-02 conflict. The
+   * £1.50 figure belongs to the earlier terms (from 10 April 2024, first
+   * applied 31 March 2025); the terms in force from 7 August 2025 state
+   * £2.50, and the help page's worked example agrees. The second,
+   * independent check is listed in docs/TODO.md. EE is editorial only
+   * under hard rule 1, so this releases no feed deal.
+   * Official wording (terms PDF):
+   *   "If you are not on a fixed price plan, the monthly plan price will
+   *   increase by £2.50 on 31 March each year, and out of bundle charges
+   *   will increase by 5%. If you are on a fixed price plan, the monthly
+   *   price that you pay for your mobile plan will not increase during the
+   *   minimum term."
+   * Official wording (help page):
+   *   "if you take out a new SIM-Only mobile plan at £25 per month on a
+   *   24-month contract, your price will be £27.50 per month from 31 March
+   *   2026, and then £30 per month from 31 March 2027."
    */
-  ee: unverified('ee'),
+  ee: {
+    network: 'ee', type: 'fixed', amountGBP: 2.5, month: 'March',
+    wording: 'Goes up by £2.50 a month each 31 March',
+    appliesTo: 'Pay monthly and SIM only plans taken under the terms in force from 7 August 2025, unless the plan is sold as a fixed price plan. Out of bundle charges rise by 5%.',
+    handset: null,
+    source: 'https://ee.co.uk/content/dam/help/terms-and-conditions/price-plans/mobile/pay-monthly-price-plans/ee-simo-plan-tncs-from-7-august-2025.pdf',
+    checked: '2026-09-04', evidence: 'official-pdf',
+  },
 
   /* SMARTY
    * Source:  https://smarty.co.uk/blog/save-money-with-smarty
@@ -152,8 +169,9 @@ export const priceRises: Record<string, NetworkPriceRise> = {
   },
 
   /* VOXI
-   * NOT VERIFIED. Checked: 2026-09-02. No official page found stating a
-   * mid-contract price rise policy either way; the plans are 30 day rolling.
+   * NOT VERIFIED. Checked: 2026-09-02 and again 2026-09-04. No official page
+   * found stating a mid-contract price rise policy either way; the plans
+   * are 30 day rolling and only marketing copy came back.
    */
   voxi: unverified('voxi'),
 
@@ -195,6 +213,10 @@ export const priceRises: Record<string, NetworkPriceRise> = {
    * sale, with no single figure published. A feed row does not say which
    * kind of deal it is, so the entry stays null.
    * Lead: https://www.tescomobile.com/help/pricing-and-charges/our-pricing
+   * 2026-09-04, one agent, high confidence: the page confirms a fixed rise
+   * each April shown in pounds and pence per customer at the point of
+   * sale, no single published figure, and Clubcard Price deals frozen for
+   * the minimum term. Still null: the ingest cannot tell the two apart.
    */
   tesco: unverified('tesco'),
 
@@ -212,21 +234,72 @@ export const priceRises: Record<string, NetworkPriceRise> = {
     source: 'https://www.lebara.co.uk/en/no-price-rise-disclaimer.html', checked: '2026-09-02', evidence: 'official-page',
   },
 
-  talkmobile: unverified('talkmobile'),
+  /* Talkmobile
+   * Source:  https://talkmobile.co.uk/price-rises
+   * Checked: 2026-09-04, one agent, two searches, high confidence. The
+   * page exists for this purpose and its wording is unconditional. The
+   * second, independent check is listed in docs/TODO.md; out of plan
+   * charges are outside the promise.
+   * Official wording:
+   *   "All Talkmobile plans come with no annual price rises"
+   */
+  talkmobile: {
+    network: 'talkmobile', type: 'none', amountGBP: null, month: null,
+    wording: 'No price rise', appliesTo: 'All plans. Out of plan charges are not covered by the promise.',
+    source: 'https://talkmobile.co.uk/price-rises', checked: '2026-09-04', evidence: 'official-page',
+  },
 
   /* Sky Mobile
    * NOT VERIFIED. Checked: 2026-09-02. The customer contract says "Prices
    * may increase, including during the minimum term, unless we've agreed a
    * fixed price with you", and no pound figure was found.
    * Lead: https://www.sky.com/shop/__PDF/Sky-Mobile-Contract.pdf
+   * 2026-09-04: still conflicting on sky.com, "will not increase during
+   * minimum term" against "may increase", low confidence. Null.
    */
   sky: unverified('sky'),
 
+  /* BT Mobile is closed to new customers (see networks.js), so nothing here
+     would release a deal. */
   bt: unverified('bt'),
+
+  /* Asda Mobile
+   * NOT VERIFIED. Lead, 2026-09-04, one agent, medium confidence: the
+   * bundles and pricing help page describes 12 and 24 month SIM only
+   * contracts with no mid-contract rise.
+   * Lead: https://mobile.asda.com/help/bundles-and-pricing
+   */
   asda: unverified('asda'),
+
+  /* 1pMobile
+   * NOT VERIFIED. Lead, 2026-09-04, one agent, medium confidence: blog
+   * posts only ("1pMobile does not build in mid-contract price rises"),
+   * no terms page found. Sells PAYG and 30 day bundles.
+   * Lead: https://www.1pmobile.com/blog?post=43
+   */
   onep: unverified('onep'),
+
+  /* spusu
+   * NOT VERIFIED. 2026-09-04: a "price freeze" was advertised to the end
+   * of January 2026 for existing customers, now lapsed, and no current
+   * policy was found. Low confidence. Lead: https://www.spusu.co.uk/
+   */
   spusu: unverified('spusu'),
+
+  /* Lycamobile
+   * NOT VERIFIED. Lead, 2026-09-04, one agent, medium confidence: a page
+   * titled "no price rises". Its end date and exclusions are unchecked.
+   * Lead: https://www.lycamobile.co.uk/en/general/no-price-rises/
+   */
   lyca: unverified('lyca'),
+
+  /* Mozillion
+   * NOT VERIFIED. Lead, 2026-09-04, one agent, medium confidence, help
+   * page: "There are no mid-contract price rises with Mozillion plans.
+   * The price you pay each month is the price displayed at checkout."
+   * The terms reserve a rise for non-personal or abusive use only.
+   * Lead: https://www.mozillion.com/resources/help/payments-and-billing/
+   */
   mozillion: unverified('mozillion'),
 
   /* Simp
@@ -241,12 +314,56 @@ export const priceRises: Record<string, NetworkPriceRise> = {
     source: 'https://simpmobile.com/students', checked: '2026-09-02', evidence: 'official-page',
   },
 
+  /* Honest Mobile
+   * NOT VERIFIED. Lead, 2026-09-04, one agent, medium confidence,
+   * marketing page: "No more annual price hikes", with a loyalty discount
+   * that grows 5% a year to a 30% cap. No terms wording found.
+   * Lead: https://honestmobile.co.uk/price-hikes/
+   */
   honest: unverified('honest'),
+
+  /* Revolut Mobile
+   * NOT VERIFIED. 2026-09-04: the terms give Revolut a general right to
+   * change prices on one month's notice with a free exit; no scheduled
+   * rise. Rolling monthly eSIM plans, so no minimum term to rise within.
+   * Lead: https://www.revolut.com/legal/revolut-mobile-terms-and-condition-gigs/
+   */
   revolut: unverified('revolut'),
+
+  /* Klarna Mobile is waitlist only in the UK as of 2026-09-04
+     (https://www.klarna.com/uk/klarna-mobile_waitlist/), so there are no
+     terms to record. */
   klarna: unverified('klarna'),
+
+  /* Utility Warehouse
+   * NOT VERIFIED. 2026-09-04: the no mid-contract rise pledge was only
+   * confirmed for broadband; no mobile clause found. Low confidence.
+   * Lead: https://help.uw.co.uk/article/mobile/tariff_information/what-mobile-price-plans-do-you-have-available
+   */
   uw: unverified('uw'),
+
+  /* Your Co-op Mobile
+   * NOT VERIFIED. 2026-09-04: conflicting. Blog copy says "no hidden fees
+   * or in-contract price rises"; an indexed terms PDF describes a CPI plus
+   * 3.9% rise each 1 March. Conflicting figures mean null.
+   * Lead: https://broadband.yourcoop.coop/help-resources/blog/SIM-only-contracts-with-Your-Co-op-Mobile/
+   */
   coop: unverified('coop'),
-  ecotalk: unverified('ecotalk'),
+
+  /* Ecotalk
+   * Source:  https://www.ecotalk.co.uk/terms-and-conditions
+   * Checked: 2026-09-04, one agent, two searches, high confidence, and
+   * the wording is the network's own tagline. The second, independent
+   * check is listed in docs/TODO.md. All plans roll monthly.
+   * Official wording:
+   *   "All Ecotalk plans come with a no annual price rise guarantee."
+   *   "No price rises. Ever."
+   */
+  ecotalk: {
+    network: 'ecotalk', type: 'none', amountGBP: null, month: null,
+    wording: 'No price rise', appliesTo: 'All plans, which roll monthly with no exit fees.',
+    source: 'https://www.ecotalk.co.uk/terms-and-conditions', checked: '2026-09-04', evidence: 'official-page',
+  },
 };
 
 /** Mirrors the get() helper in packages/ui/networks.js. */
