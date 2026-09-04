@@ -44,8 +44,9 @@ export const esim: Record<string, NetworkEsim> = {
   /* "Unlimited UK eSIM with free global roaming from £10 monthly" */
   simp: { network: 'simp', offered: true, detail: 'eSIM only. Every plan activates by scanning a QR code in the Simp app; there is no physical SIM.', source: 'https://simpmobile.com/', checked: '2026-09-02', evidence: 'official-page' },
   /* The eight below were found by one agent on 2026-09-04 from each
-     network's own pages, two searches each; the second, independent check
-     is listed in docs/TODO.md. The quotes:
+     network's own pages and confirmed the same day by a second agent from
+     a different page on each site, except Mozillion, where the second
+     agent's search returned no eSIM page (single agent). The quotes:
      Talkmobile: "Once purchased, you'll receive a QR code via email ... They have instant delivery."
      Asda: "eSIM is now available on Asda Mobile, and customers can simply pick their plan and select eSIM at checkout."
      1pMobile: "With an eSIM, you can activate your mobile plan instantly, right from your phone settings."
@@ -62,6 +63,15 @@ export const esim: Record<string, NetworkEsim> = {
   mozillion: { network: 'mozillion', offered: true, detail: 'On every plan for an eSIM compatible phone, sent by email within one working day; a physical SIM can be chosen instead.', source: 'https://www.mozillion.com/resources/help/joining-and-setup/', checked: '2026-09-04', evidence: 'official-page' },
   honest: { network: 'honest', offered: true, detail: 'Delivered instantly by email for new customers, with setup in about five minutes in the app.', source: 'https://join.honestmobile.co.uk/esim', checked: '2026-09-04', evidence: 'official-page' },
   coop: { network: 'coop', offered: true, detail: 'Activated by scanning a QR code or entering the activation details in the phone settings.', source: 'https://broadband.yourcoop.coop/help-resources/e-sim-information/', checked: '2026-09-04', evidence: 'official-page' },
-  bt: unverified('bt'), revolut: unverified('revolut'), klarna: unverified('klarna'), uw: unverified('uw'), ecotalk: unverified('ecotalk'),
+  /* Found by the second agent on 2026-09-04:
+     Ecotalk: "Ecotalk sends your eSIM by email and you'll be up and running in minutes." and "You can scan the QR code and install it, or press and hold the QR code until 'Add eSIM' appears."
+     Utility Warehouse: "Scan the QR code in the email using your phone's camera. Scanning will automatically open your phone's settings and install the eSIM." and "It can take up to four hours for your eSIM to fully activate after you've downloaded it."
+     Revolut: "Revolut's eSIM can carry a mobile plan that allows unlimited UK data, calls, and texts ... Revolut Mobile is provided by Gigs, using the Vodafone network." One agent; no page found stating there is no physical SIM option. */
+  ecotalk: { network: 'ecotalk', offered: true, detail: 'Sent by email as a QR code to scan, or press and hold, then activated through the account portal or by phone.', source: 'https://www.ecotalk.co.uk/faqs', checked: '2026-09-04', evidence: 'official-page' },
+  uw: { network: 'uw', offered: true, detail: 'A QR code arrives by email within an hour of ordering; scanning it installs the eSIM, and full activation can take up to four hours.', source: 'https://help.uw.co.uk/article/mobile/eSIM/how-do-i-get-an-esim', checked: '2026-09-04', evidence: 'official-page' },
+  revolut: { network: 'revolut', offered: true, detail: 'Delivered as an eSIM through the Revolut app, provided by Gigs on the Vodafone network. No physical SIM option was found stated.', source: 'https://www.revolut.com/news/revolut_to_launch_mobile_plans_in_a_direct_challenge_to_traditional_network_providers/', checked: '2026-09-04', evidence: 'official-page' },
+  /* Klarna Mobile is waitlist only in the UK as of 2026-09-04, so there is
+     nothing to record. BT Mobile's eSIM is business only per bt.com. */
+  bt: unverified('bt'), klarna: unverified('klarna'),
 };
 export const getEsim = (key: string): NetworkEsim | null => esim[key] ?? null;
