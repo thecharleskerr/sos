@@ -19,12 +19,13 @@ sources:
   - { name: "Talkmobile, Price rises", url: "https://talkmobile.co.uk/price-rises", checked: 2026-09-04 }
   - { name: "Simp, Students", url: "https://simpmobile.com/students", checked: 2026-09-02 }
   - { name: "Ecotalk, Terms and conditions", url: "https://www.ecotalk.co.uk/terms-and-conditions", checked: 2026-09-04 }
+  - { name: "EE, Guide to your bill: about annual price changes", url: "https://ee.co.uk/help/billing-payments/guide-to-bill/about-annual-prices-changes", checked: 2026-09-04 }
   - { name: "Ofcom, Ofcom bans mid-contract price rises linked to inflation", url: "https://www.ofcom.org.uk/phones-and-broadband/bills-and-charges/ofcom-bans-mid-contract-price-rises-linked-to-inflation", checked: 2026-09-02 }
   - { name: "Ofcom, Switching mobile phone provider", url: "https://www.ofcom.org.uk/phones-and-broadband/switching-provider/switching-mobile-phone-provider", checked: 2026-09-02 }
   - { name: "Ofcom, General Condition C7, switching", url: "https://www.ofcom.org.uk/siteassets/resources/documents/phones-telecoms-and-internet/information-for-industry/general-authorisation-regime/unofficial-consolidated-general-condition-extract-c7---switching", checked: 2026-09-02 }
 faq:
-  - { q: "Will UK mobile networks raise prices in April 2027?", a: "Several have said so already. O2 and Vodafone state a £2.50 a month rise each April, Three's rise is £1.80 to £2.30 depending on plan size, and EE's £2.50 rise lands a few days earlier, on 31 March. SMARTY, giffgaff, iD Mobile, Lebara, Talkmobile, Simp and Ecotalk state no mid-contract rise at all." }
-  - { q: "Why does EE's price rise land on 31 March and not April?", a: "EE's own terms, in force from 7 August 2025, state the monthly plan price for pay monthly and SIM only plans increases by £2.50 on 31 March each year, a few days ahead of the April date other networks use. EE is shown here for its published policy only, since this site does not carry EE as an affiliate deal." }
+  - { q: "Will UK mobile networks raise prices in April 2027?", a: "Several have said so already. O2 and Vodafone state a £2.50 a month rise each April, Three's rise is £1.80 to £2.30 depending on plan size, and EE's £2.50 rise lands a day earlier, on 31 March. SMARTY, giffgaff, iD Mobile, Lebara, Talkmobile, Simp and Ecotalk state no mid-contract rise at all." }
+  - { q: "Why does EE's price rise land on 31 March and not April?", a: "EE's own terms, in force from 7 August 2025, state the monthly plan price for pay monthly and SIM only plans increases by £2.50 on 31 March each year, a day ahead of the 1 April date other networks use. EE is shown here for its published policy only, since this site does not carry EE as an affiliate deal." }
   - { q: "How much extra will Three's price rise add to my bill?", a: "It depends on your plan's data allowance. Three states £1.80 a month on plans of 4GB or less, £1.90 a month on plans from 5GB to 99GB, and £2.30 a month on plans of 100GB or more, for customers who joined or upgraded on or after 9 November 2025." }
   - { q: "Which UK networks say they will not raise prices?", a: "SMARTY, giffgaff, iD Mobile, Lebara, Talkmobile, Simp and Ecotalk each state no mid-contract price rise on their own pages. iD Mobile's promise covers SIM only plans specifically, with its fixed rise applying only to handset plans instead." }
   - { q: "How do I switch before my network's April 2027 rise lands?", a: "Text PAC to 65075 to request a code that keeps your number, which Ofcom says is valid for 30 days and should normally have you ported and ready with a new provider within one working day, with no charge for a notice period running after the switch date." }
@@ -33,11 +34,11 @@ draft: false
 
 Knowing your April 2027 price rise now, not after the first bill lands, is what lets you leave before it costs you anything. Get this wrong and you pay the rise for every month left on your contract, on top of the price you signed up for.
 
-The figures below come from each network's own pricing and terms pages, not from a comparison site, and each one carries the date we checked it. We recheck the deal card above every Monday, so the price and the rise it states stay current even though this table does not change week to week.
+The figures below come from each network's own pricing and terms pages, and each one carries the date we checked it. We recheck the deal card above every Monday, so the price and the rise it states stay current even though this table does not change week to week.
 
 ## What each network says it will add in April 2027
 
-Several UK networks state a mid-contract rise as a fixed amount in pounds and pence that lands on a set date each year. The table below is what each network's own pages state now for the plans it sells today. A row marked not stated is one where we found nothing on the network's own site confirming a rise or ruling one out. That is not the same as no price rise, so do not read it as good news.
+Several UK networks state a mid-contract rise as a fixed amount in pounds and pence that lands on a set date each year, a way of stating it that Ofcom has required at the point of sale since January 2025. The table below is what each network's own pages state now for the plans it sells today. A row marked not stated is one where we found nothing on the network's own site confirming a rise or ruling one out. That is not the same as no price rise, so do not read it as good news.
 
 | Network | Monthly rise | When it lands | Applies to | Checked |
 |---|---|---|---|---|
@@ -75,7 +76,7 @@ Three's rise depends on plan size, so there is no single figure. For customers j
 
 Device payments are excluded from every tier.
 
-EE's rise lands on 31 March, a few days ahead of the April date the other networks above use. EE's own terms, in force from 7 August 2025, state the monthly price for pay monthly and SIM only plans increases by £2.50 on 31 March each year, unless the plan is sold as a fixed price plan. EE is shown here for its published policy only. This site never carries EE deals in a comparison table, so there is nothing to click through to on EE above.
+EE's rise lands on 31 March, a day ahead of the 1 April date Vodafone and Three state. EE's own terms, in force from 7 August 2025, state the monthly price for pay monthly and SIM only plans increases by £2.50 on 31 March each year. The rise does not apply if the plan is sold as a fixed price plan. EE is shown here for its published policy only. This site never carries EE deals in a comparison table, so there is nothing to click through to on EE above.
 
 Seven networks state the opposite. SMARTY says its plans are not linked to CPI inflation and will not increase each April. giffgaff says there are no mid-contract price rises on its 18 month contracts. Lebara says it has not raised its prices since 2020. Talkmobile and Ecotalk each carry a page stating no annual price rises outright. iD Mobile's no-rise promise covers SIM only plans, with its fixed rise landing only on handset plans instead. Simp states there is no contract and no mid-contract price rise.
 
@@ -86,7 +87,7 @@ Seven networks state the opposite. SMARTY says its plans are not linked to CPI i
 3. If your network's row says not stated, treat that as unresolved, not safe. Check your own contract for the figure rather than assuming there is none.
 4. If your network states a fixed rise, work out what it adds using the worked example below, then compare that total against a no price rise network's plan.
 5. If you want to move, request a PAC or STAC now. Ofcom's switching rules mean the switch does not have to wait until your rise actually lands.
-6. Pick a plan on a network the table shows as no price rise before the date in step two arrives.
+6. [See no price rise deals](/deals/no-price-rise/) and pick a plan before the date in step two arrives.
 
 ## Will the April 2027 rise apply to my own contract?
 
@@ -96,7 +97,7 @@ O2 and Vodafone state their rises without naming a cohort start date, so their �
 
 ## How much would a rise like this actually cost you?
 
-As a worked example only, not a real deal price: a plan costing £20 a month before any rise, on a network stating a £2.50 monthly rise, becomes £22.50 a month once the rise lands. Over the following 12 months, that is an extra £30 on top of what you were quoted, and it keeps adding up for however many months remain on the contract after the rise date. The same arithmetic works for any figure: multiply the monthly rise by the months left, then add that to the total contract cost, not just the first month's price.
+Multiply the monthly rise by the months left on your contract, then add that to the total contract cost the card above already shows. EE's own guide to your bill gives a worked example worth borrowing, even though EE deals never appear as a clickable pick on this site. It states that a SIM only plan taken out at £25 a month on a 24 month contract rises to £27.50 a month from 31 March 2026, then to £30 a month from 31 March 2027. That is not a price this site sells. It simply shows how a fixed monthly rise, however small it looks on the card, adds up once you count every month left on the contract.
 
 This is why the deal card above states the total contract cost and the price rise as separate lines, rather than folding the rise into one monthly figure.
 
