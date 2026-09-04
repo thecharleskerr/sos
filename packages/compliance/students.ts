@@ -174,7 +174,10 @@ export const studentOffers: Record<string, StudentOffer> = {
    * landing page that points students at the ordinary plans with no
    * student price, and the UNiDAYS unlimited offer ran 14 June 2023 to
    * 11 December 2024 and has ended. That is evidence of no current offer,
-   * but no page says so outright, so the entry stays null.
+   * but no page says so outright, so the entry stays null. A second
+   * agent the same day found the same: the page markets the standard
+   * £20 unlimited plan and the UNiDAYS offer ran 14 June 2023 to
+   * 11 December 2024.
    */
   smarty: {
     network: 'smarty', hasOffer: null, offer: null, discountPercent: null, priceGBP: null, via: null, simOnly: null,
@@ -270,8 +273,9 @@ export const studentOffers: Record<string, StudentOffer> = {
    */
   /* Tesco Mobile
    * NOT VERIFIED. 2026-09-04, one agent: no student page found, only
-   * Clubcard Prices and the colleague discount. Absence from the index is
-   * not a statement, so null.
+   * Clubcard Prices and the colleague discount. A second agent the same
+   * day found the same two routes and nothing else. Absence from the
+   * index is not a statement, so null.
    */
   tesco: {
     network: 'tesco', hasOffer: null, offer: null, discountPercent: null, priceGBP: null, via: null, simOnly: null,
@@ -307,7 +311,9 @@ export const studentOffers: Record<string, StudentOffer> = {
    * Lead:    https://sky.com/students
    * 2026-09-04: Sky's own help forum carries "Sky does not offer student
    * discounts for students", a community answer rather than a Sky page,
-   * so still null. Lead: https://helpforum.sky.com/t5/Sky-Mobile/Student-discount/td-p/5332484
+   * so still null. A second agent found the same forum threads ("Sky
+   * offer no such discounts for students") and no marketing or terms
+   * page. Lead: https://helpforum.sky.com/t5/Sky-Mobile/Student-discount/td-p/5332484
    */
   sky: {
     network: 'sky', hasOffer: null, offer: null, discountPercent: null, priceGBP: null, via: null, simOnly: null,
