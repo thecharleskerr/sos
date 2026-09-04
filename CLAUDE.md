@@ -71,9 +71,13 @@ than asking in chat when a task needs a value only the owner has.
 
 ## Still to build
 
-- packages/compliance/price-rises.ts  Eight networks verified (O2, Vodafone,
-  Three, SMARTY, giffgaff, iD Mobile SIM only, Lebara, Simp). EE conflicts,
-  the rest are unresearched. Fill an entry with a source and its deals
-  release themselves.
-- packages/compliance/phones.ts  Six phones with a maker's price; the top
-  ten list needs the rest, and Google's UK prices, from the makers' pages.
+- packages/compliance/price-rises.ts  Eleven networks verified (O2,
+  Vodafone, Three, EE, SMARTY, giffgaff, iD Mobile SIM only, Lebara, Simp,
+  Talkmobile, Ecotalk). The rest carry a lead in the comment beside the
+  entry and wait for the second check listed in docs/TODO.md. Fill an
+  entry with a source and its deals release themselves.
+- packages/compliance/phones.ts  Twelve phones with a maker's price. The
+  Pixel 10 family, Pixel 9a, Galaxy Z Flip7 FE and the Galaxy A series need
+  prices from the makers' pages.
+- Coverage and outage guides, one per host network, once a live read of the
+  checker and status pages is possible.
