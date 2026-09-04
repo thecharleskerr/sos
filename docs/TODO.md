@@ -79,37 +79,49 @@ Tick an item by deleting it. Keep this file short.
       from the proposed deals and confirm they land on the network's plan
       page. The daily integrity job follows them from then on.
 
-## Research that needs a fresh search budget
+## Research that needs a direct page read
 
-The compliance tables are filled by search agents that read the networks'
-own pages, and this session's search allowance ran out before the second,
-independent check could run. The briefs are written and saved; a session
-with search available (start a new one, or raise
-`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`) can run them as they stand.
-Each fills a table entry, and a filled price rise entry releases that
-network's feed deals into the next weekly pull request.
+The compliance tables are filled by search agents reading the networks'
+own pages, with a second agent checking each figure independently. Search
+only returns snippets, so a few pages defeat it: ones that render the
+figure by script, and ones whose wording conflicts with another page on
+the same site. Each item below needs someone to open the page and read
+it. The entry's comment in the table names the page and the quote found.
 
-- [ ] **Price rises, second check.** VOXI, Tesco Mobile, Sky Mobile, Asda
-      Mobile, Lycamobile, 1pMobile, spusu, Mozillion, Honest Mobile, Your
-      Co-op Mobile, Utility Warehouse, Revolut, BT Mobile. The first round's
-      findings and quotes sit as comments beside each `unverified` entry in
-      `packages/compliance/price-rises.ts`, so a direct read of the page
-      named there is enough to flip the entry.
-- [ ] **EE fixed price plans.** EE's terms from 7 August 2025 give £2.50 a
-      month on 31 March for plans not on a fixed price. Confirm what EE
-      calls its fixed price plans and whether the handset airtime rise is
-      the same figure.
-- [ ] **Phones.** Google Pixel 10 family, Pixel 10a, Pixel 9a, Galaxy Z
-      Flip7 FE and the Galaxy A series (A56, A36, A26, A17) have no
-      verified UK price yet. Samsung's and Google's stated years of
-      software updates are also unrecorded. iPhone 16e's status (still sold
-      or replaced by the 17e) is unsettled.
-- [ ] **eSIM and perks** for Ecotalk, Utility Warehouse, Revolut, iD
-      Mobile (perks), Lebara (perks), Simp (perks), and a second check on
-      the small networks entered from one agent's findings.
-- [ ] **Student offers** for Talkmobile, 1pMobile, spusu and Your Co-op
-      Mobile, and the actual Lebara student price (its page is rendered by
-      script and the search index has only the title).
+- [ ] **Price rise labelling for rolling plans with a notice clause.**
+      spusu and Revolut Mobile state no scheduled rise but reserve the
+      right to change prices on one month's notice with a free exit. The
+      table only knows "fixed", "none" or unverified, and hard rule 2 only
+      allows a pounds figure or "No price rise" on a card. Decide whether
+      such plans should show "No price rise" (as SMARTY, 1pMobile and
+      Ecotalk's rolling plans already do on the strength of their own
+      promises) or a new wording, then add the type if needed. Until then
+      their deals stay held.
+- [ ] **Your Co-op Mobile.** Its live pricing page states a CPI plus 3.9%
+      rise each 1 March, which Ofcom banned in new contracts from January
+      2025 and which cannot be printed in pounds. Read the page and the
+      current SIM only terms to see whether it still applies to plans sold
+      now. Held until then.
+- [ ] **Sky Mobile.** The contract says prices may increase during the
+      minimum term unless a fixed price was agreed, and the clearest copy
+      found was a 2019 PDF. Read the current Sky Mobile contract.
+- [ ] **Tesco Mobile.** The rise is set per customer at the point of sale
+      for non Clubcard Price deals, so a feed row cannot carry it. Decide
+      whether to list only Clubcard Price deals (frozen for the term) if
+      the feed can identify them.
+- [ ] **Lycamobile, January 2027.** Its no price rise page is unconditional,
+      but a 2023 post framed the pay monthly freeze as running "until at
+      least 2026". Re-check the page in January 2027.
+- [ ] **Phone prices.** The Pixel 10, 10 Pro, 10 Pro XL, 10 Pro Fold, 10a,
+      the Pixel 11, 11 Pro and 11 Pro XL, the Pixel 9a (one snippet said
+      £499 for 128GB), the Galaxy Z Flip7 FE and the Galaxy A56, A36 and
+      A26 are all on sale in the UK with no verified price. Open each store
+      page, read the price and base storage, and fill the entry. Google's
+      update commitment page returned conflicting snippets (five against
+      seven years), so read that too. iPhone 16e's status (still sold, or
+      replaced by the 17e) needs the live buy page.
+- [ ] **Lebara student offer.** The page exists but is script rendered;
+      read it for the price and the claim route.
 - [ ] **Coverage and outage guides.** One per host network (O2, Vodafone,
       Three, EE): the coverage checker URL, the status page URL and the
       complaint route need a live read before the guides are written.

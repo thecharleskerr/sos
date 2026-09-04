@@ -71,13 +71,16 @@ than asking in chat when a task needs a value only the owner has.
 
 ## Still to build
 
-- packages/compliance/price-rises.ts  Eleven networks verified (O2,
-  Vodafone, Three, EE, SMARTY, giffgaff, iD Mobile SIM only, Lebara, Simp,
-  Talkmobile, Ecotalk). The rest carry a lead in the comment beside the
-  entry and wait for the second check listed in docs/TODO.md. Fill an
-  entry with a source and its deals release themselves.
-- packages/compliance/phones.ts  Twelve phones with a maker's price. The
-  Pixel 10 family, Pixel 9a, Galaxy Z Flip7 FE and the Galaxy A series need
-  prices from the makers' pages.
+- packages/compliance/price-rises.ts  Sixteen networks verified by two
+  independent agents. Tesco Mobile (rise set per customer at the point of
+  sale), Sky Mobile (may increase unless a fixed price was agreed), VOXI
+  (nothing published) and Your Co-op (an inflation linked clause) cannot be
+  printed in pounds and stay held. spusu and Revolut carry a one month
+  notice clause on rolling plans, which the table has no type for; that
+  labelling question is the owner's, in docs/TODO.md.
+- packages/compliance/phones.ts  Fourteen phones with a maker's price. The
+  Pixel 10 and 11 families, Pixel 9a, Galaxy Z Flip7 FE and Galaxy A56, A36
+  and A26 are listed without one because their store pages render the
+  price by script; each needs a direct page read.
 - Coverage and outage guides, one per host network, once a live read of the
   checker and status pages is possible.
