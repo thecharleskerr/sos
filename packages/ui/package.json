@@ -11,7 +11,8 @@
     "./contrast": "./contrast.js",
     "./post-schema": "./post-schema.js",
     "./posts": "./posts.js",
-    "./site": "./site.js"
+    "./site": "./site.js",
+    "./network-facts": "./network-facts.js"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0"

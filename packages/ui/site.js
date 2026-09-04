@@ -69,7 +69,7 @@ export const robotsTxt = (site) => `User-agent: *\nAllow: /\n\nSitemap: ${site.u
 
 /* llms.txt: what an AI assistant should know about the site, in Markdown,
    so an answer engine quotes verified pages rather than guessing. */
-export function llmsTxt(site, posts = [], { networks = [], categories = [] } = {}) {
+export function llmsTxt(site, posts = [], { networks = [], categories = [], compares = [] } = {}) {
   const lines = [
     `# ${site.name}`,
     '',
@@ -90,7 +90,8 @@ export function llmsTxt(site, posts = [], { networks = [], categories = [] } = {
   if (networks.length) {
     lines.push('## Networks, one page each with roaming, price rise and student offer from the network\'s own pages', '');
     for (const n of networks) lines.push(`- [${n.name}](${site.url}/networks/${n.key}/)`);
-    lines.push('', '## Verified tables as JSON', '', `- ${site.url}/data/roaming.json`, `- ${site.url}/data/price-rises.json`, `- ${site.url}/data/students.json`, `- ${site.url}/data/networks.json`, '', 'Every entry carries the source URL and the date it was checked. Unverified entries are null rather than guessed.', '');
+    if (compares.length) { lines.push('', '## Head to head comparisons', ''); for (const c of compares) lines.push(`- [${c.title}](${site.url}/compare/${c.slug}/)`); }
+    lines.push('', '## Verified tables as JSON', '', `- ${site.url}/data/roaming.json`, `- ${site.url}/data/price-rises.json`, `- ${site.url}/data/students.json`, `- ${site.url}/data/esim.json`, `- ${site.url}/data/perks.json`, `- ${site.url}/data/networks.json`, '', 'Every entry carries the source URL and the date it was checked. Unverified entries are null rather than guessed.', '');
   }
   if (posts.length) {
     lines.push('## Guides', '');

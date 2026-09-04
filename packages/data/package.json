@@ -7,7 +7,8 @@
     "./schema": "./schema.js",
     "./ingest/normalise": "./ingest/normalise.mjs",
     "./rules/picks": "./rules/picks.mjs",
-    "./rules/categories": "./rules/categories.js"
+    "./rules/categories": "./rules/categories.js",
+    "./rules/compare": "./rules/compare.js"
   },
   "dependencies": {
     "@sos/compliance": "*",
