@@ -27,11 +27,14 @@ sources:
   - { name: "GOV.UK, price transparency guidance", url: "https://www.gov.uk/government/publications/price-transparency-cma209/providing-clear-and-accurate-information-about-prices-summary", checked: 2026-09-02 }
   - { name: "GOV.UK, unfair commercial practices under the DMCC Act 2024", url: "https://www.gov.uk/government/publications/unfair-commercial-practices-cma207/unfair-commercial-practices", checked: 2026-09-02 }
   - { name: "Apple, trade in terms", url: "https://www.apple.com/uk/legal/sales-support/trade-in/uk/", checked: 2026-09-02 }
+  - { name: "Apple, shop trade in page", url: "https://www.apple.com/uk/shop/trade-in", checked: 2026-09-02 }
+  - { name: "Apple Support, trade in preparation", url: "https://support.apple.com/en-gb/102914", checked: 2026-09-02 }
   - { name: "Samsung, trade in FAQ", url: "https://www.samsung.com/uk/shop-faq/payment-and-financing/how-does-trade-in-work/", checked: 2026-09-02 }
   - { name: "Samsung Credits, trade in terms", url: "https://images.samsung.com/is/content/samsung/assets/uk/samsung-credits/terms/Trade_In_Samsung_Credits_Terms_Samsung_Shop_24_06_25.pdf", checked: 2026-09-02 }
   - { name: "Google Store, trade in support", url: "https://support.google.com/store/answer/13982093?hl=en-GB&co=GENIE.CountryCode%3DGB", checked: 2026-09-02 }
   - { name: "Google Store, device trade in", url: "https://store.google.com/intl/en_uk/about/device-trade-in/", checked: 2026-09-02 }
   - { name: "Vodafone, trade in terms", url: "https://tradein.vodafone.co.uk/terms", checked: 2026-09-02 }
+  - { name: "Vodafone Support, trade in or recycle your old device", url: "https://support.vodafone.co.uk/Getting-started-and-upgrading/Trade-in-or-recycle-your-old-device/38904786/What-is-Vodafone-Trade-In-and-how-do-I-get-it.htm", checked: 2026-09-02 }
   - { name: "O2, recycle your phone guide", url: "https://www.o2.co.uk/guides/how-to-recycle-your-phone", checked: 2026-09-02 }
 faq:
   - q: "When is Black Friday 2026?"
@@ -70,7 +73,7 @@ Apple's own UK store lists the iPhone 17 from £799. Samsung's UK store lists th
 
 ## Does the price rise part way through the contract?
 
-From 17 January 2025, Ofcom banned inflation linked or percentage based price rise terms in new contracts. Any rise a provider does charge must now be set out in pounds and pence, prominently and transparently, at the point of sale. So every verified figure below is a real amount, not an estimate. Check the network on the deal card above against this table before you complete step two.
+It depends on the network. From 17 January 2025, Ofcom banned inflation linked or percentage based price rise terms in new contracts, so any rise a provider does charge must now be set out in pounds and pence, prominently and transparently, at the point of sale. Every verified figure below is a real amount, not an estimate. Check the network on the deal card above against this table before you complete step two.
 
 | Network | Monthly rise | When it lands | What it covers |
 |---|---|---|---|
@@ -94,11 +97,11 @@ We cannot tell you what any retailer will do this Black Friday, and we will not 
 
 ## Could a Black Friday deal have a hidden cost?
 
-Under the Digital Markets, Competition and Consumers Act 2024, GOV.UK's guidance says it is illegal to hide additional fees, taxes or other charges until later in the purchase process. This is sometimes called drip pricing. The same guidance says mandatory charges should be included in the headline price, and a charge counts as mandatory if you have to pay it to buy the product at all. That is why a price on a card on this site is the full monthly cost and the full contract total. The mid-contract rise is shown separately in pounds and pence, never folded into a headline figure and never sprung on you at checkout. We do not run countdown clocks or claim limited stock. We recheck prices every Monday, and would rather tell you a number is a week old than pretend it is about to disappear. Our [how much should you pay for a phone contract](/blog/how-much-should-you-pay-for-a-phone-contract/) guide has more on how the device and airtime parts of a bill are split.
+Not lawfully, and not on this site. Under the Digital Markets, Competition and Consumers Act 2024, GOV.UK's guidance says it is illegal to hide additional fees, taxes or other charges until later in the purchase process, sometimes called drip pricing. The same guidance says mandatory charges should be included in the headline price, and a charge counts as mandatory if you have to pay it to buy the product at all. That is why a price on a card on this site is the full monthly cost and the full contract total. The mid-contract rise is shown separately in pounds and pence, never folded into a headline figure and never sprung on you at checkout. We do not run countdown clocks or claim limited stock. We recheck prices every Monday, and would rather tell you a number is a week old than pretend it is about to disappear. Our [how much should you pay for a phone contract](/blog/how-much-should-you-pay-for-a-phone-contract/) guide has more on how the device and airtime parts of a bill are split.
 
 ## What should I check before I trade in my old phone?
 
-A trade-in lowers both sides of the sum, the contract route and the outright plus SIM only route, so it does not change which one wins. It does change how much both cost, so get a written quote before Black Friday, not after. No maker or network we checked publishes an average trade-in value for a phone model, so treat any figure you are quoted as the number for your device, not a typical one.
+Get a written quote before Black Friday, not after. A trade-in lowers both sides of the sum, the contract route and the outright plus SIM only route, so it does not change which one wins. It does change how much both cost. No maker or network we checked publishes an average trade-in value for a phone model, so treat any figure you are quoted as the number for your device, not a typical one.
 
 Check the quote's shelf life first. Apple's trade-in estimate is valid for 14 days after you receive your new device, and Apple must receive your old phone within 14 days too. Vodafone's quote is guaranteed for 7 days from the date it is given, and the old phone must be returned within 14 days. Samsung's Credits route holds a quote for 7 days, and the device must reach its inspection partner within 14 days of you receiving the returns packaging.
 
