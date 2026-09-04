@@ -33,27 +33,27 @@ faq:
 draft: false
 ---
 
-Pick the wrong shape of mobile plan and you either pay a rate for every call and megabyte, or you sign into a price rise you agreed to before you saw a bill. Pay as you go, pay as you go bundles and SIM only contracts of 1, 12 or 24 months are three different products, and choosing on habit rather than on your own usage costs you money every month you get it wrong.
+Pick the wrong shape of mobile plan and you pay a rate for every call and megabyte. Or you sign into a price rise you agreed to before you saw a bill. Pay as you go, pay as you go bundles and SIM only contracts are three different products. SIM only runs for 1, 12 or 24 months. Choose on habit rather than on your own usage and it costs you money every month you get it wrong.
 
-Every figure below comes from a network's own pages, checked between 1 and 4 September 2026. This site rechecks its SIM only picks every Monday, so the cards above stay current while you work out which shape suits you. Working it out takes about ten minutes.
+Every figure below comes from a network's own pages, checked between 1 and 4 September 2026. This site rechecks its SIM only picks every Monday. The cards above stay current while you work out which shape suits you. Working it out takes about ten minutes.
 
 ## Pay as you go, PAYG bundles and SIM only are three different shapes
 
-Classic pay as you go means buying credit and being charged a rate each time you call, text or use data, with no bundle and no monthly commitment. We hold no verified per minute or per megabyte rate for any network for this guide, so that figure is not stated here. Check your own network's current pricing page before you top up.
+Classic pay as you go means buying credit. You are charged a rate each time you call, text or use data, with no bundle and no monthly commitment. We hold no verified per minute or per megabyte rate for any network for this guide. That figure is not stated here. Check your own network's current pricing page before you top up.
 
-A pay as you go bundle still runs on credit, but you spend some of it on a set amount of data, minutes and texts that lasts a fixed period, rather than paying per use. It renews only when you choose to buy another one, so a quiet month costs nothing extra and a heavy month means buying a second bundle.
+A pay as you go bundle still runs on credit. You spend it on a set amount of data, minutes and texts, valid for a fixed period. You do not pay per use within that time. It renews only when you choose to buy another one. A quiet month costs nothing extra. A heavy month means buying a second bundle.
 
-SIM only contracts commit you for a term the network states, either 1 month, which then rolls until you cancel, or 12 or 24 months, running to a fixed end date. Three's own eSIM page confirms it sells 30 day, 12 month and 24 month contracts on SIM only, with no price difference for choosing eSIM over a physical SIM. giffgaff's own page refers to an 18 month mobile contract as well as monthly goodybags that roll month to month, so even the exact term varies by network.
+SIM only contracts commit you for a term the network states. That term is either 1 month, which rolls until you cancel. Or it is 12 or 24 months, running to a fixed end date. Three's own eSIM page confirms it sells 30 day, 12 month and 24 month contracts on SIM only. There is no price difference for choosing eSIM over a physical SIM. giffgaff's own page refers to an 18 month mobile contract, as well as monthly goodybags that roll month to month. Even the exact term varies by network.
 
 ## Which shape suits how you use your phone
 
-Pay as you go, either classic credit or a bundle, suits very light or occasional use: a second phone, a device kept for travel, or a month where you barely touch it. You are not paying for a plan that sits unused.
+Pay as you go, either classic credit or a bundle, suits very light or occasional use. Think a second phone, a device kept for travel, or a month where you barely touch it. You are not paying for a plan that sits unused.
 
-Once your usage is steady and runs to a few gigabytes or more every month, a rolling 30 day SIM only plan from a network stating no mid-contract price rise usually beats pay as you go. You stop paying a per-use rate for calls, texts and data, and a rolling plan lets you leave the moment your usage changes, since there is no fixed term to run out. A 12 or 24 month SIM only contract can still be worth it if the deal is cheap enough over its full term, but it carries a stated price rise on several networks, which pay as you go and a rolling plan do not.
+Your usage might be steady and run to a few gigabytes or more every month. If so, a rolling 30 day SIM only plan usually beats pay as you go. Pick one from a network with no stated mid-contract price rise. You stop paying a per-use rate for calls, texts and data. A rolling plan lets you leave the moment your usage changes, since there is no fixed term to run out. A 12 or 24 month SIM only contract can still be worth it, if the deal is cheap enough over its full term. It carries a stated price rise on several networks. Pay as you go and a rolling plan do not.
 
 ## What a stated price rise adds to a fixed term SIM only plan
 
-A mid-contract price rise sits inside the total cost of a fixed term SIM only plan. It does not apply the same way to pay as you go or to a rolling plan, since neither carries a minimum term for a rise to attach to. The table below is built from the networks with a figure verified on their own pages, checked between 1 and 4 September 2026.
+A mid-contract price rise sits inside the total cost of a fixed term SIM only plan. It does not apply the same way to pay as you go or to a rolling plan. Neither carries a minimum term for a rise to attach to. The table below covers the networks with a figure verified on their own pages. Each was checked between 1 and 4 September 2026.
 
 | Network | Applies to | Price rise | When |
 |---|---|---|---|
@@ -69,29 +69,29 @@ A mid-contract price rise sits inside the total cost of a fixed term SIM only pl
 | Talkmobile | All plans | No price rise | Not applicable |
 | Ecotalk | All plans, which roll monthly | No price rise | Not applicable |
 
-Every other network we checked, including VOXI, Tesco Mobile and Sky Mobile, has no figure confirmed either way on its own pages, so it is not stated. [Our guide to mid-contract price rises](/blog/mid-contract-price-rises-explained/) covers every network we have checked in full, including how a rise interacts with the device part of a phone contract.
+EE is shown here for its stated policy only. We do not carry EE deals in an automated comparison table. Nothing above is something you can click through to on this site. Every other network we checked, including VOXI, Tesco Mobile and Sky Mobile, has no figure confirmed on its own pages. That is not stated here. [Our guide to mid-contract price rises](/blog/mid-contract-price-rises-explained/) covers every network we have checked in full. It includes how a rise interacts with the device part of a phone contract.
 
 ## Here is exactly what to do
 
 1. Pull your last three months of usage from your network's app or bill, not a guess.
 2. Decide whether that usage is steady each month or only occasional.
 3. If it is occasional or very light, price up classic pay as you go credit or a small bundle first.
-4. If it is steady and runs to a few gigabytes or more, compare that against the cheapest pick above over three months, not one.
-5. Check the price rise line before you commit. A network with no stated rise protects a rolling plan from cost creep each March or April, a fixed rise does not.
+4. If it is steady and runs to a few gigabytes or more, compare that against the cheapest pick above. Use three months of cost, not one.
+5. Check the price rise line before you commit. A network with no stated rise protects a rolling plan from cost creep each March or April. A fixed rise does not.
 6. If you are switching provider, keep your number. [Our switching guide](/blog/how-to-switch-mobile-network-and-keep-your-number/) sets out the steps.
 
 ## Isn't pay as you go always cheaper if I barely use my phone?
 
-Usually, yes, and this is the one case where pay as you go beats every SIM only shape. If you make a handful of calls a month and rarely open data, you pay only for what you use rather than committing to a monthly plan you will not fill. Once usage climbs to a few gigabytes a month on a fairly steady basis, that advantage disappears. A rolling SIM only plan from a no-rise network costs a fixed amount you already know, and you can still cancel it the moment your usage drops again.
+Usually, yes. This is the one case where pay as you go beats every SIM only shape. If you make a handful of calls a month and rarely open data, you pay only for what you use. You are not committing to a monthly plan you will not fill. Once usage climbs to a few gigabytes a month on a fairly steady basis, that advantage disappears. A rolling SIM only plan from a no-rise network costs a fixed amount you already know. You can still cancel it the moment your usage drops again.
 
 ## Will a 12 or 24 month SIM only contract tie me in?
 
-Yes, for the length of the term you agree to, and that is the trade for a fixed price locked in now. O2's own pricing page and Vodafone's own price changes page both state a £2.50 a month rise landing every April on plans that include SIM only, and Three states a rise of £1.80 to £2.30 a month, by data allowance, for anyone joining or upgrading from 9 November 2025. If you are not certain you want to commit that long, see the short contract pick above, or take a 30 day rolling plan instead, where you are free to leave whenever your usage or your mind changes.
+Yes, for the length of the term you agree to. That is the trade for a fixed price locked in now. O2's own pricing page states a £2.50 a month rise landing every April on plans that include SIM only. Vodafone's own price changes page states the same £2.50 a month rise, landing on 1 April. Three states a rise of £1.80 to £2.30 a month, by data allowance. This applies to anyone joining or upgrading from 9 November 2025. If you are not certain you want to commit that long, see the short contract pick above. Or take a 30 day rolling plan instead. You are free to leave whenever your usage or your mind changes.
 
 ## Do I lose roaming if I switch from pay as you go to SIM only?
 
-On the one network that states it, no. Lycamobile's own roaming page says all its current pay as you go and pay monthly plans come with EU roaming included as standard, so that network draws no distinction between the two. We hold no verified figure either way for most other networks on this specific point, so check the roaming line on the deal card itself. [Our guide to the best SIM only deal for EU roaming](/blog/best-sim-only-deal-for-eu-roaming/) covers what each network's own pages currently state.
+On the one network that states it, no. Lycamobile's own roaming page says all its current pay as you go and pay monthly plans come with EU roaming included as standard. That network draws no distinction between the two. We hold no verified figure either way for most other networks on this specific point. Check the roaming line on the deal card itself. [Our guide to the best SIM only deal for EU roaming](/blog/best-sim-only-deal-for-eu-roaming/) covers what each network's own pages currently state.
 
 ## What to do now
 
-Work out your last three months of usage, then match it against the shape above rather than the one you have always used. If it is steady and runs to a few gigabytes or more, [see this week's cheapest SIM only pick](/), re-checked every Monday, with the price rise already shown in pounds and pence or as No price rise. If you are still locked into a fixed contract and want out before you switch, our sister site's guide on [getting out of a phone contract early](https://saveonsmartphones.co.uk/blog/how-to-get-out-of-a-phone-contract-early/) explains your rights first.
+Work out your last three months of usage. Match it against the shape above, rather than the one you have always used. If it is steady and runs to a few gigabytes or more, [see this week's cheapest SIM only pick](/). It is re-checked every Monday, with the price rise already shown in pounds and pence or as No price rise. If you are still locked into a fixed contract and want out before you switch, our sister site has a guide. [Getting out of a phone contract early](https://saveonsmartphones.co.uk/blog/how-to-get-out-of-a-phone-contract-early/) explains your rights first.
