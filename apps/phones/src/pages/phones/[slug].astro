@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import GuideLink from '@sos/ui/components/GuideLink.astro';
 import DealCard from '@sos/ui/components/DealCard.astro';
 import { gbp } from '@sos/ui/money';
 import { getSite } from '@sos/ui/site';
@@ -62,7 +63,7 @@ const description = `${ph.name}: ${ph.rrpGBP !== null ? `${gbp(ph.rrpGBP)} from 
       <h2>Software updates</h2>
       <p>{updatesLine}</p>
       <h2>Contract or outright?</h2>
-      <p>Add the monthly price times the months to the upfront cost. Compare that with the maker's price plus a SIM only plan for the same months. Check the mid-contract price rise in pounds and pence on the contract, which the outright route does not carry. <a href="/blog/how-much-should-you-pay-for-a-phone-contract/">How much a contract should cost</a> and <a href="/blog/phone-trade-in-uk-what-is-your-old-phone-worth/">what your old phone is worth</a> finish the sum.</p>
+      <p>Add the monthly price times the months to the upfront cost. Compare that with the maker's price plus a SIM only plan for the same months. Check the mid-contract price rise in pounds and pence on the contract, which the outright route does not carry. <GuideLink id="how-much-should-you-pay-for-a-phone-contract">How much a contract should cost.</GuideLink> <GuideLink id="phone-trade-in-uk-what-is-your-old-phone-worth">What your old phone is worth.</GuideLink></p>
     </section>
 
     <section class="faq" aria-labelledby="faq-heading">

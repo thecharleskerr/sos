@@ -1,0 +1,11 @@
+---
+/* A link to a guide that only renders once the guide is published. Posts
+   carry a publish date and the production build leaves out the ones still
+   to come, so a fixed link would 404 until its date. The sentence around
+   the link must stand on its own without it. */
+import { getCollection } from 'astro:content';
+import { live } from '../posts.js';
+const { id } = Astro.props;
+const ok = live(await getCollection('posts')).some((p) => p.id === id);
+---
+{ok && <a href={`/blog/${id}/`}><slot /></a>}

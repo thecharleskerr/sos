@@ -13,7 +13,7 @@ const rows = Object.entries(networks).map(([key, net]) => ({
   student: studentOffers[key]?.hasOffer === true ? 'Yes' : 'None found',
 }));
 ---
-<Base title="Every UK mobile network compared | Save on Sims" description="All 25 UK mobile networks and brands we track: which network each runs on, whether EU roaming is included, what the mid-contract price rise is, and who has a student offer.">
+<Base crumbs={[{ name: 'Networks', path: '/networks/' }]} title="Every UK mobile network compared | Save on Sims" description="All 25 UK mobile networks and brands we track: which network each runs on, whether EU roaming is included, the mid-contract price rise, and who has a student offer.">
   <h1 class="t-h1">Every network we track</h1>
   <p class="lede">Four networks own masts. Everyone else rents one of them. Each page below holds what that brand's own pages state about roaming, price rises and student offers, with the date we checked.</p>
   <div class="scroll" tabindex="0" role="region" aria-label="Networks">

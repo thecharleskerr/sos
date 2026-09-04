@@ -5,6 +5,7 @@ import { networks } from '@sos/ui/networks';
 import { getSite } from '@sos/ui/site';
 import { liveDeals } from '@sos/ui/posts';
 import { networkFacts } from '@sos/ui/network-facts';
+import GuideLink from '@sos/ui/components/GuideLink.astro';
 import { roaming } from '@sos/compliance/roaming';
 import { priceRises } from '@sos/compliance/price-rises';
 import { studentOffers } from '@sos/compliance/students';
@@ -13,6 +14,10 @@ import { perks } from '@sos/compliance/perks';
 import { pairs, pairSlug } from '@sos/data/rules/compare';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
+
+/* Sentence case for a phrase dropped into the middle of a sentence: only
+   the first letter changes, so units, months and acronyms keep their capitals. */
+const lc = (s) => (/^[A-Z]{2}/.test(s) ? s : s.charAt(0).toLowerCase() + s.slice(1));
 
 export function getStaticPaths() {
   return pairs.map((p) => ({ params: { pair: pairSlug(p) }, props: { a: p[0], b: p[1] } }));
@@ -42,7 +47,7 @@ const differ = rows.filter((r) => r.a !== r.b && !/To confirm/.test(r.a + r.b));
 const same = rows.filter((r) => r.a === r.b && !/To confirm/.test(r.a));
 
 const faq = [
-  { q: `Is ${A.net.name} cheaper than ${B.net.name}?`, a: `It depends on the plan and the week. ${dealsA.length && dealsB.length ? `Both are in this week's checked picks, shown above with the total cost over the term.` : dealsA.length ? `${A.net.name} is in this week's picks and ${B.net.name} is not, which is about this week's deals, not the network.` : dealsB.length ? `${B.net.name} is in this week's picks and ${A.net.name} is not, which is about this week's deals, not the network.` : `Neither is in this week's picks.`} Compare the effective monthly cost, which is the total over the term divided by the months, and add the mid-contract rise: ${A.f.rise.short.toLowerCase()} for ${A.net.name}, ${B.f.rise.short.toLowerCase()} for ${B.net.name}.` },
+  { q: `Is ${A.net.name} cheaper than ${B.net.name}?`, a: `It depends on the plan and the week. ${dealsA.length && dealsB.length ? `Both are in this week's checked picks, shown above with the total cost over the term.` : dealsA.length ? `${A.net.name} is in this week's picks and ${B.net.name} is not, which is about this week's deals, not the network.` : dealsB.length ? `${B.net.name} is in this week's picks and ${A.net.name} is not, which is about this week's deals, not the network.` : `Neither is in this week's picks.`} Compare the effective monthly cost, which is the total over the term divided by the months, and add the mid-contract rise: ${lc(A.f.rise.short)} for ${A.net.name}, ${lc(B.f.rise.short)} for ${B.net.name}.` },
   { q: `Which has better EU roaming, ${A.net.name} or ${B.net.name}?`, a: `${A.net.name}: ${A.f.roaming.line} ${B.net.name}: ${B.f.roaming.line}` },
   { q: `Can I switch from ${A.net.name} to ${B.net.name} and keep my number?`, a: `Yes. Text PAC to 65075 from the ${A.net.name} SIM, give the code to ${B.net.name} when you order, and Ofcom's rules move the number within one working day. The same works the other way round.` },
   { q: `Do ${A.net.name} and ${B.net.name} use the same masts?`, a: `${A.f.host.line} ${B.f.host.line}${A.f.host.short === B.f.host.short ? ' Coverage will be the same for both, so choose on price and terms.' : ' Check both hosts on Ofcom\'s coverage checker for your postcode before choosing.'}` },
@@ -58,9 +63,9 @@ const ld = [
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
   { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url, name: `${title}: roaming, price rises, eSIM, perks and this week's deals`, dateModified: [A.f.checked, B.f.checked].filter(Boolean).sort().at(-1) ?? null, about: [{ '@type': 'Organization', name: A.net.name }, { '@type': 'Organization', name: B.net.name }] },
 ];
-const description = `${A.net.name} vs ${B.net.name} on what matters: ${A.f.host.short === B.f.host.short ? 'the same masts' : 'different masts'}, EU roaming ${A.f.roaming.short.toLowerCase()} vs ${B.f.roaming.short.toLowerCase()}, price rise ${A.f.rise.short.toLowerCase()} vs ${B.f.rise.short.toLowerCase()}, eSIM, perks and this week's deals.`.slice(0, 158);
+const description = `${A.net.name} vs ${B.net.name} on what matters: ${A.f.host.short === B.f.host.short ? 'the same masts' : 'different masts'}, EU roaming ${lc(A.f.roaming.short)} vs ${lc(B.f.roaming.short)}, price rise ${lc(A.f.rise.short)} vs ${lc(B.f.rise.short)}, eSIM, perks and this week's deals.`.slice(0, 158);
 ---
-<Base title={`${title}: roaming, price rises and deals compared | Save on Sims`} description={description}>
+<Base title={`${title} compared | Save on Sims`} description={description}>
   <article class="cmp" style={`--a: ${A.net.colour}; --a-text: ${A.net.pillText}; --b: ${B.net.colour}; --b-text: ${B.net.pillText}`}>
     <p class="crumb"><a href="/networks/">Networks</a></p>
     <h1 class="t-h1"><span class="name-a">{A.net.name}</span> vs <span class="name-b">{B.net.name}</span></h1>
@@ -92,7 +97,7 @@ const description = `${A.net.name} vs ${B.net.name} on what matters: ${A.f.host.
       {differ.length
         ? <ul>{differ.map((r) => <li><strong>{r.label}.</strong> {A.net.name}: {r.a}. {B.net.name}: {r.b}.</li>)}</ul>
         : <p class="soft">On everything we have verified, the two match. Choose on this week's price.</p>}
-      {same.length > 0 && <p class="soft">The same on {same.map((r) => r.label.toLowerCase()).join(', ')}.</p>}
+      {same.length > 0 && <p class="soft">The same on {same.map((r) => lc(r.label)).join(', ')}.</p>}
     </section>
 
     {(dealsA.length > 0 || dealsB.length > 0) && (
@@ -108,7 +113,7 @@ const description = `${A.net.name} vs ${B.net.name} on what matters: ${A.f.host.
       <p><strong>{B.net.name}.</strong> {B.f.roaming.line} <a href="/guides/eu-roaming-by-network/">All 25 networks compared.</a></p>
       <h2>Mid-contract price rise</h2>
       <p><strong>{A.net.name}.</strong> {A.f.rise.line}</p>
-      <p><strong>{B.net.name}.</strong> {B.f.rise.line} <a href="/blog/mid-contract-price-rises-explained/">How price rises work.</a></p>
+      <p><strong>{B.net.name}.</strong> {B.f.rise.line} <GuideLink id="mid-contract-price-rises-explained">How price rises work.</GuideLink></p>
       <h2>eSIM and perks</h2>
       <p><strong>{A.net.name}.</strong> {A.f.esim.line} {A.f.perks.line}</p>
       <p><strong>{B.net.name}.</strong> {B.f.esim.line} {B.f.perks.line}</p>

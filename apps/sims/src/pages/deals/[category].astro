@@ -7,6 +7,7 @@ import { getSite } from '@sos/ui/site';
 import { liveDeals } from '@sos/ui/posts';
 import { categories, categoryKeys } from '@sos/data/rules/categories';
 import { getCollection } from 'astro:content';
+import { live } from '@sos/ui/posts';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
 
@@ -20,7 +21,8 @@ const site = getSite('sims');
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const { weekOf, deals: all } = liveDeals('sims', root);
 const deals = all.filter(cat.filter).sort(cat.sort);
-const posts = await getCollection('posts');
+/* Only guides already published, so no link waits on a future date. */
+const posts = live(await getCollection('posts'));
 const guides = cat.guides.map((slug) => posts.find((p) => p.id === slug)).filter(Boolean);
 const weekLabel = weekOf ? new Date(weekOf).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' }) : null;
 

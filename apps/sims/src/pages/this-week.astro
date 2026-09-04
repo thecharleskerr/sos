@@ -20,7 +20,7 @@ const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', mon
 const name = (k) => networks[k]?.name ?? k;
 const latest = weeks[0] ?? null;
 ---
-<Base title="What changed this week | Save on Sims" description="Every Monday the SIM only deals are re-checked and the picks re-ranked. This is what came in, what went, and what moved in price this week.">
+<Base crumbs={[{ name: 'What changed this week', path: '/this-week/' }]} title="What changed this week | Save on Sims" description="Every Monday the SIM only deals are re-checked and the picks re-ranked. This is what came in, what went, and what moved in price this week.">
   <h1 class="t-h1">What changed this week{weekOf && <span class="week">Week of {fmt(weekOf)}</span>}</h1>
   <p class="lede">The deals are pulled fresh every Monday and the picks re-ranked by <a href="/how-we-pick-deals/">published rules</a>. Links are checked every morning and anything dead or moved comes down the same day.</p>
 

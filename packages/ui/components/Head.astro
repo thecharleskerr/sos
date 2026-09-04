@@ -6,7 +6,7 @@
 import '@fontsource-variable/archivo/wdth.css';
 import { getSite, settings } from '../site.js';
 
-const { site: key, title, description, type = 'website', noindex = false } = Astro.props;
+const { site: key, title, description, type = 'website', noindex = false, crumbs = [] } = Astro.props;
 const site = getSite(key);
 const cfg = settings();
 const path = Astro.url.pathname.endsWith('/') || /\.[a-z]+$/.test(Astro.url.pathname) ? Astro.url.pathname : `${Astro.url.pathname}/`;
@@ -32,6 +32,13 @@ const ld = [
     publisher: { '@id': `${site.url}/#organization` },
   },
 ];
+/* Pages that do not build their own BreadcrumbList pass crumbs, each
+   { name, path }, and the home crumb is added here. */
+if (crumbs.length) ld.push({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [{ name: site.name, path: '/' }, ...crumbs].map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: `${site.url}${c.path}` })),
+});
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
