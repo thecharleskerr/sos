@@ -63,6 +63,12 @@ rise come from packages/compliance, never from the feed, and a network with
 no verified price rise has its deals held back until someone fills the entry
 with a source.
 
+## Owner tasks
+
+docs/TODO.md lists what only the owner can do: accounts, secrets, the legal
+name, and the research that needs a fresh search budget. Add to it rather
+than asking in chat when a task needs a value only the owner has.
+
 ## Still to build
 
 - packages/compliance/price-rises.ts  Eight networks verified (O2, Vodafone,

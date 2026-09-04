@@ -36,8 +36,16 @@ Two Cloudflare Pages projects from the same repository.
 
 ## Repository secrets needed
 
-`AWIN_API_TOKEN` and `AWIN_PUBLISHER_ID`, for the weekly feed pull. Add them
-under Settings, Secrets and variables, Actions. Do not commit them.
+`AWIN_API_TOKEN` and `AWIN_PUBLISHER_ID`, for the weekly feed pull, and
+`CF_DEPLOY_HOOK_SIMS` and `CF_DEPLOY_HOOK_PHONES`, for the daily integrity
+job's redeploy. Add them under Settings, Secrets and variables, Actions. Do
+not commit them.
+
+Three optional build-time variables go in each Cloudflare Pages project's
+build environment rather than in the repository: `CF_BEACON_TOKEN` (Cloudflare
+Web Analytics), `GOOGLE_SITE_VERIFICATION` and `BING_SITE_VERIFICATION`. Each
+tag is omitted until its value exists. The full list of owner tasks, with
+where each value goes, is in [docs/TODO.md](docs/TODO.md).
 
 ## The sample data is not real
 

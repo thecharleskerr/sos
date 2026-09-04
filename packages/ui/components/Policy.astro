@@ -6,11 +6,12 @@
 
    Lines that need a fact the owner has not supplied (the legal name of the
    operator, a contact address) are omitted rather than filled with a guess. */
-import { getSite } from '../site.js';
+import { getSite, settings } from '../site.js';
 const { site: key, kind, updated } = Astro.props;
 const site = getSite(key);
 const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const who = site.legalName ?? site.name;
+const analytics = Boolean(settings().cfBeaconToken);
 ---
 <article class="policy">
   {kind === 'terms' ? (
@@ -52,7 +53,9 @@ const who = site.legalName ?? site.name;
       <p class="meta">Last updated {fmt(updated)}.</p>
 
       <h2>The short version</h2>
-      <p>This site has no accounts, no checkout and no forms, and it does not run advertising or analytics scripts. It does not ask for your name, your email address or anything else about you. The little that is processed is described below, in full.</p>
+      {analytics
+        ? <p>This site has no accounts, no checkout and no forms, and it does not run advertising. It counts page views with Cloudflare Web Analytics, which sets no cookie and does not track you across sites. It does not ask for your name, your email address or anything else about you. The little that is processed is described below, in full.</p>
+        : <p>This site has no accounts, no checkout and no forms, and it does not run advertising or analytics scripts. It does not ask for your name, your email address or anything else about you. The little that is processed is described below, in full.</p>}
 
       <h2>Who is responsible</h2>
       <p>{site.name} ({site.url}) is operated by {who} in the United Kingdom, which is the data controller for the processing described here.</p>
@@ -62,6 +65,8 @@ const who = site.legalName ?? site.name;
       <p>The site is served by a hosting provider. Like any web server, it records the IP address, the page requested, the time and the browser type for each request, in order to serve the page and to keep the service secure. Those logs are held by the provider under its own retention rules and are not used by us to identify you.</p>
       <h3>Deal links</h3>
       <p>When you choose a deal, the link may pass through an affiliate network, currently Awin, on its way to the network or retailer. The affiliate network may set a cookie on its own domain so that a purchase can be attributed to this site. We are then told that a sale happened and what the commission is. We do not receive your name, address, payment details or anything else that identifies you.</p>
+      {analytics && <><h3>Page view counts</h3>
+      <p>The site loads a small script from Cloudflare that counts page views and records the page, the referring site, the browser type and the country. Cloudflare states that it does not use cookies, local storage or fingerprinting for this, and the count is not tied to you. The figures tell us which guides people read, nothing more.</p></>}
       <h3>Cookies set by this site</h3>
       <p>None. The site does not set cookies of its own or store anything in your browser. If that ever changes, this page will say so first.</p>
 

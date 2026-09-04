@@ -52,6 +52,25 @@ export const sites = {
 
 export const getSite = (key) => sites[key];
 
+/* Build-time settings the owner supplies as environment variables rather
+   than committing: the analytics token and the search engine verification
+   codes. Each is null until set, and the head omits the tag until then, so
+   a missing value changes nothing. Set them in the Cloudflare Pages build
+   environment for each site (see docs/TODO.md). */
+const env = (name) => {
+  const v = (typeof process !== 'undefined' && process.env?.[name]) || import.meta.env?.[name] || '';
+  return v.trim() || null;
+};
+export const settings = () => ({
+  /* Cloudflare Web Analytics site token. Cookieless; the beacon script is
+     only rendered when this is set. */
+  cfBeaconToken: env('CF_BEACON_TOKEN'),
+  /* The content of the google-site-verification meta tag from Search Console. */
+  googleSiteVerification: env('GOOGLE_SITE_VERIFICATION'),
+  /* The content of the msvalidate.01 meta tag from Bing Webmaster Tools. */
+  bingSiteVerification: env('BING_SITE_VERIFICATION'),
+});
+
 /* The sitemap XML for a site, from its static pages and the live posts. */
 export function sitemapXml(site, posts = [], { today, extra = [] }) {
   const iso = (d) => new Date(d).toISOString().slice(0, 10);

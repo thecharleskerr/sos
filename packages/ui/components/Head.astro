@@ -4,10 +4,11 @@
    Organization and WebSite structured data. Pages add their own Article or
    FAQ data separately. */
 import '@fontsource-variable/archivo/wdth.css';
-import { getSite } from '../site.js';
+import { getSite, settings } from '../site.js';
 
 const { site: key, title, description, type = 'website', noindex = false } = Astro.props;
 const site = getSite(key);
+const cfg = settings();
 const path = Astro.url.pathname.endsWith('/') || /\.[a-z]+$/.test(Astro.url.pathname) ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonical = `${site.url}${path}`;
 
@@ -55,4 +56,7 @@ const ld = [
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 <link rel="alternate" type="application/rss+xml" title={`${site.name} guides`} href="/feed.xml" />
+{cfg.googleSiteVerification && <meta name="google-site-verification" content={cfg.googleSiteVerification} />}
+{cfg.bingSiteVerification && <meta name="msvalidate.01" content={cfg.bingSiteVerification} />}
 <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+{cfg.cfBeaconToken && <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: cfg.cfBeaconToken })} />}
