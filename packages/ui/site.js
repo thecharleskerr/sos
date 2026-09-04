@@ -41,6 +41,7 @@ export const sites = {
     contactEmail: null,
     pages: [
       { path: '/', changefreq: 'weekly', priority: 1.0 },
+      { path: '/phones/', changefreq: 'weekly', priority: 0.8 },
       { path: '/blog/', changefreq: 'weekly', priority: 0.7 },
       { path: '/how-we-pick-deals/', changefreq: 'monthly', priority: 0.5 },
       { path: '/about/', changefreq: 'yearly', priority: 0.4 },

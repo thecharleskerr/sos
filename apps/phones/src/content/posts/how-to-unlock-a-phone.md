@@ -25,7 +25,7 @@ A locked phone only works with SIM cards from the network that locked it. Buy a 
 
 ## Are new UK phones still sold locked to a network?
 
-No, not from the big networks. Ofcom's page on the rule states that mobile companies have been banned from selling locked phones since it came into force, which it dates to 17 December 2021 (ofcom.org.uk, checked 2026-09-02). A phone bought new from a UK network after that date should already be unlocked, straight out of the box.
+No, not from the big networks. Ofcom's page on the rule states that mobile companies have been banned from selling locked phones since it came into force, which it dates to 17 December 2021. A phone bought new from a UK network after that date should already be unlocked, straight out of the box.
 
 That leaves two groups of phones where a lock is still worth checking for. One is anything bought new before December 2021, including a phone that has sat in a drawer since then. The other is second hand, since a used phone can be far older than its current owner realises, and a lock applied years ago on its first sale does not go away on its own when the phone changes hands. A brand new phone bought through this week's pick above falls under the current rule, so it should already be unlocked when it arrives, but it is still worth running the check below once rather than assuming.
 
@@ -48,7 +48,7 @@ Neither Ofcom's page on the ban nor any network page we checked for this site st
 
 ## Do I need to unlock my phone before I switch to a SIM only plan?
 
-Yes, if the new SIM is on a genuinely different network to the one that locked the phone. Ofcom's switching rules cover your phone number, not your handset: your current provider has to text you a PAC or STAC switching code within a minute of you asking for one, so your number moves with you (ofcom.org.uk, checked 2026-09-02). None of that touches whether the phone itself will accept the new SIM. A locked handset rejects an outside SIM regardless of how cleanly your number ported across, so check the lock first, then sort out the switch itself, which our sister site covers in [how to switch mobile network and keep your number](https://saveonsims.co.uk/blog/how-to-switch-mobile-network-and-keep-your-number/).
+Yes, if the new SIM is on a genuinely different network to the one that locked the phone. Ofcom's switching rules cover your phone number, not your handset: your current provider has to text you a PAC or STAC switching code within a minute of you asking for one, so your number moves with you. None of that touches whether the phone itself will accept the new SIM. A locked handset rejects an outside SIM regardless of how cleanly your number ported across, so check the lock first, then sort out the switch itself, which our sister site covers in [how to switch mobile network and keep your number](https://saveonsims.co.uk/blog/how-to-switch-mobile-network-and-keep-your-number/).
 
 Once you know the phone is unlocked, or you have had it unlocked, you are free to pick a SIM only deal on price alone rather than being tied to whichever network happens to work. That is the point at which it is worth [comparing this week's SIM only deals](https://saveonsims.co.uk/).
 
@@ -58,7 +58,7 @@ We cannot put a number on it. None of the trade-in pages this site tracks state 
 
 ## I am buying a phone second hand. Is a lock my problem or the seller's?
 
-Make it the seller's problem, by checking before you pay rather than after. If you are buying from a business, gov.uk's guidance is that you have the same rights over second hand goods as you do over new ones, and that those consumer rights apply to every business selling directly to a consumer (gov.uk, checked 2026-09-02). That protection is weaker, or absent, when you are buying from a private seller on a marketplace app rather than a shop, which is exactly the kind of sale where a locked phone turns up most often.
+Make it the seller's problem, by checking before you pay rather than after. If you are buying from a business, gov.uk's guidance is that you have the same rights over second hand goods as you do over new ones, and that those consumer rights apply to every business selling directly to a consumer. That protection is weaker, or absent, when you are buying from a private seller on a marketplace app rather than a shop, which is exactly the kind of sale where a locked phone turns up most often.
 
 Either way, the fix is the same and it is free: ask to test the phone with a different network's SIM before you hand over any money. A seller with nothing to hide will let you. If the phone is locked, that is a fact to negotiate on, or a reason to walk away, while it is still their phone and not yours. Our guide on [buying a refurbished iPhone](/blog/should-you-buy-a-refurbished-iphone/) has more on what to check before buying a used or refurbished handset generally.
 

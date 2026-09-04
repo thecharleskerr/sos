@@ -68,7 +68,7 @@ Not if you stay on the same host. Only four networks in the UK own masts: EE, O2
 
 ## What if I am still mid-contract or the phone is not paid off?
 
-You can still switch the SIM plan, but check what leaving early actually costs first. Leaving an airtime plan before the minimum term ends can carry an early termination charge, and your current provider has to state that figure when it sends you a switching code. A phone still on its own device plan is usually billed separately from the airtime, and O2's own leaving page says that ending your airtime plan within the first 24 months of a device plan still leaves you needing to pay off that device plan in full. If the phone itself is the debt you are carrying, [Save on Smartphones' guide to getting out of a phone contract early](https://saveonsmartphones.co.uk/blog/how-to-get-out-of-a-phone-contract-early/) covers that side in more detail than we do here, since our cards are SIM only.
+You can still switch the SIM plan, but check what leaving early actually costs first. Leaving an airtime plan before the minimum term ends can carry an early termination charge, so ask your current provider what that figure is before you request a switching code, and weigh it against what the cheaper plan saves over the months you have left. A phone still on its own device plan is usually billed separately from the airtime, and O2's own leaving page says that ending your airtime plan within the first 24 months of a device plan still leaves you needing to pay off that device plan in full. If the phone itself is the debt you are carrying, [Save on Smartphones' guide to getting out of a phone contract early](https://saveonsmartphones.co.uk/blog/how-to-get-out-of-a-phone-contract-early/) covers that side in more detail than we do here, since our cards are SIM only.
 
 ## Which no-rise network runs on your host?
 
@@ -86,5 +86,7 @@ EE's row is a description of its published policy only. It is not shown as an af
 If your host is EE and you also pay for roaming, check that before you switch too. 1pMobile includes EU roaming with a 14GB cap and no daily charge, and Mozillion includes it across 41 EU destinations, also with no daily charge, and both run on EE's masts.
 
 ## What to do now
+
+None of this needs a phone call to your network. The end of contract notification, the usage figures and the price rise line are all in the account app or the bills you already have, and the switching code arrives by text. The only thing worth doing before you compare is deciding whether you want to keep your number, since that decides whether you ask for a PAC or a STAC.
 
 Run the six checks against your last two or three bills. Most of them take a couple of minutes each, and the price rise and roaming checks are already done for you in the tables above and in our fuller guides on each. Once you know your minimum term has ended, your host network, and what you actually use, [compare this week's cheapest deals](/deals/cheapest/) or see the full picture on the [homepage](/), where the same figures are re-checked every Monday.
