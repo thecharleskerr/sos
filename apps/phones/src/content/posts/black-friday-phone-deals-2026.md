@@ -23,6 +23,7 @@ sources:
   - { name: "Simp, students", url: "https://simpmobile.com/students", checked: 2026-09-02 }
   - { name: "Ecotalk, terms and conditions", url: "https://www.ecotalk.co.uk/terms-and-conditions", checked: 2026-09-04 }
   - { name: "Ofcom, ban on inflation linked mid-contract price rises", url: "https://www.ofcom.org.uk/phones-and-broadband/bills-and-charges/ofcom-bans-mid-contract-price-rises-linked-to-inflation", checked: 2026-09-02 }
+  - { name: "Ofcom, review of inflation linked telecoms price rises", url: "https://www.ofcom.org.uk/phones-and-broadband/bills-and-charges/review-of-inflation-linked-telecoms-price-rises", checked: 2026-09-02 }
   - { name: "GOV.UK, price transparency guidance", url: "https://www.gov.uk/government/publications/price-transparency-cma209/providing-clear-and-accurate-information-about-prices-summary", checked: 2026-09-02 }
   - { name: "GOV.UK, unfair commercial practices under the DMCC Act 2024", url: "https://www.gov.uk/government/publications/unfair-commercial-practices-cma207/unfair-commercial-practices", checked: 2026-09-02 }
   - { name: "Apple, trade in terms", url: "https://www.apple.com/uk/legal/sales-support/trade-in/uk/", checked: 2026-09-02 }
@@ -69,7 +70,7 @@ Apple's own UK store lists the iPhone 17 from £799. Samsung's UK store lists th
 
 ## Does the price rise part way through the contract?
 
-Since 17 January 2025, Ofcom has required any mid-contract price rise to be shown in pounds and pence, prominently and transparently, at the point of sale, so every verified figure below is a real amount rather than an estimate. Check the network on the deal card above against this table before you complete step two.
+From 17 January 2025, Ofcom banned inflation linked or percentage based price rise terms in new contracts, and any rise a provider does charge must be set out in pounds and pence, prominently and transparently, at the point of sale, so every verified figure below is a real amount rather than an estimate. Check the network on the deal card above against this table before you complete step two.
 
 | Network | Monthly rise | When it lands | What it covers |
 |---|---|---|---|
@@ -101,7 +102,7 @@ A trade-in lowers both sides of the sum, the contract route and the outright plu
 
 Check the quote's shelf life first. Apple's trade-in estimate is valid for 14 days after you receive your new device, and Apple must receive your old phone within 14 days too. Vodafone's quote is guaranteed for 7 days from the date it is given, and the old phone must be returned within 14 days. Samsung's Credits route holds a quote for 7 days, and the device must reach its inspection partner within 14 days of you receiving the returns packaging.
 
-Check how you are paid. Apple pays into your original payment method or as an Apple Gift Card by email. Samsung applies its discount instantly at checkout. Google pays your original payment method, or store credit for anything above the price of your new phone, typically within five working days. O2 pays into a bank account, by cheque, or as a credit on your O2 bill.
+Check how you are paid. Apple pays into your original payment method or as an Apple Gift Card by email. Samsung applies its discount instantly at checkout. Google pays your original payment method, or store credit for anything above the price of your new phone, and typically emails the final value within five working days. O2 pays into a bank account, by cheque, or as a credit on your O2 bill.
 
 Check what happens if the phone does not match what you described. Several trade-in schemes revise the offer after inspection rather than paying the original quote regardless, and Google returns the device rather than forcing a reduced payment if the final value comes in under 75% of the estimate. Back up your phone and sign out of Find My or your Google account before you send it, whichever route you choose. Our [phone trade-in](/blog/phone-trade-in-uk-what-is-your-old-phone-worth/) guide has the full method network by network.
 
