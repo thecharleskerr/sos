@@ -35,10 +35,10 @@ sources:
   - { name: "Tesco Mobile, Home From Home roaming", url: "https://www.tescomobile.com/why-tesco-mobile/awards-and-reviews/home-from-home", checked: 2026-09-01 }
   - { name: "Gov.uk, Providing clear and accurate information about prices", url: "https://www.gov.uk/government/publications/price-transparency-cma209/providing-clear-and-accurate-information-about-prices-summary", checked: 2026-09-02 }
 faq:
-  - { q: "When is Black Friday 2026 in the UK?", a: "Black Friday 2026 falls on 27 November, the Friday after the fourth Thursday of November. It moves with the calendar each year rather than sitting on a fixed date." }
+  - { q: "When is Black Friday 2026 in the UK?", a: "Black Friday 2026 falls on 27 November. The date moves with the calendar each year rather than staying fixed." }
   - { q: "Are Black Friday SIM only deals actually the cheapest of the year?", a: "Not automatically. No network states its Black Friday pricing in advance, so the only way to know is to compare the total contract cost, price rise included, against the deals this site already checks that same week." }
   - { q: "Does the mid-contract price rise still apply to a Black Friday SIM deal?", a: "Yes, if the network you choose states one. O2, Vodafone, Three and EE all state a fixed monthly rise landing in March or April, while SMARTY, giffgaff, iD Mobile SIM only, Lebara, Talkmobile, Ecotalk and Simp state none." }
-  - { q: "Is EU roaming included in Black Friday SIM only deals?", a: "It depends on the network, not on the date. O2, SMARTY, giffgaff, iD Mobile, Lebara, Talkmobile and Simp fold a data allowance into the plan, while Vodafone, Ecotalk and VOXI charge a separate daily rate unless you are on a higher tier." }
+  - { q: "Is EU roaming included in Black Friday SIM only deals?", a: "It depends on the network, not on the date. O2, SMARTY, giffgaff, iD Mobile, Lebara, Talkmobile and Simp fold a data allowance into the plan, while Vodafone, Ecotalk and VOXI charge a separate daily rate, though Vodafone waives it on selected higher tier plans." }
   - { q: "Why does the deal on this site change again after Black Friday?", a: "Because the pick is rechecked every Monday, Black Friday week included, so the total shown reflects what a network is charging that week rather than a figure carried over from earlier in November." }
   - { q: "Can I get a Black Friday deal from EE through this site?", a: "No. EE's own affiliate terms prohibit using its feed in an automated comparison table, so EE is never offered as a clickable deal here, though its published price rise policy is described above for reference." }
 draft: false
@@ -46,7 +46,7 @@ draft: false
 
 A Black Friday SIM only deal that looks like the cheapest figure on the page can still cost more than a plan you could have picked in March. Add in the mid-contract price rise and any missing roaming allowance, and the total often changes. Get that sum wrong and you pay more for months you cannot get back.
 
-Here is the short version. A good Black Friday SIM deal is one whose total cost beats the deals this site already checks every week, price rise included. Most are not. Black Friday 2026 falls on 27 November, the Friday after the fourth Thursday of the month. Every figure below comes from a network's own pages, dated. The pick above is rechecked every Monday, Black Friday week included, so the total reflects what a network charges that week, not a headline carried over from earlier in November.
+Here is the short version. A good Black Friday SIM deal is one whose total cost beats the deals this site already checks every week, price rise included. Most are not. Black Friday 2026 falls on 27 November. Every figure below comes from a network's own pages, dated. The pick above is rechecked every Monday, Black Friday week included, so the total reflects what a network charges that week, not a headline carried over from earlier in November.
 
 ## How to check a Black Friday SIM deal in ten minutes
 
@@ -69,7 +69,7 @@ On some networks, yes. The only way to know is to read the figure in pounds. O2'
 
 EE runs the same kind of rise. Its own guide to annual price changes gives a worked example worth reading, even though EE deals never appear as a clickable pick on this site. A new SIM only plan taken out at £25 a month on a 24 month contract rises to £27.50 a month from 31 March 2026, EE's page says, then to £30 a month from 31 March 2027. That is not a price this site sells. It is simply the clearest illustration of the arithmetic: name the monthly rise in pounds, count how many times it lands before the contract ends, and add the total to what the card above already shows.
 
-Not every network runs a rise at all. SMARTY, giffgaff, iD Mobile on its SIM only range, Lebara, Talkmobile, Ecotalk and Simp all state no mid-contract price rise on the plans covered by that policy. [Our full price rise guide](/blog/mid-contract-price-rises-explained/) sets out every network's figure, with its source and the date it was checked. The table below adds EU roaming to the same comparison.
+Not every network runs a rise at all. SMARTY, giffgaff, iD Mobile on its SIM only range, Lebara, Talkmobile, Ecotalk and Simp all state no mid-contract price rise on the plans covered by that policy. [Our full price rise guide](/blog/mid-contract-price-rises-explained/) sets out every network's figure, with its source and the date it was checked. The table below adds EU roaming to the same comparison. Once you have worked out your own total, [compare this week's SIM picks](/) before you commit to anything new.
 
 | Network | Mid-contract price rise | EU roaming |
 |---|---|---|
@@ -89,7 +89,7 @@ Not every network runs a rise at all. SMARTY, giffgaff, iD Mobile on its SIM onl
 
 ## Is EU roaming included, or is that added later?
 
-It depends entirely on the network, which is why it belongs in the same total as the price rise. The table above draws on [our EU roaming guide](/blog/best-sim-only-deal-for-eu-roaming/). The pattern splits roughly two ways. O2, SMARTY, giffgaff, iD Mobile, Lebara, Talkmobile and Simp fold a data allowance into the plan you already pay for. Vodafone, Ecotalk and VOXI charge a separate daily rate instead, unless you are on a higher tier plan. If a Black Friday deal's headline price beats a rival's but roaming is charged separately, add a realistic number of travel days at the stated daily rate. Do that before you compare the two totals, not after you have booked a trip and found the charge on your bill.
+It depends entirely on the network, which is why it belongs in the same total as the price rise. The table above draws on [our EU roaming guide](/blog/best-sim-only-deal-for-eu-roaming/). The pattern splits roughly two ways. O2, SMARTY, giffgaff, iD Mobile, Lebara, Talkmobile and Simp fold a data allowance into the plan you already pay for. Vodafone, Ecotalk and VOXI charge a separate daily rate instead. Vodafone waives that charge only on selected higher tier plans bought with Euro Roam or Global Roam. If a Black Friday deal's headline price beats a rival's but roaming is charged separately, add a realistic number of travel days at the stated daily rate. Do that before you compare the two totals, not after you have booked a trip and found the charge on your bill.
 
 ## Why does the price change again after Black Friday?
 
