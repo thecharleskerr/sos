@@ -10,8 +10,9 @@
     "./rules/categories": "./rules/categories.js"
   },
   "dependencies": {
-    "zod": "^3.23.8",
     "@sos/compliance": "*",
-    "@sos/ui": "*"
+    "@sos/ui": "*",
+    "playwright": "^1.62.1",
+    "zod": "^3.23.8"
   }
 }

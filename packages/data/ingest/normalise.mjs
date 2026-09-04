@@ -160,6 +160,10 @@ export function normaliseRow(row, ctx) {
 
   const url = v('url');
   if (!/^https?:\/\//i.test(url)) return drop('bad-link');
+  /* Feed rows are affiliate by definition. Scraped rows say: a direct link
+     on a network with no programme is editorial, and verify.mjs refuses an
+     affiliate flag on such a network. */
+  const isAffiliate = v('isAffiliate') === '' ? true : /^(1|true|yes)$/i.test(v('isAffiliate'));
 
   let storageGB = null;
   if (site === 'phones') {
@@ -208,7 +212,7 @@ export function normaliseRow(row, ctx) {
     roaming: roamingOut,
     priceRise,
     url,
-    isAffiliate: true,
+    isAffiliate,
     lastVerified: today,
     feedLastUpdated: toISODate(v('lastUpdated'), today),
     pick: null,
