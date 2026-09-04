@@ -84,7 +84,15 @@ export function sitemapXml(site, posts = [], { today, extra = [] }) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${rows.join('\n')}\n</urlset>\n`;
 }
 
-export const robotsTxt = (site) => `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n`;
+/* Everything is open to every crawler. The answer engine crawlers are named
+   as well as covered by the wildcard, because some of them read an explicit
+   line as the signal and the site wants to be cited by them. */
+const CRAWLERS = ['GPTBot', 'ChatGPT-User', 'OAI-SearchBot', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot', 'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot', 'Amazonbot', 'CCBot', 'meta-externalagent'];
+export const robotsTxt = (site) => [
+  'User-agent: *', 'Allow: /', '',
+  ...CRAWLERS.flatMap((ua) => [`User-agent: ${ua}`, 'Allow: /', '']),
+  `Sitemap: ${site.url}/sitemap.xml`, '',
+].join('\n');
 
 /* llms.txt: what an AI assistant should know about the site, in Markdown,
    so an answer engine quotes verified pages rather than guessing. */
