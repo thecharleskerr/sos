@@ -51,7 +51,7 @@ Black Friday only saves you money if the total cost of the contract beats buying
 
 ## What actually makes a Black Friday phone deal real
 
-A phone contract is a real deal only when its full cost, the monthly price times the contract length, plus any upfront cost and any mid-contract price rise, comes out lower than buying the phone from the maker and running a SIM only plan for the same months. Anything else is a headline number dressed up to look like a saving. The sum takes about two minutes once you have both prices in front of you, and it works exactly the same whether it is Black Friday or a wet Tuesday in February.
+A phone contract is a real deal only when its full cost comes out lower than the alternative. Full cost means the monthly price times the contract length, plus any upfront cost and any mid-contract price rise. The alternative is buying the phone from the maker and running a SIM only plan for the same months. Anything else is a headline number dressed up to look like a saving. The sum takes about two minutes once you have both prices in front of you, and it works exactly the same whether it is Black Friday or a wet Tuesday in February.
 
 ## Here's exactly how to check a deal in two minutes
 
@@ -66,11 +66,11 @@ A phone contract is a real deal only when its full cost, the monthly price times
 
 ## What the maker actually charges, so step three is quick
 
-Apple's own UK store lists the iPhone 17 from £799. Samsung's UK store lists the Galaxy S26 from an RRP of £879 for the 256GB model, see our [Samsung Galaxy S26 deals](/blog/best-samsung-galaxy-s26-deals/) guide for how that compares against a contract. Google's own store page does not state a price for the Pixel 10a as of 2 September 2026, see our [Google Pixel deals](/blog/best-google-pixel-deals/) guide, so we mark that column not stated rather than guess, and the same rule applies to any phone whose outright price you cannot find stated on the maker's own page: leave the test until it is. A contract's price only means something once you know what the phone would cost you without one, which our [contract versus buying outright](/blog/iphone-18-contract-vs-buying-outright/) guide works through in full.
+Apple's own UK store lists the iPhone 17 from £799. Samsung's UK store lists the Galaxy S26 from an RRP of £879 for the 256GB model, see our [Samsung Galaxy S26 deals](/blog/best-samsung-galaxy-s26-deals/) guide for how that compares against a contract. Google's own store page does not state a price for the Pixel 10a, as of 2 September 2026, see our [Google Pixel deals](/blog/best-google-pixel-deals/) guide. We mark that column not stated rather than guess. The same rule applies to any phone whose outright price you cannot find on the maker's own page: leave the test until it is. A contract's price only means something once you know what the phone would cost you without one, which our [contract versus buying outright](/blog/iphone-18-contract-vs-buying-outright/) guide works through in full.
 
 ## Does the price rise part way through the contract?
 
-From 17 January 2025, Ofcom banned inflation linked or percentage based price rise terms in new contracts, and any rise a provider does charge must be set out in pounds and pence, prominently and transparently, at the point of sale, so every verified figure below is a real amount rather than an estimate. Check the network on the deal card above against this table before you complete step two.
+From 17 January 2025, Ofcom banned inflation linked or percentage based price rise terms in new contracts. Any rise a provider does charge must now be set out in pounds and pence, prominently and transparently, at the point of sale. So every verified figure below is a real amount, not an estimate. Check the network on the deal card above against this table before you complete step two.
 
 | Network | Monthly rise | When it lands | What it covers |
 |---|---|---|---|
@@ -90,7 +90,7 @@ A network missing from this table is not yet verified on our side, so any of its
 
 ## Is Black Friday actually the cheapest time to buy a phone?
 
-We cannot tell you what any retailer will do this Black Friday, and we will not guess. What we can tell you is that the two minute test above works the same in November as it does any other week, because it compares the contract to the outright price and the SIM only route, not to what the deal used to cost. Our [best time to buy a phone](/blog/best-time-to-buy-a-phone/) guide covers the wider timing question if you are weighing up whether to wait. This site rechecks every deal card every Monday, so whatever total you calculate from the card above is never more than a week old.
+We cannot tell you what any retailer will do this Black Friday, and we will not guess. What we can tell you is that the two minute test above works the same in November as it does any other week. It compares the contract to the outright price and the SIM only route, not to what the deal used to cost. Our [best time to buy a phone](/blog/best-time-to-buy-a-phone/) guide covers the wider timing question if you are weighing up whether to wait. This site rechecks every deal card every Monday, so whatever total you calculate from the card above is never more than a week old.
 
 ## Could a Black Friday deal have a hidden cost?
 

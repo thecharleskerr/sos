@@ -85,7 +85,7 @@ Not every network runs a rise at all. SMARTY, giffgaff, iD Mobile on its SIM onl
 | Ecotalk | No price rise | Not included, £2 a day |
 | Simp | No price rise | Included, 10GB on Standard or 20GB on Premium |
 | VOXI | Not stated | Not included, from £2.45 a day |
-| Tesco Mobile | Not stated | Included, no GB cap stated |
+| Tesco Mobile | Not stated | Included, no GB cap, fair use by travel pattern |
 
 ## Is EU roaming included, or is that added later?
 
@@ -97,4 +97,4 @@ Because prices move, and this site is built to catch that rather than hide it. T
 
 ## What to do now
 
-Read the total contract cost and the price rise line on the card above together. Work out what the rise adds over the months you have left. Compare that number against [this week's cheapest pick](/deals/cheapest/) or [this week's unlimited pick](/deals/unlimited-data/) before you switch. If you want a phone deal for the same week rather than a SIM only plan, [Save on Smartphones covers Black Friday phone deals separately](https://saveonsmartphones.co.uk/blog/black-friday-phone-deals-2026/). Otherwise, the card above is the one to click. It stays rechecked every Monday, so the total stays honest long after the day itself has passed.
+Read the total contract cost and the price rise line on the card above together. Work out what the rise adds over the months you have left. Compare that number against [this week's cheapest pick](/deals/cheapest/) or [this week's unlimited pick](/deals/unlimited-data/) before you switch. If you want a phone deal for the same week rather than a SIM only plan, [Save on Smartphones covers Black Friday phone deals separately](https://saveonsmartphones.co.uk/blog/black-friday-phone-deals-2026/). Otherwise, the card above is the one to click. It stays rechecked every Monday, so the total stays honest long after the day itself has passed, and the same figures sit on the [homepage](/) if you want to compare this week's other picks first.
