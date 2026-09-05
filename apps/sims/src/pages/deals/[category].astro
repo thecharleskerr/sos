@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import { networks } from '@sos/ui/networks';
+import { gbp } from '@sos/ui/money';
+import { getSite } from '@sos/ui/site';
+import { liveDeals } from '@sos/ui/posts';
+import { categories, categoryKeys } from '@sos/data/rules/categories';
+import { getCollection } from 'astro:content';
+import { live } from '@sos/ui/posts';
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
+
+export function getStaticPaths() {
+  return categoryKeys.map((category) => ({ params: { category } }));
+}
+
+const { category } = Astro.params;
+const cat = categories[category];
+const site = getSite('sims');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
+const { weekOf, deals: all } = liveDeals('sims', root);
+const deals = all.filter(cat.filter).sort(cat.sort);
+/* Only guides already published, so no link waits on a future date. */
+const posts = live(await getCollection('posts'));
+const guides = cat.guides.map((slug) => posts.find((p) => p.id === slug)).filter(Boolean);
+const weekLabel = weekOf ? new Date(weekOf).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' }) : null;
+
+const url = `${site.url}/deals/${category}/`;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: site.name, item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: cat.title, item: url },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: cat.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  deals.length && { '@context': 'https://schema.org', '@type': 'ItemList', name: cat.title, numberOfItems: deals.length, itemListElement: deals.map((d, i) => ({
+    '@type': 'ListItem', position: i + 1,
+    name: `${networks[d.network].name}, ${d.data === 'unlimited' ? 'unlimited data' : `${d.data}GB`}, ${gbp(d.monthlyPrice)} a month`,
+    url: `${site.url}/networks/${d.network}/`,
+  })) },
+].filter(Boolean);
+---
+<Base title={`${cat.title} | Save on Sims`} description={cat.description}>
+  <h1 class="t-h1">{cat.h1}{weekLabel && <span class="week">Week of {weekLabel}</span>}</h1>
+  <section class="answer" aria-label="Short answer">
+    <p class="answer-label">How this list is ranked</p>
+    <p class="answer-text">{cat.answer}</p>
+  </section>
+
+  {deals.length
+    ? <div class="grid">{deals.map((d, i) => <DealCard deal={d} variant={i === 0 ? 'hero' : 'standard'} settle={false} />)}</div>
+    : <p class="empty">None of the deals we checked this week fits this category. <a href="/">See this week's picks.</a></p>}
+
+  <nav class="cats" aria-label="Other categories">
+    <p class="cats-label">Browse</p>
+    {categoryKeys.filter((k) => k !== category).map((k) => <a href={`/deals/${k}/`}>{categories[k].title}</a>)}
+  </nav>
+
+  <section class="faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Questions people ask</h2>
+    {cat.faq.map((f) => (<div class="faq-item"><h3>{f.q}</h3><p>{f.a}</p></div>))}
+  </section>
+
+  {guides.length > 0 && (
+    <section class="more" aria-labelledby="more-heading">
+      <h2 id="more-heading">Guides</h2>
+      <ul>{guides.map((g) => <li><a href={`/blog/${g.id}/`}>{g.data.title}</a><span>{g.data.answer}</span></li>)}</ul>
+    </section>
+  )}
+  <p class="method">Ranked by <a href="/how-we-pick-deals/">published rules</a>. Prices re-checked every Monday, links every morning.</p>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-4); max-width: 24ch; }
+  .week { font-weight: 400; color: var(--ink-2); font-size: .6em; letter-spacing: 0; display: block; margin-top: 4px; }
+  .answer { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); padding: var(--space-4) 0; margin: 0 0 var(--space-8); max-width: 72ch; }
+  .answer-label { font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 6px; }
+  .answer-text { font-size: 17px; font-weight: 600; line-height: 1.4; margin: 0; text-wrap: pretty; }
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); align-items: start; }
+  .grid > :global(.hero) { grid-column: 1 / -1; }
+  .empty { color: var(--ink-2); }
+  .cats { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; margin: var(--space-8) 0; font-size: 13.5px; }
+  .cats-label { margin: 0; color: var(--ink-2); font-size: 12px; }
+  .faq { border-top: 2px solid var(--ink); padding-top: var(--space-4); margin: var(--space-8) 0; max-width: 72ch; }
+  .faq h2 { font-size: 20px; font-weight: 800; margin: 0 0 var(--space-4); }
+  .faq-item { padding: var(--space-3) 0; border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: 0; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+  .faq-item p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .more { max-width: 72ch; border-top: 1px solid var(--rule); padding-top: var(--space-4); }
+  .more h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-3); color: var(--ink-2); }
+  .more ul { list-style: none; margin: 0; padding: 0; }
+  .more li { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+  .more li:last-child { border-bottom: 0; }
+  .more a { font-weight: 600; }
+  .more span { display: block; color: var(--ink-2); font-size: 13px; margin-top: 2px; }
+  .method { font-size: 12.5px; color: var(--ink-2); margin-top: var(--space-6); }
+</style>

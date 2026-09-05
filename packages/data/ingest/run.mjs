@@ -12,7 +12,8 @@
                               GitHub Actions; a dry run everywhere else)
        --dry-run              never write content/
        --summary <path>       default .github/refresh-summary.md
-       --today <yyyy-mm-dd>   pin the date, for tests */
+       --today <yyyy-mm-dd>   pin the date, for tests
+       --scrape <json>        merge rows from the scrapers' output as well */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { listTelcoFeeds, downloadFeed, redact } from './awin.mjs';
@@ -36,11 +37,20 @@ export function mondayOf(iso) {
 
 const tally = (list) => list.reduce((m, k) => ((m[k] = (m[k] ?? 0) + 1), m), {});
 
-export async function refresh({ site, fixture, today, write, summaryPath, tables = { roaming, priceRises } }) {
+export async function refresh({ site, fixture, scrape, today, write, summaryPath, tables = { roaming, priceRises } }) {
   const contentPath = resolve(root, `content/${site}/deals.json`);
   const feeds = [];
   const rows = [];
   const headersSeen = new Set();
+  let scraped = null;
+
+  /* Scraped rows and lead feeds, from run-scrape.mjs. */
+  if (scrape && existsSync(resolve(root, scrape))) {
+    scraped = JSON.parse(readFileSync(resolve(root, scrape), 'utf8'));
+    rows.push(...scraped.rows);
+    scraped.rows.forEach((r) => Object.keys(r).forEach((h) => headersSeen.add(h)));
+    feeds.push({ advertiser: `scraped ${scraped.recipes.length} pages`, rows: scraped.rows.length });
+  }
 
   if (fixture) {
     const { headers, rows: r } = parseCSVObjects(readFileSync(fixture, 'utf8'));
@@ -49,10 +59,10 @@ export async function refresh({ site, fixture, today, write, summaryPath, tables
     feeds.push({ advertiser: `fixture ${fixture}`, rows: r.length });
   } else {
     const key = process.env.AWIN_API_TOKEN;
-    if (!key) {
-      throw new Error('AWIN_API_TOKEN is not set. Add the Create-a-Feed API key as a repository secret, or run with --fixture <csv>.');
+    if (!key && !scraped) {
+      throw new Error('AWIN_API_TOKEN is not set and no scrape file was given. Add the Create-a-Feed API key as a repository secret, run the scrapers first, or use --fixture <csv>.');
     }
-    for (const f of await listTelcoFeeds(key)) {
+    for (const f of key ? await listTelcoFeeds(key) : []) {
       const entry = { advertiser: f.advertiser, products: f.products, lastUploaded: f.lastUploaded, rows: 0 };
       feeds.push(entry);
       try {
@@ -145,6 +155,18 @@ export async function refresh({ site, fixture, today, write, summaryPath, tables
   }
   if (unknownNames.length) lines.push('', `Network names not recognised: ${unknownNames.join(', ')}. Add an alias in packages/data/ingest/normalise.mjs if one is a network we list.`);
   if (assumedGB) lines.push('', `${assumedGB} row${assumedGB === 1 ? '' : 's'} stated data as a bare number, read as GB.`);
+  if (scraped) {
+    lines.push('', '## Scraped plan pages', '');
+    lines.push('| Network | Page | Status | Cards seen | Rows | Note |', '|---|---|---|---|---|---|');
+    for (const r of scraped.recipes) lines.push(`| ${networks[r.network]?.name ?? r.network} | ${r.url} | ${r.status ?? ''} | ${r.cards} | ${r.rows} | ${r.error ?? (r.rows ? '' : 'nothing extracted: check the URL and the layout')} |`);
+    if (!scraped.publisherId) lines.push('', 'AWIN_PUBLISHER_ID was not set, so every scraped link is direct and every scraped deal is editorial (no commission).');
+    const leads = (scraped.leads ?? []).filter((l) => l.title);
+    const leadErrors = (scraped.leads ?? []).filter((l) => l.error);
+    lines.push('', '## Leads from deal communities', '', 'Titles and links only, as prompts to check the network\'s own page. Nothing here is a figure the site prints.', '');
+    for (const l of leads.slice(0, 30)) lines.push(`- ${l.title} (${l.link})`);
+    for (const e of leadErrors) lines.push(`- ${e.feed}: could not be read (${e.error})`);
+    if (!leads.length && !leadErrors.length) lines.push('- None this week.');
+  }
   lines.push('', '## Feeds', '');
   lines.push('| Advertiser | Rows | Note |', '|---|---|---|');
   for (const f of feeds) lines.push(`| ${f.advertiser} | ${f.rows} | ${f.error ?? (f.lastUploaded ? `uploaded ${f.lastUploaded}` : '')} |`);
@@ -165,6 +187,16 @@ export async function refresh({ site, fixture, today, write, summaryPath, tables
   if (write && proposed.length) {
     mkdirSync(dirname(contentPath), { recursive: true });
     writeFileSync(contentPath, `${JSON.stringify(next, null, 2)}\n`);
+    /* The changelog feeds the What changed this week page: a fresh, dated
+       record every Monday, kept for half a year. */
+    const logPath = resolve(root, `content/${site}/changelog.json`);
+    const log = existsSync(logPath) ? JSON.parse(readFileSync(logPath, 'utf8')) : { weeks: [] };
+    const brief = (d) => ({ id: d.id, network: d.network, monthlyPrice: d.monthlyPrice, data: d.data, contractLengthMonths: d.contractLengthMonths, pick: d.pick ?? null });
+    log.weeks = [
+      { weekOf: next.weekOf, checked: today, proposed: proposed.length, added: added.map(brief), gone: gone.map((d) => ({ id: d.id, network: d.network })), moved: moved.map(({ d, p }) => ({ id: d.id, network: d.network, from: p.monthlyPrice, to: d.monthlyPrice })) },
+      ...log.weeks.filter((w) => w.weekOf !== next.weekOf),
+    ].slice(0, 26);
+    writeFileSync(logPath, `${JSON.stringify(log, null, 2)}\n`);
     wrote = true;
   }
   return { summary, next, proposed, held, dropped, wrote, contentPath, summaryPath: outSummary };
@@ -179,6 +211,7 @@ if (isMain) {
     const out = await refresh({
       site: opt('--site', 'sims'),
       fixture: opt('--fixture', null),
+      scrape: opt('--scrape', null),
       today: opt('--today', new Date().toISOString().slice(0, 10)),
       write: flag('--write') || (!flag('--dry-run') && Boolean(process.env.GITHUB_ACTIONS)),
       summaryPath: opt('--summary', '.github/refresh-summary.md'),

@@ -7,11 +7,17 @@ const posts = live(await getCollection('posts'));
 const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' });
 ---
 <Base
+  crumbs={[{ name: 'Guides', path: '/blog/' }]}
   title="Phone deal guides | Save on Smartphones"
   description="Straight answers to the questions people ask before they buy a phone, with the figures checked against the makers' and networks' own pages."
 >
   <h1 class="t-h1">Phone deal guides</h1>
   <p class="lede">Straight answers to the questions people ask before they buy a phone, with the figures checked against the makers' and networks' own pages.</p>
+
+  <div class="about">
+    <p>Each guide answers one question in its first paragraph, then shows the working. The maker's price comes from the maker's own page on the date beside it, and the daily check flags a guide once its figures are more than three months old. The guides cover what a contract should cost against buying the phone outright, whether a refurbished iPhone is worth it, what your old phone is worth in trade-in, how to leave a contract early, and the cheapest 5G phone worth buying.</p>
+    <p>The reference pages sit alongside them: <a href="/">this week's phone deals</a> and <a href="/how-we-pick-deals/">how the weekly picks are chosen</a>. SIM only plans for a phone bought outright are on <a href="https://saveonsims.co.uk/">Save on Sims</a>.</p>
+  </div>
 
   {posts.length === 0 && <p class="empty">The first guides land this month.</p>}
 
@@ -29,6 +35,8 @@ const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', mon
 <style>
   h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
   .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  .about { max-width: 66ch; margin: 0 0 var(--space-8); }
+  .about p { margin: 0 0 var(--space-3); }
   .empty { color: var(--ink-2); }
   .list { list-style: none; margin: 0; padding: 0; max-width: 72ch; border-top: 2px solid var(--ink); }
   .list li { padding: var(--space-4) 0; border-bottom: 1px solid var(--rule); }

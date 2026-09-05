@@ -6,6 +6,9 @@
   "exports": {
     "./roaming": "./roaming.ts",
     "./students": "./students.ts",
-    "./price-rises": "./price-rises.ts"
+    "./price-rises": "./price-rises.ts",
+    "./phones": "./phones.ts",
+    "./esim": "./esim.ts",
+    "./perks": "./perks.ts"
   }
 }

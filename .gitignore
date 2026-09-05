@@ -7,3 +7,4 @@ dist/
 *.log
 .github/refresh-summary.md
 .github/integrity-report.md
+data/scrape/

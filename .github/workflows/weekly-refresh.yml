@@ -28,11 +28,21 @@ jobs:
         with: { node-version: 22, cache: npm }
       - run: npm ci
 
-      - name: Pull and normalise the Awin telco feed
+      - name: Install a browser for the scrapers
+        run: npx playwright install --with-deps chromium
+
+      # The networks' own plan pages, plus leads from deal communities. Runs
+      # whether or not the Awin feed is available; the two are merged below.
+      - name: Scrape the networks' plan pages and gather leads
+        env:
+          AWIN_PUBLISHER_ID: ${{ secrets.AWIN_PUBLISHER_ID }}
+        run: node packages/data/ingest/scrape/run-scrape.mjs --out data/scrape/latest.json
+
+      - name: Pull the Awin feed, merge the scraped rows, and normalise
         env:
           AWIN_API_TOKEN: ${{ secrets.AWIN_API_TOKEN }}
           AWIN_PUBLISHER_ID: ${{ secrets.AWIN_PUBLISHER_ID }}
-        run: node --experimental-strip-types packages/data/ingest/run.mjs --write
+        run: node --experimental-strip-types packages/data/ingest/run.mjs --write --scrape data/scrape/latest.json
 
       - name: Validate before proposing anything
         run: node packages/data/verify.mjs

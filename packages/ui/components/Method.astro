@@ -1,0 +1,90 @@
+---
+/* Two pages in one component: the method (how deals are picked and checked)
+   and the standards (what the site will and will not do). Both draw on the
+   rules the code enforces, so the page describes what actually happens. */
+import { getSite } from '../site.js';
+const { site: key, kind } = Astro.props;
+const site = getSite(key);
+const sims = key === 'sims';
+const sisterSims = sims ? '' : 'https://saveonsims.co.uk';
+---
+<article class="method">
+  {kind === 'method' ? (
+    <>
+      <h1 class="t-h1">How we pick deals</h1>
+      <p class="lede">A short list, checked every Monday, chosen by rules we publish. Here they are.</p>
+
+      <h2>What every card shows</h2>
+      <p>Every deal card carries the monthly price, the total cost over the term, the mid-contract price rise in pounds and pence or the words "No price rise", the contract length, the data, minutes and texts, the roaming allowance and the date we checked it. Nothing sits behind a click or a tooltip. The headline price is the all-in price: if a charge is mandatory, it is in the total.</p>
+
+      <h2>Where the figures come from</h2>
+      <p>Prices, allowances and terms come from the networks' and retailers' published deal feeds, pulled every Monday morning. Roaming allowances and mid-contract price rises do not come from the feed. They come from tables we maintain by hand from each network's own pages, with the quote, the URL and the date beside every entry. A network whose price rise we have not verified has its deals held back until we have, because a card cannot print a blank there.</p>
+
+      <h2>How the picks are chosen</h2>
+      <p>The same rules run every week, so the same feed always gives the same page. Only complete deals compete: the feed must state the price, upfront cost, term and all three allowances, and the network's roaming and price rise must be verified.</p>
+      <ol>
+        <li><strong>Deal of the week</strong> is the best value: gigabytes per pound of effective monthly cost, with any upfront cost spread over the term. It must offer at least 5GB.</li>
+        <li><strong>Best for roaming</strong> includes EU roaming with no daily charge, highest fair use cap first.</li>
+        <li><strong>Best unlimited data</strong> is the cheapest unlimited plan by effective monthly cost.</li>
+        <li><strong>Cheapest this week</strong> is the lowest effective monthly cost with at least 5GB.</li>
+        <li><strong>Best short contract</strong> is the cheapest rolling plan with at least 5GB.</li>
+      </ol>
+      <p>A deal takes one pick at most, awarded in that order, and the next in line takes the pick it would have won. Ties break on lower cost, then shorter term. The rest of the page fills with the best value of what remains, at most two non-pick deals from one network.</p>
+
+      <h2>How it is checked</h2>
+      <p>Every morning a check follows every deal link, re-reads the feed, and takes down any deal whose link is dead, whose price or term has moved, or that nobody has verified for fourteen days. It only ever removes. Putting a price up on the site needs a person to review the weekly change, which is why the site refreshes on Mondays rather than continuously.</p>
+
+      <h2>What we never do</h2>
+      <ul>
+        <li>We never invent a price, allowance, roaming cap or date. If a network does not state a value, the site says "Not stated" or "To confirm", and that is not a zero.</li>
+        <li>We never show a headline price that leaves a mandatory charge for later.</li>
+        <li>We never place EE's deals in the automated table. EE listings are written by hand, with no commission.</li>
+        <li>We never rank a deal higher because it pays us more. The rules above do not know what a deal pays.</li>
+      </ul>
+
+      <h2>Money</h2>
+      <p>Some deal links earn a commission. Each card says whether its link is one of them. That is the whole business model, and it does not change the price you pay.</p>
+
+      <p class="foot-links"><a href="/about/">About this site</a> {sims && <>, <a href="/networks/">every network we track</a>, <a href="/guides/eu-roaming-by-network/">the roaming table</a></>}{!sims && <>, <a href={`${sisterSims}/networks/`}>every network we track</a></>}.</p>
+    </>
+  ) : (
+    <>
+      <h1 class="t-h1">About {site.name}</h1>
+      <p class="lede">{site.strap}</p>
+
+      <h2>What this site is for</h2>
+      <p>{sims
+        ? 'Most people pay too much for a SIM because comparing plans properly takes an hour and the cards hide the numbers that matter. This site does the hour every Monday and prints the numbers on the card: the all-in monthly price, the total, the price rise in pounds and pence, the roaming allowance and the date it was checked.'
+        : 'Most people pay too much for a phone because the monthly figure hides the total and the price rise. This site tracks the ten best-selling phones, prints the total over the contract next to the monthly price, and shows what buying outright plus a SIM only plan would cost instead.'}</p>
+
+      <h2>Editorial standards</h2>
+      <ul>
+        <li><strong>Official sources only.</strong> Every figure comes from the network's, maker's or regulator's own published pages, and each page on this site names its sources with the date they were read.</li>
+        <li><strong>Dated, not timeless.</strong> Deals are re-checked every Monday and taken down automatically when they change. Guides carry the date their figures were checked and are re-checked on a schedule.</li>
+        <li><strong>Not stated means not stated.</strong> Where a network does not publish a value, we say so rather than estimate, and where two official sources disagree we print neither.</li>
+        <li><strong>Plain British English.</strong> No hype, no invented urgency, no superlative the site cannot back with what it checked that week.</li>
+        <li><strong>Independence from commission.</strong> The ranking rules do not know what a deal pays. Some links earn a commission and each card says which.</li>
+      </ul>
+
+      <h2>Corrections</h2>
+      <p>If a figure on this site is wrong, tell us and it gets corrected, with the checked date updated so the change is visible. {site.contactEmail ? <>Write to <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</> : null}</p>
+
+      <h2>Who runs it</h2>
+      <p>{site.name} is an independent UK site{site.legalName ? <>, run by {site.legalName}</> : null}. It is not owned by a network, a retailer or a comparison group, and it has no accounts, no checkout and no adverts. Its sister site is <a href={site.sister.url}>{site.sister.name}</a>.</p>
+
+      <p class="foot-links"><a href="/how-we-pick-deals/">How we pick deals</a>, <a href="/terms/">terms</a>, <a href="/privacy/">privacy</a>.</p>
+    </>
+  )}
+</article>
+
+<style>
+  .method { max-width: 66ch; }
+  h1 { margin: var(--space-8) 0 var(--space-2); }
+  .lede { color: var(--ink-2); margin: 0 0 var(--space-6); font-size: 16px; }
+  h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: var(--space-6) 0 var(--space-2); }
+  p, li { font-size: 15.5px; line-height: 1.6; text-wrap: pretty; }
+  p { margin: 0 0 var(--space-3); }
+  ul, ol { margin: 0 0 var(--space-3); padding-left: 1.3em; }
+  li { margin-bottom: 6px; }
+  .foot-links { font-size: 13.5px; color: var(--ink-2); margin-top: var(--space-6); }
+</style>

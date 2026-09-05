@@ -60,3 +60,17 @@ test('checkLink falls back from HEAD to GET and retries a 5xx once', async () =>
   const dead = await checkLink('https://example.invalid/', { fetchImpl: async () => ({ status: 404 }), pauseMs: 0 });
   assert.deepEqual(dead, { ok: false, status: 404 });
 });
+
+test('guides past the freshness window are listed, not hidden', async () => {
+  const { staleGuides, GUIDE_STALE_DAYS } = await import('../verify/integrity.mjs');
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { join } = await import('node:path');
+  const root = mkdtempSync(join(tmpdir(), 'sos-'));
+  mkdirSync(join(root, 'apps/sims/src/content/posts'), { recursive: true });
+  writeFileSync(join(root, 'apps/sims/src/content/posts/old.md'), '---\ntitle: "Old"\nchecked: 2026-01-01\n---\nbody');
+  writeFileSync(join(root, 'apps/sims/src/content/posts/new.md'), '---\ntitle: "New"\nchecked: 2026-09-01\n---\nbody');
+  const out = staleGuides('2026-09-07', root);
+  assert.deepEqual(out.map((g) => g.slug), ['old']);
+  assert.ok(out[0].age > GUIDE_STALE_DAYS);
+});

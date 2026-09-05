@@ -3,10 +3,12 @@
    the canonical URL, Open Graph and Twitter cards, robots, and the site's
    Organization and WebSite structured data. Pages add their own Article or
    FAQ data separately. */
-import { getSite } from '../site.js';
+import '@fontsource-variable/archivo/wdth.css';
+import { getSite, settings } from '../site.js';
 
-const { site: key, title, description, type = 'website', noindex = false } = Astro.props;
+const { site: key, title, description, type = 'website', noindex = false, crumbs = [] } = Astro.props;
 const site = getSite(key);
+const cfg = settings();
 const path = Astro.url.pathname.endsWith('/') || /\.[a-z]+$/.test(Astro.url.pathname) ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonical = `${site.url}${path}`;
 
@@ -30,6 +32,13 @@ const ld = [
     publisher: { '@id': `${site.url}/#organization` },
   },
 ];
+/* Pages that do not build their own BreadcrumbList pass crumbs, each
+   { name, path }, and the home crumb is added here. */
+if (crumbs.length) ld.push({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [{ name: site.name, path: '/' }, ...crumbs].map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: `${site.url}${c.path}` })),
+});
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,14 +52,18 @@ const ld = [
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+<meta property="og:image" content={`${site.url}/og.png`} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:image" content={`${site.url}/og.png`} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap"
-  rel="stylesheet"
-/>
+<link rel="alternate" type="application/rss+xml" title={`${site.name} guides`} href="/feed.xml" />
+{cfg.googleSiteVerification && <meta name="google-site-verification" content={cfg.googleSiteVerification} />}
+{cfg.bingSiteVerification && <meta name="msvalidate.01" content={cfg.bingSiteVerification} />}
 <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+{cfg.cfBeaconToken && <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: cfg.cfBeaconToken })} />}

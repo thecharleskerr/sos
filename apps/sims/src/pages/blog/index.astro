@@ -7,11 +7,17 @@ const posts = live(await getCollection('posts'));
 const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' });
 ---
 <Base
+  crumbs={[{ name: 'Guides', path: '/blog/' }]}
   title="SIM only guides | Save on Sims"
   description="Straight answers to the questions people ask before they switch, with the figures checked against the networks' own pages."
 >
   <h1 class="t-h1">SIM only guides</h1>
   <p class="lede">Straight answers to the questions people ask before they switch, with the figures checked against the networks' own pages.</p>
+
+  <div class="about">
+    <p>Each guide answers one question in its first paragraph, then shows the working. Every figure in it comes from a network's own pages on the date beside it, and the daily check flags a guide once its figures are more than three months old. The guides cover the mid-contract price rise each network charges, which networks include EU roaming and what the fair use cap is, whether unlimited data is worth paying for, how to switch and keep your number, which networks offer eSIM, and who gives students money off.</p>
+    <p>The reference pages sit alongside them: <a href="/networks/">every network on one page each</a>, <a href="/guides/eu-roaming-by-network/">EU roaming by network</a>, <a href="/students/">student SIM offers</a> and <a href="/how-we-pick-deals/">how the weekly picks are chosen</a>.</p>
+  </div>
 
   {posts.length === 0 && <p class="empty">The first guides land this month.</p>}
 
@@ -29,6 +35,8 @@ const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', mon
 <style>
   h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
   .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  .about { max-width: 66ch; margin: 0 0 var(--space-8); }
+  .about p { margin: 0 0 var(--space-3); }
   .empty { color: var(--ink-2); }
   .list { list-style: none; margin: 0; padding: 0; max-width: 72ch; border-top: 2px solid var(--ink); }
   .list li { padding: var(--space-4) 0; border-bottom: 1px solid var(--rule); }

@@ -1,0 +1,70 @@
+---
+/* Every phone the site tracks, grouped by maker, with the maker's own UK
+   price and stated update commitment. Each row links to the phone's page,
+   which carries this week's deals for it once the feed lands. */
+import Base from '../../layouts/Base.astro';
+import { phones } from '@sos/compliance/phones';
+import { gbp } from '@sos/ui/money';
+import { getSite } from '@sos/ui/site';
+
+const site = getSite('phones');
+const list = Object.values(phones);
+const makers = ['Apple', 'Samsung', 'Google'].map((m) => ({ maker: m, phones: list.filter((p) => p.maker === m) })).filter((g) => g.phones.length);
+const priced = list.filter((p) => p.rrpGBP !== null).length;
+const latest = list.map((p) => p.checked).sort().at(-1);
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+const url = `${site.url}/phones/`;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Phones we track', numberOfItems: list.length, itemListElement: list.map((p, i) => ({
+    '@type': 'ListItem', position: i + 1, name: p.name, url: `${site.url}/phones/${p.slug}/`,
+  })) },
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url, name: 'Every phone we track', dateModified: latest },
+];
+---
+<Base
+  crumbs={[{ name: 'Phones', path: '/phones/' }]}
+  title="Every phone we track, with the maker's UK price | Save on Smartphones"
+  description={`The ${list.length} phones this site tracks: the maker's own UK price, storage and stated software updates, each dated. Every contract deal is judged against these figures.`}
+>
+  <h1 class="t-h1">Every phone we track</h1>
+  <p class="lede">The maker's own UK price is the figure every contract has to beat: monthly price times months plus upfront, against this number plus a SIM only plan. {priced} of the {list.length} phones have a verified price; the rest say not stated until the maker's page confirms one. Last checked {fmt(latest)}.</p>
+
+  {makers.map((g) => (
+    <section>
+      <h2>{g.maker}</h2>
+      <table class="phones">
+        <thead><tr><th scope="col">Phone</th><th scope="col">Maker's UK price</th><th scope="col">Software updates</th><th scope="col">Checked</th></tr></thead>
+        <tbody>
+          {g.phones.map((p) => (
+            <tr>
+              <th scope="row"><a href={`/phones/${p.slug}/`}>{p.name}</a></th>
+              <td class="num">{p.rrpGBP !== null ? gbp(p.rrpGBP) : 'Not stated'}{p.storageGB && p.rrpGBP !== null ? <span class="soft"> {p.storageGB}GB</span> : null}</td>
+              <td>{p.updates ?? 'Not stated'}</td>
+              <td class="num soft">{fmt(p.checked)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  ))}
+
+  <h2>How to use these figures</h2>
+  <p>Add the monthly price on a deal card to itself for every month of the term, add the upfront cost, then add the mid-contract price rise for every April or March the term crosses. Compare that total with the maker's price above plus a <a href="https://saveonsims.co.uk/">SIM only plan</a> for the same months. <a href="/how-we-pick-deals/">How we pick deals</a> sets out the rest of the method, and the <a href="/blog/">guides</a> work through the sum for each maker.</p>
+  <p class="note">Prices are the makers' own, from the page linked on each phone's page, on the date shown. A phone with no stated price is listed so the gap is visible, never filled with a guess.</p>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
+  .lede { max-width: 62ch; color: var(--ink-2); margin: 0 0 var(--space-6); }
+  section { margin: 0 0 var(--space-8); }
+  h2 { font-size: 20px; margin: var(--space-6) 0 var(--space-3); }
+  p { max-width: 66ch; }
+  .phones { width: 100%; max-width: 78ch; border-collapse: collapse; font-size: 14.5px; text-align: left; }
+  .phones th { font-size: 11.5px; font-weight: 600; color: var(--ink-2); padding: 12px 14px 8px 0; border-bottom: 1px solid var(--ink); }
+  .phones td, .phones tbody th { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .phones tbody th { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+  .soft { color: var(--ink-2); font-weight: 400; }
+  .note { font-size: 12.5px; color: var(--ink-2); margin-top: var(--space-4); max-width: 62ch; }
+</style>

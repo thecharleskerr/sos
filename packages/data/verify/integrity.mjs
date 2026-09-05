@@ -15,7 +15,7 @@
        --dry-run      report only, write nothing
        --no-network   skip the link checks and the feed pull, for tests
        --today <iso>  pin the date */
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { listTelcoFeeds, downloadFeed, redact } from '../ingest/awin.mjs';
 import { normaliseRow } from '../ingest/normalise.mjs';
@@ -96,6 +96,26 @@ export function assess(set, { today, links = null, feed = null, roamingTable = r
   return { set: { ...set, deals }, changes, warnings };
 }
 
+export const GUIDE_STALE_DAYS = 90;
+
+/* Reads each guide's frontmatter for its checked date without a YAML
+   parser: the field is a plain ISO date on its own line. */
+export function staleGuides(today, rootDir = root) {
+  const out = [];
+  for (const site of ['sims', 'phones']) {
+    const dir = resolve(rootDir, `apps/${site}/src/content/posts`);
+    if (!existsSync(dir)) continue;
+    for (const f of readdirSync(dir).filter((x) => x.endsWith('.md'))) {
+      const text = readFileSync(resolve(dir, f), 'utf8');
+      const m = text.match(/^checked:\s*(\d{4}-\d{2}-\d{2})/m);
+      if (!m) continue;
+      const age = daysBetween(m[1], today);
+      if (age > GUIDE_STALE_DAYS) out.push({ site, slug: f.replace(/\.md$/, ''), checked: m[1], age });
+    }
+  }
+  return out;
+}
+
 export async function main(argv = process.argv.slice(2)) {
   const flag = (n) => argv.includes(n);
   const opt = (n, d) => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : d; };
@@ -156,6 +176,13 @@ export async function main(argv = process.argv.slice(2)) {
     report.push('');
     if (changes.length && !dry) writeFileSync(f.path, `${JSON.stringify(next, null, 2)}\n`);
   }
+  /* Guides carry the date their figures were checked. Past GUIDE_STALE_DAYS
+     they are listed here so someone re-checks them; nothing is hidden. */
+  const stale = staleGuides(today);
+  report.push(`## Guides`, '', stale.length ? `${stale.length} guide${stale.length === 1 ? '' : 's'} not re-checked for ${GUIDE_STALE_DAYS} days:` : `Every guide was checked within the last ${GUIDE_STALE_DAYS} days.`, '');
+  for (const g of stale) report.push(`- RECHECK ${g.site}/${g.slug}: checked ${g.checked}, ${g.age} days ago`);
+  report.push('');
+
   if (dry && hidden) report.push('Dry run: nothing was written.', '');
 
   const text = report.join('\n');

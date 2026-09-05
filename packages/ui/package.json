@@ -11,6 +11,12 @@
     "./contrast": "./contrast.js",
     "./post-schema": "./post-schema.js",
     "./posts": "./posts.js",
-    "./site": "./site.js"
+    "./site": "./site.js",
+    "./network-facts": "./network-facts.js",
+    "./rehype-live-links": "./rehype-live-links.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "unist-util-visit": "^5.0.0"
   }
 }

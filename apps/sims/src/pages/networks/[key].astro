@@ -1,0 +1,149 @@
+---
+import Base from '../../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import { networks } from '@sos/ui/networks';
+import { gbp } from '@sos/ui/money';
+import { getSite } from '@sos/ui/site';
+import { liveDeals } from '@sos/ui/posts';
+import { roaming } from '@sos/compliance/roaming';
+import { priceRises } from '@sos/compliance/price-rises';
+import { studentOffers } from '@sos/compliance/students';
+import { esim } from '@sos/compliance/esim';
+import { perks } from '@sos/compliance/perks';
+import { networkFacts } from '@sos/ui/network-facts';
+import GuideLink from '@sos/ui/components/GuideLink.astro';
+import { pairs, pairSlug } from '@sos/data/rules/compare';
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
+
+export function getStaticPaths() {
+  return Object.keys(networks).map((key) => ({ params: { key } }));
+}
+
+const { key } = Astro.params;
+const net = networks[key];
+const site = getSite('sims');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
+const deals = liveDeals('sims', root).deals.filter((d) => d.network === key);
+
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const f = networkFacts(key, net, { roaming, priceRises, students: studentOffers, esim, perks });
+const facts = [
+  { label: 'Runs on', value: f.host.short },
+  { label: 'EU roaming', value: f.roaming.short },
+  { label: 'Mid-contract price rise', value: f.rise.short },
+  { label: 'Student offer', value: f.student.short },
+  { label: 'eSIM', value: f.esim.short },
+  { label: 'Perks', value: f.perks.short },
+];
+const faq = [
+  { q: `Does ${net.name} include EU roaming?`, a: `${f.roaming.line} ${f.roaming.verified ? `Checked ${fmt(f.roaming.checked)} against ${net.name}'s own pages.` : ''}`.trim() },
+  { q: `Does ${net.name} put prices up mid-contract?`, a: `${f.rise.line} ${f.rise.verified ? `Checked ${fmt(f.rise.checked)}.` : ''}`.trim() },
+  { q: `Is there a ${net.name} student discount?`, a: `${f.student.line} ${f.student.checked ? `Checked ${fmt(f.student.checked)}.` : ''}`.trim() },
+  { q: `Does ${net.name} offer eSIM?`, a: `${f.esim.line} ${f.esim.verified ? `Checked ${fmt(f.esim.checked)}.` : ''}`.trim() },
+  { q: net.hostNetwork === 'direct' ? `Does ${net.name} own its network?` : `Which network does ${net.name} use?`, a: `${f.host.line} Ofcom's coverage checker shows predicted 4G and 5G coverage by postcode for each of the four host networks.` },
+];
+const sources = f.sources;
+const checkedAll = f.checked;
+const hostLine = f.host.line, roamLine = f.roaming.line, riseLine = f.rise.line, studentLine = f.student.line, roamShort = f.roaming.short, riseShort = f.rise.short, studentShort = f.student.short, host = net.hostNetwork === 'direct' ? null : net.hostNetwork;
+const compareLinks = pairs.filter((p) => p.includes(key)).slice(0, 5);
+
+const url = `${site.url}/networks/${key}/`;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: site.name, item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Networks', item: `${site.url}/networks/` },
+    { '@type': 'ListItem', position: 3, name: net.name, item: url },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url, name: `${net.name} SIM only deals, roaming, price rise`, dateModified: checkedAll, about: { '@type': 'Organization', name: net.name }, citation: sources.map((x) => x.url) },
+];
+const title = `${net.name} SIM only deals, roaming, price rise`;
+/* Sentence case for a phrase dropped into the middle of a sentence: only
+   the first letter changes, so units and months keep their capitals. */
+const lc = (s) => (/^[A-Z]{2}/.test(s) ? s : s.charAt(0).toLowerCase() + s.slice(1));
+const description = `${net.name} on one page: ${net.hostNetwork === 'direct' ? 'its own network' : `runs on ${host ?? 'a network not stated'}`}, EU roaming ${lc(roamShort)}, price rise ${lc(riseShort)}, student offer ${lc(studentShort)}. Every figure from ${net.name}'s own pages, dated.`.slice(0, 158);
+---
+<Base title={`${title} | Save on Sims`} description={description}>
+  <article class="network" style={`--network: ${net.colour}; --pill-text: ${net.pillText}`}>
+    <p class="crumb"><a href="/networks/">Networks</a></p>
+    <div class="head">
+      <span class:list={['flash', net.inkClash && 'flash--ink']} aria-hidden="true"></span>
+      <span class:list={['pill', net.inkClash && 'pill--ink']}>{net.name}</span>
+      <h1 class="t-h1">{net.name} SIM only deals, roaming and price rise</h1>
+      <p class="lede">{hostLine}</p>
+    </div>
+
+    <dl class="facts">
+      {facts.map((f) => (<div><dt>{f.label}</dt><dd>{f.value}</dd></div>))}
+    </dl>
+
+    <section class="deals" aria-labelledby="deals-heading">
+      <h2 id="deals-heading">{deals.length ? `${net.name} in this week's picks` : `No ${net.name} deal in this week's picks`}</h2>
+      {deals.length
+        ? <div class="grid">{deals.map((d) => <DealCard deal={d} settle={false} />)}</div>
+        : <p class="soft">The picks are chosen by <a href="/how-we-pick-deals/">published rules</a> from the deals we checked this week, and {net.name} did not make the cut, or its price rise is not yet verified. <a href="/">See this week's picks.</a></p>}
+    </section>
+
+    <section class="detail">
+      <h2>EU roaming</h2>
+      <p>{roamLine} <a href="/guides/eu-roaming-by-network/">Compare all 25 networks.</a></p>
+      <h2>Mid-contract price rise</h2>
+      <p>{riseLine} <GuideLink id="mid-contract-price-rises-explained">How price rises work.</GuideLink></p>
+      <h2>Student offer</h2>
+      <p>{studentLine} <a href="/students/">Every student offer.</a></p>
+      <h2>eSIM</h2>
+      <p>{f.esim.line} <GuideLink id="esim-uk-which-networks-offer-it">Which networks offer eSIM.</GuideLink></p>
+      <h2>Perks</h2>
+      <p>{f.perks.line} <GuideLink id="which-uk-network-has-the-best-perks">How the perk schemes compare.</GuideLink></p>
+      {compareLinks.length > 0 && <p class="soft">Head to head: {compareLinks.map((p, i) => <>{i > 0 && ', '}<a href={`/compare/${pairSlug(p)}/`}>{networks[p[0]].name} vs {networks[p[1]].name}</a></>)}.</p>}
+    </section>
+
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Questions people ask about {net.name}</h2>
+      {faq.map((f) => (<div class="faq-item"><h3>{f.q}</h3><p>{f.a}</p></div>))}
+    </section>
+
+    <footer class="sources">
+      <h2>Sources</h2>
+      {sources.length
+        ? <ul>{sources.map((x) => <li><a href={x.url} rel="nofollow noopener">{x.name}</a>, checked {fmt(x.checked)}.</li>)}</ul>
+        : <p>Nothing on this page has been verified against {net.name}'s own pages yet, which is why it reads To confirm.</p>}
+      {net.note && <p class="note">{net.note}</p>}
+    </footer>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
+
+<style>
+  .network { max-width: 72ch; }
+  .crumb { font-size: 12.5px; color: var(--ink-2); margin: var(--space-8) 0 var(--space-3); }
+  .crumb a { color: var(--ink-2); }
+  .head { position: relative; background: var(--card); padding: 22px 24px 20px; margin: 0 0 var(--space-6); clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%); }
+  .head .flash { position: absolute; top: 0; right: 0; width: 36px; height: 36px; background: var(--network); clip-path: polygon(100% 0, 100% 100%, 0 0); }
+  .head .flash--ink { box-shadow: inset 1px -1px 0 0 var(--paper); }
+  .head .pill { margin-bottom: var(--space-3); }
+  .head .lede { margin-bottom: 0; }
+  h1 { margin: 0 0 var(--space-3); text-wrap: balance; }
+  .lede { color: var(--ink-2); margin: 0 0 var(--space-6); max-width: 60ch; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0; margin: 0 0 var(--space-8); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+  .facts div { padding: 12px 16px 12px 0; }
+  .facts dt { font-size: 11.5px; color: var(--ink-2); margin: 0 0 4px; }
+  .facts dd { margin: 0; font-weight: 600; font-size: 15px; font-variant-numeric: tabular-nums; }
+  h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: var(--space-6) 0 var(--space-2); }
+  .deals h2 { margin-top: 0; }
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); align-items: start; }
+  .soft { color: var(--ink-2); font-size: 15px; }
+  .detail p { font-size: 15.5px; line-height: 1.6; margin: 0 0 var(--space-3); text-wrap: pretty; }
+  .faq { border-top: 2px solid var(--ink); padding-top: var(--space-4); margin-top: var(--space-8); }
+  .faq h2 { margin: 0 0 var(--space-4); }
+  .faq-item { padding: var(--space-3) 0; border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: 0; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+  .faq-item p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .sources { margin: var(--space-8) 0 0; font-size: 13px; color: var(--ink-2); }
+  .sources h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-2); color: var(--ink); }
+  .sources ul { margin: 0 0 var(--space-3); padding-left: 1.2em; }
+  .sources a { color: var(--ink-2); }
+  .note { max-width: 62ch; }
+</style>

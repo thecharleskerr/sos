@@ -1,0 +1,179 @@
+---
+import Base from '../../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import { networks } from '@sos/ui/networks';
+import { getSite } from '@sos/ui/site';
+import { liveDeals } from '@sos/ui/posts';
+import { networkFacts } from '@sos/ui/network-facts';
+import GuideLink from '@sos/ui/components/GuideLink.astro';
+import { roaming } from '@sos/compliance/roaming';
+import { priceRises } from '@sos/compliance/price-rises';
+import { studentOffers } from '@sos/compliance/students';
+import { esim } from '@sos/compliance/esim';
+import { perks } from '@sos/compliance/perks';
+import { pairs, pairSlug } from '@sos/data/rules/compare';
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
+
+/* Sentence case for a phrase dropped into the middle of a sentence: only
+   the first letter changes, so units, months and acronyms keep their capitals. */
+const lc = (s) => (/^[A-Z]{2}/.test(s) ? s : s.charAt(0).toLowerCase() + s.slice(1));
+
+export function getStaticPaths() {
+  return pairs.map((p) => ({ params: { pair: pairSlug(p) }, props: { a: p[0], b: p[1] } }));
+}
+const { a, b } = Astro.props;
+const site = getSite('sims');
+const tables = { roaming, priceRises, students: studentOffers, esim, perks };
+const A = { key: a, net: networks[a], f: networkFacts(a, networks[a], tables) };
+const B = { key: b, net: networks[b], f: networkFacts(b, networks[b], tables) };
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
+const deals = liveDeals('sims', root).deals;
+const dealsA = deals.filter((d) => d.network === a), dealsB = deals.filter((d) => d.network === b);
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+const rows = [
+  { label: 'Runs on', a: A.f.host.short, b: B.f.host.short },
+  { label: 'EU roaming', a: A.f.roaming.short, b: B.f.roaming.short },
+  { label: 'Daily charge in the EU', a: A.f.roaming.daily, b: B.f.roaming.daily },
+  { label: 'Roaming fair use cap', a: A.f.roaming.cap, b: B.f.roaming.cap },
+  { label: 'Mid-contract price rise', a: A.f.rise.short, b: B.f.rise.short },
+  { label: 'Student offer', a: A.f.student.short, b: B.f.student.short },
+  { label: 'eSIM', a: A.f.esim.short, b: B.f.esim.short },
+  { label: 'Perks', a: A.f.perks.short, b: B.f.perks.short },
+  { label: "In this week's picks", a: dealsA.length ? `${dealsA.length} deal${dealsA.length > 1 ? 's' : ''}` : 'Not this week', b: dealsB.length ? `${dealsB.length} deal${dealsB.length > 1 ? 's' : ''}` : 'Not this week' },
+];
+const differ = rows.filter((r) => r.a !== r.b && !/To confirm/.test(r.a + r.b));
+const same = rows.filter((r) => r.a === r.b && !/To confirm/.test(r.a));
+
+const faq = [
+  { q: `Is ${A.net.name} cheaper than ${B.net.name}?`, a: `It depends on the plan and the week. ${dealsA.length && dealsB.length ? `Both are in this week's checked picks, shown above with the total cost over the term.` : dealsA.length ? `${A.net.name} is in this week's picks and ${B.net.name} is not, which is about this week's deals, not the network.` : dealsB.length ? `${B.net.name} is in this week's picks and ${A.net.name} is not, which is about this week's deals, not the network.` : `Neither is in this week's picks.`} Compare the effective monthly cost, which is the total over the term divided by the months, and add the mid-contract rise: ${lc(A.f.rise.short)} for ${A.net.name}, ${lc(B.f.rise.short)} for ${B.net.name}.` },
+  { q: `Which has better EU roaming, ${A.net.name} or ${B.net.name}?`, a: `${A.net.name}: ${A.f.roaming.line} ${B.net.name}: ${B.f.roaming.line}` },
+  { q: `Can I switch from ${A.net.name} to ${B.net.name} and keep my number?`, a: `Yes. Text PAC to 65075 from the ${A.net.name} SIM, give the code to ${B.net.name} when you order, and Ofcom's rules move the number within one working day. The same works the other way round.` },
+  { q: `Do ${A.net.name} and ${B.net.name} use the same masts?`, a: `${A.f.host.line} ${B.f.host.line}${A.f.host.short === B.f.host.short ? ' Coverage will be the same for both, so choose on price and terms.' : ' Check both hosts on Ofcom\'s coverage checker for your postcode before choosing.'}` },
+];
+const url = `${site.url}/compare/${pairSlug([a, b])}/`;
+const title = `${A.net.name} vs ${B.net.name}`;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: site.name, item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Networks', item: `${site.url}/networks/` },
+    { '@type': 'ListItem', position: 3, name: title, item: url },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url, name: `${title}: roaming, price rises, eSIM, perks and this week's deals`, dateModified: [A.f.checked, B.f.checked].filter(Boolean).sort().at(-1) ?? null, about: [{ '@type': 'Organization', name: A.net.name }, { '@type': 'Organization', name: B.net.name }] },
+];
+const description = `${A.net.name} vs ${B.net.name} on what matters: ${A.f.host.short === B.f.host.short ? 'the same masts' : 'different masts'}, EU roaming ${lc(A.f.roaming.short)} vs ${lc(B.f.roaming.short)}, price rise ${lc(A.f.rise.short)} vs ${lc(B.f.rise.short)}, eSIM, perks and this week's deals.`.slice(0, 158);
+---
+<Base title={`${title} compared | Save on Sims`} description={description}>
+  <article class="cmp" style={`--a: ${A.net.colour}; --a-text: ${A.net.pillText}; --b: ${B.net.colour}; --b-text: ${B.net.pillText}`}>
+    <p class="crumb"><a href="/networks/">Networks</a></p>
+    <h1 class="t-h1"><span class="name-a">{A.net.name}</span> vs <span class="name-b">{B.net.name}</span></h1>
+    <p class="lede">Every line below comes from each network's own pages on the date shown, or from this week's checked deals. Where a figure is not verified it reads To confirm rather than a guess.</p>
+
+    <div class="scroll" tabindex="0" role="region" aria-label={`${title} comparison`}>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="what"><span class="sr-only">What</span></th>
+            <th scope="col" class="col-a"><a class="pill pill-a" href={`/networks/${a}/`}>{A.net.name}</a></th>
+            <th scope="col" class="col-b"><a class="pill pill-b" href={`/networks/${b}/`}>{B.net.name}</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <th scope="row">{r.label}</th>
+              <td class:list={[r.a !== r.b && 'diff']}>{r.a}</td>
+              <td class:list={[r.a !== r.b && 'diff']}>{r.b}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <section class="verdict">
+      <h2>Where they differ</h2>
+      {differ.length
+        ? <ul>{differ.map((r) => <li><strong>{r.label}.</strong> {A.net.name}: {r.a}. {B.net.name}: {r.b}.</li>)}</ul>
+        : <p class="soft">On everything we have verified, the two match. Choose on this week's price.</p>}
+      {same.length > 0 && <p class="soft">The same on {same.map((r) => lc(r.label)).join(', ')}.</p>}
+    </section>
+
+    {(dealsA.length > 0 || dealsB.length > 0) && (
+      <section class="deals">
+        <h2>This week's picks from both</h2>
+        <div class="grid">{[...dealsA, ...dealsB].map((d) => <DealCard deal={d} settle={false} />)}</div>
+      </section>
+    )}
+
+    <section class="detail">
+      <h2>EU roaming</h2>
+      <p><strong>{A.net.name}.</strong> {A.f.roaming.line}</p>
+      <p><strong>{B.net.name}.</strong> {B.f.roaming.line} <a href="/guides/eu-roaming-by-network/">All 25 networks compared.</a></p>
+      <h2>Mid-contract price rise</h2>
+      <p><strong>{A.net.name}.</strong> {A.f.rise.line}</p>
+      <p><strong>{B.net.name}.</strong> {B.f.rise.line} <GuideLink id="mid-contract-price-rises-explained">How price rises work.</GuideLink></p>
+      <h2>eSIM and perks</h2>
+      <p><strong>{A.net.name}.</strong> {A.f.esim.line} {A.f.perks.line}</p>
+      <p><strong>{B.net.name}.</strong> {B.f.esim.line} {B.f.perks.line}</p>
+      <h2>Students</h2>
+      <p><strong>{A.net.name}.</strong> {A.f.student.line}</p>
+      <p><strong>{B.net.name}.</strong> {B.f.student.line} <a href="/students/">Every student offer.</a></p>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Questions people ask</h2>
+      {faq.map((f) => (<div class="faq-item"><h3>{f.q}</h3><p>{f.a}</p></div>))}
+    </section>
+
+    <footer class="sources">
+      <h2>Sources</h2>
+      <ul>{[...A.f.sources, ...B.f.sources].map((x) => <li><a href={x.url} rel="nofollow noopener">{x.name}</a>, checked {fmt(x.checked)}.</li>)}</ul>
+      <p>More head to heads: {pairs.filter((p) => (p.includes(a) || p.includes(b)) && pairSlug(p) !== pairSlug([a, b])).slice(0, 6).map((p, i) => <>{i > 0 && ', '}<a href={`/compare/${pairSlug(p)}/`}>{networks[p[0]].name} vs {networks[p[1]].name}</a></>)}.</p>
+    </footer>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
+
+<style>
+  /* Two brands, so two colours, each only where its network is named. */
+  .cmp { max-width: 78ch; }
+  .crumb { font-size: 12.5px; color: var(--ink-2); margin: var(--space-8) 0 var(--space-3); }
+  .crumb a { color: var(--ink-2); }
+  h1 { margin: 0 0 var(--space-3); text-wrap: balance; }
+  .name-a { box-shadow: inset 0 -0.18em 0 0 var(--a); }
+  .name-b { box-shadow: inset 0 -0.18em 0 0 var(--b); }
+  .lede { color: var(--ink-2); margin: 0 0 var(--space-6); max-width: 60ch; }
+  .scroll { overflow-x: auto; background: var(--card); padding: 4px 20px 12px; position: relative; }
+  .scroll::before, .scroll::after { content: ''; position: absolute; top: 0; height: 4px; width: 50%; }
+  .scroll::before { left: 0; background: var(--a); }
+  .scroll::after { right: 0; background: var(--b); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; }
+  thead th { padding: 16px 14px 10px 0; border-bottom: 1px solid var(--ink); vertical-align: bottom; }
+  .what { width: 30%; }
+  .pill-a { background: var(--a); color: var(--a-text); }
+  .pill-b { background: var(--b); color: var(--b-text); }
+  tbody th, tbody td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tbody th { font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+  tbody td { font-weight: 600; font-variant-numeric: tabular-nums; }
+  tbody td:not(.diff) { font-weight: 400; color: var(--ink-2); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: var(--space-6) 0 var(--space-2); }
+  .verdict ul { margin: 0; padding: 0; list-style: none; }
+  .verdict li { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 15px; line-height: 1.5; }
+  .soft { color: var(--ink-2); font-size: 14.5px; }
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); align-items: start; }
+  .detail p { font-size: 15.5px; line-height: 1.6; margin: 0 0 var(--space-3); text-wrap: pretty; }
+  .faq { border-top: 2px solid var(--ink); padding-top: var(--space-4); margin-top: var(--space-8); }
+  .faq h2 { margin: 0 0 var(--space-4); }
+  .faq-item { padding: var(--space-3) 0; border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: 0; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+  .faq-item p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .sources { margin: var(--space-8) 0 0; font-size: 13px; color: var(--ink-2); }
+  .sources h2 { font-size: 13px; font-weight: 600; margin: 0 0 var(--space-2); color: var(--ink); }
+  .sources ul { margin: 0 0 var(--space-3); padding-left: 1.2em; }
+  .sources a { color: var(--ink-2); }
+  @media (max-width: 40rem) { .what { width: 34%; } table { font-size: 13px; } }
+</style>

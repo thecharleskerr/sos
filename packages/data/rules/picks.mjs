@@ -18,9 +18,9 @@ export const gb = (d) => (d.data === 'unlimited' ? UNLIMITED_GB : d.data);
 export const effectiveMonthly = (d) => d.totalContractCost / d.contractLengthMonths;
 export const valueScore = (d) => gb(d) / effectiveMonthly(d);
 
-const byPrice = (a, b) =>
+export const byPrice = (a, b) =>
   effectiveMonthly(a) - effectiveMonthly(b) || a.contractLengthMonths - b.contractLengthMonths || a.id.localeCompare(b.id);
-const byValue = (a, b) => valueScore(b) - valueScore(a) || byPrice(a, b);
+export const byValue = (a, b) => valueScore(b) - valueScore(a) || byPrice(a, b);
 
 export const PICK_RULES = [
   { pick: 'deal-of-week', filter: (d) => gb(d) >= MIN_USEFUL_GB, sort: byValue },
