@@ -13,27 +13,43 @@ permissions:
   pull-requests: write
 
 jobs:
-  refresh:
+  # A step that exits 0 does not stop the steps after it, so the time check
+  # is its own job and the refresh job runs only when it says go.
+  gate:
     runs-on: ubuntu-latest
+    outputs:
+      go: ${{ steps.check.outputs.go }}
     steps:
-      - name: Only continue at 08:00 London
+      - id: check
+        name: Only continue at 08:00 London
         run: |
           if [ "${{ github.event_name }}" = "schedule" ] && [ "$(TZ=Europe/London date +%H)" != "08" ]; then
             echo "Not 08:00 in London, stopping."
-            exit 0
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=true" >> "$GITHUB_OUTPUT"
           fi
 
+  refresh:
+    needs: gate
+    if: needs.gate.outputs.go == 'true'
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
       - run: npm ci
 
+      # The scrapers must not stop the Awin path when a site misbehaves, so
+      # both steps carry on after an error and the summary says what failed.
       - name: Install a browser for the scrapers
+        continue-on-error: true
         run: npx playwright install --with-deps chromium
 
       # The networks' own plan pages, plus leads from deal communities. Runs
       # whether or not the Awin feed is available; the two are merged below.
       - name: Scrape the networks' plan pages and gather leads
+        continue-on-error: true
         env:
           AWIN_PUBLISHER_ID: ${{ secrets.AWIN_PUBLISHER_ID }}
         run: node packages/data/ingest/scrape/run-scrape.mjs --out data/scrape/latest.json

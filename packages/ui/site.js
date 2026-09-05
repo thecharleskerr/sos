@@ -21,6 +21,7 @@ export const sites = {
       { path: '/', changefreq: 'weekly', priority: 1.0 },
       { path: '/students/', changefreq: 'weekly', priority: 0.8 },
       { path: '/guides/eu-roaming-by-network/', changefreq: 'monthly', priority: 0.8 },
+      { path: '/price-rise-calculator/', changefreq: 'monthly', priority: 0.8 },
       { path: '/blog/', changefreq: 'weekly', priority: 0.7 },
       { path: '/networks/', changefreq: 'weekly', priority: 0.8 },
       { path: '/this-week/', changefreq: 'weekly', priority: 0.6 },

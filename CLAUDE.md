@@ -52,11 +52,16 @@ and focus, plus one settle on first load of the homepage.
     npm test                # ingest, ranking and integrity tests, runs in CI
     npm run refresh         # the weekly feed pull, dry run outside Actions
     npm run integrity       # the daily link, freshness and drift check
+    npm run seo             # the built-page audit, runs in CI after the build
 
 ## The weekly cycle
 
-packages/data/ingest/run.mjs pulls the Awin telco feeds and proposes the
-week's deals in a pull request. packages/data/verify/integrity.mjs hides
+packages/data/ingest/run.mjs pulls the Awin telco feeds, merges the rows the
+scrapers in packages/data/ingest/scrape/ read from the networks' own plan
+pages, and proposes the week's deals in a pull request. The "Scraper trial
+run" workflow runs the scrapers alone for tuning; the "Page reads" workflow
+reads the pages the compliance tables are waiting on and proposes them as
+text for a person to fill in. packages/data/verify/integrity.mjs hides
 dead, drifted or unverified deals every morning. packages/data/rules/ ranks
 the picks; the rules are written out in its README. Roaming and the price
 rise come from packages/compliance, never from the feed, and a network with

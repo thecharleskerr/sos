@@ -1,0 +1,39 @@
+name: Scraper trial run
+
+# Runs the sims scrapers on their own and shows what each network's page
+# yielded, without touching content/ or opening a pull request. For tuning
+# the recipes before Monday, and for checking a network that came back
+# empty in the weekly summary.
+on:
+  workflow_dispatch:
+    inputs:
+      networks:
+        description: 'Comma separated network keys from recipes.mjs, or empty for all'
+        required: false
+        default: ''
+
+jobs:
+  trial:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Scrape
+        env:
+          AWIN_PUBLISHER_ID: ${{ secrets.AWIN_PUBLISHER_ID }}
+        run: |
+          if [ -n "${{ github.event.inputs.networks }}" ]; then
+            node packages/data/ingest/scrape/run-scrape.mjs --out data/scrape/latest.json --networks "${{ github.event.inputs.networks }}"
+          else
+            node packages/data/ingest/scrape/run-scrape.mjs --out data/scrape/latest.json
+          fi
+      - name: Show what the refresh would propose, without writing anything
+        run: node --experimental-strip-types packages/data/ingest/run.mjs --scrape data/scrape/latest.json --summary data/scrape/summary.md || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scrape-${{ github.run_number }}
+          path: data/scrape/
+          retention-days: 14

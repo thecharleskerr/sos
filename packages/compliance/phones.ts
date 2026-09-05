@@ -186,6 +186,26 @@ export const phones: Record<string, TrackedPhone> = {
     source: 'https://www.samsung.com/uk/smartphones/galaxy-a/galaxy-a26-5g-black-256gb-sm-a266bzkceub/buy/', checked: '2026-09-04', evidence: 'unverified',
   },
 
+  /* Galaxy A57 5G and A37 5G
+   * Source:  https://news.samsung.com/uk/samsung-galaxy-a57-5g-and-galaxy-a37-5g-now-available
+   * Also:    https://news.samsung.com/uk/samsung-unveils-galaxy-a57-5g-and-galaxy-a37-5g-packing-pro-level-features-at-awesome-price
+   * Checked: 2026-09-04, one reader, two Samsung UK newsroom pages agreeing.
+   * On sale from 10 April on samsung.com/uk. These replace the A56 and A36
+   * as the current mid-range models.
+   * Official wording: "Galaxy A57 5G price starting from RRP £529 (256GB)
+   * and Galaxy A37 5G starting from RRP £399 (128GB)."
+   */
+  'galaxy-a57-5g': {
+    slug: 'galaxy-a57-5g', name: 'Samsung Galaxy A57 5G', maker: 'Samsung', rrpGBP: 529, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://news.samsung.com/uk/samsung-galaxy-a57-5g-and-galaxy-a37-5g-now-available', checked: '2026-09-04', evidence: 'official-page',
+  },
+  'galaxy-a37-5g': {
+    slug: 'galaxy-a37-5g', name: 'Samsung Galaxy A37 5G', maker: 'Samsung', rrpGBP: 399, storageGB: 128, fiveG: true,
+    updates: null,
+    source: 'https://news.samsung.com/uk/samsung-galaxy-a57-5g-and-galaxy-a37-5g-now-available', checked: '2026-09-04', evidence: 'official-page',
+  },
+
   /* Galaxy A17 5G
    * Source:  https://www.samsung.com/uk/smartphones/galaxy-a/galaxy-a17-5g-black-128gb-sm-a176bzkaeub/buy/
    * Checked: 2026-09-02, writer plus the fact refuter.

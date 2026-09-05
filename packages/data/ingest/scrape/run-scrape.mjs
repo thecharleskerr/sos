@@ -6,6 +6,7 @@
        --networks smarty,giffgaff   only these recipes
        --no-leads                   skip the lead feeds
        --html <file> --network smarty   extract from a saved page instead of the web
+       --summary <file>             also write the per-network table as Markdown
 
    AWIN_PUBLISHER_ID turns a scraped link into an Awin deep link on networks
    that have a programme; without it every scraped link is direct and the
@@ -42,14 +43,22 @@ async function scrapeWithBrowser(list) {
   const { chromium } = await import('playwright');
   const browser = await chromium.launch({ executablePath: process.env.SOS_CHROME || undefined, args: ['--no-sandbox'] });
   const ctx = await browser.newContext({ userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36 saveonsims-weekly-check', locale: 'en-GB' });
+  /* Plans are text. Images, video and fonts only slow the run down. */
+  await ctx.route('**/*', (route) => (['image', 'media', 'font'].includes(route.request().resourceType()) ? route.abort() : route.continue()));
   const results = [];
   const rows = [];
   for (const recipe of list) {
     for (const url of recipe.urls) {
-      const rec = { network: recipe.network, url, status: null, cards: 0, jsonLd: 0, rows: 0, error: null };
+      const rec = { network: recipe.network, url, status: null, cards: 0, jsonLd: 0, rows: 0, error: null, attempts: 0 };
       const page = await ctx.newPage();
       try {
-        const res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+        /* One retry: these sites drop a first connection often enough. */
+        let res = null, lastErr = null;
+        for (let attempt = 1; attempt <= 2 && !res; attempt++) {
+          rec.attempts = attempt;
+          try { res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 }); }
+          catch (e) { lastErr = e; if (attempt === 2) throw e; await page.waitForTimeout(3000); }
+        }
         rec.status = res?.status() ?? null;
         await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
         /* Cookie banners hide the plans on most of these sites. */
@@ -121,3 +130,17 @@ mkdirSync(dirname(resolve(out)), { recursive: true });
 writeFileSync(resolve(out), `${JSON.stringify({ generated: new Date().toISOString(), publisherId: Boolean(publisherId), recipes: results, rows, leads }, null, 2)}\n`);
 const empty = results.filter((r) => !r.rows);
 console.log(`${rows.length} rows from ${results.length - empty.length} pages; ${empty.length} pages yielded nothing; ${leads.filter((l) => l.title).length} leads. Written to ${out}`);
+
+/* The same picture as a table, for the Actions job summary and for the
+   weekly pull request, so an empty network is seen rather than missed. */
+const summary = [
+  `## Scraper run, ${today}`, '',
+  `${rows.length} plan rows from ${results.length - empty.length} of ${results.length} pages, ${leads.filter((l) => l.title).length} leads, ${publisherId ? 'Awin deep links on' : 'no AWIN_PUBLISHER_ID, so every link is direct and editorial'}.`, '',
+  '| Network | Page | Status | Cards | Rows | Note |', '|---|---|---|---|---|---|',
+  ...results.map((r) => `| ${networks[r.network]?.name ?? r.network} | ${r.url} | ${r.status ?? ''} | ${r.cards} | ${r.rows} | ${r.error ?? (r.rows ? (r.attempts > 1 ? 'needed a retry' : '') : 'nothing extracted: check the URL and the layout')} |`),
+  '',
+  ...leads.filter((l) => l.error).map((l) => `Lead feed ${l.feed} failed: ${l.error}`),
+  '',
+];
+if (opt('--summary', null)) writeFileSync(resolve(opt('--summary')), summary.join('\n'));
+if (process.env.GITHUB_STEP_SUMMARY) writeFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n'), { flag: 'a' });
