@@ -1,0 +1,208 @@
+---
+/* The price rise calculator. The verified rise for each network comes from
+   the compliance table at build time and is handed to a small client script
+   as JSON; the script does the arithmetic in rise-maths.js. Without
+   JavaScript the page still shows every network's rise in the table below. */
+import Base from '../layouts/Base.astro';
+import GuideLink from '@sos/ui/components/GuideLink.astro';
+import { networks } from '@sos/ui/networks';
+import { getSite } from '@sos/ui/site';
+import { gbp } from '@sos/ui/money';
+import { priceRises } from '@sos/compliance/price-rises';
+
+const site = getSite('sims');
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const landing = (p) => (p.month === 'March' ? '31 March' : p.month === 'April' && /1 April/.test(p.wording ?? '') ? '1 April' : 'April');
+
+/* Every network, verified or not, in the order the site lists them. */
+const all = Object.entries(networks).map(([key, net]) => {
+  const p = priceRises[key];
+  const verified = Boolean(p && p.evidence !== 'unverified' && p.type);
+  return {
+    key, name: net.name, colour: net.colour, host: net.hostNetwork === 'direct' ? 'own network' : net.hostNetwork, editorial: !net.affiliate,
+    verified, type: verified ? p.type : null, amountGBP: verified ? p.amountGBP : null, tiers: verified ? p.tiers ?? null : null,
+    landing: verified && p.type === 'fixed' ? landing(p) : null, wording: verified ? p.wording : null, appliesTo: verified ? p.appliesTo : null,
+    source: verified ? p.source : null, checked: verified ? p.checked : null, evidence: verified ? p.evidence : 'unverified',
+  };
+});
+const verified = all.filter((n) => n.verified);
+const fixed = verified.filter((n) => n.type === 'fixed');
+const none = verified.filter((n) => n.type === 'none');
+const latest = verified.map((n) => n.checked).sort().at(-1);
+const riseText = (n) => n.type === 'none' ? 'No price rise' : n.amountGBP !== null ? `${gbp(n.amountGBP)} a month, ${n.landing}` : n.tiers ? `${n.tiers.map((t) => gbp(t.amountGBP)).join(' to ')} a month by plan size, ${n.landing}` : 'Not stated';
+
+const url = `${site.url}/price-rise-calculator/`;
+const faq = [
+  { q: 'When does the April 2027 price rise land?', a: `${fixed.filter((n) => n.landing !== '31 March').map((n) => n.name).join(', ')} state a rise each April, on 1 April where the page says so. EE states 31 March. The calculator counts the new price from the April bill for every network.` },
+  { q: 'How much is the April 2027 price rise on each network?', a: `${fixed.filter((n) => n.amountGBP !== null).map((n) => `${n.name} ${gbp(n.amountGBP)} a month`).join(', ')}. Three's rise depends on the plan's data allowance: ${fixed.find((n) => n.tiers)?.tiers.map((t) => `${gbp(t.amountGBP)} on plans ${t.maxGB === null ? 'of 100GB or more' : `up to ${t.maxGB}GB`}`).join(', ')}. Each figure is the network's own, in pounds and pence.` },
+  { q: 'Which networks have no mid-contract price rise?', a: `${none.map((n) => n.name).join(', ')} each state no mid-contract price rise on their own pages, checked on the dates in the table. ${all.filter((n) => !n.verified).length} networks publish nothing we could verify, so they show as not stated rather than as a promise.` },
+  { q: 'Does the rise apply to the phone part of a contract?', a: 'Not on the networks that state it. O2, Vodafone and Three say the rise applies to the airtime and that device payments are frozen or excluded. This calculator is for the airtime or SIM only price; leave the phone repayment out of the monthly figure you type.' },
+  { q: 'Can I leave before the rise?', a: 'Once your minimum term has ended you can switch at any time by texting PAC to 65075 to keep your number. Inside the minimum term, a fixed rise stated at the point of sale does not by itself give you a right to leave without charge, so the sum here is what you would pay by staying.' },
+];
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: site.name, item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Price rise calculator', item: url },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url, name: 'Price rise calculator: what your bill becomes after April 2027', dateModified: latest, citation: verified.map((n) => n.source) },
+];
+const clientData = verified.map(({ key, name, colour, type, amountGBP, tiers, landing, wording, source, checked, evidence }) => ({ key, name, colour, type, amountGBP, tiers, landing, wording, source, checked, evidence }));
+---
+<Base
+  title="April 2027 price rise calculator | Save on Sims"
+  description="Pick your network, your monthly price and the months left to see what the April 2027 mid-contract price rise adds, using each network's own pounds and pence figure."
+>
+  <h1 class="t-h1">What your bill becomes after the April 2027 price rise</h1>
+  <p class="lede">Pick your network, type your monthly price and how many months you have left. The sum uses the rise each network states on its own pages, in pounds and pence, and counts every April inside your remaining term. Figures last checked {fmt(latest)}.</p>
+
+  <form class="calc" id="calc" autocomplete="off">
+    <div class="field">
+      <label for="network">Your network</label>
+      <select id="network" name="network">
+        {verified.map((n) => <option value={n.key}>{n.name}{n.editorial ? ' (not a deal on this site)' : ''}</option>)}
+        <option value="">Another network (not verified)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="price">Monthly price now, in pounds</label>
+      <input id="price" name="price" type="number" inputmode="decimal" min="1" max="200" step="0.01" placeholder="20" class="num" />
+    </div>
+    <div class="field">
+      <label for="months">Months left on the contract</label>
+      <input id="months" name="months" type="number" inputmode="numeric" min="1" max="36" step="1" value="12" class="num" />
+    </div>
+    <div class="field" id="data-field" hidden>
+      <label for="data">Your plan's data allowance</label>
+      <select id="data" name="data">
+        <option value="4">Up to 4GB</option>
+        <option value="50" selected>5GB to 99GB</option>
+        <option value="unlimited">100GB or more, or unlimited</option>
+      </select>
+    </div>
+  </form>
+
+  <div class="result" id="result" aria-live="polite">
+    <p class="result-label">Your bill</p>
+    <p class="result-text" id="result-text">Turn on JavaScript to run the sum, or read every network's rise in the table below.</p>
+    <p class="result-note" id="result-note"></p>
+  </div>
+
+  <p class="cta"><a class="btn-deal" href="/deals/no-price-rise/">See this week's no price rise deals<svg aria-hidden="true"><rect x="0" y="0" width="100%" height="100%" pathLength="1" /></svg></a></p>
+
+  <section class="how" aria-labelledby="how-heading">
+    <h2 id="how-heading">How the sum works</h2>
+    <ol>
+      <li>The rise is the figure your network states in pounds and pence. Since January 2025 Ofcom requires it to be stated that way at the point of sale, never as a percentage or an inflation link.</li>
+      <li>The new price applies from the April bill onwards, and again each April after that while the contract runs. EE's rise takes effect on 31 March, so its first full bill at the new price is April's too.</li>
+      <li>Three's rise depends on the plan's data allowance, so the calculator asks for it when you pick Three.</li>
+      <li>The monthly price you type should be the airtime or SIM only price. O2, Vodafone and Three state that the device part of a phone contract is not raised.</li>
+      <li>Out of bundle charges, add-ons and roaming passes are outside the sum. EE states those rise by 5%.</li>
+    </ol>
+    <p>The card on every deal page shows the same rise beside the price, so you never have to work it out at checkout. <GuideLink id="mid-contract-price-rises-explained">How mid-contract price rises work.</GuideLink> <GuideLink id="april-2027-price-rises">What each network will add in April 2027.</GuideLink></p>
+  </section>
+
+  <section class="table-wrap" aria-labelledby="table-heading">
+    <h2 id="table-heading">Every network's stated rise</h2>
+    <table class="rises">
+      <thead><tr><th scope="col">Network</th><th scope="col">Runs on</th><th scope="col">Mid-contract rise</th><th scope="col">Applies to</th><th scope="col">Source</th></tr></thead>
+      <tbody>
+        {all.map((n) => (
+          <tr style={`--network: ${n.colour}`}>
+            <th scope="row"><span class="swatch" aria-hidden="true"></span><a href={`/networks/${n.key}/`}>{n.name}</a>{n.editorial && <span class="soft"> editorial only</span>}</th>
+            <td>{n.host}</td>
+            <td class="num">{n.verified ? riseText(n) : 'Not stated'}</td>
+            <td class="soft">{n.appliesTo ?? (n.verified ? '' : 'Nothing verified on the network\'s own pages yet, so its deals are held.')}</td>
+            <td class="soft">{n.source ? <a href={n.source} rel="nofollow noopener">Checked {fmt(n.checked)}</a> : ''}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="method">Every figure is quoted from the network's own page on the date shown. A network marked not stated is one whose pages we could not verify, which is not the same as no rise. <a href="/networks/">Every network on one page each.</a></p>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Questions people ask</h2>
+    {faq.map((f) => (<div class="faq-item"><h3>{f.q}</h3><p>{f.a}</p></div>))}
+  </section>
+
+  <script type="application/json" id="rise-data" set:html={JSON.stringify(clientData)} />
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
+
+<script>
+  import { amountFor, project } from '@sos/ui/rise-maths';
+  const data = JSON.parse(document.getElementById('rise-data')?.textContent ?? '[]');
+  const byKey = Object.fromEntries(data.map((n) => [n.key, n]));
+  const $ = (id) => document.getElementById(id);
+  const gbp = (n) => `£${n % 1 === 0 ? n : n.toFixed(2)}`;
+  const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const form = $('calc'), result = $('result'), text = $('result-text'), note = $('result-note'), dataField = $('data-field');
+
+  function render() {
+    const net = byKey[$('network').value] ?? null;
+    const price = parseFloat($('price').value);
+    const months = parseInt($('months').value, 10);
+    dataField.hidden = !(net && net.tiers);
+    result.style.setProperty('--network', net ? net.colour : 'var(--ink)');
+    note.innerHTML = '';
+    if (!net) { text.textContent = 'That network has no verified price rise on its own pages, so its figure is not stated and we will not guess it. Check your contract for the rise it names in pounds and pence.'; return; }
+    if (!(price > 0)) { text.textContent = `Type your current monthly price to see what ${net.name}'s stated rise does to it.`; return; }
+    if (!(months >= 1)) { text.textContent = 'Type how many months are left on your contract, from 1 to 36.'; return; }
+    const amount = amountFor(net, net.tiers ? $('data').value : null);
+    if (amount === null) { text.textContent = `Choose your plan's data allowance to see ${net.name}'s figure.`; return; }
+    const r = project({ price, monthsLeft: months, amount });
+    const source = net.source ? ` <a href="${net.source}" rel="nofollow noopener">${net.name}'s own page</a>, checked ${fmt(net.checked)}.` : '';
+    if (amount === 0) {
+      text.textContent = `${net.name} states no mid-contract price rise, so your bill stays at ${gbp(price)} a month and the ${months} months left cost ${gbp(r.totalWithoutRises)}.`;
+      note.innerHTML = `Source: "${net.wording}",${source}`;
+      return;
+    }
+    if (!r.rises.length) {
+      text.textContent = `${net.name} adds ${gbp(amount)} a month each April, but your remaining ${months} months end before the next April, so your bill stays at ${gbp(price)} and the term costs ${gbp(r.totalWithoutRises)}.`;
+      note.innerHTML = `The rise lands ${net.landing}.${source}`;
+      return;
+    }
+    const first = r.rises[0];
+    let s = `Your bill goes up by ${gbp(amount)} to ${gbp(first.monthly)} a month from April ${first.year}, ${first.monthsIn} month${first.monthsIn === 1 ? '' : 's'} from now.`;
+    if (r.rises[1]) s += ` It rises again to ${gbp(r.rises[1].monthly)} from April ${r.rises[1].year}.`;
+    s += ` Over the ${months} months left that is ${gbp(r.extraTotal)} extra, so the contract costs ${gbp(r.totalWithRises)} rather than ${gbp(r.totalWithoutRises)}.`;
+    text.textContent = s;
+    note.innerHTML = `${net.name} states "${net.wording}", landing ${net.landing}.${source} On a network with no price rise the same plan would cost ${gbp(r.totalWithoutRises)}.`;
+  }
+  form.addEventListener('input', render);
+  form.addEventListener('change', render);
+  form.addEventListener('submit', (e) => { e.preventDefault(); render(); });
+  render();
+</script>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-4); max-width: 24ch; }
+  .lede { max-width: 66ch; color: var(--ink-2); margin: 0 0 var(--space-6); }
+  .calc { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); max-width: 72ch; border-top: 2px solid var(--ink); padding-top: var(--space-4); }
+  .field label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-2); margin: 0 0 6px; }
+  .field input, .field select { width: 100%; box-sizing: border-box; font: inherit; font-size: 17px; padding: 10px 12px; border: 1px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink); }
+  .field input:focus-visible, .field select:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .result { max-width: 72ch; margin: var(--space-6) 0 var(--space-4); padding: var(--space-4) var(--space-4) var(--space-4) var(--space-6); border-left: 6px solid var(--network, var(--ink)); border-bottom: 1px solid var(--rule); }
+  .result-label { font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 6px; }
+  .result-text { font-size: 19px; font-weight: 600; line-height: 1.4; margin: 0; text-wrap: pretty; font-variant-numeric: tabular-nums; }
+  .result-note { font-size: 13.5px; color: var(--ink-2); margin: var(--space-3) 0 0; line-height: 1.5; }
+  .result-note:empty { display: none; }
+  .cta { margin: 0 0 var(--space-8); }
+  .how, .faq, .table-wrap { max-width: 72ch; border-top: 2px solid var(--ink); padding-top: var(--space-4); margin: var(--space-8) 0; }
+  .how h2, .faq h2, .table-wrap h2 { font-size: 20px; font-weight: 800; margin: 0 0 var(--space-4); }
+  .how ol { padding-left: 1.2em; margin: 0 0 var(--space-4); }
+  .how li { margin: 0 0 var(--space-2); line-height: 1.5; }
+  .table-wrap { max-width: none; overflow-x: auto; }
+  .rises { width: 100%; max-width: 100ch; border-collapse: collapse; font-size: 14px; text-align: left; }
+  .rises th { font-size: 11.5px; font-weight: 600; color: var(--ink-2); padding: 10px 14px 8px 0; border-bottom: 1px solid var(--ink); }
+  .rises td, .rises tbody th { padding: 10px 14px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .rises tbody th { font-size: 14px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .swatch { display: inline-block; width: 10px; height: 10px; background: var(--network); margin-right: 8px; vertical-align: -1px; }
+  .soft { color: var(--ink-2); font-weight: 400; }
+  .method { font-size: 12.5px; color: var(--ink-2); margin-top: var(--space-4); max-width: 72ch; }
+  .faq-item { padding: var(--space-3) 0; border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: 0; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+  .faq-item p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+</style>

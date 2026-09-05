@@ -65,6 +65,14 @@ Tick an item by deleting it. Keep this file short.
 
 ## The first weekly refresh
 
+- [ ] **Run the "Scraper trial run" workflow first.** It runs the sims
+      scrapers on their own, prints a per-network table in the job summary
+      (page status, cards found, rows extracted) and uploads the JSON, without
+      touching `content/` or opening a pull request. Fix any recipe whose row
+      says "nothing extracted" in `packages/data/ingest/scrape/recipes.mjs`,
+      rerun with that network's key in the input, and flip `urlVerified` once
+      it yields plans.
+
 - [ ] **Confirm the scraper recipe URLs.** Every plan page URL in
       `packages/data/ingest/scrape/recipes.mjs` is marked
       `urlVerified: false` because it was written without a live fetch. Run
@@ -85,8 +93,16 @@ The compliance tables are filled by search agents reading the networks'
 own pages, with a second agent checking each figure independently. Search
 only returns snippets, so a few pages defeat it: ones that render the
 figure by script, and ones whose wording conflicts with another page on
-the same site. Each item below needs someone to open the page and read
-it. The entry's comment in the table names the page and the quote found.
+the same site.
+
+**Run the "Page reads for the compliance tables" workflow** from the
+Actions tab (it also runs on the first of each month). It opens every page
+in `packages/compliance/reads.json` in a browser, where the network is
+open, and proposes a pull request with one file per page under
+`data/reads/`: the pound amounts in context, the phrases the entry is
+waiting on, and the visible text. Fill each table entry from that text
+with the read date as the checked date. The items below are what those
+reads settle.
 
 - [ ] **Price rise labelling for rolling plans with a notice clause.**
       spusu and Revolut Mobile state no scheduled rise but reserve the

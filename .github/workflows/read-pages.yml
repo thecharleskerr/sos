@@ -1,0 +1,47 @@
+name: Page reads for the compliance tables
+
+# Some pages defeat search: the price renders by script, or two pages on the
+# same site disagree. This job opens each one in a browser from here, where
+# the network is open, and proposes what it found as a pull request. Nothing
+# reaches the tables until a person reads the text and fills the entry.
+on:
+  schedule:
+    - cron: '0 6 1 * *'   # the first of each month
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Comma separated slugs from packages/compliance/reads.json, or empty for all'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Read the pages
+        run: |
+          if [ -n "${{ github.event.inputs.only }}" ]; then
+            node packages/data/verify/read-pages.mjs --only "${{ github.event.inputs.only }}"
+          else
+            node packages/data/verify/read-pages.mjs
+          fi
+      - name: Name the run
+        run: echo "READ_ON=$(TZ=Europe/London date +%Y-%m-%d)" >> "$GITHUB_ENV"
+      - name: Open a pull request with the reads
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: reads/pages
+          title: "Page reads, ${{ env.READ_ON }}"
+          body-path: data/reads/README.md
+          commit-message: "Page reads, ${{ env.READ_ON }}"
+          add-paths: data/reads/**
+          delete-branch: true

@@ -11,6 +11,9 @@ export default defineConfig({
   site: 'https://saveonsims.co.uk',
   output: 'static',
   build: { format: 'directory' },
+  /* The calculator ships a client script. The headers allow scripts from
+     this origin only, so nothing may be inlined into the page. */
+  vite: { build: { assetsInlineLimit: 0 } },
   markdown: {
     rehypePlugins: [[rehypeLiveLinks, { postsDir: here('./src/content/posts'), cross: { 'https://saveonsmartphones.co.uk': here('../phones/src/content/posts') }, preview }]],
   },
