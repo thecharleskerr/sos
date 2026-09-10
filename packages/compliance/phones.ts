@@ -36,6 +36,42 @@ export const phones: Record<string, TrackedPhone> = {
     updates: null,
     source: 'https://www.apple.com/uk/shop/buy-iphone/iphone-17', checked: '2026-09-02', evidence: 'official-page',
   },
+  /* iPhone 18 Pro, iPhone 18 Pro Max and iPhone Duo
+   * Announced 9 September 2026. Pre-orders for the Pro and Pro Max open at
+   * 1:00 pm on 12 September 2026, on sale 18 September 2026; the Duo
+   * pre-orders from 16 October and is on sale 23 October 2026.
+   * Source:  https://www.apple.com/uk/shop/buy-iphone/iphone-18-pro
+   *          https://www.apple.com/uk/newsroom/2026/09/apple-unveils-iphone-duo/
+   * Checked: 2026-09-09, one researcher and two independent checkers on
+   * apple.com only. The search index paraphrases the shop pages, so a
+   * figure is entered only where two readers agreed and the 0% APR monthly
+   * figure times 30 matches it.
+   * Official wording (Pro): "The iPhone 18 Pro is available starting at
+   * £1,299.00 or £43.30 per month for 30 months at 0% APR"
+   * Official wording (Duo): "iPhone Duo starts at £1,999"; 2TB Night Sky
+   * £3,199 was read the same way by both checkers.
+   * The Pro Max price could not be confirmed: one reader saw £1,499 for
+   * 256GB, the others could not, and the same figure was attached to the
+   * Pro 512GB. The Pro's 512GB (£1,499), 1TB (£1,899) and 2TB (£2,399)
+   * readings and the Duo's 512GB and 1TB tiers are single or conflicting
+   * readings. All are in packages/compliance/reads.json for a direct read.
+   */
+  'iphone-18-pro': {
+    slug: 'iphone-18-pro', name: 'iPhone 18 Pro', maker: 'Apple', rrpGBP: 1299, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.apple.com/uk/shop/buy-iphone/iphone-18-pro', checked: '2026-09-09', evidence: 'official-page',
+  },
+  'iphone-18-pro-max': {
+    slug: 'iphone-18-pro-max', name: 'iPhone 18 Pro Max', maker: 'Apple', rrpGBP: null, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.apple.com/uk/shop/buy-iphone/iphone-18-pro', checked: '2026-09-09', evidence: 'unverified',
+  },
+  'iphone-duo': {
+    slug: 'iphone-duo', name: 'iPhone Duo', maker: 'Apple', rrpGBP: 1999, storageGB: 256, fiveG: true,
+    updates: null,
+    source: 'https://www.apple.com/uk/newsroom/2026/09/apple-unveils-iphone-duo/', checked: '2026-09-09', evidence: 'official-page',
+  },
+
   /* iPhone 17 Pro and 17 Pro Max
    * Source:  https://www.apple.com/uk/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max-the-most-powerful-and-advanced-pro-models-ever/
    * Checked: 2026-09-04, two independent agents, the second on the UK buy

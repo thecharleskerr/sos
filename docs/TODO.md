@@ -104,6 +104,13 @@ waiting on, and the visible text. Fill each table entry from that text
 with the read date as the checked date. The items below are what those
 reads settle.
 
+- [ ] **iPhone 18 prices, first.** Run the page reads workflow now (or open
+      the pages): the iPhone 18 Pro Max UK price, the Pro's 512GB, 1TB and
+      2TB tiers, the Duo's 512GB and 1TB tiers, and whether the UK Pro and
+      Pro Max are eSIM only. Search paraphrased the shop pages and the
+      readers disagreed on the tier pairings, so the launch articles carry
+      "not stated" for those cells until the read lands. Fill phones.ts and
+      the tables in the four launch guides from the read.
 - [ ] **Price rise labelling for rolling plans with a notice clause.**
       spusu and Revolut Mobile state no scheduled rise but reserve the
       right to change prices on one month's notice with a free exit. The
