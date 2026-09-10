@@ -29,7 +29,7 @@ faq:
 draft: false
 ---
 
-Buy the wrong iPhone 18 route this month and you can pay more overall without a single number on the bill ever looking wrong. Apple priced the iPhone 18 Pro and iPhone 18 Pro Max in the UK on 9 September 2026, so the cheapest deal is now something you check against real figures, not a guess. In short: Apple's UK shop states the iPhone 18 Pro starts at £1,299 for 256GB, checked 9 September 2026, and that outright price plus a no-rise SIM only plan is usually the cheapest route among the deals we check each week. A contract only beats it once its total cost, every stated price rise included, comes in lower. This guide runs that check in about ten minutes. Our [iPhone 18 Pro launch guide](/blog/iphone-18-pro-uk-price-and-pre-order/) covers the phone itself, and its own page on this site is [here](/phones/iphone-18-pro/).
+Choose the wrong iPhone 18 route this month and you can pay more overall without a single number on the bill ever looking wrong. Apple priced the iPhone 18 Pro and iPhone 18 Pro Max in the UK on 9 September 2026, so the cheapest deal is now something you check against real figures, not a guess. In short: Apple's UK shop states the iPhone 18 Pro starts at £1,299 for 256GB, checked 9 September 2026, and that outright price plus a no-rise SIM only plan is usually the cheapest route among the deals we check each week. A contract only beats it once its total cost, every stated price rise included, comes in lower. This guide runs that check in about ten minutes. Our [iPhone 18 Pro launch guide](/blog/iphone-18-pro-uk-price-and-pre-order/) covers the phone itself, and its own page on this site is [here](/phones/iphone-18-pro/).
 
 ## How much does the iPhone 18 Pro cost in the UK?
 
@@ -46,7 +46,7 @@ Checked 9 September 2026, apple.com/uk.
 
 Apple also announced the iPhone Duo the same day, a folding iPhone that starts at £1,999 for 256GB, Apple's newsroom states, checked 9 September 2026. It pre-orders from 16 October 2026 and goes on sale on 23 October 2026, a different timetable to the Pro and Pro Max, so it sits outside this comparison.
 
-Apple has not published a trade-in value for the iPhone 18 Pro or the Pro Max either. Its UK buy page for the iPhone 17e, checked 9 September 2026, states that you can get money off a new phone when you trade in an iPhone X or newer, but that figure applies to the 17e, not to the new models, so a trade-in credit for the iPhone 18 Pro is not stated yet. Treat any number you see for it elsewhere as unconfirmed until Apple's own page names one.
+Apple has not published a trade-in value for the iPhone 18 Pro or the Pro Max either. Its UK buy page for the iPhone 17e, checked 9 September 2026, states that you can get money off a new phone when you trade in an iPhone X or newer. That figure applies to the 17e, not to the new models, so a trade-in credit for the iPhone 18 Pro is not stated yet. Treat any number you see for it elsewhere as unconfirmed until Apple's own page names one.
 
 ## What counts as the cheapest iPhone 18 deal?
 
@@ -60,19 +60,19 @@ That combined figure, Apple's price plus a no-rise SIM, is the benchmark. A cont
 2. Note Apple's price for the storage size the card actually gives you, from the table above. The sizes have to match, or the comparison is not fair.
 3. Add a SIM only plan for the same number of months on our sister site, [Save on Sims](https://saveonsims.co.uk/), including that plan's own price rise line.
 4. Add Apple's price to the SIM only total. That is your outright figure to beat.
-5. Compare the two totals and take the lower one, then check the data, minutes, texts and roaming on the card cover what you actually use.
+5. Compare the two totals and take the lower one, then check that the data, minutes, texts and roaming on the card cover what you actually use.
 
 [See this week's iPhone deals](/) to pick up a card and run these steps against it.
 
 ## Isn't the monthly price the number that matters?
 
-No, because a rise partway through the contract changes the total without changing what you see on day one. On 2 September 2026 O2's prices page stated a £2.50 a month rise each April on voice plans, Vodafone's price changes page stated £2.50 a month each 1 April, and Three's price increase page stated £1.80, £1.90 or £2.30 a month depending on plan size, each 1 April, for customers joining or upgrading on or after 9 November 2025. EE's plan terms, checked 4 September 2026, put its rise at £2.50 a month on 31 March. EE is never an affiliate deal on this site, so it is described here for its published policy only.
+No, because a rise partway through the contract changes the total without changing what you see on day one. On 2 September 2026, O2's prices page stated a £2.50 a month rise each April on voice plans. Vodafone's price changes page stated £2.50 a month each 1 April, checked the same date. Three's price increase page stated £1.80, £1.90 or £2.30 a month depending on plan size, each 1 April, for customers joining or upgrading on or after 9 November 2025, checked the same date. EE's plan terms, checked 4 September 2026, put its rise at £2.50 a month on 31 March. EE is never an affiliate deal on this site, so it is described here for its published policy only.
 
 None of those rises are guesses. Ofcom's rules mean every one has to be stated in pounds and pence, and that is exactly the figure you add to the monthly price times the months to get the true total. If you are still unsure what a fair monthly figure looks like before you factor in a rise, our guide on [how much you should pay for a phone contract](/blog/how-much-should-you-pay-for-a-phone-contract/) sets out the starting point.
 
 ## Which networks say there is no price rise at all?
 
-Some do. SMARTY's blog, checked 2 September 2026, states its prices stay the same from when you sign up and are not linked to inflation. giffgaff's page on why giffgaff, checked the same date, states there will not be any mid-contract price rises on its 18 month mobile contracts. Plans like these are what makes the no-rise side of the benchmark possible.
+Some do. SMARTY's blog, checked 2 September 2026, states its prices stay the same from when you sign up and are not linked to inflation. giffgaff's page on why giffgaff, checked the same date, states there will not be any mid-contract price rises on its 18 month mobile contracts. Plans like these are what make the no-rise side of the benchmark possible.
 
 Not every network's policy is verified yet. Where we have not found an official page stating a network's rise, or its no-rise promise, in pounds and pence, that network's deals are held off the card above until we do. So every network you see priced on this site already has its rise, or the lack of one, on record.
 
@@ -82,4 +82,4 @@ Not if the standard iPhone 18 Pro is the phone you want. Its £1,299 price, chec
 
 ## What to do now
 
-Compare the card above against Apple's £1,299 iPhone 18 Pro price plus a no-rise SIM only plan for the same number of months, and take the lower total. [See this week's iPhone deals](/) to start, check the [iPhone 18 Pro](/phones/iphone-18-pro/) or [iPhone 18 Pro Max](/phones/iphone-18-pro-max/) page for the phone itself, and pick the SIM only half of the sum on [Save on Sims](https://saveonsims.co.uk/).
+Compare the card above against Apple's £1,299 iPhone 18 Pro price, checked 9 September 2026, plus a no-rise SIM only plan for the same number of months, and take the lower total. [See this week's iPhone deals](/) to start, check the [iPhone 18 Pro](/phones/iphone-18-pro/) or [iPhone 18 Pro Max](/phones/iphone-18-pro-max/) page for the phone itself, and pick the SIM only half of the sum on [Save on Sims](https://saveonsims.co.uk/).

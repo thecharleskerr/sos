@@ -33,6 +33,7 @@ sources:
   - { name: "Lycamobile, no price rises", url: "https://www.lycamobile.co.uk/en/general/no-price-rises/", checked: 2026-09-04 }
   - { name: "Asda Mobile, eSIM", url: "https://mobile.asda.com/esim", checked: 2026-09-04 }
   - { name: "Asda Mobile, bundles and pricing", url: "https://mobile.asda.com/help/bundles-and-pricing", checked: 2026-09-04 }
+  - { name: "Asda Mobile, roaming and calling abroad", url: "https://mobile.asda.com/roaming-calling-abroad", checked: 2026-09-01 }
   - { name: "1pMobile, eSIM", url: "https://www.1pmobile.com/eSIM", checked: 2026-09-04 }
   - { name: "1pMobile, why 1pMobile will not raise your prices", url: "https://www.1pmobile.com/blog?post=43", checked: 2026-09-04 }
   - { name: "Mozillion, joining and setup", url: "https://www.mozillion.com/resources/help/joining-and-setup/", checked: 2026-09-04 }
@@ -40,6 +41,7 @@ sources:
   - { name: "Honest Mobile, eSIM", url: "https://join.honestmobile.co.uk/esim", checked: 2026-09-04 }
   - { name: "Honest Mobile, price hikes", url: "https://honestmobile.co.uk/price-hikes/", checked: 2026-09-04 }
   - { name: "Ecotalk, FAQs", url: "https://www.ecotalk.co.uk/faqs", checked: 2026-09-04 }
+  - { name: "Ecotalk, FAQs, roaming", url: "https://www.ecotalk.co.uk/faqs", checked: 2026-09-01 }
   - { name: "Ecotalk, terms and conditions", url: "https://www.ecotalk.co.uk/terms-and-conditions", checked: 2026-09-04 }
   - { name: "O2, eSIM", url: "https://www.o2.co.uk/help/phones-and-devices/sims-and-numbers/esim", checked: 2026-09-02 }
   - { name: "O2, prices", url: "https://www.o2.co.uk/prices", checked: 2026-09-02 }
@@ -68,7 +70,7 @@ Buy the iPhone 18 outright and then put it on the wrong SIM only plan, and a mid
 
 Apple's UK page for the iPhone 18 Pro describes it as 5G and eSIM but does not state whether the UK model keeps a physical SIM tray, checked 9 September 2026, so that is not stated here. The iPhone Duo, announced the same day, is eSIM only: Apple's specifications page states it has no physical SIM tray, checked 9 September 2026. Pre-orders for the Pro and Pro Max open at 1:00 pm on Saturday 12 September 2026, with the phones on sale from 18 September; the Duo follows on 16 October. Our sister site has the [prices and dates](https://saveonsmartphones.co.uk/blog/iphone-18-pro-uk-price-and-pre-order/) and the [iPhone 18 Pro page](https://saveonsmartphones.co.uk/phones/iphone-18-pro/) with this week's contract picks.
 
-It matters less than it sounds, because every network in the table below states eSIM on its own pages. What differs is how you get it. SMARTY lets you choose eSIM at checkout or swap in the dashboard. giffgaff activates it through its app only. iD Mobile sends a QR code by email and supports phones only, not tablets or wearables. Lebara asks existing customers to contact support. Talkmobile, Lycamobile, 1pMobile and Ecotalk send a QR code by email, Mozillion within one working day, and Honest Mobile says delivery is instant. Simp is eSIM only, with every plan activated by a QR code in its app. Asda Mobile lets you pick eSIM at checkout. O2 offers it on Big Bundle and rolling SIM only plans, Vodafone on all pay monthly and pay as you go SIM only plans, and Three on 30 day, 12 month and 24 month SIM only plans at no price difference, all from their own pages, checked 2 September 2026. Our guide to [which networks offer eSIM](/blog/esim-uk-which-networks-offer-it/) has the detail for every network we track.
+It matters less than it sounds, because every network in the table below states eSIM on its own pages. What differs is how you get it. SMARTY lets you choose eSIM at checkout or swap in the dashboard. giffgaff activates it through its app only. iD Mobile sends a QR code by email and supports phones only, not tablets or wearables. Lebara asks existing customers to contact support. Talkmobile and Ecotalk send a QR code by email, Lycamobile by a QR code or an activation code online, 1pMobile through a QR code in your phone settings, Mozillion within one working day, and Honest Mobile says delivery is instant. Simp is eSIM only, with every plan activated by a QR code in its app. Asda Mobile lets you pick eSIM at checkout. O2 offers it on Big Bundle and rolling SIM only plans, Vodafone on all pay monthly and pay as you go SIM only plans, and Three on 30 day, 12 month and 24 month SIM only plans at no price difference, all from their own pages, checked 2 September 2026. Our guide to [which networks offer eSIM](/blog/esim-uk-which-networks-offer-it/) has the detail for every network we track.
 
 ## Which networks say there is no price rise?
 
@@ -85,11 +87,11 @@ The host networks are different. O2 and Vodafone state £2.50 a month each April
 | Talkmobile | Vodafone | Yes, all plans | QR code by email | Included, 5GB fair use |
 | Simp | Three | Yes, all plans | eSIM only, in the app | Included, 10GB or 20GB by plan |
 | Lycamobile | EE | Yes, SIM only plans | QR code or activation code | Included on current plans |
-| Asda Mobile | Vodafone | Yes, 12 and 24 month SIM only | At checkout | Not stated here |
+| Asda Mobile | Vodafone | Yes, 12 and 24 month SIM only | At checkout | Included, 5GB fair use |
 | 1pMobile | EE | Yes, PAYG and 30 day bundles | QR code | Included, 14GB cap |
 | Mozillion | EE | Yes, for normal personal use | Email within one working day | Included, 41 destinations |
 | Honest Mobile | Three | Yes, all plans | Instant by email | Not stated here |
-| Ecotalk | EE | Yes, all plans | QR code by email | Not included, £2 a day |
+| Ecotalk | Not confirmed | Yes, all plans | QR code by email | Not included, £2 a day |
 
 Every line from the network's own pages, checked between 31 August and 4 September 2026. A roaming cell marked not stated here means this guide does not carry the figure; the network's own page and our [EU roaming guide](/guides/eu-roaming-by-network) do.
 
@@ -116,4 +118,4 @@ Usually, and the sum settles it. Apple's UK shop lists the 256GB iPhone 18 Pro a
 
 ## What to do now
 
-Pick the host network with signal, then the cheapest no-rise plan on it that delivers eSIM the way you want and includes the roaming you need. [See this week's no price rise deals](/deals/no-price-rise/), compare the totals, and the [homepage](/) has every SIM only pick we checked this week.
+Pick the host network with signal, then the cheapest no-rise plan on it that delivers eSIM the way you want and includes the roaming you need. [See this week's no price rise deals](/deals/no-price-rise/), compare the totals, and the [homepage](/) has every SIM only pick we checked this week. If you decide to buy the phone on a plan instead, our sister site's [iPhone 18 Pro page](https://saveonsmartphones.co.uk/phones/iphone-18-pro/) has this week's contract picks.

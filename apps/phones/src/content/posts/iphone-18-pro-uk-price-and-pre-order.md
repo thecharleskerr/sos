@@ -18,7 +18,7 @@ sources:
   - { name: "SMARTY, save money with SMARTY", url: "https://smarty.co.uk/blog/save-money-with-smarty", checked: 2026-09-02 }
   - { name: "giffgaff, why giffgaff", url: "https://www.giffgaff.com/why-giffgaff", checked: 2026-09-02 }
 faq:
-  - { q: "How much is the iPhone 18 Pro in the UK?", a: "The 256GB iPhone 18 Pro starts at £1,299 on Apple's UK store, checked 9 September 2026. Apple has not stated a UK price for the 512GB, 1TB or 2TB tiers that a second reading could confirm, so those stay not stated on this page." }
+  - { q: "How much is the iPhone 18 Pro in the UK?", a: "The 256GB iPhone 18 Pro starts at £1,299 on Apple's UK store, checked 9 September 2026. We could not independently confirm Apple's price for the 512GB, 1TB or 2TB tiers on a second reading, so those stay not stated on this page." }
   - { q: "When can I pre-order the iPhone 18 Pro?", a: "Pre-orders open at 1:00 pm on Saturday 12 September 2026, according to Apple's UK product page, checked 9 September 2026. The same time applies to the iPhone 18 Pro Max." }
   - { q: "When does the iPhone 18 Pro come out?", a: "The iPhone 18 Pro goes on sale on Friday 18 September 2026, the same date Apple gives for the iPhone 18 Pro Max, checked 9 September 2026." }
   - { q: "Is the iPhone 18 Pro eSIM only?", a: "Apple's UK pages for the iPhone 18 Pro do not state whether it is eSIM only in this country, checked 9 September 2026, so treat it as unconfirmed rather than assumed until Apple's own page says otherwise." }
@@ -41,11 +41,11 @@ Pre-order the iPhone 18 Pro on the wrong storage tier or the wrong network deal 
 
 Checked 9 September 2026, Apple's UK iPhone 18 Pro shop page.
 
-A second, independent reading of Apple's page turned up figures for the larger tiers, but they did not agree closely enough with the first reading to print as confirmed, so they stay not stated until the page is read again directly.
+Apple's page appears to show figures for the larger tiers, but a second, independent reading has not confirmed them closely enough to print, so they stay not stated until the page is read again directly.
 
 ## When can you pre-order the iPhone 18 Pro?
 
-Pre-orders open at 1:00 pm on Saturday 12 September 2026, and the iPhone 18 Pro goes on sale on Friday 18 September 2026, both stated on Apple's UK product page, checked 9 September 2026. Apple announced the iPhone 18 Pro, the iPhone 18 Pro Max and a folding iPhone Duo at the same event on 9 September 2026. The iPhone Duo pre-orders separately, from 16 October 2026, and goes on sale on 23 October 2026, so it is not part of Saturday's pre-order window. See our [iPhone Duo launch guide](/blog/iphone-duo-uk-price-and-pre-order/) if that is the model you are waiting for.
+Pre-orders open at 1:00 pm on Saturday 12 September 2026, and the iPhone 18 Pro goes on sale on Friday 18 September 2026, both stated on Apple's UK product page, checked 9 September 2026. Apple's page states it announced the iPhone 18 Pro, the iPhone 18 Pro Max and a folding iPhone Duo at the same event, on 9 September 2026. The iPhone Duo pre-orders separately, from 16 October 2026, and goes on sale on 23 October 2026, so it is not part of Saturday's pre-order window. See our [iPhone Duo launch guide](/blog/iphone-duo-uk-price-and-pre-order/) if that is the model you are waiting for.
 
 ## How much is the iPhone 18 Pro Max in the UK?
 
@@ -53,7 +53,7 @@ Apple's UK shop page states a starting price for the 256GB iPhone 18 Pro Max, bu
 
 ## What changed from the iPhone 17 Pro?
 
-Apple's newsroom page says the A20 Pro chip and a next-generation vapour chamber together deliver the highest sustained performance in iPhone history, checked 9 September 2026, and one reading of the same page adds that Apple states up to 40 per cent faster graphics performance than the iPhone 17 Pro. Apple's UK product page describes a new variable aperture on the 48MP Fusion Main camera, which it says delivers better low light photos and video and sharper detail throughout the scene. On battery, the UK page speaks of more battery capacity and greater efficiency; the hours figure came back differently in two readings, so it is not stated here. For a fuller side by side, see our [iPhone 18 Pro vs iPhone 17 Pro guide](/blog/iphone-18-pro-vs-iphone-17-pro/).
+Apple's newsroom page says the A20 Pro chip and a next-generation vapour chamber together deliver the highest sustained performance in iPhone history, checked 9 September 2026, and Apple's page states up to 40 per cent faster graphics performance than the iPhone 17 Pro, a figure only one reading of the page captured. Apple's UK product page describes a new variable aperture on the 48MP Fusion Main camera, which it says delivers better low light photos and video and sharper detail throughout the scene. On battery, the UK page speaks of more battery capacity and greater efficiency; the hours figure appeared in only one reading of the page, unconfirmed by a second, so it is not stated here. For a fuller side by side, see our [iPhone 18 Pro vs iPhone 17 Pro guide](/blog/iphone-18-pro-vs-iphone-17-pro/).
 
 ## Is the iPhone 18 Pro eSIM only in the UK?
 
@@ -69,7 +69,7 @@ Apple's UK pages for the iPhone 18 Pro and the iPhone 18 Pro Max do not state wh
 
 ## Is the iPhone 18 Pro cheaper on contract than buying it outright?
 
-Only if the contract's total comes in under £1,299 plus a SIM only plan for the same length of time. A contract's total is the monthly price multiplied by its length, plus any upfront cost, plus the network's mid-contract price rise if the deal runs past the month it lands. Networks differ here: SMARTY and giffgaff promise no price rise on the plans they sell now, checked 2 September 2026, while O2's airtime plans rise by £2.50 a month each April and EE's rise by £2.50 a month each 31 March, both checked on their own pages in September 2026. EE is never sold as an affiliate deal on this site, so it is mentioned here only for its published policy. This week's pick above already carries its own network's rise inside its total contract cost, so check that figure rather than the monthly price alone. Our [contract vs buying outright guide](/blog/iphone-18-contract-vs-buying-outright/) works through the sums in full.
+Only if the contract's total comes in under £1,299, Apple's price checked 9 September 2026, plus a SIM only plan for the same length of time. A contract's total is the monthly price multiplied by its length, plus any upfront cost, plus the network's mid-contract price rise if the deal runs past the month it lands. Networks differ here: SMARTY and giffgaff promise no price rise on the plans they sell now, checked 2 September 2026, while O2's airtime plans rise by £2.50 a month each April and EE's rise by £2.50 a month each 31 March, both checked on their own pages in September 2026. EE is never sold as an affiliate deal on this site, so it is mentioned here only for its published policy. This week's pick above already carries its own network's rise inside its total contract cost, so check that figure rather than the monthly price alone. Our [contract vs buying outright guide](/blog/iphone-18-contract-vs-buying-outright/) works through the sums in full.
 
 ## Should I wait for a trade-in value before I decide?
 
@@ -77,6 +77,6 @@ There is nothing to wait for yet. Apple has not published a trade-in range in po
 
 ## Should I pre-order on launch day or wait for a network deal?
 
-That depends on whether you need the phone on 18 September 2026 or can wait for the deal cards on this site to move. Pre-order day gets you the phone on the on-sale date with your choice of colour and storage still open, while waiting means the storage tiers Apple has not yet confirmed in pounds may be settled by then, and network deals can change from one Monday to the next as we re-check them. If you are not set on day one, our [cheapest iPhone 18 deal guide](/blog/cheapest-iphone-18-deal/) and [how much should you pay for a phone contract](/blog/how-much-should-you-pay-for-a-phone-contract/) explain what a fair monthly price looks like once the wider market settles. If the Pro is not the model you land on, the [homepage](/) lists every UK phone deal we checked this week.
+That depends on whether you need the phone on 18 September 2026 or can wait for the deal cards on this site to move. Pre-order day gets you the phone on the on-sale date with your choice of colour and storage still open, while waiting means the storage tiers we have not yet independently confirmed in pounds may be settled by then, and network deals can change from one Monday to the next as we re-check them. If you are not set on day one, our [cheapest iPhone 18 deal guide](/blog/cheapest-iphone-18-deal/) and [how much should you pay for a phone contract](/blog/how-much-should-you-pay-for-a-phone-contract/) explain what a fair monthly price looks like once the wider market settles. If the Pro is not the model you land on, the [homepage](/) lists every UK phone deal we checked this week.
 
 Whichever route you take, weigh it against £1,299 for the base iPhone 18 Pro, checked 9 September 2026 on Apple's own page, and [compare this week's iPhone 18 Pro deals](/phones/iphone-18-pro/) before pre-orders open at 1:00 pm on Saturday 12 September 2026.

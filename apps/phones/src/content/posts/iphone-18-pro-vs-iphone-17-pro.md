@@ -17,11 +17,11 @@ sources:
   - { name: "SMARTY, save money with SMARTY", url: "https://smarty.co.uk/blog/save-money-with-smarty", checked: 2026-09-02 }
   - { name: "giffgaff, why giffgaff", url: "https://www.giffgaff.com/why-giffgaff", checked: 2026-09-02 }
 faq:
-  - { q: "How much more is the iPhone 18 Pro than the iPhone 17 Pro?", a: "£200 at the base storage on Apple's own UK prices: £1,299 for the 256GB iPhone 18 Pro, checked 9 September 2026, against £1,099 for the 256GB iPhone 17 Pro, checked 4 September 2026. Whether Apple changed the 17 Pro's price after the 9 September event is not stated." }
-  - { q: "What is different about the iPhone 18 Pro?", a: "Apple's own pages state a new A20 Pro chip, a next-generation vapour chamber that Apple says gives the highest sustained performance in any iPhone, and a variable aperture on the 48MP Fusion Main camera for better low light photos and sharper detail. Other differences are not stated on the pages we checked, so we do not list them." }
-  - { q: "Is the iPhone 17 Pro still sold?", a: "Apple's UK shop still listed the iPhone 17 Pro on 9 September 2026 in one reading, and its 256GB price was £1,099 when we checked on 4 September 2026. Whether that price moved after the event is not stated, so check the shop page on the day." }
-  - { q: "When can I buy the iPhone 18 Pro?", a: "Pre-orders open at 1:00 pm on Saturday 12 September 2026 and the phone goes on sale on Friday 18 September 2026, both from Apple's UK pages, checked 9 September 2026." }
-  - { q: "Should I buy the iPhone 17 Pro now the 18 Pro is out?", a: "Only if its total, outright or on contract, is far enough below the 18 Pro's to matter to you. Just after a launch is the point where last year's model is most likely to move in price, so run the sum on the day rather than on either phone's launch figure." }
+  - { q: "How much is the iPhone 18 Pro in the UK?", a: "On Apple's own UK prices the iPhone 18 Pro is £1,299 for 256GB, checked 9 September 2026. Apple's page also lists higher storage tiers, but those prices were not confirmed by a second reading, so they are not stated here." }
+  - { q: "When can I pre-order the iPhone 18 Pro?", a: "Pre-orders open at 1:00 pm on Saturday 12 September 2026, from Apple's UK pages, checked 9 September 2026." }
+  - { q: "When does the iPhone 18 Pro come out?", a: "The iPhone 18 Pro goes on sale on Friday 18 September 2026, from Apple's UK pages, checked 9 September 2026." }
+  - { q: "Is the iPhone 18 Pro eSIM only?", a: "Apple's UK pages do not state this clearly, checked 9 September 2026. The UK product page mentions 5G and eSIM without confirming the 18 Pro is eSIM only, so it is not stated here." }
+  - { q: "Is the iPhone 18 Pro cheaper on contract?", a: "Only if the contract's total, monthly price times the months, plus any upfront cost, plus the network's stated price rise, comes in below Apple's £1,299 outright price for 256GB, checked 9 September 2026, plus a SIM only plan for the same months." }
 draft: false
 ---
 
@@ -34,38 +34,40 @@ Pay £200 more for the iPhone 18 Pro without knowing what Apple says the extra b
 | iPhone 18 Pro | 256GB | £1,299 | 9 September 2026 |
 | iPhone 17 Pro | 256GB | £1,099 | 4 September 2026 |
 
-Checked on Apple's UK shop and newsroom pages on the dates shown.
+Checked: 9 September 2026 for the 18 Pro on Apple's UK shop page, and 4 September 2026 for the 17 Pro on Apple's UK newsroom page.
 
-The 18 Pro's £1,299 comes from Apple's UK shop page, which also lists 0% APR finance at £43.30 a month for 30 months, and 30 times £43.30 is £1,299, so the two figures agree. The 17 Pro's £1,099 comes from Apple's UK newsroom announcement of that model, checked 4 September 2026. Apple's UK shop still listed the iPhone 17 Pro on 9 September 2026 in one reading of the page, but whether Apple changed its price after the event is not stated, so treat £1,099 as the last figure we confirmed rather than a promise about this week. The higher storage tiers of the 18 Pro came back as single or conflicting readings, so they are not stated here.
+The 18 Pro's £1,299 comes from Apple's UK shop page, checked 9 September 2026. That page also lists 0% APR finance at £43.30 a month for 30 months. Thirty times £43.30 is £1,299, so the two figures agree. The 17 Pro's £1,099 comes from Apple's UK newsroom announcement of that model, checked 4 September 2026. Apple's UK shop still listed the iPhone 17 Pro on 9 September 2026, in one reading of the page. Whether Apple changed its price after the event is not stated. Treat £1,099 as the last figure we confirmed, not as a promise about this week. The higher storage tiers of the 18 Pro came back as single or conflicting readings. They are not stated here.
 
 ## What does Apple say the iPhone 18 Pro adds?
 
-Three things, all from Apple's own pages, checked 9 September 2026. First, the chip: Apple's newsroom says the A20 Pro and a next-generation vapour chamber together deliver the highest sustained performance in iPhone history, and one reading of the same page adds that Apple states up to 40 per cent faster graphics performance than the iPhone 17 Pro. Second, the camera: Apple's UK product page says the 18 Pro breaks new ground with a variable aperture on the 48MP Fusion Main camera, delivering better low light photos and video and sharper detail throughout the scene. Third, battery: Apple's UK page speaks of more battery capacity and greater efficiency, but the hours figure came back differently in two readings, so it is not stated here. The display stays at 6.3 inches, and Apple lists the 18 Pro in Black, Silver, Glacier and Burgundy.
+Three things, all from Apple's own pages, checked 9 September 2026. First, the chip: Apple's newsroom says the A20 Pro and a next-generation vapour chamber together deliver the highest sustained performance in iPhone history. Second, the camera: Apple's UK product page says the 18 Pro breaks new ground with a variable aperture on the 48MP Fusion Main camera. Apple says this delivers better low light photos and video, and sharper detail throughout the scene. Third, battery: Apple's UK page speaks of more battery capacity and greater efficiency. A specific hours figure appeared in only one reading of that page, so it is not stated here. The display stays at 6.3 inches. Apple lists the 18 Pro in Black, Silver, Glacier and Burgundy.
 
 That is the whole list we can stand behind. Anything else you have read about the two phones is not on the Apple pages we checked, so it is not on this page either. The same goes for the iPhone 17 Pro's own specification: this page compares prices and Apple's stated differences, not a spec sheet we would have to fill from memory.
 
 ## Is the £200 worth it?
 
-That is your call, and the page gives you the sum rather than an opinion. £200 is the difference at 256GB on Apple's own prices. Spread over a two year contract it is a little over £8 a month before anything else changes hands. What you get for it, in Apple's words, is the A20 Pro, the vapour chamber and the variable aperture camera. If those three do nothing for how you use a phone, the 17 Pro at £1,099 is the same storage for £200 less, and if the 17 Pro's price moves after the launch, the gap widens.
+That is your call. The page gives you the sum, not an opinion. £200 is the difference at 256GB on Apple's own prices: £1,299 for the 18 Pro, checked 9 September 2026, against £1,099 for the 17 Pro, checked 4 September 2026. Spread over a two year contract that is a little over £8 a month, before anything else changes hands. What you get for it, in Apple's words, is the A20 Pro, the vapour chamber and the variable aperture camera. If none of those three matters to how you use a phone, the 17 Pro is the same storage for £200 less. If the 17 Pro's price moves after the launch, the gap widens further.
 
 There is one more route Apple's pages describe. Apple's UK refurbished page says Apple Certified Refurbished iPhones come with a new battery and outer shell and a one year warranty, checked 2 September 2026. Our guide on [buying a refurbished iPhone](/blog/should-you-buy-a-refurbished-iphone/) covers what to check, and just after a launch is when last year's Pro is most likely to appear there.
 
 ## Here is exactly what to do
 
 1. Decide whether Apple's three stated differences matter to you: the A20 Pro chip, the vapour chamber and the variable aperture camera. If none of them does, the 17 Pro is the same storage for less.
-2. Check Apple's UK shop for the 17 Pro's price on the day you buy, since the £1,099 figure was checked on 4 September 2026 and may have moved after the launch.
-3. Work out the total of any contract you are offered on either phone: monthly price times months, plus upfront cost, plus the network's stated price rise. O2's own page states £2.50 a month each April on its airtime plans, checked 2 September 2026, while SMARTY and giffgaff state no price rise on the plans they sell now, checked the same date.
+2. Check Apple's UK shop for the 17 Pro's price on the day you buy. The £1,099 figure was checked on 4 September 2026, and may have moved after the launch.
+3. Work out the total of any contract you are offered on either phone: monthly price times months, plus upfront cost, plus the network's stated price rise. O2's own page states £2.50 a month each April on its airtime plans, checked 2 September 2026. SMARTY and giffgaff state no price rise on the plans they sell now, checked the same date.
 4. Compare that total with Apple's price plus a SIM only plan for the same months. The [iPhone 18 Pro](/phones/iphone-18-pro/) and [iPhone 17 Pro](/phones/iphone-17-pro/) pages carry the outright figure to beat.
 5. If you are trading in, get a written quote first. Apple has not stated a trade-in range in pounds for the 18 Pro, checked 9 September 2026. Our [trade-in guide](/blog/phone-trade-in-uk-what-is-your-old-phone-worth/) covers how a quote is set.
 
+Once you have run the sum, [compare this week's iPhone deals](/phones/) to see the total cost with a network built in.
+
 ## Will the iPhone 17 Pro get cheaper now?
 
-Apple's pages do not say, so we will not guess. What we can say is where in the cycle you are. A phone is dearest in its first weeks on sale, and the outgoing model is most likely to move in price once its successor is on sale, which for the 18 Pro is Friday 18 September 2026. Our guide to [the best time to buy a phone](/blog/best-time-to-buy-a-phone/) sets out how to use that. If you want the 17 Pro, checking Apple's shop page and this week's card on the 17 Pro page after 18 September is the sensible move, and the picks on this site are re-checked every Monday.
+Apple's pages do not say, so we will not guess. What we can say is where in the cycle you are. A phone is dearest in its first weeks on sale. The outgoing model is most likely to move in price once its successor goes on sale. For the 18 Pro, that is Friday 18 September 2026. Our guide to [the best time to buy a phone](/blog/best-time-to-buy-a-phone/) sets out how to use that. If you want the 17 Pro, check Apple's shop page and this week's card on the 17 Pro page after 18 September. The picks on this site are re-checked every Monday.
 
 ## Is either phone cheaper on a contract?
 
-Only when the contract's total comes in below Apple's price plus a SIM only plan for the same months, and that holds for both models. The total is the monthly price times the months, plus any upfront cost, plus the network's stated mid-contract rise. This week's pick above already carries its network's rise inside its total cost, so compare that single figure with £1,299 or £1,099 plus a SIM only plan from our sister site, [Save on Sims](https://saveonsims.co.uk/). Our [contract vs buying outright guide](/blog/iphone-18-contract-vs-buying-outright/) works the two sums through in full.
+Only when the contract's total comes in below Apple's price plus a SIM only plan for the same months. That holds for both models. The total is the monthly price times the months, plus any upfront cost, plus the network's stated mid-contract rise. This week's pick above already carries its network's rise inside its total cost. Compare that single figure with £1,299 for the 18 Pro, checked 9 September 2026, or £1,099 for the 17 Pro, checked 4 September 2026, plus a SIM only plan from our sister site, [Save on Sims](https://saveonsims.co.uk/). Our [contract vs buying outright guide](/blog/iphone-18-contract-vs-buying-outright/) works the two sums through in full.
 
 ## What to do now
 
-Decide on Apple's three stated differences, check the 17 Pro's price on the day, and run the total on whichever phone you pick. [Compare this week's iPhone deals](/phones/) once you have a number to beat, and start at the [homepage](/) for every UK phone deal we checked this week.
+Decide on Apple's three stated differences, check the 17 Pro's price on the day, and run the total on whichever phone you pick. Check this week's card on the [iPhone 18 Pro page](/phones/iphone-18-pro/) against your sum. [Compare this week's iPhone deals](/phones/) once you have a number to beat, and start at the [homepage](/) for every UK phone deal we checked this week.
