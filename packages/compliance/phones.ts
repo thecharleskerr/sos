@@ -17,6 +17,11 @@ export interface TrackedPhone {
   fiveG: boolean;
   /** The maker's stated software update commitment, in its own words. */
   updates: string | null;
+  /** For a phone announced but not yet shipping: the date pre-orders open
+   *  and the date it goes on sale, as the maker states them. Absent once a
+   *  phone is simply on sale. */
+  preorderFrom?: string;
+  onSaleFrom?: string;
   source: string;
   checked: string;
   evidence: 'official-page' | 'unverified';
@@ -58,17 +63,17 @@ export const phones: Record<string, TrackedPhone> = {
    */
   'iphone-18-pro': {
     slug: 'iphone-18-pro', name: 'iPhone 18 Pro', maker: 'Apple', rrpGBP: 1299, storageGB: 256, fiveG: true,
-    updates: null,
+    updates: null, preorderFrom: '2026-09-12', onSaleFrom: '2026-09-18',
     source: 'https://www.apple.com/uk/shop/buy-iphone/iphone-18-pro', checked: '2026-09-09', evidence: 'official-page',
   },
   'iphone-18-pro-max': {
     slug: 'iphone-18-pro-max', name: 'iPhone 18 Pro Max', maker: 'Apple', rrpGBP: null, storageGB: 256, fiveG: true,
-    updates: null,
+    updates: null, preorderFrom: '2026-09-12', onSaleFrom: '2026-09-18',
     source: 'https://www.apple.com/uk/shop/buy-iphone/iphone-18-pro', checked: '2026-09-09', evidence: 'unverified',
   },
   'iphone-duo': {
     slug: 'iphone-duo', name: 'iPhone Duo', maker: 'Apple', rrpGBP: 1999, storageGB: 256, fiveG: true,
-    updates: null,
+    updates: null, preorderFrom: '2026-10-16', onSaleFrom: '2026-10-23',
     source: 'https://www.apple.com/uk/newsroom/2026/09/apple-unveils-iphone-duo/', checked: '2026-09-09', evidence: 'official-page',
   },
 

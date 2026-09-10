@@ -30,23 +30,31 @@ const faq = [
   { q: `Is the ${ph.name} cheaper on contract or outright?`, a: `Only the total tells you. Add up the contract's monthly price times its months plus the upfront cost, then compare it with ${ph.rrpGBP !== null ? gbp(ph.rrpGBP) : "the maker's price"} plus a SIM only plan over the same months. Our guides walk through the sum.` },
 ];
 const url = `${site.url}/phones/${slug}/`;
+/* Announced but not shipping yet: the build date decides, so the page flips
+   to in stock on its own once the daily rebuild passes the on-sale date. */
+const buildDay = new Date().toISOString().slice(0, 10);
+const preorder = Boolean(ph.onSaleFrom && buildDay < ph.onSaleFrom);
 const ld = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: site.name, item: `${site.url}/` },
     { '@type': 'ListItem', position: 2, name: ph.name, item: url },
   ] },
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
-  ph.rrpGBP !== null && { '@context': 'https://schema.org', '@type': 'Product', name: ph.name, brand: { '@type': 'Brand', name: ph.maker }, url, offers: { '@type': 'Offer', priceCurrency: 'GBP', price: ph.rrpGBP, url: ph.source, seller: { '@type': 'Organization', name: ph.maker }, availability: 'https://schema.org/InStock' } },
+  ph.rrpGBP !== null && { '@context': 'https://schema.org', '@type': 'Product', name: ph.name, brand: { '@type': 'Brand', name: ph.maker }, url, ...(ph.onSaleFrom ? { releaseDate: ph.onSaleFrom } : {}), offers: { '@type': 'Offer', priceCurrency: 'GBP', price: ph.rrpGBP, url: ph.source, seller: { '@type': 'Organization', name: ph.maker }, availability: preorder ? 'https://schema.org/PreOrder' : 'https://schema.org/InStock', ...(preorder ? { availabilityStarts: ph.onSaleFrom } : {}) } },
 ].filter(Boolean);
-const description = `${ph.name}: ${ph.rrpGBP !== null ? `${gbp(ph.rrpGBP)} from ${ph.maker} in the UK` : `UK price not stated by ${ph.maker}`}, ${ph.updates ? ph.updates.toLowerCase() : 'update commitment not stated'}, and how to tell whether a contract beats buying it outright.`.slice(0, 158);
+const lc = (t) => (/^[A-Z]{2}/.test(t) ? t : t.charAt(0).toLowerCase() + t.slice(1));
+const dates = ph.onSaleFrom ? `${preorder ? `pre-orders from ${fmt(ph.preorderFrom ?? ph.onSaleFrom)}, ` : ''}on sale from ${fmt(ph.onSaleFrom)}` : null;
+const description = `${ph.name}: ${ph.rrpGBP !== null ? `${gbp(ph.rrpGBP)} from ${ph.maker} in the UK` : `UK price not stated by ${ph.maker}`}, ${dates ?? (ph.updates ? lc(ph.updates) : 'update commitment not stated')}, and how to tell whether a contract beats buying it outright.`.slice(0, 158);
 ---
 <Base title={`${ph.name} deals and UK price | Save on Smartphones`} description={description}>
   <article class="phone">
     <p class="crumb"><a href="/">Phones</a></p>
     <h1 class="t-h1">{ph.name}</h1>
-    <p class="lede">{priceLine}</p>
+    <p class="lede">{priceLine}{dates ? ` ${ph.maker} lists it as ${dates}.` : ''}</p>
     <dl class="facts">
       <div><dt>Maker's UK price</dt><dd>{ph.rrpGBP !== null ? gbp(ph.rrpGBP) : 'Not stated'}</dd></div>
+      {ph.preorderFrom && preorder && <div><dt>Pre-orders open</dt><dd>{fmt(ph.preorderFrom)}</dd></div>}
+      {ph.onSaleFrom && <div><dt>On sale from</dt><dd>{fmt(ph.onSaleFrom)}</dd></div>}
       <div><dt>Storage at that price</dt><dd>{ph.storageGB ? `${ph.storageGB}GB` : 'Not stated'}</dd></div>
       <div><dt>5G</dt><dd>{ph.fiveG ? 'Yes' : 'No'}</dd></div>
       <div><dt>Software updates</dt><dd>{ph.updates ?? 'Not stated'}</dd></div>
