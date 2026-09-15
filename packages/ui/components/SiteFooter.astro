@@ -1,21 +1,22 @@
 ---
-/* The footer on both sites. Links only, in small type: the method, the two
-   policies, the sister site. No sentence about money; the cards carry the
-   commission line where it belongs. */
-import { getSite } from '../site.js';
-const { site: key, year } = Astro.props;
-const site = getSite(key);
+/* The footer. Links only, in small type: the sections, the method, the two
+   policies. No sentence about money; the cards carry the commission line
+   where it belongs. */
+import { site, sections } from '../site.js';
+const { year } = Astro.props;
 ---
 <footer class="foot">
   <p class="foot-links">
+    {Object.values(sections).map((s) => <a href={s.path}>{s.name}</a>)}
     <a href="/how-we-pick-deals/">How we pick deals</a>
+    <a href="/about/">About</a>
     <a href="/terms/">Terms</a>
     <a href="/privacy/">Privacy</a>
-    <a href={site.sister.url}>{site.sister.name}</a>
   </p>
   <p class="foot-note">
-    {site.name}, {year}. Figures come from the networks' own pages on the date
-    shown. Deals are re-checked every Monday. Prices can change after that.
+    {site.name}, {year}. Figures come from the networks' and makers' own pages
+    on the date shown. Deals are re-checked every Monday. Prices can change
+    after that.
   </p>
 </footer>
 

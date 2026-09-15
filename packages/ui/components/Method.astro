@@ -3,10 +3,8 @@
    and the standards (what the site will and will not do). Both draw on the
    rules the code enforces, so the page describes what actually happens. */
 import { getSite } from '../site.js';
-const { site: key, kind } = Astro.props;
-const site = getSite(key);
-const sims = key === 'sims';
-const sisterSims = sims ? '' : 'https://saveonsims.co.uk';
+const { kind } = Astro.props;
+const site = getSite();
 ---
 <article class="method">
   {kind === 'method' ? (
@@ -15,10 +13,10 @@ const sisterSims = sims ? '' : 'https://saveonsims.co.uk';
       <p class="lede">A short list, checked every Monday, chosen by rules we publish. Here they are.</p>
 
       <h2>What every card shows</h2>
-      <p>Every deal card carries the monthly price, the total cost over the term, the mid-contract price rise in pounds and pence or the words "No price rise", the contract length, the data, minutes and texts, the roaming allowance and the date we checked it. Nothing sits behind a click or a tooltip. The headline price is the all-in price: if a charge is mandatory, it is in the total.</p>
+      <p>Every deal card carries the monthly price, the total cost over the term, the mid-contract price rise in pounds and pence or the words "No price rise", the contract length, the data, minutes and texts, the roaming allowance and the date we checked it. A phone deal adds the upfront cost and the handset. Nothing sits behind a click or a tooltip. The headline price is the all-in price: if a charge is mandatory, it is in the total.</p>
 
       <h2>Where the figures come from</h2>
-      <p>Prices, allowances and terms come from the networks' and retailers' published deal feeds, pulled every Monday morning. Roaming allowances and mid-contract price rises do not come from the feed. They come from tables we maintain by hand from each network's own pages, with the quote, the URL and the date beside every entry. A network whose price rise we have not verified has its deals held back until we have, because a card cannot print a blank there.</p>
+      <p>Prices, allowances and terms come from the networks' and retailers' published deal feeds, pulled every Monday morning. Roaming allowances and mid-contract price rises do not come from the feed. They come from tables we maintain by hand from each network's own pages, with the quote, the URL and the date beside every entry. A network whose price rise we have not verified has its deals held back until we have, because a card cannot print a blank there. A phone's outright price comes from its maker's own page, dated, and is the figure every contract deal for it is judged against.</p>
 
       <h2>How the picks are chosen</h2>
       <p>The same rules run every week, so the same feed always gives the same page. Only complete deals compete: the feed must state the price, upfront cost, term and all three allowances, and the network's roaming and price rise must be verified.</p>
@@ -45,7 +43,7 @@ const sisterSims = sims ? '' : 'https://saveonsims.co.uk';
       <h2>Money</h2>
       <p>Some deal links earn a commission. Each card says whether its link is one of them. That is the whole business model, and it does not change the price you pay.</p>
 
-      <p class="foot-links"><a href="/about/">About this site</a> {sims && <>, <a href="/networks/">every network we track</a>, <a href="/guides/eu-roaming-by-network/">the roaming table</a></>}{!sims && <>, <a href={`${sisterSims}/networks/`}>every network we track</a></>}.</p>
+      <p class="foot-links"><a href="/about/">About this site</a>, <a href="/networks/">every network we track</a>, <a href="/roaming/">the roaming table</a>.</p>
     </>
   ) : (
     <>
@@ -53,9 +51,7 @@ const sisterSims = sims ? '' : 'https://saveonsims.co.uk';
       <p class="lede">{site.strap}</p>
 
       <h2>What this site is for</h2>
-      <p>{sims
-        ? 'Most people pay too much for a SIM because comparing plans properly takes an hour and the cards hide the numbers that matter. This site does the hour every Monday and prints the numbers on the card: the all-in monthly price, the total, the price rise in pounds and pence, the roaming allowance and the date it was checked.'
-        : 'Most people pay too much for a phone because the monthly figure hides the total and the price rise. This site tracks the ten best-selling phones, prints the total over the contract next to the monthly price, and shows what buying outright plus a SIM only plan would cost instead.'}</p>
+      <p>Most people pay too much for a SIM or a phone because comparing plans properly takes an hour and the cards hide the numbers that matter. This site does the hour every Monday and prints the numbers on the card: the all-in monthly price, the total over the term, the price rise in pounds and pence, the roaming allowance and the date it was checked. For a phone it also prints what buying the handset outright plus a SIM only plan would cost instead, because that is the sum a contract has to beat.</p>
 
       <h2>Editorial standards</h2>
       <ul>
@@ -70,7 +66,7 @@ const sisterSims = sims ? '' : 'https://saveonsims.co.uk';
       <p>If a figure on this site is wrong, tell us and it gets corrected, with the checked date updated so the change is visible. {site.contactEmail ? <>Write to <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</> : null}</p>
 
       <h2>Who runs it</h2>
-      <p>{site.name} is an independent UK site{site.legalName ? <>, run by {site.legalName}</> : null}. It is not owned by a network, a retailer or a comparison group, and it has no accounts, no checkout and no adverts. Its sister site is <a href={site.sister.url}>{site.sister.name}</a>.</p>
+      <p>{site.name} is an independent UK site{site.legalName ? <>, run by {site.legalName}</> : null}. It is not owned by a network, a retailer or a comparison group, and it has no accounts, no checkout and no adverts.</p>
 
       <p class="foot-links"><a href="/how-we-pick-deals/">How we pick deals</a>, <a href="/terms/">terms</a>, <a href="/privacy/">privacy</a>.</p>
     </>

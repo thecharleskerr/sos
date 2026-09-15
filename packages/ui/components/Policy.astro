@@ -7,8 +7,8 @@
    Lines that need a fact the owner has not supplied (the legal name of the
    operator, a contact address) are omitted rather than filled with a guess. */
 import { getSite, settings } from '../site.js';
-const { site: key, kind, updated } = Astro.props;
-const site = getSite(key);
+const { kind, updated } = Astro.props;
+const site = getSite();
 const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const who = site.legalName ?? site.name;
 const analytics = Boolean(settings().cfBeaconToken);
@@ -20,7 +20,7 @@ const analytics = Boolean(settings().cfBeaconToken);
       <p class="meta">Last updated {fmt(updated)}.</p>
 
       <h2>What this site is</h2>
-      <p>{site.name} ({site.url}) is an information service. It shows a weekly selection of UK mobile deals with the figures that matter: the monthly price, the total cost over the contract, any mid-contract price rise in pounds and pence, the roaming allowance and the date the figures were checked. Nothing is sold here. When you choose a deal you leave this site and buy from the network or retailer, and your contract is with them, not with us.</p>
+      <p>{site.name} ({site.url}) is an information service. It shows a weekly selection of UK SIM only and phone deals with the figures that matter: the monthly price, the total cost over the contract, any mid-contract price rise in pounds and pence, the roaming allowance and the date the figures were checked. Nothing is sold here. When you choose a deal you leave this site and buy from the network or retailer, and your contract is with them, not with us.</p>
 
       <h2>Accuracy</h2>
       <p>Every figure is taken from the network's or maker's own published pages on the date shown beside it, and the deal cards are re-checked every Monday. Prices, allowances and terms change, sometimes the same day. Check the figure on the network's own page before you buy. If you spot something wrong, tell us and we will correct it. We do not guarantee that any figure is current at the moment you read it, and we are not liable for a loss that comes from relying on one without checking it.</p>

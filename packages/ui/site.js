@@ -1,64 +1,62 @@
-/* The two sites, as the SEO head, the sitemap, the policies and llms.txt
-   describe them. One place, so the name or URL cannot drift between pages.
+/* The site, as the SEO head, the sitemap, the policies and llms.txt describe
+   it. One place, so the name or URL cannot drift between pages.
 
-   legalName and contactEmail are null until the owner sets them: the
-   privacy policy needs the name of the data controller and a contact route,
-   and a made-up one is worse than a blank, so the pages omit the line until
-   the value exists. */
-export const sites = {
-  sims: {
-    key: 'sims',
-    name: 'Save on Sims',
-    url: 'https://saveonsims.co.uk',
-    strap: 'The best UK SIM only deals, checked every Monday.',
-    description: 'A weekly showcase of the best UK SIM only deals. Every card shows the monthly price, the total cost, the mid-contract price rise in pounds and pence, roaming and the date it was checked.',
-    sister: { name: 'Save on Smartphones', url: 'https://saveonsmartphones.co.uk' },
-    legalName: null,
-    contactEmail: null,
-    /* Every page that is not a post. Paths with trailing slashes to match
-       the directory build format. */
-    pages: [
-      { path: '/', changefreq: 'weekly', priority: 1.0 },
-      { path: '/students/', changefreq: 'weekly', priority: 0.8 },
-      { path: '/guides/eu-roaming-by-network/', changefreq: 'monthly', priority: 0.8 },
-      { path: '/price-rise-calculator/', changefreq: 'monthly', priority: 0.8 },
-      { path: '/blog/', changefreq: 'weekly', priority: 0.7 },
-      { path: '/networks/', changefreq: 'weekly', priority: 0.8 },
-      { path: '/this-week/', changefreq: 'weekly', priority: 0.6 },
-      { path: '/how-we-pick-deals/', changefreq: 'monthly', priority: 0.5 },
-      { path: '/about/', changefreq: 'yearly', priority: 0.4 },
-      { path: '/terms/', changefreq: 'yearly', priority: 0.2 },
-      { path: '/privacy/', changefreq: 'yearly', priority: 0.2 },
-    ],
-  },
-  phones: {
-    key: 'phones',
-    name: 'Save on Smartphones',
-    url: 'https://saveonsmartphones.co.uk',
-    strap: "Deals on the UK's top 10 phones, checked every Monday.",
-    description: "A weekly showcase of the best UK deals on the ten best-selling phones. Every card shows the monthly price, the upfront cost, the total over the contract, the mid-contract price rise in pounds and pence, and the date it was checked.",
-    sister: { name: 'Save on Sims', url: 'https://saveonsims.co.uk' },
-    legalName: null,
-    contactEmail: null,
-    pages: [
-      { path: '/', changefreq: 'weekly', priority: 1.0 },
-      { path: '/phones/', changefreq: 'weekly', priority: 0.8 },
-      { path: '/blog/', changefreq: 'weekly', priority: 0.7 },
-      { path: '/how-we-pick-deals/', changefreq: 'monthly', priority: 0.5 },
-      { path: '/about/', changefreq: 'yearly', priority: 0.4 },
-      { path: '/terms/', changefreq: 'yearly', priority: 0.2 },
-      { path: '/privacy/', changefreq: 'yearly', priority: 0.2 },
-    ],
-  },
+   Quidby is one site with sections. A section is a product area with its own
+   deal file under content/, its own hub page and its own guides. The first
+   two are SIM only plans and phones; a third starts by adding an entry here
+   and a hub page under its path.
+
+   legalName and contactEmail are null until the owner sets them: the privacy
+   policy needs the name of the data controller and a contact route, and a
+   made-up one is worse than a blank, so the pages omit the line until the
+   value exists. */
+export const site = {
+  key: 'quidby',
+  name: 'Quidby',
+  url: 'https://quidby.com',
+  strap: 'The best UK mobile deals, checked every Monday.',
+  description: 'A weekly showcase of the best UK SIM only and phone deals. Every card shows the monthly price, the total cost over the term, the mid-contract price rise in pounds and pence, roaming and the date it was checked.',
+  legalName: null,
+  contactEmail: null,
+  /* Every page that is not a post and not generated from a table. Paths
+     carry trailing slashes to match the directory build format. */
+  pages: [
+    { path: '/', changefreq: 'weekly', priority: 1.0 },
+    { path: '/sims/', changefreq: 'weekly', priority: 0.9 },
+    { path: '/phones/', changefreq: 'weekly', priority: 0.9 },
+    { path: '/networks/', changefreq: 'weekly', priority: 0.8 },
+    { path: '/roaming/', changefreq: 'monthly', priority: 0.8 },
+    { path: '/price-rise-calculator/', changefreq: 'monthly', priority: 0.8 },
+    { path: '/sims/students/', changefreq: 'weekly', priority: 0.8 },
+    { path: '/blog/', changefreq: 'weekly', priority: 0.7 },
+    { path: '/sims/this-week/', changefreq: 'weekly', priority: 0.6 },
+    { path: '/how-we-pick-deals/', changefreq: 'monthly', priority: 0.5 },
+    { path: '/about/', changefreq: 'yearly', priority: 0.4 },
+    { path: '/terms/', changefreq: 'yearly', priority: 0.2 },
+    { path: '/privacy/', changefreq: 'yearly', priority: 0.2 },
+  ],
 };
 
-export const getSite = (key) => sites[key];
+/* The sections, in the order the navigation shows them. key is also the
+   folder under content/ that holds the section's deals and the value a
+   guide's frontmatter carries in its section field. */
+export const sections = {
+  sims: { key: 'sims', name: 'SIM only', path: '/sims/', strap: 'SIM only deals, checked every Monday', guides: 'SIM only guides' },
+  phones: { key: 'phones', name: 'Phones', path: '/phones/', strap: "Deals on the UK's best-selling phones", guides: 'Phone guides' },
+};
+export const sectionKeys = Object.keys(sections);
+export const getSection = (key) => sections[key] ?? null;
+
+/* A function rather than the constant, so a page asks for the site instead
+   of holding a reference it could mutate. Pages written when there were two
+   sites still pass a key; it is ignored. */
+export const getSite = () => site;
 
 /* Build-time settings the owner supplies as environment variables rather
    than committing: the analytics token and the search engine verification
    codes. Each is null until set, and the head omits the tag until then, so
    a missing value changes nothing. Set them in the Cloudflare Pages build
-   environment for each site (see docs/TODO.md). */
+   environment (see docs/TODO.md). */
 const env = (name) => {
   const v = (typeof process !== 'undefined' && process.env?.[name]) || import.meta.env?.[name] || '';
   return v.trim() || null;
@@ -73,7 +71,8 @@ export const settings = () => ({
   bingSiteVerification: env('BING_SITE_VERIFICATION'),
 });
 
-/* The sitemap XML for a site, from its static pages and the live posts. */
+/* The sitemap XML, from the static pages, the generated pages a caller lists
+   as extra, and the live posts. */
 export function sitemapXml(site, posts = [], { today, extra = [] }) {
   const iso = (d) => new Date(d).toISOString().slice(0, 10);
   const entries = [
@@ -98,7 +97,7 @@ export const robotsTxt = (site) => [
 
 /* llms.txt: what an AI assistant should know about the site, in Markdown,
    so an answer engine quotes verified pages rather than guessing. */
-export function llmsTxt(site, posts = [], { networks = [], categories = [], compares = [] } = {}) {
+export function llmsTxt(site, posts = [], { networks = [], categories = [], compares = [], phones = [] } = {}) {
   const lines = [
     `# ${site.name}`,
     '',
@@ -106,14 +105,23 @@ export function llmsTxt(site, posts = [], { networks = [], categories = [], comp
     '',
     'Every figure on the site comes from the network\'s or maker\'s own pages on the date shown beside it, or from a deal card that is re-checked every Monday. Where a network does not state something, the site says "Not stated" rather than guessing. Nothing on the site is a checkout: deals link to the network or retailer, and the site earns an affiliate commission on some of them, which each card discloses.',
     '',
+    '## Sections',
+    '',
+    ...Object.values(sections).map((s) => `- [${s.name}](${site.url}${s.path}): ${s.strap}.`),
+    '',
     '## Key pages',
     '',
     ...site.pages.filter((p) => !/terms|privacy/.test(p.path)).map((p) => `- [${site.url}${p.path}](${site.url}${p.path})`),
     '',
   ];
   if (categories.length) {
-    lines.push('## Deal categories, re-ranked every Monday', '');
-    for (const c of categories) lines.push(`- [${c.title}](${site.url}/deals/${c.key}/): ${c.answer}`);
+    lines.push('## SIM only deal categories, re-ranked every Monday', '');
+    for (const c of categories) lines.push(`- [${c.title}](${site.url}/sims/${c.key}/): ${c.answer}`);
+    lines.push('');
+  }
+  if (phones.length) {
+    lines.push('## Phones, one page each with the maker\'s own UK price', '');
+    for (const p of phones) lines.push(`- [${p.name}](${site.url}/phones/${p.slug}/)`);
     lines.push('');
   }
   if (networks.length) {
@@ -127,7 +135,7 @@ export function llmsTxt(site, posts = [], { networks = [], categories = [], comp
     for (const p of posts) lines.push(`- [${p.data.title}](${site.url}/blog/${p.id}/): ${p.data.answer}`);
     lines.push('');
   }
-  lines.push('## Sister site', '', `- [${site.sister.name}](${site.sister.url})`, '', '## Policies', '', `- [Terms](${site.url}/terms/)`, `- [Privacy](${site.url}/privacy/)`, '');
+  lines.push('## Policies', '', `- [Terms](${site.url}/terms/)`, `- [Privacy](${site.url}/privacy/)`, '');
   return lines.join('\n');
 }
 

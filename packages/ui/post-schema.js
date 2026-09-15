@@ -1,4 +1,4 @@
-/* The frontmatter contract for a guide post, shared by both sites. Takes the
+/* The frontmatter contract for a guide post. Takes the
    zod instance from astro:content so the schema is built with the same zod
    Astro validates with.
 
@@ -12,6 +12,10 @@ export const PICKS = [
 ];
 
 export const postSchema = (z) => z.object({
+  /* Which section the guide belongs to: the key of an entry in site.js's
+     sections, which is also the folder under content/ its deal cards come
+     from. */
+  section: z.enum(['sims', 'phones']),
   /* The H1 and the title tag. Written as the question people type. */
   title: z.string().min(10).max(90),
   /* The meta description. */

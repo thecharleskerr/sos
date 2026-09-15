@@ -1,0 +1,11 @@
+# Paths from the two launch-era sites, now sections of quidby.com. The old
+# domains point at this project and Cloudflare sends them here with the path
+# kept, so these rules catch the shapes that moved. Phone and guide paths
+# did not move.
+/deals/*  /sims/:splat  301
+/students  /sims/students/  301
+/students/  /sims/students/  301
+/this-week  /sims/this-week/  301
+/this-week/  /sims/this-week/  301
+/guides/eu-roaming-by-network  /roaming/  301
+/guides/eu-roaming-by-network/  /roaming/  301

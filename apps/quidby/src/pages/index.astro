@@ -1,0 +1,128 @@
+---
+/* The front page: this week's SIM only pick, this week's phone deals or the
+   phones we track until the feed lands, the reference tools, and the latest
+   guides. Monochrome, with the network colour only inside the cards. The
+   settle animation runs here and nowhere else. */
+import Base from '../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import { getCollection } from 'astro:content';
+import { live, liveDeals } from '@sos/ui/posts';
+import { getSite, sections } from '@sos/ui/site';
+import { categories, categoryKeys } from '@sos/data/rules/categories';
+import { phones } from '@sos/compliance/phones';
+import { gbp } from '@sos/ui/money';
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
+
+const site = getSite();
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
+const sims = liveDeals('sims', root);
+const phoneDeals = liveDeals('phones', root);
+const featured = sims.deals.find((d) => d.pick === 'deal-of-week') ?? sims.deals[0] ?? null;
+const morePicks = sims.deals.filter((d) => d !== featured && d.pick).slice(0, 3);
+const phonePicks = phoneDeals.deals.filter((d) => d.pick).slice(0, 3);
+const tracked = Object.values(phones).filter((p) => p.rrpGBP !== null).slice(0, 6);
+const posts = live(await getCollection('posts')).slice(0, 4);
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' });
+const weekOf = sims.weekOf ? fmt(sims.weekOf) : null;
+
+const tools = [
+  { href: '/price-rise-calculator/', name: 'Price rise calculator', text: 'What your bill becomes after the April 2027 rise, in pounds and pence, for every network that states one.' },
+  { href: '/roaming/', name: 'EU roaming by network', text: 'Which networks include EU roaming, the daily charge where there is one, and the fair use cap, from their own pages.' },
+  { href: '/networks/', name: 'Every network compared', text: 'All 25 UK networks and brands on one page each: who they run on, roaming, the price rise and the student offer.' },
+  { href: '/sims/students/', name: 'Student SIM offers', text: 'What each network actually gives students, and the one plan that needs no maths.' },
+];
+const ld = [{
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Sections', itemListElement: Object.values(sections).map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: `${site.url}${s.path}` })),
+}];
+---
+<Base
+  title="Quidby: the best UK SIM only and phone deals, checked every Monday"
+  description="UK SIM only and phone deals checked every Monday. Every card shows the monthly price, the total over the term, the price rise in pounds and pence, and roaming."
+>
+  <h1 class="t-h1">The best UK mobile deals, checked every Monday</h1>
+  <p class="lede">
+    SIM only plans and phone contracts with nothing hidden: the monthly price,
+    the total over the term, the mid-contract price rise in pounds and pence,
+    the roaming allowance and the date we checked. Where a network does not
+    state something, we say so. <a href="/how-we-pick-deals/">How we pick.</a>
+  </p>
+
+  <section class="sec" aria-labelledby="sims-heading">
+    <div class="sec-head">
+      <h2 id="sims-heading" class="t-section">SIM only{weekOf && <span class="week">, week of {weekOf}</span>}</h2>
+      <a class="more" href="/sims/">All SIM only deals</a>
+    </div>
+    {featured
+      ? <div class="featured"><DealCard deal={featured} variant="hero" /></div>
+      : <p class="soft">This week's SIM only picks arrive with the Monday feed.</p>}
+    {morePicks.length > 0 && <div class="grid">{morePicks.map((d) => <DealCard deal={d} settle={false} />)}</div>}
+    <nav class="cats" aria-label="SIM only categories">
+      <p class="cats-label">Browse</p>
+      {categoryKeys.map((k) => <a href={`/sims/${k}/`}>{categories[k].title.replace(' SIM only deals', '').replace('SIM only deals with ', '')}</a>)}
+    </nav>
+  </section>
+
+  <section class="sec" aria-labelledby="phones-heading">
+    <div class="sec-head">
+      <h2 id="phones-heading" class="t-section">Phones</h2>
+      <a class="more" href="/phones/">All phone deals</a>
+    </div>
+    {phonePicks.length > 0
+      ? <div class="grid">{phonePicks.map((d) => <DealCard deal={d} settle={false} />)}</div>
+      : (
+        <div class="tracked">
+          <p class="soft">The weekly phone deal cards arrive with the first Monday feed. Until then, the figure every contract has to beat: what the maker charges outright.</p>
+          <ul class="tracked-list">
+            {tracked.map((p) => <li><a href={`/phones/${p.slug}/`}>{p.name}</a><span class="num">{gbp(p.rrpGBP)}{p.storageGB ? ` for ${p.storageGB}GB` : ''}</span></li>)}
+          </ul>
+        </div>
+      )}
+  </section>
+
+  <section class="sec" aria-labelledby="tools-heading">
+    <div class="sec-head">
+      <h2 id="tools-heading" class="t-section">Before you sign</h2>
+    </div>
+    <ul class="tools">
+      {tools.map((t) => <li><a href={t.href}>{t.name}</a><span>{t.text}</span></li>)}
+    </ul>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="sec" aria-labelledby="guides-heading">
+      <div class="sec-head">
+        <h2 id="guides-heading" class="t-section">Latest guides</h2>
+        <a class="more" href="/blog/">All guides</a>
+      </div>
+      <ul class="guides">
+        {posts.map((p) => <li><a href={`/blog/${p.id}/`}>{p.data.title}</a><span>{p.data.answer}</span></li>)}
+      </ul>
+    </section>
+  )}
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 22ch; }
+  .lede { max-width: 62ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  .sec { margin: 0 0 var(--space-12); }
+  .sec-head {
+    display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: baseline; justify-content: space-between;
+    padding-bottom: var(--space-2); margin-bottom: var(--space-4); border-bottom: 2px solid var(--ink);
+  }
+  .sec-head h2 { margin: 0; }
+  .week { font-weight: 400; color: var(--ink-2); font-stretch: 100%; }
+  .more { font-size: 13px; font-weight: 600; }
+  .featured { margin-bottom: var(--space-6); }
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); align-items: start; }
+  .soft { color: var(--ink-2); max-width: 62ch; margin: 0 0 var(--space-4); }
+  .cats { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; margin: var(--space-6) 0 0; font-size: 13.5px; }
+  .cats-label { margin: 0; color: var(--ink-2); font-size: 12px; }
+  .tracked-list, .tools, .guides { list-style: none; margin: 0; padding: 0; max-width: 72ch; }
+  .tracked-list li { display: flex; justify-content: space-between; gap: var(--space-4); padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+  .tracked-list a { font-weight: 600; }
+  .tools li, .guides li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+  .tools a, .guides a { font-weight: 600; }
+  .tools span, .guides span { display: block; color: var(--ink-2); font-size: 13px; margin-top: 2px; max-width: 62ch; }
+</style>

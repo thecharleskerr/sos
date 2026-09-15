@@ -6,8 +6,8 @@
 import '@fontsource-variable/archivo/wdth.css';
 import { getSite, settings } from '../site.js';
 
-const { site: key, title, description, type = 'website', noindex = false, crumbs = [] } = Astro.props;
-const site = getSite(key);
+const { title, description, type = 'website', noindex = false, crumbs = [] } = Astro.props;
+const site = getSite();
 const cfg = settings();
 const path = Astro.url.pathname.endsWith('/') || /\.[a-z]+$/.test(Astro.url.pathname) ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonical = `${site.url}${path}`;
@@ -19,7 +19,6 @@ const ld = [
     '@id': `${site.url}/#organization`,
     name: site.name,
     url: `${site.url}/`,
-    sameAs: [site.sister.url],
   },
   {
     '@context': 'https://schema.org',

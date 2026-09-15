@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import DealCard from '@sos/ui/components/DealCard.astro';
+import data from '../../../../../content/sims/deals.json';
+import { categories, categoryKeys } from '@sos/data/rules/categories';
+
+const live = data.deals.filter((d) => d.status === 'live');
+const featured = live.find((d) => d.pick === 'deal-of-week');
+const rest = live.filter((d) => d !== featured);
+
+const weekOf = new Date(data.weekOf).toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'long', timeZone: 'UTC',
+});
+---
+<Base
+  crumbs={[{ name: 'SIM only', path: '/sims/' }]}
+  title="Best SIM only deals this week | Quidby"
+  description="UK SIM only deals checked every Monday: monthly price, total cost, EU roaming and the mid-contract price rise in pounds and pence, all on one card."
+>
+  <h1 class="t-h1">Best SIM only deals, week of {weekOf}</h1>
+  <p class="lede">
+    Checked every Monday morning. Every deal shows what you actually get,
+    including your EU roaming allowance and any mid-contract price rise in
+    pounds and pence. <a href="/sims/this-week/">What changed this week.</a> Buying a phone as well? <a href="/phones/">This week's phone deals.</a>
+  </p>
+
+  <nav class="cats" aria-label="Deal categories">
+    <p class="cats-label">Browse</p>
+    {categoryKeys.map((k) => <a href={`/sims/${k}/`}>{categories[k].title.replace(' SIM only deals', '').replace('SIM only deals with ', '')}</a>)}
+  </nav>
+
+  {featured && <div class="featured"><DealCard deal={featured} variant="hero" settle={false} /></div>}
+
+  <div class="grid">
+    {rest.map((deal) => <DealCard deal={deal} />)}
+  </div>
+</Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-4); }
+  .cats { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; margin: 0 0 var(--space-8); font-size: 13.5px; }
+  .cats-label { margin: 0; color: var(--ink-2); font-size: 12px; }
+  .featured { margin-bottom: var(--space-8); }
+  .grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+    align-items: start;
+  }
+</style>

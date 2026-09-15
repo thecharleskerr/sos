@@ -1,0 +1,60 @@
+---
+/* Every guide, grouped by section. Each entry is the guide's title and its
+   short answer, so a reader can tell from the list whether it answers their
+   question before opening it. */
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { live } from '@sos/ui/posts';
+import { sections } from '@sos/ui/site';
+
+const posts = live(await getCollection('posts'));
+const groups = Object.values(sections).map((s) => ({ ...s, posts: posts.filter((p) => p.data.section === s.key) })).filter((g) => g.posts.length);
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' });
+---
+<Base
+  crumbs={[{ name: 'Guides', path: '/blog/' }]}
+  title="SIM only and phone deal guides | Quidby"
+  description="Straight answers to the questions people ask before they switch SIM or buy a phone, with every figure checked against the networks' and makers' own pages."
+>
+  <h1 class="t-h1">Guides</h1>
+  <p class="lede">Straight answers to the questions people ask before they switch SIM or buy a phone, with every figure checked against the networks' and makers' own pages.</p>
+
+  <div class="about">
+    <p>Each guide answers one question in its first paragraph, then shows the working. Every figure in it comes from a network's or maker's own pages on the date beside it, and the daily check flags a guide once its figures are more than three months old. The SIM only guides cover the mid-contract price rise each network charges, which networks include EU roaming and what the fair use cap is, whether unlimited data is worth paying for, how to switch and keep your number, which networks offer eSIM, and who gives students money off. The phone guides cover what a contract should cost against buying outright, whether a refurbished iPhone is worth it, what your old phone is worth in trade-in, and how to leave a contract early.</p>
+    <p>The reference pages sit alongside them: <a href="/networks/">every network on one page each</a>, <a href="/roaming/">EU roaming by network</a>, <a href="/sims/students/">student SIM offers</a>, <a href="/phones/">every phone we track</a> and <a href="/how-we-pick-deals/">how the weekly picks are chosen</a>.</p>
+  </div>
+
+  {posts.length === 0 && <p class="empty">The first guides land this month.</p>}
+
+  {groups.map((g) => (
+    <section aria-labelledby={`${g.key}-guides`}>
+      <h2 id={`${g.key}-guides`} class="group">{g.guides}</h2>
+      <ol class="list">
+        {g.posts.map((p) => (
+          <li>
+            <p class="date"><time datetime={new Date(p.data.publishDate).toISOString().slice(0, 10)}>{fmt(p.data.publishDate)}</time></p>
+            <h3><a href={`/blog/${p.id}/`}>{p.data.title}</a></h3>
+            <p class="desc">{p.data.answer}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+</Base>
+
+<style>
+  h1 { margin: var(--space-8) 0 var(--space-3); max-width: 20ch; }
+  .lede { max-width: 60ch; color: var(--ink-2); margin: 0 0 var(--space-8); }
+  .about { max-width: 66ch; margin: 0 0 var(--space-8); }
+  .about p { margin: 0 0 var(--space-3); }
+  .empty { color: var(--ink-2); }
+  section { margin: 0 0 var(--space-12); }
+  .group { font-size: 16px; font-weight: 800; font-stretch: 112%; margin: 0 0 var(--space-2); }
+  .list { list-style: none; margin: 0; padding: 0; max-width: 72ch; border-top: 2px solid var(--ink); }
+  .list li { padding: var(--space-4) 0; border-bottom: 1px solid var(--rule); }
+  .date { font-size: 12.5px; color: var(--ink-2); margin: 0 0 4px; }
+  .list h3 { font-size: 20px; font-weight: 800; letter-spacing: -.015em; line-height: 1.2; margin: 0 0 6px; text-wrap: balance; }
+  .list h3 a { text-decoration: none; }
+  .list h3 a:hover { text-decoration: underline; }
+  .desc { margin: 0; font-size: 14.5px; color: var(--ink-2); max-width: 62ch; }
+</style>
