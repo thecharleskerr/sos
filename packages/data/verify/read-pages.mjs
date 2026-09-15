@@ -35,7 +35,7 @@ const context = (text, re, width, cap) => {
 
 const { chromium } = await import('playwright');
 const browser = await chromium.launch({ executablePath: process.env.SOS_CHROME || undefined, args: ['--no-sandbox'] });
-const ctx = await browser.newContext({ userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36 saveonsims-page-read', locale: 'en-GB' });
+const ctx = await browser.newContext({ userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36 quidby-page-read', locale: 'en-GB' });
 mkdirSync(outDir, { recursive: true });
 const index = [];
 

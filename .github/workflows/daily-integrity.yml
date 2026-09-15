@@ -31,19 +31,16 @@ jobs:
       - name: Commit any auto-hidden deals
         run: |
           git config user.name  "sos-bot"
-          git config user.email "bot@saveonsims.co.uk"
+          git config user.email "bot@quidby.com"
           git add content/
           git diff --staged --quiet || git commit -m "Auto-hide expired or drifted deals"
           git push
 
       # Guides are dated. A post whose date has passed only goes live when the
-      # site rebuilds, so each Cloudflare Pages project is asked to rebuild
+      # site rebuilds, so the Cloudflare Pages project is asked to rebuild
       # daily through its deploy hook. Optional: no secret, no rebuild.
-      - name: Rebuild the sites so dated guides go live
+      - name: Rebuild the site so dated guides go live
         env:
-          HOOK_SIMS: ${{ secrets.CF_DEPLOY_HOOK_SIMS }}
-          HOOK_PHONES: ${{ secrets.CF_DEPLOY_HOOK_PHONES }}
+          HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
         run: |
-          for hook in "$HOOK_SIMS" "$HOOK_PHONES"; do
-            if [ -n "$hook" ]; then curl -fsS -X POST "$hook" > /dev/null; fi
-          done
+          if [ -n "$HOOK" ]; then curl -fsS -X POST "$HOOK" > /dev/null; fi

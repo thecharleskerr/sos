@@ -7,11 +7,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:sims": "npm run dev -w @sos/sims",
-    "dev:phones": "npm run dev -w @sos/phones",
-    "build": "npm run build -w @sos/sims && npm run build -w @sos/phones",
+    "dev": "npm run dev -w @sos/quidby",
+    "build": "npm run build -w @sos/quidby",
+    "preview": "npm run preview -w @sos/quidby",
     "verify": "node packages/data/verify.mjs",
-    "seo": "node packages/data/seo/audit.mjs apps/sims/dist https://saveonsims.co.uk && node packages/data/seo/audit.mjs apps/phones/dist https://saveonsmartphones.co.uk",
+    "seo": "node packages/data/seo/audit.mjs apps/quidby/dist https://quidby.com",
     "test": "node --experimental-strip-types --test \"packages/data/test/*.test.mjs\"",
     "refresh": "node --experimental-strip-types packages/data/ingest/run.mjs",
     "integrity": "node --experimental-strip-types packages/data/verify/integrity.mjs"

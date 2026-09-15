@@ -67,10 +67,11 @@ test('guides past the freshness window are listed, not hidden', async () => {
   const { tmpdir } = await import('node:os');
   const { join } = await import('node:path');
   const root = mkdtempSync(join(tmpdir(), 'sos-'));
-  mkdirSync(join(root, 'apps/sims/src/content/posts'), { recursive: true });
-  writeFileSync(join(root, 'apps/sims/src/content/posts/old.md'), '---\ntitle: "Old"\nchecked: 2026-01-01\n---\nbody');
-  writeFileSync(join(root, 'apps/sims/src/content/posts/new.md'), '---\ntitle: "New"\nchecked: 2026-09-01\n---\nbody');
+  mkdirSync(join(root, 'apps/quidby/src/content/posts'), { recursive: true });
+  writeFileSync(join(root, 'apps/quidby/src/content/posts/old.md'), '---\nsection: "phones"\ntitle: "Old"\nchecked: 2026-01-01\n---\nbody');
+  writeFileSync(join(root, 'apps/quidby/src/content/posts/new.md'), '---\nsection: "sims"\ntitle: "New"\nchecked: 2026-09-01\n---\nbody');
   const out = staleGuides('2026-09-07', root);
   assert.deepEqual(out.map((g) => g.slug), ['old']);
+  assert.equal(out[0].section, 'phones');
   assert.ok(out[0].age > GUIDE_STALE_DAYS);
 });

@@ -35,7 +35,7 @@ export async function checkLink(url, { fetchImpl = fetch, timeoutMs = 15000, pau
     try {
       const res = await fetchImpl(url, {
         method, redirect: 'follow', signal: ctrl.signal,
-        headers: { 'user-agent': 'Mozilla/5.0 (compatible; saveonsims-integrity; +https://saveonsims.co.uk)' },
+        headers: { 'user-agent': 'Mozilla/5.0 (compatible; quidby-integrity; +https://quidby.com)' },
       });
       return { ok: res.status < 400, status: res.status };
     } catch (e) {
@@ -102,16 +102,15 @@ export const GUIDE_STALE_DAYS = 90;
    parser: the field is a plain ISO date on its own line. */
 export function staleGuides(today, rootDir = root) {
   const out = [];
-  for (const site of ['sims', 'phones']) {
-    const dir = resolve(rootDir, `apps/${site}/src/content/posts`);
-    if (!existsSync(dir)) continue;
-    for (const f of readdirSync(dir).filter((x) => x.endsWith('.md'))) {
-      const text = readFileSync(resolve(dir, f), 'utf8');
-      const m = text.match(/^checked:\s*(\d{4}-\d{2}-\d{2})/m);
-      if (!m) continue;
-      const age = daysBetween(m[1], today);
-      if (age > GUIDE_STALE_DAYS) out.push({ site, slug: f.replace(/\.md$/, ''), checked: m[1], age });
-    }
+  const dir = resolve(rootDir, 'apps/quidby/src/content/posts');
+  if (!existsSync(dir)) return out;
+  for (const f of readdirSync(dir).filter((x) => x.endsWith('.md'))) {
+    const text = readFileSync(resolve(dir, f), 'utf8');
+    const m = text.match(/^checked:\s*(\d{4}-\d{2}-\d{2})/m);
+    if (!m) continue;
+    const section = text.match(/^section:\s*"?([a-z]+)/m)?.[1] ?? 'unknown';
+    const age = daysBetween(m[1], today);
+    if (age > GUIDE_STALE_DAYS) out.push({ section, slug: f.replace(/\.md$/, ''), checked: m[1], age });
   }
   return out;
 }
@@ -180,7 +179,7 @@ export async function main(argv = process.argv.slice(2)) {
      they are listed here so someone re-checks them; nothing is hidden. */
   const stale = staleGuides(today);
   report.push(`## Guides`, '', stale.length ? `${stale.length} guide${stale.length === 1 ? '' : 's'} not re-checked for ${GUIDE_STALE_DAYS} days:` : `Every guide was checked within the last ${GUIDE_STALE_DAYS} days.`, '');
-  for (const g of stale) report.push(`- RECHECK ${g.site}/${g.slug}: checked ${g.checked}, ${g.age} days ago`);
+  for (const g of stale) report.push(`- RECHECK ${g.section}/${g.slug}: checked ${g.checked}, ${g.age} days ago`);
   report.push('');
 
   if (dry && hidden) report.push('Dry run: nothing was written.', '');

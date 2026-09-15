@@ -42,7 +42,7 @@ const rowsFor = (recipe, { jsonLd, cards, pageUrl }) => {
 async function scrapeWithBrowser(list) {
   const { chromium } = await import('playwright');
   const browser = await chromium.launch({ executablePath: process.env.SOS_CHROME || undefined, args: ['--no-sandbox'] });
-  const ctx = await browser.newContext({ userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36 saveonsims-weekly-check', locale: 'en-GB' });
+  const ctx = await browser.newContext({ userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36 quidby-weekly-check', locale: 'en-GB' });
   /* Plans are text. Images, video and fonts only slow the run down. */
   await ctx.route('**/*', (route) => (['image', 'media', 'font'].includes(route.request().resourceType()) ? route.abort() : route.continue()));
   const results = [];
@@ -101,7 +101,7 @@ async function gatherLeads() {
   const leads = [];
   for (const feed of leadFeeds) {
     try {
-      const res = await fetch(feed.url, { headers: { 'user-agent': 'saveonsims-weekly-check' }, signal: AbortSignal.timeout(20000) });
+      const res = await fetch(feed.url, { headers: { 'user-agent': 'quidby-weekly-check' }, signal: AbortSignal.timeout(20000) });
       if (!res.ok) { leads.push({ feed: feed.name, error: `${res.status}` }); continue; }
       for (const l of parseRssLeads(await res.text())) leads.push({ feed: feed.name, ...l });
     } catch (e) {

@@ -1,6 +1,6 @@
 /* SEO and answer-engine audit of a built site.
  *
- *   node packages/data/seo/audit.mjs apps/sims/dist https://saveonsims.co.uk
+ *   node packages/data/seo/audit.mjs apps/quidby/dist https://quidby.com
  *
  * Reads every HTML page in the dist folder and checks what a crawler and an
  * answer engine read first: one title of a sensible length, one description,

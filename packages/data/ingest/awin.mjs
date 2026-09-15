@@ -26,7 +26,7 @@ export async function fetchText(url, { timeoutMs = 90000, fetchImpl = fetch } = 
     const res = await fetchImpl(url, {
       signal: ctrl.signal,
       redirect: 'follow',
-      headers: { 'user-agent': 'saveonsims-weekly-refresh (+https://saveonsims.co.uk)' },
+      headers: { 'user-agent': 'quidby-weekly-refresh (+https://quidby.com)' },
     });
     if (!res.ok) throw new Error(`${res.status} ${res.statusText} from ${redact(url)}`);
     const buf = Buffer.from(await res.arrayBuffer());

@@ -1,6 +1,6 @@
 name: Tell search engines what changed
 
-# After anything lands on main, build both sites and submit every URL to
+# After anything lands on main, build the site and submit every URL to
 # IndexNow. Google is not on IndexNow; it reads the sitemap Cloudflare serves.
 on:
   push:
@@ -16,5 +16,4 @@ jobs:
         with: { node-version: 22, cache: npm }
       - run: npm ci
       - run: npm run build
-      - run: node packages/data/seo/indexnow.mjs --site sims
-      - run: node packages/data/seo/indexnow.mjs --site phones
+      - run: node packages/data/seo/indexnow.mjs
