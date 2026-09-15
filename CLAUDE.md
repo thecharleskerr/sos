@@ -1,8 +1,13 @@
-# Project SOS
+# Quidby
 
-Two Astro sites from one monorepo: Save on Sims (saveonsims.co.uk) and
-Save on Smartphones (saveonsmartphones.co.uk). A curated weekly showcase of
-the best UK mobile deals. No checkout. Revenue is affiliate only.
+One Astro site, quidby.com, from a monorepo that still carries the working
+name SOS. A curated weekly showcase of the best UK mobile deals, in sections:
+SIM only under /sims/ and phones under /phones/, with the networks, the
+roaming table, the price rise calculator and the guides shared between
+them. A section is an entry in packages/ui/site.js, a deal file under
+content/<key>/ and a hub page under its path, so a third product area
+(broadband, say) is added the same way. No checkout. Revenue is affiliate
+only. quidby.co.uk and the two launch-era domains redirect to the .com.
 
 ## Hard rules
 
@@ -28,7 +33,8 @@ the best UK mobile deals. No checkout. Revenue is affiliate only.
 - Money stored as numbers in pounds, formatted at render, never as strings.
 - Tabular figures on every number in the UI.
 - All deal data validated with zod before it reaches content/.
-- Shared components live in packages/ui. If both sites need it, it goes there.
+- Shared components live in packages/ui. If more than one section needs it,
+  it goes there.
 
 ## Design
 
@@ -45,9 +51,8 @@ and focus, plus one settle on first load of the homepage.
 ## Commands
 
     npm install
-    npm run dev:sims        # local dev, Save on Sims
-    npm run dev:phones      # local dev, Save on Smartphones
-    npm run build           # build both
+    npm run dev             # local dev, http://localhost:4321
+    npm run build           # build the site to apps/quidby/dist
     npm run verify          # schema and compliance checks, runs in CI
     npm test                # ingest, ranking and integrity tests, runs in CI
     npm run refresh         # the weekly feed pull, dry run outside Actions

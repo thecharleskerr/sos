@@ -1,7 +1,10 @@
-# Save on Sims / Save on Smartphones
+# Quidby
 
-Two static sites, one monorepo. A weekly curated showcase of the best UK
-mobile deals, refreshed every Monday at 08:00 London time.
+One static site, quidby.com. A weekly curated showcase of the best UK mobile
+deals, refreshed every Monday at 08:00 London time, in sections: SIM only
+under `/sims/` and phones under `/phones/`, with the network pages, the
+roaming table, the price rise calculator and the guides shared between them.
+The repository keeps its working name, SOS.
 
 ## Getting it onto GitHub
 
@@ -19,29 +22,33 @@ otherwise the first push will conflict.
 ## Running it
 
     npm install
-    npm run dev:sims       # http://localhost:4321
-    npm run dev:phones
-    npm run build
+    npm run dev            # http://localhost:4321
+    npm run build          # apps/quidby/dist
     npm run verify
 
 ## Deploying
 
-Two Cloudflare Pages projects from the same repository.
+One Cloudflare Pages project from this repository.
 
-| | Save on Sims | Save on Smartphones |
-|---|---|---|
-| Build command | `npm run build -w @sos/sims` | `npm run build -w @sos/phones` |
-| Output directory | `apps/sims/dist` | `apps/phones/dist` |
-| Custom domain | saveonsims.co.uk | saveonsmartphones.co.uk |
+| | Quidby |
+|---|---|
+| Build command | `npm run build` |
+| Output directory | `apps/quidby/dist` |
+| Custom domain | quidby.com |
+
+quidby.co.uk, saveonsims.co.uk and saveonsmartphones.co.uk are attached to
+the same project and sent to quidby.com by a Cloudflare bulk redirect that
+keeps the path. `apps/quidby/public/_redirects` then maps the paths that
+moved when the two launch-era sites became sections (the old `/deals/`,
+`/students/`, `/this-week/` and roaming guide paths).
 
 ## Repository secrets needed
 
 `AWIN_API_TOKEN` and `AWIN_PUBLISHER_ID`, for the weekly feed pull, and
-`CF_DEPLOY_HOOK_SIMS` and `CF_DEPLOY_HOOK_PHONES`, for the daily integrity
-job's redeploy. Add them under Settings, Secrets and variables, Actions. Do
-not commit them.
+`CF_DEPLOY_HOOK`, for the daily integrity job's redeploy. Add them under
+Settings, Secrets and variables, Actions. Do not commit them.
 
-Three optional build-time variables go in each Cloudflare Pages project's
+Three optional build-time variables go in the Cloudflare Pages project's
 build environment rather than in the repository: `CF_BEACON_TOKEN` (Cloudflare
 Web Analytics), `GOOGLE_SITE_VERIFICATION` and `BING_SITE_VERIFICATION`. Each
 tag is omitted until its value exists. The full list of owner tasks, with
@@ -74,15 +81,18 @@ The weekly job proposes and the daily job disposes.
   feed, and auto-hides anything expired or drifted. This one does deploy,
   because it can only ever remove things.
 
-## What the sites serve
+## What the site serves
 
-Save on Sims: the weekly picks, seven category pages under `/deals/`, a
-page per network under `/networks/` built from the verified tables, the
-student and roaming tables, dated guides under `/blog/`, `/this-week/` from
-the refresh's changelog, `/how-we-pick-deals/`, `/about/`, the policies,
-and the verified tables as JSON under `/data/`. Save on Smartphones: a page
-per tracked phone under `/phones/` and its own guides. Both serve
-`sitemap.xml`, `robots.txt`, `feed.xml`, `llms.txt` and `llms-full.txt`.
+The front page with this week's picks from each section. `/sims/`: the
+weekly SIM only picks, seven category pages beneath it, the student table
+at `/sims/students/` and `/sims/this-week/` from the refresh's changelog.
+`/phones/`: this week's phone deals and a page per tracked phone. Shared:
+a page per network under `/networks/` built from the verified tables, the
+head to heads under `/compare/`, the roaming table at `/roaming/`, the
+`/price-rise-calculator/`, dated guides under `/blog/` (each tagged with
+its section), `/how-we-pick-deals/`, `/about/`, the policies, the verified
+tables as JSON under `/data/`, and `sitemap.xml`, `robots.txt`, `feed.xml`,
+`llms.txt` and `llms-full.txt`.
 
 Every page carries a canonical URL, Open Graph tags with a rendered social
 image, and structured data; guides, network, category and phone pages add
@@ -92,10 +102,10 @@ policy that allows no scripts; add `static.cloudflareinsights.com` to
 `script-src` if Cloudflare Web Analytics is switched on, and mention it in
 the privacy page.
 
-After a push to main, `.github/workflows/index-ping.yml` builds both sites
-and submits every URL to IndexNow. The key files in each `public/` are
-public by design. Google does not use IndexNow; submit the sitemaps once
-in Search Console.
+After a push to main, `.github/workflows/index-ping.yml` builds the site
+and submits every URL to IndexNow. The key file in `public/` is public by
+design. Google does not use IndexNow; submit the sitemap once in Search
+Console.
 
 ## The weekly cycle, in practice
 

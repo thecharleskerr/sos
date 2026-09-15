@@ -6,35 +6,28 @@ once it is there. Nothing here needs a code change unless it says so.
 
 Tick an item by deleting it. Keep this file short.
 
-## Before the sites go live
+## Before the site goes live
 
-- [ ] **Choose and buy the one domain.** The two sites become one brand
-      on a single domain before launch, with saveonsims.co.uk and
-      saveonsmartphones.co.uk redirecting to it. The site is UK only, so
-      either .com or .co.uk will do. The brief is a coined word, not a
-      description. Five names, checked at the .com and .uk registry
-      servers on 15 September 2026 and searched for existing brands:
-      quidby (recommended, .com and .co.uk both free), sumby (.co.uk;
-      the .com is someone's), fairdo (.com; the .co.uk is someone's),
-      mobsum (both free), simwick (both free). Also clean and free on at
-      least one: quidbury, plaisim, sumwell, simvo, quidster. Descriptive
-      fallbacks, both free: switchsum, sortmymobile. A registry DNS check
-      cannot see a name that is registered but not delegated, so confirm
-      at the registrar before paying, run the name through the UK IPO
-      trade mark search, and check the social handles. Once bought, set
-      `url` in `packages/ui/site.js` and ask for the single-site
-      restructure (one Astro app, /sims/ and /phones/ sections, redirects
-      from the old domains).
+- [ ] **Point the domains at the one project.** quidby.com is the site.
+      In Cloudflare, add quidby.com as the Pages project's custom domain,
+      then add quidby.co.uk, saveonsims.co.uk and saveonsmartphones.co.uk
+      to the same project and create a Bulk Redirect (Rules, Bulk
+      Redirects) sending each of those hosts to https://quidby.com with
+      "preserve path" and "preserve query" on, 301. The
+      `apps/quidby/public/_redirects` file then maps the paths that moved.
+      Also add a www.quidby.com redirect to the apex. Until the redirects
+      exist the old hosts serve the site under their own names, which is
+      harmless but splits the search signal.
 - [ ] **Legal name and contact address.** Set `legalName` and
-      `contactEmail` for both sites in `packages/ui/site.js`. The privacy
+      `contactEmail` in `packages/ui/site.js`. The privacy
       policy names the data controller and the terms page shows a contact
       route only once these exist; until then both lines are omitted rather
       than guessed.
-- [ ] **Cloudflare Pages projects.** One per site, from this repository,
-      with the build commands and output directories in the README. Set the
-      custom domains and turn on "Always use HTTPS". The `_headers` file in
-      each `public/` folder carries the security headers and the cache
-      rules, so nothing needs setting in the dashboard for those.
+- [ ] **Cloudflare Pages project.** One, from this repository, build
+      command `npm run build`, output directory `apps/quidby/dist`. Turn on
+      "Always use HTTPS". The `_headers` file in `public/` carries the
+      security headers and the cache rules, so nothing needs setting in the
+      dashboard for those.
 - [ ] **Awin secrets.** Add `AWIN_API_TOKEN` and `AWIN_PUBLISHER_ID` under
       the repository's Settings, Secrets and variables, Actions. The weekly
       refresh reads the confirmed feeds (Vodafone, Three, iD Mobile) and
@@ -42,40 +35,39 @@ Tick an item by deleting it. Keep this file short.
       id is present. Apply to the programmes listed by `awin` id in
       `packages/ui/networks.js`; a programme that has not accepted the site
       still tracks nothing, so keep `isAffiliate` honest.
-- [ ] **Cloudflare deploy hooks.** Create a deploy hook for each Pages
-      project and add them as `CF_DEPLOY_HOOK_SIMS` and
-      `CF_DEPLOY_HOOK_PHONES` repository secrets. The daily integrity job
-      calls them after it hides a dead or drifted deal.
+- [ ] **Cloudflare deploy hook.** Create a deploy hook for the Pages
+      project and add it as the `CF_DEPLOY_HOOK` repository secret. The
+      daily integrity job calls it after it hides a dead or drifted deal,
+      and every morning so dated guides go live.
 - [ ] **Replace the sample deals.** `content/sims/deals.json` is placeholder
       data and `npm run verify` warns about it. The first weekly refresh
       pull request replaces it; merge that before anything is published.
 
 ## Search engines and answer engines
 
-- [ ] **Google Search Console.** Add both domains as Domain properties
-      (DNS TXT record) or as URL prefix properties using the meta tag. For
+- [ ] **Google Search Console.** Add quidby.com as a Domain property
+      (DNS TXT record) or as a URL prefix property using the meta tag. For
       the meta tag, set `GOOGLE_SITE_VERIFICATION` as a build environment
-      variable in each Pages project; the head renders the tag when it is
-      set. Then submit `/sitemap.xml` for each site and request indexing of
-      the homepage. Check the Enhancements reports after a week: the pages
+      variable in the Pages project; the head renders the tag when it is
+      set. Then submit `/sitemap.xml` and request indexing of the homepage. Check the Enhancements reports after a week: the pages
       carry Organization, WebSite, Article, FAQPage, BreadcrumbList,
       ItemList and Product structured data and any warning there is worth
       fixing.
-- [ ] **Bing Webmaster Tools.** Either import the sites from Search Console
+- [ ] **Bing Webmaster Tools.** Either import the site from Search Console
       (quickest) or verify with the meta tag by setting
-      `BING_SITE_VERIFICATION` in each Pages build environment. Submit the
-      sitemap. IndexNow is already wired: each site serves its key file from
+      `BING_SITE_VERIFICATION` in the Pages build environment. Submit the
+      sitemap. IndexNow is already wired: the site serves its key file from
       `public/` and the index-ping workflow submits changed URLs after a
       deploy, which reaches Bing, Yandex and the other IndexNow engines.
 - [ ] **Cloudflare Web Analytics.** In the Cloudflare dashboard, Analytics
-      and Logs, Web Analytics, add each site and copy its token. Set it as
-      `CF_BEACON_TOKEN` in the Pages build environment for that site. The
+      and Logs, Web Analytics, add the site and copy its token. Set it as
+      `CF_BEACON_TOKEN` in the Pages build environment. The
       head then renders the cookieless beacon, the privacy page switches to
       the wording that describes it, and the content security policy in
       `_headers` already allows the script. Leave the "automatic setup"
       injection off, since the site adds the script itself.
-- [ ] **Answer engines.** `/llms.txt` and `/llms-full.txt` are live on both
-      sites. Nothing to submit; check after a month whether ChatGPT,
+- [ ] **Answer engines.** `/llms.txt` and `/llms-full.txt` are live.
+      Nothing to submit; check after a month whether ChatGPT,
       Perplexity and Google AI Overviews cite the roaming, price rise and
       network pages when asked the questions those pages answer, and
       compare against Uswitch and MoneySavingExpert.
