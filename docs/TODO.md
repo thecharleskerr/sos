@@ -9,17 +9,20 @@ Tick an item by deleting it. Keep this file short.
 ## Before the sites go live
 
 - [ ] **Choose and buy the one domain.** The two sites become one brand
-      on a single .com before launch, with saveonsims.co.uk and
-      saveonsmartphones.co.uk redirecting to it. Five names, each with the
-      .com and the .co.uk showing no registration at the registry on
-      15 September 2026: switchsum.com (recommended), thewholebill.com,
-      sortmymobile.com, mobilereckoner.com, tariffpick.com. The check was
-      DNS at the .com registry servers, which cannot see a name that is
-      registered but not delegated, so confirm at the registrar before
-      paying, run the name through the UK IPO trade mark search, and check
-      the social handles. Once bought, set `url` in `packages/ui/site.js`
-      and ask for the single-site restructure (one Astro app, /sims/ and
-      /phones/ sections, redirects from the old domains).
+      on a single domain before launch, with saveonsims.co.uk and
+      saveonsmartphones.co.uk redirecting to it. The site is UK only, so
+      .co.uk is fine. Five names, checked at the .com and .uk registry
+      servers on 15 September 2026: switchsum (recommended, .com and .co.uk
+      both free), simpick.co.uk (the .com is parked with no site or mail
+      on it), thewholebill (both free), sortmymobile (both free, though
+      Compare My Mobile is an existing site), mobilereckoner (both free).
+      Also free on both: tariffpick. A registry DNS check cannot see a
+      name that is registered but not delegated, so confirm at the
+      registrar before paying, run the name through the UK IPO trade mark
+      search, and check the social handles. Once bought, set `url` in
+      `packages/ui/site.js` and ask for the single-site restructure (one
+      Astro app, /sims/ and /phones/ sections, redirects from the old
+      domains).
 - [ ] **Legal name and contact address.** Set `legalName` and
       `contactEmail` for both sites in `packages/ui/site.js`. The privacy
       policy names the data controller and the terms page shows a contact
